@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>IP Prefix / Pool · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="ip-prefix-pools.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub active">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <a href="index.html">Asset Management</a><span> / </span
+              ><span>Network Resources</span><span> / </span
+              ><strong>IP Prefix / Pool</strong>
+            </div>
+            <h1 class="page-title">IP Prefix / Pool</h1>
+          </div>
+          <div class="topbar-actions">
+            <button
+              class="btn btn-ghost"
+              type="button"
+              onclick="toggleSidebar()"
+            >
+              ☰ Menu</button
+            ><button
+              class="btn btn-primary"
+              type="button"
+              onclick="openPrefixModal()"
+            >
+              + Add IP Prefix
+            </button>
+          </div>
+        </header>
+        <div class="content prefix-page">
+          <div class="panel prefix-inventory">
+            <div class="prefix-toolbar">
+              <div class="prefix-search">
+                <input
+                  id="prefixSearch"
+                  type="search"
+                  placeholder="Cari prefix, name, gateway, VLAN..."
+                  autocomplete="off"
+                />
+              </div>
+              <div class="prefix-filters">
+                <select id="prefixVersionFilter" class="prefix-filter">
+                  <option value="all">Semua IP Version</option>
+                  <option value="ipv4">IPv4</option>
+                  <option value="ipv6">IPv6</option></select
+                ><select id="prefixStatusFilter" class="prefix-filter">
+                  <option value="all">Semua Status</option>
+                  <option value="active">Active</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+              </div>
+            </div>
+            <div class="prefix-summary">
+              <div class="prefix-summary-item">
+                <span>Total Prefix</span><b id="prefixTotal">5</b>
+              </div>
+              <div class="prefix-summary-item">
+                <span>Active</span><b id="prefixActive">3</b>
+              </div>
+              <div class="prefix-summary-item">
+                <span>Reserved</span><b id="prefixReserved">1</b>
+              </div>
+              <div class="prefix-summary-item">
+                <span>Deprecated</span><b id="prefixDeprecated">1</b>
+              </div>
+            </div>
+            <div class="prefix-table-wrap">
+              <table class="prefix-table">
+                <thead>
+                  <tr>
+                    <th>Prefix / Pool</th>
+                    <th>Type</th>
+                    <th>IP Version</th>
+                    <th>Gateway</th>
+                    <th>Utilization</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="prefixTableBody"></tbody>
+              </table>
+              <div id="prefixEmpty" class="prefix-empty" hidden>
+                Tidak ada IP Prefix / Pool yang cocok dengan pencarian atau
+                filter.
+              </div>
+            </div>
+            <div class="prefix-footer">
+              <span id="prefixCount">5 of 5 prefixes</span
+              ><button
+                class="btn btn-ghost"
+                type="button"
+                onclick="resetPrefixData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <dialog id="prefixModal" class="prefix-modal">
+      <form
+        id="prefixForm"
+        class="prefix-modal-form"
+        onsubmit="savePrefix(event)"
+      >
+        <div class="prefix-modal-head">
+          <div>
+            <div class="eyebrow">NETWORK RESOURCE</div>
+            <h2 id="prefixModalTitle">Add IP Prefix / Pool</h2>
+          </div>
+          <button
+            type="button"
+            class="prefix-modal-close"
+            aria-label="Close"
+            onclick="closePrefixModal()"
+          >
+            ×
+          </button>
+        </div>
+        <div class="prefix-modal-body">
+          <section class="prefix-form-section">
+            <h3>Basic Information</h3>
+            <p>Identity and network definition.</p>
+            <div class="prefix-form-grid">
+              <div class="prefix-field">
+                <label>Prefix ID <span>(auto-generated)</span></label
+                ><input class="mono-input" name="prefixCode" disabled />
+              </div>
+              <div class="prefix-field">
+                <label>Prefix / CIDR</label
+                ><input
+                  class="mono-input"
+                  name="prefix"
+                  placeholder="cth. 10.10.0.0/24"
+                  required
+                />
+              </div>
+              <div class="prefix-field">
+                <label>Prefix Name</label
+                ><input
+                  name="name"
+                  placeholder="cth. Jakarta Management Network"
+                  required
+                />
+              </div>
+              <div class="prefix-field">
+                <label>Type</label
+                ><select name="type" required>
+                  <option value="">Pilih type</option>
+                  <option>Management</option>
+                  <option>Customer</option>
+                  <option>Infrastructure</option>
+                  <option>Transit</option>
+                  <option>Loopback</option>
+                </select>
+              </div>
+              <div class="prefix-field">
+                <label>IP Version</label
+                ><select name="ipVersion" required>
+                  <option value="ipv4">IPv4</option>
+                  <option value="ipv6">IPv6</option>
+                </select>
+              </div>
+              <div class="prefix-field">
+                <label>Gateway</label
+                ><input
+                  class="mono-input"
+                  name="gateway"
+                  placeholder="cth. 10.10.0.1"
+                />
+              </div>
+            </div>
+          </section>
+          <section class="prefix-form-section">
+            <h3>Placement & Status</h3>
+            <p>Location, VLAN and lifecycle information.</p>
+            <div class="prefix-form-grid">
+              <div class="prefix-field">
+                <label>Location</label
+                ><select name="location" required>
+                  <option value="">Pilih location</option>
+                  <option>POP Jakarta</option>
+                  <option>POP Jakarta Selatan</option>
+                  <option>POP Bandung</option>
+                  <option>Data Center Jakarta</option>
+                </select>
+              </div>
+              <div class="prefix-field">
+                <label>VLAN</label
+                ><input name="vlan" placeholder="cth. Management" />
+              </div>
+              <div class="prefix-field">
+                <label>Status</label
+                ><select name="status" required>
+                  <option value="active">Active</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+              </div>
+              <div class="prefix-field">
+                <label>Total Addresses</label
+                ><input
+                  type="number"
+                  name="totalAddresses"
+                  min="1"
+                  placeholder="254"
+                  required
+                />
+              </div>
+              <div class="prefix-field full">
+                <label>Description <span>(optional)</span></label
+                ><textarea
+                  name="description"
+                  placeholder="Catatan IP prefix / pool..."
+                ></textarea>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="prefix-modal-foot">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            onclick="closePrefixModal()"
+          >
+            Cancel</button
+          ><button
+            type="submit"
+            class="btn btn-primary"
+            id="prefixSubmitButton"
+          >
+            Save IP Prefix
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <script src="assets/js/app.js"></script>
+    <script>
+      const PREFIX_KEY = "netasset_ip_prefixes_v1";
+      const DEMO = [
+        {
+          prefixCode: "IPP-0001",
+          prefix: "10.10.0.0/24",
+          name: "Jakarta Management Network",
+          type: "Management",
+          ipVersion: "ipv4",
+          gateway: "10.10.0.1",
+          location: "POP Jakarta",
+          vlan: "Management",
+          status: "active",
+          totalAddresses: 254,
+          allocated: 32,
+          description: "Management network for Jakarta POP.",
+        },
+        {
+          prefixCode: "IPP-0002",
+          prefix: "10.20.0.0/24",
+          name: "Jakarta Customer Network",
+          type: "Customer",
+          ipVersion: "ipv4",
+          gateway: "10.20.0.1",
+          location: "POP Jakarta",
+          vlan: "Customer",
+          status: "active",
+          totalAddresses: 254,
+          allocated: 148,
+          description: "Customer service network.",
+        },
+        {
+          prefixCode: "IPP-0003",
+          prefix: "10.30.0.0/25",
+          name: "South Jakarta Infrastructure",
+          type: "Infrastructure",
+          ipVersion: "ipv4",
+          gateway: "10.30.0.1",
+          location: "POP Jakarta Selatan",
+          vlan: "Infrastructure",
+          status: "active",
+          totalAddresses: 126,
+          allocated: 68,
+          description: "Infrastructure network.",
+        },
+        {
+          prefixCode: "IPP-0004",
+          prefix: "10.40.0.0/24",
+          name: "Bandung Transit Network",
+          type: "Transit",
+          ipVersion: "ipv4",
+          gateway: "10.40.0.1",
+          location: "POP Bandung",
+          vlan: "Transit",
+          status: "reserved",
+          totalAddresses: 254,
+          allocated: 0,
+          description: "Reserved transit network.",
+        },
+        {
+          prefixCode: "IPP-0005",
+          prefix: "10.50.0.0/28",
+          name: "Legacy Loopback Pool",
+          type: "Loopback",
+          ipVersion: "ipv4",
+          gateway: "10.50.0.1",
+          location: "POP Jakarta",
+          vlan: "Loopback",
+          status: "deprecated",
+          totalAddresses: 14,
+          allocated: 12,
+          description: "Legacy loopback pool.",
+        },
+      ];
+      let editingPrefixCode = null;
+      function getPrefixes() {
+        const raw = localStorage.getItem(PREFIX_KEY);
+        if (!raw) {
+          localStorage.setItem(PREFIX_KEY, JSON.stringify(DEMO));
+          return structuredClone(DEMO);
+        }
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(PREFIX_KEY, JSON.stringify(DEMO));
+          return structuredClone(DEMO);
+        }
+      }
+      function savePrefixes(x) {
+        localStorage.setItem(PREFIX_KEY, JSON.stringify(x));
+      }
+      function esc(v) {
+        return String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      }
+      function escJs(v) {
+        return String(v ?? "")
+          .replace(/\\/g, "\\\\")
+          .replace(/'/g, "\\'");
+      }
+      function statusLabel(s) {
+        return (
+          { active: "Active", reserved: "Reserved", deprecated: "Deprecated" }[
+            s
+          ] ||
+          s ||
+          "—"
+        );
+      }
+      function badge(s) {
+        return (
+          {
+            active: "badge-active",
+            reserved: "badge-warning",
+            deprecated: "badge-inactive",
+          }[s] || "badge-neutral"
+        );
+      }
+      function renderPrefixes() {
+        const all = getPrefixes(),
+          q = (document.getElementById("prefixSearch").value || "")
+            .trim()
+            .toLowerCase(),
+          ver = document.getElementById("prefixVersionFilter").value,
+          st = document.getElementById("prefixStatusFilter").value;
+        const filtered = all.filter((x) => {
+          const h = [
+            x.prefixCode,
+            x.prefix,
+            x.name,
+            x.type,
+            x.gateway,
+            x.location,
+            x.vlan,
+            x.status,
+          ]
+            .join(" ")
+            .toLowerCase();
+          return (
+            (!q || h.includes(q)) &&
+            (ver === "all" || x.ipVersion === ver) &&
+            (st === "all" || x.status === st)
+          );
+        });
+        document.getElementById("prefixTableBody").innerHTML = filtered
+          .map((x) => {
+            const total = Number(x.totalAddresses) || 0,
+              used = Math.min(Number(x.allocated) || 0, total),
+              pct = total ? Math.round((used / total) * 100) : 0,
+              available = Math.max(total - used, 0);
+            return `<tr><td><div class="prefix-name-cell"><div class="prefix-icon">IP</div><div class="prefix-name-text"><a class="cell-primary" href="ip-prefix-pool-detail.html?prefix=${encodeURIComponent(x.prefixCode)}">${esc(x.name)}</a><span class="prefix-code">${esc(x.prefix)}</span></div></div></td><td>${esc(x.type)}</td><td>${x.ipVersion === "ipv6" ? "IPv6" : "IPv4"}</td><td><span class="prefix-mono">${esc(x.gateway)}</span></td><td><div class="prefix-utilization"><div class="prefix-utilization-top"><b>${pct}%</b><span>${used}/${total}</span></div><div class="prefix-utilization-bar"><div class="prefix-utilization-fill" style="width:${pct}%"></div></div><small>${available} available</small></div></td><td>${esc(x.location)}</td><td><span class="badge ${badge(x.status)}">${statusLabel(x.status)}</span></td><td><div class="prefix-actions"><a class="icon-btn" title="View" href="ip-prefix-pool-detail.html?prefix=${encodeURIComponent(x.prefixCode)}">◉</a><button class="icon-btn" title="Edit" type="button" onclick="openPrefixModal('${escJs(x.prefixCode)}')">✎</button></div></td></tr>`;
+          })
+          .join("");
+        document.getElementById("prefixEmpty").hidden = filtered.length !== 0;
+        document.getElementById("prefixCount").textContent =
+          `${filtered.length} of ${all.length} prefixes`;
+        document.getElementById("prefixTotal").textContent = all.length;
+        document.getElementById("prefixActive").textContent = all.filter(
+          (x) => x.status === "active",
+        ).length;
+        document.getElementById("prefixReserved").textContent = all.filter(
+          (x) => x.status === "reserved",
+        ).length;
+        document.getElementById("prefixDeprecated").textContent = all.filter(
+          (x) => x.status === "deprecated",
+        ).length;
+      }
+      function nextCode() {
+        let n = 0;
+        getPrefixes().forEach((x) => {
+          const m = String(x.prefixCode || "").match(/^IPP-(\d+)$/i);
+          if (m) n = Math.max(n, +m[1]);
+        });
+        return `IPP-${String(n + 1).padStart(4, "0")}`;
+      }
+      function openPrefixModal(code = null) {
+        editingPrefixCode = code;
+        const modal = document.getElementById("prefixModal"),
+          form = document.getElementById("prefixForm"),
+          item = code ? getPrefixes().find((x) => x.prefixCode === code) : null;
+        form.reset();
+        document.getElementById("prefixModalTitle").textContent = item
+          ? "Edit IP Prefix / Pool"
+          : "Add IP Prefix / Pool";
+        document.getElementById("prefixSubmitButton").textContent = item
+          ? "Save Changes"
+          : "Save IP Prefix";
+        form.elements.prefixCode.value = item?.prefixCode || nextCode();
+        if (item)
+          [
+            "prefix",
+            "name",
+            "type",
+            "ipVersion",
+            "gateway",
+            "location",
+            "vlan",
+            "status",
+            "totalAddresses",
+            "description",
+          ].forEach((k) => {
+            if (form.elements[k]) form.elements[k].value = item[k] ?? "";
+          });
+        modal.showModal ? modal.showModal() : modal.setAttribute("open", "");
+      }
+      function closePrefixModal() {
+        const m = document.getElementById("prefixModal");
+        m.open && m.close ? m.close() : m.removeAttribute("open");
+        editingPrefixCode = null;
+      }
+      function savePrefix(e) {
+        e.preventDefault();
+        const item = Object.fromEntries(new FormData(e.target).entries());
+        item.totalAddresses = +item.totalAddresses || 0;
+        const all = getPrefixes();
+        if (editingPrefixCode) {
+          const i = all.findIndex((x) => x.prefixCode === editingPrefixCode);
+          if (i >= 0)
+            all[i] = { ...all[i], ...item, prefixCode: editingPrefixCode };
+        } else {
+          item.prefixCode = nextCode();
+          item.allocated = 0;
+          all.push(item);
+        }
+        savePrefixes(all);
+        closePrefixModal();
+        renderPrefixes();
+      }
+      function resetPrefixData() {
+        localStorage.removeItem(PREFIX_KEY);
+        renderPrefixes();
+      }
+      document
+        .getElementById("prefixSearch")
+        .addEventListener("input", renderPrefixes);
+      document
+        .getElementById("prefixVersionFilter")
+        .addEventListener("change", renderPrefixes);
+      document
+        .getElementById("prefixStatusFilter")
+        .addEventListener("change", renderPrefixes);
+      document.getElementById("prefixModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closePrefixModal();
+      });
+      renderPrefixes();
+    </script>
+  </body>
+</html>

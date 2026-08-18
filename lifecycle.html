@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Lifecycle / Status · NETASSET</title>
+
+    <!-- ================= FONTS ================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ================= GLOBAL CSS ================= -->
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- ================= LIFECYCLE CSS ================= -->
+
+    <link rel="stylesheet" href="lifecycle.css" />
+  </head>
+
+  <body class="lifecycle-page">
+    <div class="shell">
+      <!-- =========================================================
+         SIDEBAR
+         EXACT SAME STRUCTURE AS locations.html
+    ========================================================== -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top active">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+      <div class="main lifecycle-main">
+        <!-- =====================================================
+           PAGE HEADER
+      ====================================================== -->
+
+        <header class="topbar lifecycle-topbar">
+          <div class="lifecycle-heading">
+            <div class="breadcrumb">Lifecycle / Status</div>
+
+            <h1 class="page-title">Lifecycle / Status</h1>
+          </div>
+
+          <!-- IMPORTANT:
+             EXACT SAME POSITIONING MODEL AS LOCATIONS
+        -->
+
+          <div class="topbar-actions">
+            <button
+              type="button"
+              class="lifecycle-refresh-btn"
+              id="refreshStatuses"
+              aria-label="Refresh statuses"
+              title="Refresh"
+            >
+              ↻
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary lifecycle-add-btn"
+              id="openAddStatus"
+            >
+              + Add Status
+            </button>
+          </div>
+        </header>
+
+        <!-- =====================================================
+           PAGE CONTENT
+      ====================================================== -->
+
+        <main class="content lifecycle-content">
+          <section class="lifecycle-panel">
+            <!-- =================================================
+               TOOLBAR
+          ================================================== -->
+
+            <div class="lifecycle-toolbar">
+              <!-- Search -->
+
+              <div class="lifecycle-search">
+                <span class="lifecycle-search-icon" aria-hidden="true">
+                  ⌕
+                </span>
+
+                <input
+                  type="search"
+                  id="statusSearch"
+                  placeholder="Search status..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Filters -->
+
+              <div class="lifecycle-filters">
+                <div class="lifecycle-filter-group">
+                  <label for="groupFilter"> Group </label>
+
+                  <select id="groupFilter">
+                    <option value="all">All Groups</option>
+
+                    <option value="lifecycle">Lifecycle</option>
+
+                    <option value="operational">Operational</option>
+                  </select>
+                </div>
+
+                <div class="lifecycle-filter-group">
+                  <label for="activeFilter"> Status </label>
+
+                  <select id="activeFilter">
+                    <option value="all">All Status</option>
+
+                    <option value="active">Active</option>
+
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- =================================================
+               STATISTICS
+          ================================================== -->
+
+            <div class="lifecycle-stats">
+              <div class="lifecycle-stat">
+                <span class="lifecycle-stat-label"> Total Status </span>
+
+                <span class="lifecycle-stat-value" id="totalStatusCount">
+                  0
+                </span>
+
+                <span class="lifecycle-stat-description">
+                  All configured statuses
+                </span>
+              </div>
+
+              <div class="lifecycle-stat">
+                <span class="lifecycle-stat-label"> Lifecycle </span>
+
+                <span class="lifecycle-stat-value" id="lifecycleStatusCount">
+                  0
+                </span>
+
+                <span class="lifecycle-stat-description">
+                  Lifecycle statuses
+                </span>
+              </div>
+
+              <div class="lifecycle-stat">
+                <span class="lifecycle-stat-label"> Operational </span>
+
+                <span class="lifecycle-stat-value" id="operationalStatusCount">
+                  0
+                </span>
+
+                <span class="lifecycle-stat-description">
+                  Operational statuses
+                </span>
+              </div>
+
+              <div class="lifecycle-stat">
+                <span class="lifecycle-stat-label"> Active </span>
+
+                <span class="lifecycle-stat-value" id="activeStatusCount">
+                  0
+                </span>
+
+                <span class="lifecycle-stat-description">
+                  Currently available
+                </span>
+              </div>
+            </div>
+
+            <!-- =================================================
+               TABLE TITLE
+          ================================================== -->
+
+            <div class="lifecycle-table-heading">
+              <div>
+                <h2>Status Registry</h2>
+
+                <p>Reference statuses configured for NETASSET.</p>
+              </div>
+
+              <span class="lifecycle-result-count" id="statusResultCount">
+                0 statuses
+              </span>
+            </div>
+
+            <!-- =================================================
+               TABLE
+          ================================================== -->
+
+            <div class="lifecycle-table-wrapper">
+              <table class="lifecycle-table">
+                <thead>
+                  <tr>
+                    <th class="status-column">Status</th>
+
+                    <th class="group-column">Group</th>
+
+                    <th class="color-column">Color</th>
+
+                    <th class="sort-column">Sort Order</th>
+
+                    <th class="active-column">Active</th>
+
+                    <th class="updated-column">Updated</th>
+
+                    <th class="actions-column">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="statusTableBody">
+                  <tr>
+                    <td colspan="7">
+                      <div class="lifecycle-empty-state">
+                        <div class="lifecycle-empty-icon">◌</div>
+
+                        <h3>No statuses found</h3>
+
+                        <p>
+                          Status data will appear here once it has been
+                          configured.
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- =================================================
+               FOOTER
+          ================================================== -->
+
+            <footer class="lifecycle-table-footer">
+              <span>
+                Showing
+                <strong id="showingStatusCount"> 0 </strong>
+                statuses
+              </span>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =========================================================
+       ADD STATUS MODAL
+  ========================================================== -->
+
+    <dialog id="addStatusModal" class="lifecycle-modal">
+      <div class="lifecycle-modal-inner">
+        <header class="lifecycle-modal-header">
+          <div>
+            <div class="lifecycle-modal-eyebrow">REFERENCE / LOOKUP DATA</div>
+
+            <h2>Add Status</h2>
+
+            <p>Create a lifecycle or operational status.</p>
+          </div>
+
+          <button
+            type="button"
+            class="lifecycle-modal-close"
+            id="closeAddStatus"
+          >
+            ×
+          </button>
+        </header>
+
+        <form id="addStatusForm">
+          <div class="lifecycle-form-grid">
+            <div class="lifecycle-form-group full">
+              <label for="addStatusName"> Status Name <span>*</span> </label>
+
+              <input type="text" id="addStatusName" required />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="addStatusGroup"> Status Group <span>*</span> </label>
+
+              <select id="addStatusGroup" required>
+                <option value="">Select group</option>
+
+                <option value="lifecycle">Lifecycle</option>
+
+                <option value="operational">Operational</option>
+              </select>
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="addStatusSortOrder"> Sort Order </label>
+
+              <input type="number" id="addStatusSortOrder" min="0" value="1" />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="addStatusColor"> Color </label>
+
+              <input type="color" id="addStatusColor" value="#14B8A6" />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label> Status </label>
+
+              <label class="lifecycle-toggle">
+                <input type="checkbox" id="addStatusActive" checked />
+
+                <span></span>
+
+                Active
+              </label>
+            </div>
+          </div>
+
+          <footer class="lifecycle-modal-footer">
+            <button
+              type="button"
+              class="lifecycle-modal-secondary"
+              id="cancelAddStatus"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="lifecycle-modal-primary">
+              Save Status
+            </button>
+          </footer>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- =========================================================
+       EDIT STATUS MODAL
+  ========================================================== -->
+
+    <dialog id="editStatusModal" class="lifecycle-modal">
+      <div class="lifecycle-modal-inner">
+        <header class="lifecycle-modal-header">
+          <div>
+            <div class="lifecycle-modal-eyebrow">REFERENCE / LOOKUP DATA</div>
+
+            <h2>Edit Status</h2>
+
+            <p>Update the selected status configuration.</p>
+          </div>
+
+          <button
+            type="button"
+            class="lifecycle-modal-close"
+            id="closeEditStatus"
+          >
+            ×
+          </button>
+        </header>
+
+        <form id="editStatusForm">
+          <input type="hidden" id="editStatusId" />
+
+          <div class="lifecycle-form-grid">
+            <div class="lifecycle-form-group full">
+              <label for="editStatusCode"> Status ID </label>
+
+              <input
+                type="text"
+                id="editStatusCode"
+                readonly
+                class="technical-field"
+              />
+            </div>
+
+            <div class="lifecycle-form-group full">
+              <label for="editStatusName"> Status Name <span>*</span> </label>
+
+              <input type="text" id="editStatusName" required />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="editStatusGroup"> Status Group </label>
+
+              <select id="editStatusGroup">
+                <option value="lifecycle">Lifecycle</option>
+
+                <option value="operational">Operational</option>
+              </select>
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="editStatusSortOrder"> Sort Order </label>
+
+              <input type="number" id="editStatusSortOrder" min="0" />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label for="editStatusColor"> Color </label>
+
+              <input type="color" id="editStatusColor" />
+            </div>
+
+            <div class="lifecycle-form-group">
+              <label> Status </label>
+
+              <label class="lifecycle-toggle">
+                <input type="checkbox" id="editStatusActive" />
+
+                <span></span>
+
+                Active
+              </label>
+            </div>
+          </div>
+
+          <footer class="lifecycle-modal-footer">
+            <button
+              type="button"
+              class="lifecycle-modal-secondary"
+              id="cancelEditStatus"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="lifecycle-modal-primary">
+              Save Changes
+            </button>
+          </footer>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="assets/js/app.js"></script>
+    <script src="lifecycle.js"></script>
+  </body>
+</html>

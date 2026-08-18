@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="equipment.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub active">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <a href="index.html">Asset Management</a>
+              <span> / </span>
+              <span>Physical Assets</span>
+              <span> / </span>
+              <strong>Equipment</strong>
+            </div>
+            <h1 class="page-title">Equipment</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-ghost"
+              type="button"
+              onclick="toggleSidebar()"
+            >
+              ☰ Menu
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openEquipmentModal()"
+            >
+              + Add Equipment
+            </button>
+          </div>
+        </header>
+
+        <div class="content equipment-page">
+          <div class="panel equipment-inventory">
+            <div class="equipment-toolbar">
+              <div class="equipment-search">
+                <input
+                  id="equipmentSearch"
+                  type="search"
+                  placeholder="Cari asset code, asset name, serial number, vendor..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="equipment-filters">
+                <select id="equipmentTypeFilter" class="equipment-filter">
+                  <option value="all">Semua Type</option>
+                  <option value="rack">Rack</option>
+                  <option value="ups">UPS</option>
+                  <option value="pdu">PDU</option>
+                  <option value="power">Power</option>
+                  <option value="other">Other</option>
+                </select>
+
+                <select id="equipmentStatusFilter" class="equipment-filter">
+                  <option value="all">Semua Lifecycle</option>
+                  <option value="active">Active</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="equipment-summary">
+              <div class="equipment-summary-item">
+                <span class="equipment-summary-label">Total Equipment</span>
+                <span id="equipmentTotal" class="equipment-summary-value"
+                  >5</span
+                >
+              </div>
+              <div class="equipment-summary-item">
+                <span class="equipment-summary-label">Active</span>
+                <span id="equipmentActive" class="equipment-summary-value"
+                  >3</span
+                >
+              </div>
+              <div class="equipment-summary-item">
+                <span class="equipment-summary-label">Maintenance</span>
+                <span id="equipmentMaintenance" class="equipment-summary-value"
+                  >1</span
+                >
+              </div>
+              <div class="equipment-summary-item">
+                <span class="equipment-summary-label">Retired</span>
+                <span id="equipmentRetired" class="equipment-summary-value"
+                  >1</span
+                >
+              </div>
+            </div>
+
+            <div class="equipment-table-wrap">
+              <table class="equipment-table">
+                <thead>
+                  <tr>
+                    <th>Equipment</th>
+                    <th>Type / Model</th>
+                    <th>Serial Number</th>
+                    <th>Location</th>
+                    <th>Provider</th>
+                    <th>Lifecycle</th>
+                    <th>Operational</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="equipmentTableBody"></tbody>
+              </table>
+
+              <div id="equipmentEmpty" class="equipment-empty" hidden>
+                Tidak ada equipment yang cocok dengan pencarian atau filter.
+              </div>
+            </div>
+
+            <div class="equipment-footer">
+              <span id="equipmentCount" class="equipment-count"
+                >5 of 5 equipments</span
+              >
+              <button
+                class="btn btn-ghost"
+                type="button"
+                onclick="resetEquipmentData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="equipmentModal" class="equipment-modal">
+      <form
+        id="equipmentForm"
+        class="equipment-modal-form"
+        onsubmit="saveEquipment(event)"
+      >
+        <div class="equipment-modal-head">
+          <div class="eyebrow">PHYSICAL ASSET</div>
+          <h2 id="equipmentModalTitle">Add Equipment</h2>
+          <button
+            type="button"
+            class="equipment-modal-close"
+            aria-label="Close"
+            onclick="closeEquipmentModal()"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="equipment-modal-body">
+          <section class="equipment-form-section">
+            <h3>Basic Information</h3>
+            <p>Identity and equipment information.</p>
+
+            <div class="equipment-form-grid">
+              <div class="equipment-field">
+                <label
+                  >Asset Code <span class="hint">(auto-generated)</span></label
+                >
+                <input class="mono-input" name="assetCode" disabled />
+              </div>
+
+              <div class="equipment-field">
+                <label>Asset Name</label>
+                <input
+                  name="assetName"
+                  placeholder="cth. UPS Jakarta-01"
+                  required
+                />
+              </div>
+
+              <div class="equipment-field">
+                <label>Equipment Type</label>
+                <select name="equipmentType" required>
+                  <option value="">Pilih type</option>
+                  <option value="rack">Rack</option>
+                  <option value="ups">UPS</option>
+                  <option value="pdu">PDU</option>
+                  <option value="power">Power</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="equipment-field">
+                <label>Vendor</label>
+                <input name="vendor" placeholder="cth. APC" required />
+              </div>
+
+              <div class="equipment-field">
+                <label>Model</label>
+                <input name="model" placeholder="cth. Smart-UPS SRT" />
+              </div>
+
+              <div class="equipment-field">
+                <label
+                  >Serial Number <span class="hint">(optional)</span></label
+                >
+                <input
+                  class="mono-input"
+                  name="serialNumber"
+                  placeholder="Serial number"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="equipment-form-section">
+            <h3>Placement & Status</h3>
+            <p>Location, provider and lifecycle information.</p>
+
+            <div class="equipment-form-grid">
+              <div class="equipment-field">
+                <label>Location</label>
+                <select name="location" required>
+                  <option value="">Pilih location</option>
+                  <option>POP Jakarta</option>
+                  <option>POP Jakarta Selatan</option>
+                  <option>POP Bandung</option>
+                  <option>Data Center Jakarta</option>
+                  <option>Gedung Menara Sudirman</option>
+                </select>
+              </div>
+
+              <div class="equipment-field">
+                <label>Rack</label>
+                <input name="rack" placeholder="Rack-01" />
+              </div>
+
+              <div class="equipment-field">
+                <label>Rack U</label>
+                <input
+                  type="number"
+                  name="rackU"
+                  min="1"
+                  max="52"
+                  placeholder="20"
+                />
+              </div>
+
+              <div class="equipment-field">
+                <label>Provider</label>
+                <select name="provider">
+                  <option value="">Pilih provider</option>
+                  <option>NAP-A</option>
+                  <option>NAP-B</option>
+                  <option>NAP-C</option>
+                  <option>Internal</option>
+                </select>
+              </div>
+
+              <div class="equipment-field">
+                <label>Lifecycle Status</label>
+                <select name="lifecycleStatus" required>
+                  <option value="active">Active</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+
+              <div class="equipment-field">
+                <label>Operational Status</label>
+                <select name="operationalStatus" required>
+                  <option value="up">UP</option>
+                  <option value="degraded">Degraded</option>
+                  <option value="down">DOWN</option>
+                </select>
+              </div>
+
+              <div class="equipment-field full">
+                <label>Description <span class="hint">(optional)</span></label>
+                <textarea
+                  name="description"
+                  placeholder="Catatan equipment..."
+                ></textarea>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="equipment-modal-foot">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            onclick="closeEquipmentModal()"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="equipmentSubmitButton"
+          >
+            Save Equipment
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+      const EQUIPMENT_KEY = "netasset_equipments_v1";
+
+      const EQUIPMENT_DEMO_DATA = [
+        {
+          assetCode: "EQP-0001",
+          assetName: "UPS Jakarta-01",
+          equipmentType: "ups",
+          vendor: "APC",
+          model: "Smart-UPS SRT 3000",
+          serialNumber: "ASRT-3000-001",
+          location: "POP Jakarta",
+          rack: "Rack-01",
+          rackU: 1,
+          provider: "Internal",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+          description: "Primary power backup for network rack.",
+        },
+        {
+          assetCode: "EQP-0002",
+          assetName: "PDU Jakarta-01",
+          equipmentType: "pdu",
+          vendor: "APC",
+          model: "AP8959EU3",
+          serialNumber: "PDU-APC-001",
+          location: "POP Jakarta",
+          rack: "Rack-02",
+          rackU: 40,
+          provider: "Internal",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+          description: "Managed power distribution unit.",
+        },
+        {
+          assetCode: "EQP-0003",
+          assetName: "Server Rack Jakarta-01",
+          equipmentType: "rack",
+          vendor: "Schneider Electric",
+          model: "NetShelter SX 42U",
+          serialNumber: "NSX-42U-001",
+          location: "Data Center Jakarta",
+          rack: "Rack-06",
+          rackU: 42,
+          provider: "Internal",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+          description: "Standard 42U equipment rack.",
+        },
+        {
+          assetCode: "EQP-0004",
+          assetName: "UPS Bandung-01",
+          equipmentType: "ups",
+          vendor: "Vertiv",
+          model: "Liebert GXT5",
+          serialNumber: "GXT5-BDG-001",
+          location: "POP Bandung",
+          rack: "Rack-03",
+          rackU: 2,
+          provider: "NAP-C",
+          lifecycleStatus: "maintenance",
+          operationalStatus: "degraded",
+          description: "Battery replacement scheduled.",
+        },
+        {
+          assetCode: "EQP-0005",
+          assetName: "Legacy PDU Jakarta",
+          equipmentType: "pdu",
+          vendor: "APC",
+          model: "AP7900",
+          serialNumber: "AP7900-LEG-001",
+          location: "POP Jakarta",
+          rack: "Rack-04",
+          rackU: 40,
+          provider: "NAP-B",
+          lifecycleStatus: "retired",
+          operationalStatus: "down",
+          description: "Retired legacy PDU.",
+        },
+      ];
+
+      let editingEquipmentCode = null;
+
+      function getEquipments() {
+        const raw = localStorage.getItem(EQUIPMENT_KEY);
+        if (!raw) {
+          localStorage.setItem(
+            EQUIPMENT_KEY,
+            JSON.stringify(EQUIPMENT_DEMO_DATA),
+          );
+          return structuredClone(EQUIPMENT_DEMO_DATA);
+        }
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(
+            EQUIPMENT_KEY,
+            JSON.stringify(EQUIPMENT_DEMO_DATA),
+          );
+          return structuredClone(EQUIPMENT_DEMO_DATA);
+        }
+      }
+
+      function saveEquipments(items) {
+        localStorage.setItem(EQUIPMENT_KEY, JSON.stringify(items));
+      }
+
+      function equipmentTypeLabel(type) {
+        return (
+          {
+            rack: "Rack",
+            ups: "UPS",
+            pdu: "PDU",
+            power: "Power",
+            other: "Other",
+          }[type] ||
+          type ||
+          "—"
+        );
+      }
+
+      function equipmentLifecycleLabel(status) {
+        return (
+          {
+            active: "Active",
+            maintenance: "Maintenance",
+            retired: "Retired",
+          }[status] ||
+          status ||
+          "—"
+        );
+      }
+
+      function equipmentLifecycleBadge(status) {
+        return (
+          {
+            active: "badge-active",
+            maintenance: "badge-warning",
+            retired: "badge-inactive",
+          }[status] || "badge-neutral"
+        );
+      }
+
+      function equipmentOperationalLabel(status) {
+        return (
+          {
+            up: "UP",
+            degraded: "Degraded",
+            down: "DOWN",
+          }[status] ||
+          status ||
+          "—"
+        );
+      }
+
+      function renderEquipment() {
+        const all = getEquipments();
+        const query = (document.getElementById("equipmentSearch")?.value || "")
+          .trim()
+          .toLowerCase();
+        const type =
+          document.getElementById("equipmentTypeFilter")?.value || "all";
+        const status =
+          document.getElementById("equipmentStatusFilter")?.value || "all";
+
+        const filtered = all.filter((item) => {
+          const haystack = [
+            item.assetCode,
+            item.assetName,
+            item.equipmentType,
+            item.vendor,
+            item.model,
+            item.serialNumber,
+            item.location,
+            item.rack,
+            item.provider,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return (
+            (!query || haystack.includes(query)) &&
+            (type === "all" || item.equipmentType === type) &&
+            (status === "all" || item.lifecycleStatus === status)
+          );
+        });
+
+        const tbody = document.getElementById("equipmentTableBody");
+
+        tbody.innerHTML = filtered
+          .map(
+            (item) => `
+    <tr>
+      <td>
+        <div class="equipment-name-cell">
+          <div class="equipment-icon">EQ</div>
+          <div class="equipment-name-text">
+            <a class="cell-primary" href="equipment-detail.html?asset=${encodeURIComponent(item.assetCode)}">
+              ${escapeEquipment(item.assetName)}
+            </a>
+            <span class="equipment-code">${escapeEquipment(item.assetCode)}</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>${escapeEquipment(equipmentTypeLabel(item.equipmentType))}</div>
+        <div class="equipment-muted">${escapeEquipment(item.model || "—")}</div>
+      </td>
+      <td><span class="equipment-serial">${escapeEquipment(item.serialNumber || "—")}</span></td>
+      <td>
+        <div>${escapeEquipment(item.location || "—")}</div>
+        <div class="equipment-muted">${escapeEquipment(item.rack || "—")}${item.rackU ? " · U" + item.rackU : ""}</div>
+      </td>
+      <td>${escapeEquipment(item.provider || "—")}</td>
+      <td><span class="badge ${equipmentLifecycleBadge(item.lifecycleStatus)}">${equipmentLifecycleLabel(item.lifecycleStatus)}</span></td>
+      <td><span class="equipment-operational equipment-operational-${item.operationalStatus}">${equipmentOperationalLabel(item.operationalStatus)}</span></td>
+      <td>
+        <div class="equipment-actions">
+          <a class="icon-btn" title="View" href="equipment-detail.html?asset=${encodeURIComponent(item.assetCode)}">◉</a>
+          <button class="icon-btn" title="Edit" type="button" onclick="openEquipmentModal('${escapeJs(item.assetCode)}')">✎</button>
+        </div>
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+
+        document.getElementById("equipmentEmpty").hidden =
+          filtered.length !== 0;
+        document.getElementById("equipmentCount").textContent =
+          `${filtered.length} of ${all.length} equipments`;
+
+        document.getElementById("equipmentTotal").textContent = all.length;
+        document.getElementById("equipmentActive").textContent = all.filter(
+          (x) => x.lifecycleStatus === "active",
+        ).length;
+        document.getElementById("equipmentMaintenance").textContent =
+          all.filter((x) => x.lifecycleStatus === "maintenance").length;
+        document.getElementById("equipmentRetired").textContent = all.filter(
+          (x) => x.lifecycleStatus === "retired",
+        ).length;
+      }
+
+      function escapeEquipment(value) {
+        return String(value ?? "").replace(
+          /[&<>"']/g,
+          (ch) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[ch],
+        );
+      }
+
+      function escapeJs(value) {
+        return String(value ?? "")
+          .replace(/\\/g, "\\\\")
+          .replace(/'/g, "\\'");
+      }
+
+      function nextEquipmentCode() {
+        const all = getEquipments();
+        let max = 0;
+        all.forEach((item) => {
+          const m = String(item.assetCode || "").match(/^EQP-(\d+)$/i);
+          if (m) max = Math.max(max, Number(m[1]));
+        });
+        return `EQP-${String(max + 1).padStart(4, "0")}`;
+      }
+
+      function openEquipmentModal(code = null) {
+        editingEquipmentCode = code;
+        const modal = document.getElementById("equipmentModal");
+        const form = document.getElementById("equipmentForm");
+        const item = code
+          ? getEquipments().find((x) => x.assetCode === code)
+          : null;
+
+        form.reset();
+        document.getElementById("equipmentModalTitle").textContent = item
+          ? "Edit Equipment"
+          : "Add Equipment";
+        document.getElementById("equipmentSubmitButton").textContent = item
+          ? "Save Changes"
+          : "Save Equipment";
+
+        form.elements.assetCode.value = item?.assetCode || nextEquipmentCode();
+
+        if (item) {
+          [
+            "assetName",
+            "equipmentType",
+            "vendor",
+            "model",
+            "serialNumber",
+            "location",
+            "rack",
+            "rackU",
+            "provider",
+            "lifecycleStatus",
+            "operationalStatus",
+            "description",
+          ].forEach((key) => {
+            if (form.elements[key]) form.elements[key].value = item[key] ?? "";
+          });
+        }
+
+        if (typeof modal.showModal === "function") modal.showModal();
+        else modal.setAttribute("open", "");
+      }
+
+      function closeEquipmentModal() {
+        const modal = document.getElementById("equipmentModal");
+        if (modal.open && typeof modal.close === "function") modal.close();
+        else modal.removeAttribute("open");
+        editingEquipmentCode = null;
+      }
+
+      function saveEquipment(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const item = Object.fromEntries(formData.entries());
+        item.rackU = Number(item.rackU) || 0;
+
+        const all = getEquipments();
+
+        if (editingEquipmentCode) {
+          const index = all.findIndex(
+            (x) => x.assetCode === editingEquipmentCode,
+          );
+          if (index >= 0) {
+            all[index] = {
+              ...all[index],
+              ...item,
+              assetCode: editingEquipmentCode,
+            };
+          }
+        } else {
+          item.assetCode = nextEquipmentCode();
+          all.push(item);
+        }
+
+        saveEquipments(all);
+        closeEquipmentModal();
+        renderEquipment();
+      }
+
+      function resetEquipmentData() {
+        localStorage.removeItem(EQUIPMENT_KEY);
+        renderEquipment();
+      }
+
+      document
+        .getElementById("equipmentSearch")
+        .addEventListener("input", renderEquipment);
+      document
+        .getElementById("equipmentTypeFilter")
+        .addEventListener("change", renderEquipment);
+      document
+        .getElementById("equipmentStatusFilter")
+        .addEventListener("change", renderEquipment);
+
+      document
+        .getElementById("equipmentModal")
+        .addEventListener("click", (event) => {
+          if (event.target === event.currentTarget) closeEquipmentModal();
+        });
+
+      renderEquipment();
+    </script>
+  </body>
+</html>

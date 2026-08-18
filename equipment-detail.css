@@ -1,0 +1,502 @@
+/* ==========================================================================
+   NETASSET — EQUIPMENT DETAIL
+   IMPORTANT: selectors below match equipment-detail.html exactly.
+   This file intentionally overrides generic equipment.css / style.css
+   for the detail page only.
+   ========================================================================== */
+
+.equipment-detail-page {
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 30px 34px 60px;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page .equipment-hero {
+  padding: 0 !important;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px 14px 0 0;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.equipment-detail-page .equipment-hero-main {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 28px;
+  min-height: 132px;
+  padding: 26px 28px;
+}
+
+.equipment-detail-page .equipment-hero-main > .detail-title-block {
+  flex: 1 1 auto;
+  min-width: 0;
+  order: 2;
+}
+
+.equipment-detail-page .equipment-hero-avatar {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 64px !important;
+  height: 64px !important;
+  flex: 0 0 64px;
+  margin: 0 !important;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: var(--font-mono) !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  order: 1;
+}
+
+.equipment-detail-page .equipment-hero-actions {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end !important;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  order: 3;
+}
+
+.equipment-detail-page .equipment-hero-actions .btn {
+  min-height: 40px;
+}
+
+.equipment-detail-page .detail-title-block {
+  min-width: 0;
+}
+
+.equipment-detail-page .detail-title-block .eyebrow {
+  color: var(--accent-dark);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.equipment-detail-page .detail-title-block h1 {
+  margin: 5px 0 5px;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 27px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.equipment-detail-page .detail-id-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.equipment-detail-page .detail-id-row .mono {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.equipment-detail-page .detail-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 11px;
+}
+
+.equipment-detail-page .equipment-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.equipment-detail-page .equipment-hero .badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.equipment-detail-page .equipment-hero .badge-active {
+  background: var(--success-soft);
+  color: #07966a;
+}
+
+.equipment-detail-page .equipment-hero .badge-warning {
+  background: var(--warning-soft);
+  color: #d97706;
+}
+
+.equipment-detail-page .equipment-hero .badge-inactive {
+  background: var(--danger-soft);
+  color: #dc2626;
+}
+
+.equipment-detail-page .equipment-operational {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.equipment-detail-page .equipment-operational::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.equipment-detail-page .equipment-operational-up {
+  color: #067647;
+}
+
+.equipment-detail-page .equipment-operational-degraded {
+  color: #b54708;
+}
+
+.equipment-detail-page .equipment-operational-down {
+  color: #b42318;
+}
+
+/* --------------------------------------------------------------------------
+   TABS — directly attached to hero, same visual language as OLT Detail
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page .equipment-tabs {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+  min-height: 56px;
+  padding: 0 28px;
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  scrollbar-width: thin;
+}
+
+.equipment-detail-page .equipment-tabs .tab-btn {
+  height: 56px;
+  flex: 0 0 auto;
+  padding: 0 16px;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--text-muted);
+  font:
+    600 12px Inter,
+    sans-serif;
+  cursor: pointer;
+}
+
+.equipment-detail-page .equipment-tabs .tab-btn:hover {
+  color: var(--text);
+}
+
+.equipment-detail-page .equipment-tabs .tab-btn.active {
+  color: var(--accent-dark);
+  border-bottom-color: var(--accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   TAB PANELS
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page > .equipment-tab-panel {
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.equipment-detail-page > .equipment-tab-panel[hidden] {
+  display: none !important;
+}
+
+.equipment-detail-page > .equipment-tab-panel.active {
+  display: block;
+}
+
+/* Section headings */
+.equipment-detail-page .section-title {
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.equipment-detail-page .section-title h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.equipment-detail-page .section-title p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   OVERVIEW CARDS
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page .equipment-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 24px 26px 0;
+}
+
+.equipment-detail-page .equipment-detail-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.equipment-detail-page .equipment-detail-card .section-title {
+  padding: 18px 20px;
+}
+
+.equipment-detail-page .equipment-detail-card .section-title h2 {
+  font-size: 15px;
+}
+
+.equipment-detail-page .equipment-detail-card .section-title p {
+  font-size: 11.5px;
+}
+
+/* --------------------------------------------------------------------------
+   KEY / VALUE GRID
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page .equipment-kv {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.equipment-detail-page .equipment-kv-item {
+  min-width: 0;
+  min-height: 78px;
+  padding: 15px 17px;
+  border-bottom: 1px solid var(--border);
+}
+
+.equipment-detail-page .equipment-kv-item:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.equipment-detail-page .equipment-kv-item:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.equipment-detail-page .equipment-kv-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.equipment-detail-page .equipment-kv-value {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.equipment-detail-page .equipment-kv-value.mono {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+
+/* Description callout */
+.equipment-detail-page .equipment-callout {
+  margin: 18px 26px 26px;
+  padding: 13px 15px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   PLACEMENT TAB
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page [data-tab-panel="placement"] > .equipment-kv {
+  margin: 24px 26px 26px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   HISTORY TAB
+   -------------------------------------------------------------------------- */
+
+.equipment-detail-page .equipment-history {
+  padding: 26px;
+}
+
+.equipment-detail-page .equipment-history-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 24px 25px;
+  border-left: 1px solid var(--border);
+}
+
+.equipment-detail-page .equipment-history-item:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.equipment-detail-page .equipment-history-item::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--surface);
+}
+
+.equipment-detail-page .equipment-history-title {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.equipment-detail-page .equipment-history-meta {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .equipment-detail-page {
+    padding: 20px 18px 40px;
+  }
+
+  .equipment-detail-page .equipment-hero-main {
+    align-items: flex-start !important;
+    flex-wrap: wrap;
+  }
+
+  .equipment-detail-page .equipment-hero-main > .detail-title-block {
+    flex: 1 1 calc(100% - 100px);
+  }
+
+  .equipment-detail-page .equipment-hero-actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end !important;
+  }
+
+  .equipment-detail-page .equipment-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .equipment-detail-page {
+    padding: 16px 12px 32px;
+  }
+
+  .equipment-detail-page .equipment-hero-main {
+    padding: 20px;
+  }
+
+  .equipment-detail-page .equipment-hero-avatar {
+    width: 54px !important;
+    height: 54px !important;
+    flex-basis: 54px;
+  }
+
+  .equipment-detail-page .detail-title-block h1 {
+    font-size: 23px;
+    white-space: normal;
+  }
+
+  .equipment-detail-page .equipment-tabs {
+    padding: 0 12px;
+  }
+
+  .equipment-detail-page .equipment-detail-grid {
+    padding: 18px 18px 0;
+  }
+
+  .equipment-detail-page .section-title {
+    padding: 19px 20px;
+  }
+
+  .equipment-detail-page .equipment-kv {
+    grid-template-columns: 1fr;
+  }
+
+  .equipment-detail-page .equipment-kv-item:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .equipment-detail-page .equipment-kv-item {
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  .equipment-detail-page .equipment-kv-item:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .equipment-detail-page .equipment-callout {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .equipment-detail-page [data-tab-panel="placement"] > .equipment-kv {
+    margin: 18px;
+  }
+}

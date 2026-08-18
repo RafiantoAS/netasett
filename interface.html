@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interface · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="interface.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub active">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Network Resources</span>
+              <span> / </span>
+              <strong>Interface</strong>
+            </div>
+            <h1 class="page-title">Interfaces</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              onclick="resetInterfaceData()"
+            >
+              ↻
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openAddModal()"
+            >
+              + Add Interface
+            </button>
+          </div>
+        </header>
+
+        <div class="content interface-page">
+          <section class="interface-list-card">
+            <div class="list-toolbar">
+              <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="Cari interface, device, IP, VLAN..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="typeFilter" aria-label="Filter Type">
+                  <option value="all">Semua Type</option>
+                  <option value="ethernet">Ethernet</option>
+                  <option value="ten-gigabit">10 Gigabit</option>
+                  <option value="pon">PON</option>
+                </select>
+
+                <select id="statusFilter" aria-label="Filter Status">
+                  <option value="all">Semua Status</option>
+                  <option value="up">Up</option>
+                  <option value="down">Down</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-label">TOTAL INTERFACES</span>
+                <strong id="totalStat">5</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">UP</span>
+                <strong id="upStat">3</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">DOWN</span>
+                <strong id="downStat">1</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">DISABLED</span>
+                <strong id="disabledStat">1</strong>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="interface-table">
+                <thead>
+                  <tr>
+                    <th>INTERFACE</th>
+                    <th>DEVICE</th>
+                    <th>TYPE</th>
+                    <th>IP ADDRESS</th>
+                    <th>VLAN</th>
+                    <th>SPEED</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="interfaceTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="list-footer">
+              <span id="resultCount">5 of 5 interfaces shown</span>
+              <button
+                type="button"
+                class="btn-reset"
+                onclick="resetInterfaceData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="interfaceModal" class="interface-modal">
+      <form method="dialog" id="interfaceForm" class="interface-form">
+        <header class="modal-header">
+          <div>
+            <span class="modal-eyebrow">NETWORK RESOURCE</span>
+            <h2 id="modalTitle">Add Interface</h2>
+          </div>
+          <button
+            type="button"
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="modal-body">
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Interface Information</h3>
+              <p>Identity and operational state of the network interface.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Interface Name <b>*</b></span>
+                <input
+                  id="formName"
+                  type="text"
+                  placeholder="GigabitEthernet0/0"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>Interface Code <b>*</b></span>
+                <input
+                  id="formCode"
+                  type="text"
+                  placeholder="INT-0001"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>Type <b>*</b></span>
+                <select id="formType" required>
+                  <option value="ethernet">Ethernet</option>
+                  <option value="ten-gigabit">10 Gigabit</option>
+                  <option value="pon">PON</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Status <b>*</b></span>
+                <select id="formStatus" required>
+                  <option value="up">Up</option>
+                  <option value="down">Down</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Network & Device</h3>
+              <p>Device assignment and Layer 2 / Layer 3 information.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Device <b>*</b></span>
+                <input
+                  id="formDevice"
+                  type="text"
+                  placeholder="Core Router Jakarta-01"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>IP Address</span>
+                <input id="formIp" type="text" placeholder="10.10.10.1/24" />
+              </label>
+
+              <label class="field">
+                <span>VLAN</span>
+                <input id="formVlan" type="text" placeholder="VLAN 10" />
+              </label>
+
+              <label class="field">
+                <span>Speed</span>
+                <select id="formSpeed">
+                  <option value="100 Mbps">100 Mbps</option>
+                  <option value="1 Gbps">1 Gbps</option>
+                  <option value="10 Gbps">10 Gbps</option>
+                  <option value="25 Gbps">25 Gbps</option>
+                  <option value="100 Gbps">100 Gbps</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Location</span>
+                <select id="formLocation">
+                  <option value="POP Jakarta">POP Jakarta</option>
+                  <option value="POP Jakarta Selatan">
+                    POP Jakarta Selatan
+                  </option>
+                  <option value="POP Bandung">POP Bandung</option>
+                  <option value="Data Center Jakarta">
+                    Data Center Jakarta
+                  </option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>MAC Address</span>
+                <input
+                  id="formMac"
+                  type="text"
+                  placeholder="00:11:22:33:44:55"
+                />
+              </label>
+
+              <label class="field field-full">
+                <span>Description</span>
+                <textarea
+                  id="formDescription"
+                  rows="3"
+                  placeholder="Describe this interface..."
+                ></textarea>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">Save Interface</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+    <script>
+      const STORAGE_KEY = "netasset_interfaces_v1";
+
+      const DEMO_DATA = [
+        {
+          code: "INT-0001",
+          name: "GigabitEthernet0/0",
+          device: "Core Router Jakarta-01",
+          type: "ethernet",
+          ip: "10.10.10.1/24",
+          vlan: "VLAN 10",
+          speed: "1 Gbps",
+          location: "POP Jakarta",
+          mac: "00:11:22:33:44:01",
+          status: "up",
+          description: "Primary uplink interface.",
+        },
+        {
+          code: "INT-0002",
+          name: "GigabitEthernet0/1",
+          device: "Core Router Jakarta-01",
+          type: "ethernet",
+          ip: "10.10.20.1/24",
+          vlan: "VLAN 20",
+          speed: "1 Gbps",
+          location: "POP Jakarta",
+          mac: "00:11:22:33:44:02",
+          status: "up",
+          description: "Customer aggregation interface.",
+        },
+        {
+          code: "INT-0003",
+          name: "TenGigabitEthernet1/1",
+          device: "Core Switch Jakarta-01",
+          type: "ten-gigabit",
+          ip: "10.10.30.1/24",
+          vlan: "VLAN 30",
+          speed: "10 Gbps",
+          location: "Data Center Jakarta",
+          mac: "00:11:22:33:44:03",
+          status: "up",
+          description: "High-speed backbone interface.",
+        },
+        {
+          code: "INT-0004",
+          name: "GigabitEthernet0/24",
+          device: "Distribution Switch Jakarta-01",
+          type: "ethernet",
+          ip: "10.10.40.2/24",
+          vlan: "VLAN 40",
+          speed: "1 Gbps",
+          location: "POP Jakarta Selatan",
+          mac: "00:11:22:33:44:04",
+          status: "down",
+          description: "Distribution uplink currently down.",
+        },
+        {
+          code: "INT-0005",
+          name: "PON1/0/1",
+          device: "Core OLT Jakarta-01",
+          type: "pon",
+          ip: "—",
+          vlan: "VLAN 100",
+          speed: "10 Gbps",
+          location: "Data Center Jakarta",
+          mac: "00:11:22:33:44:05",
+          status: "disabled",
+          description: "PON interface reserved for future deployment.",
+        },
+      ];
+
+      let interfaceData = loadData();
+      let editingCode = null;
+
+      function loadData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+          return structuredClone(DEMO_DATA);
+        }
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+          return structuredClone(DEMO_DATA);
+        }
+      }
+
+      function saveData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(interfaceData));
+      }
+
+      function label(value) {
+        return String(value || "")
+          .split("-")
+          .map((x) => x.charAt(0).toUpperCase() + x.slice(1))
+          .join(" ");
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            up: "status-up",
+            down: "status-down",
+            disabled: "status-disabled",
+          }[status] || ""
+        );
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById("interfaceTableBody");
+        const search = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+        const type = document.getElementById("typeFilter").value;
+        const status = document.getElementById("statusFilter").value;
+
+        const filtered = interfaceData.filter((item) => {
+          const haystack = [
+            item.code,
+            item.name,
+            item.device,
+            item.type,
+            item.ip,
+            item.vlan,
+            item.speed,
+            item.location,
+            item.mac,
+            item.status,
+            item.description,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return (
+            (!search || haystack.includes(search)) &&
+            (type === "all" || item.type === type) &&
+            (status === "all" || item.status === status)
+          );
+        });
+
+        tbody.innerHTML = filtered
+          .map(
+            (item) => `
+        <tr>
+          <td>
+            <div class="interface-cell">
+              <div class="resource-icon">IF</div>
+              <div>
+                <strong>${escapeHtml(item.name)}</strong>
+                <span class="mono-text">${escapeHtml(item.code)}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="name-cell">
+              <strong>${escapeHtml(item.device)}</strong>
+              <span>${escapeHtml(item.location)}</span>
+            </div>
+          </td>
+          <td>${escapeHtml(label(item.type))}</td>
+          <td><span class="mono-text">${escapeHtml(item.ip || "—")}</span></td>
+          <td><span class="mono-text">${escapeHtml(item.vlan || "—")}</span></td>
+          <td>${escapeHtml(item.speed || "—")}</td>
+          <td>
+            <span class="status-badge ${statusClass(item.status)}">
+              <span class="status-dot"></span>${label(item.status)}
+            </span>
+          </td>
+          <td>
+            <div class="row-actions">
+              <button class="icon-btn" type="button" title="View Interface"
+                onclick="viewInterface('${escapeAttribute(item.code)}')">◉</button>
+              <button class="icon-btn" type="button" title="Edit Interface"
+                onclick="editInterface('${escapeAttribute(item.code)}')">✎</button>
+            </div>
+          </td>
+        </tr>
+      `,
+          )
+          .join("");
+
+        updateStats();
+        document.getElementById("resultCount").textContent =
+          `${filtered.length} of ${interfaceData.length} interfaces shown`;
+      }
+
+      function updateStats() {
+        document.getElementById("totalStat").textContent = interfaceData.length;
+        document.getElementById("upStat").textContent = interfaceData.filter(
+          (x) => x.status === "up",
+        ).length;
+        document.getElementById("downStat").textContent = interfaceData.filter(
+          (x) => x.status === "down",
+        ).length;
+        document.getElementById("disabledStat").textContent =
+          interfaceData.filter((x) => x.status === "disabled").length;
+      }
+
+      function openAddModal() {
+        editingCode = null;
+        document.getElementById("modalTitle").textContent = "Add Interface";
+        document.getElementById("interfaceForm").reset();
+        document.getElementById("formType").value = "ethernet";
+        document.getElementById("formStatus").value = "up";
+        document.getElementById("formSpeed").value = "1 Gbps";
+        document.getElementById("interfaceModal").showModal();
+      }
+
+      function editInterface(code) {
+        const item = interfaceData.find((x) => x.code === code);
+        if (!item) return;
+
+        editingCode = code;
+        document.getElementById("modalTitle").textContent = "Edit Interface";
+        document.getElementById("formName").value = item.name;
+        document.getElementById("formCode").value = item.code;
+        document.getElementById("formType").value = item.type;
+        document.getElementById("formStatus").value = item.status;
+        document.getElementById("formDevice").value = item.device;
+        document.getElementById("formIp").value = item.ip || "";
+        document.getElementById("formVlan").value = item.vlan || "";
+        document.getElementById("formSpeed").value = item.speed || "1 Gbps";
+        document.getElementById("formLocation").value =
+          item.location || "POP Jakarta";
+        document.getElementById("formMac").value = item.mac || "";
+        document.getElementById("formDescription").value =
+          item.description || "";
+        document.getElementById("interfaceModal").showModal();
+      }
+
+      function viewInterface(code) {
+        window.location.href = `interface-detail.html?code=${encodeURIComponent(code)}`;
+      }
+
+      function closeModal() {
+        document.getElementById("interfaceModal").close();
+      }
+
+      function resetInterfaceData() {
+        interfaceData = structuredClone(DEMO_DATA);
+        saveData();
+        document.getElementById("searchInput").value = "";
+        document.getElementById("typeFilter").value = "all";
+        document.getElementById("statusFilter").value = "all";
+        renderTable();
+      }
+
+      document
+        .getElementById("interfaceForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const payload = {
+            name: document.getElementById("formName").value.trim(),
+            code: document.getElementById("formCode").value.trim(),
+            type: document.getElementById("formType").value,
+            status: document.getElementById("formStatus").value,
+            device: document.getElementById("formDevice").value.trim(),
+            ip: document.getElementById("formIp").value.trim() || "—",
+            vlan: document.getElementById("formVlan").value.trim() || "—",
+            speed: document.getElementById("formSpeed").value,
+            location: document.getElementById("formLocation").value,
+            mac: document.getElementById("formMac").value.trim() || "—",
+            description: document
+              .getElementById("formDescription")
+              .value.trim(),
+          };
+
+          if (editingCode) {
+            const index = interfaceData.findIndex(
+              (x) => x.code === editingCode,
+            );
+            if (index !== -1) interfaceData[index] = payload;
+          } else {
+            interfaceData.push(payload);
+          }
+
+          saveData();
+          renderTable();
+          closeModal();
+        });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderTable);
+      document
+        .getElementById("typeFilter")
+        .addEventListener("change", renderTable);
+      document
+        .getElementById("statusFilter")
+        .addEventListener("change", renderTable);
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function escapeAttribute(value) {
+        return String(value ?? "")
+          .replaceAll("\\", "\\\\")
+          .replaceAll("'", "\\'");
+      }
+
+      renderTable();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>IP Prefix / Pool Detail · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Keep the same global design system as Equipment / OLT / Switch -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="ip-prefix-pool-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================================================================
+           SIDEBAR
+           ================================================================ -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub active">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================================================================
+           MAIN
+           ================================================================ -->
+      <main class="main">
+        <header class="topbar prefix-detail-topbar">
+          <div>
+            <div class="breadcrumb">
+              <a href="index.html">Asset Management</a>
+              <span> / </span>
+              <span>Network Resources</span>
+              <span> / </span>
+              <a href="ip-prefix-pools.html">IP Prefix / Pool</a>
+              <span> / </span>
+              <strong id="breadcrumbCode">IPP-0001</strong>
+            </div>
+
+            <h1 class="page-title">IP Prefix / Pool Detail</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <a
+              class="btn btn-ghost"
+              id="backButton"
+              href="ip-prefix-pools.html"
+            >
+              ← Back
+            </a>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openEditFromDetail()"
+            >
+              ✎ Edit
+            </button>
+          </div>
+        </header>
+
+        <div class="content prefix-detail-page">
+          <!-- ============================================================
+               HERO
+               ============================================================ -->
+          <section class="prefix-hero">
+            <div class="prefix-hero-main">
+              <div class="prefix-hero-icon">IP</div>
+
+              <div class="prefix-hero-copy">
+                <div class="prefix-hero-eyebrow">IP PREFIX / POOL</div>
+
+                <h2 id="detailName">Jakarta Management Network</h2>
+
+                <div class="prefix-hero-meta">
+                  <span id="detailCode" class="mono-text">IPP-0001</span>
+                  <span>·</span>
+                  <span id="detailPrefix" class="mono-text">
+                    10.10.0.0/24
+                  </span>
+                  <span>·</span>
+                  <span id="detailType">Management</span>
+                </div>
+
+                <div class="prefix-hero-badges">
+                  <span id="detailStatusBadge" class="badge badge-active">
+                    <span class="badge-dot"></span>
+                    Active
+                  </span>
+
+                  <span class="prefix-hero-version" id="detailVersion">
+                    IPv4
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============================================================
+               TABS
+               ============================================================ -->
+          <nav class="prefix-detail-tabs" aria-label="Prefix detail tabs">
+            <button class="prefix-tab active" type="button" data-tab="overview">
+              Overview
+            </button>
+
+            <button class="prefix-tab" type="button" data-tab="addresses">
+              IP Addresses
+            </button>
+
+            <button class="prefix-tab" type="button" data-tab="utilization">
+              Utilization
+            </button>
+
+            <button class="prefix-tab" type="button" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <!-- ============================================================
+               OVERVIEW
+               ============================================================ -->
+          <section id="tab-overview" class="prefix-tab-panel active">
+            <div class="detail-section-heading">
+              <h2>Overview</h2>
+              <p>Identity, network definition and physical placement.</p>
+            </div>
+
+            <div class="detail-grid">
+              <section class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <h3>Basic Information</h3>
+                    <p>Prefix identity and addressing information.</p>
+                  </div>
+                </div>
+
+                <div class="detail-fields">
+                  <div class="detail-field">
+                    <span>Prefix ID</span>
+                    <strong id="overviewCode" class="mono-text">
+                      IPP-0001
+                    </strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Name</span>
+                    <strong id="overviewName">
+                      Jakarta Management Network
+                    </strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Prefix / CIDR</span>
+                    <strong id="overviewPrefix" class="mono-text">
+                      10.10.0.0/24
+                    </strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>IP Version</span>
+                    <strong id="overviewVersion">IPv4</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Type</span>
+                    <strong id="overviewType">Management</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Gateway</span>
+                    <strong id="overviewGateway" class="mono-text">
+                      10.10.0.1
+                    </strong>
+                  </div>
+                </div>
+              </section>
+
+              <section class="detail-card">
+                <div class="detail-card-head">
+                  <div>
+                    <h3>Operational</h3>
+                    <p>Current placement and lifecycle state.</p>
+                  </div>
+                </div>
+
+                <div class="detail-fields">
+                  <div class="detail-field">
+                    <span>Location</span>
+                    <strong id="overviewLocation">POP Jakarta</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>VLAN</span>
+                    <strong id="overviewVlan">Management</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Status</span>
+                    <strong id="overviewStatus">Active</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Allocation</span>
+                    <strong id="overviewAllocation">32 / 254</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Available</span>
+                    <strong id="overviewAvailable">222</strong>
+                  </div>
+
+                  <div class="detail-field">
+                    <span>Utilization</span>
+                    <strong id="overviewUtilization">13%</strong>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <section class="detail-note" id="overviewDescription">
+              Management network for Jakarta POP.
+            </section>
+          </section>
+
+          <!-- ============================================================
+               IP ADDRESSES
+               ============================================================ -->
+          <section id="tab-addresses" class="prefix-tab-panel" hidden>
+            <div class="detail-section-heading">
+              <h2>IP Addresses</h2>
+              <p>
+                Address allocation inside this prefix. Detailed IP management
+                can be connected to the IP Address module later.
+              </p>
+            </div>
+
+            <div class="resource-card">
+              <div class="resource-card-head">
+                <div>
+                  <h3>Address Allocation</h3>
+                  <p id="addressSummary">32 of 254 addresses allocated.</p>
+                </div>
+
+                <span class="resource-count" id="addressCount">
+                  32 allocated
+                </span>
+              </div>
+
+              <div class="allocation-bar large">
+                <div
+                  id="addressAllocationFill"
+                  class="allocation-fill"
+                  style="width: 13%"
+                ></div>
+              </div>
+
+              <div class="allocation-legend">
+                <div>
+                  <span class="legend-dot allocated"></span>
+                  Allocated
+                  <strong id="allocatedCount">32</strong>
+                </div>
+
+                <div>
+                  <span class="legend-dot available"></span>
+                  Available
+                  <strong id="availableCount">222</strong>
+                </div>
+              </div>
+
+              <div class="empty-module">
+                <div class="empty-module-icon">IP</div>
+                <strong>IP Address module belum diaktifkan</strong>
+                <p>
+                  Halaman ini sudah disiapkan untuk terhubung ke IP Address
+                  management pada tahap berikutnya.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============================================================
+               UTILIZATION
+               ============================================================ -->
+          <section id="tab-utilization" class="prefix-tab-panel" hidden>
+            <div class="detail-section-heading">
+              <h2>Utilization</h2>
+              <p>Current address utilization of this prefix / pool.</p>
+            </div>
+
+            <div class="utilization-layout">
+              <section class="utilization-card utilization-main">
+                <span class="utilization-label">Current Utilization</span>
+
+                <div class="utilization-number">
+                  <strong id="utilizationPercent">13%</strong>
+                  <span>used</span>
+                </div>
+
+                <div class="allocation-bar large">
+                  <div
+                    id="utilizationFill"
+                    class="allocation-fill"
+                    style="width: 13%"
+                  ></div>
+                </div>
+
+                <div class="utilization-stats">
+                  <div>
+                    <span>Allocated</span>
+                    <strong id="utilizationAllocated">32</strong>
+                  </div>
+
+                  <div>
+                    <span>Available</span>
+                    <strong id="utilizationAvailable">222</strong>
+                  </div>
+
+                  <div>
+                    <span>Total</span>
+                    <strong id="utilizationTotal">254</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section class="utilization-card">
+                <span class="utilization-label">Network Summary</span>
+
+                <div class="summary-list">
+                  <div>
+                    <span>Prefix</span>
+                    <strong id="summaryPrefix" class="mono-text">
+                      10.10.0.0/24
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>Gateway</span>
+                    <strong id="summaryGateway" class="mono-text">
+                      10.10.0.1
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>Location</span>
+                    <strong id="summaryLocation"> POP Jakarta </strong>
+                  </div>
+
+                  <div>
+                    <span>Type</span>
+                    <strong id="summaryType">Management</strong>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <!-- ============================================================
+               HISTORY
+               ============================================================ -->
+          <section id="tab-history" class="prefix-tab-panel" hidden>
+            <div class="detail-section-heading">
+              <h2>History</h2>
+              <p>Audit trail for this IP prefix / pool.</p>
+            </div>
+
+            <section class="history-card">
+              <div class="history-item">
+                <div class="history-marker"></div>
+
+                <div class="history-content">
+                  <div class="history-top">
+                    <strong>Prefix created</strong>
+                    <span>Demo data</span>
+                  </div>
+
+                  <p>
+                    IP Prefix / Pool
+                    <strong id="historyPrefix"> IPP-0001 </strong>
+                    was added to NETASSET.
+                  </p>
+                </div>
+              </div>
+
+              <div class="history-item">
+                <div class="history-marker"></div>
+
+                <div class="history-content">
+                  <div class="history-top">
+                    <strong>Operational state</strong>
+                    <span>Current</span>
+                  </div>
+
+                  <p>
+                    Current status:
+                    <strong id="historyStatus">Active</strong>.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+    <script>
+      const PREFIX_KEY = "netasset_ip_prefixes_v1";
+
+      const PREFIX_DEMO_DATA = [
+        {
+          prefixCode: "IPP-0001",
+          prefix: "10.10.0.0/24",
+          name: "Jakarta Management Network",
+          type: "Management",
+          ipVersion: "ipv4",
+          gateway: "10.10.0.1",
+          location: "POP Jakarta",
+          vlan: "Management",
+          status: "active",
+          totalAddresses: 254,
+          allocated: 32,
+          description: "Management network for Jakarta POP.",
+        },
+        {
+          prefixCode: "IPP-0002",
+          prefix: "10.20.0.0/24",
+          name: "Jakarta Customer Network",
+          type: "Customer",
+          ipVersion: "ipv4",
+          gateway: "10.20.0.1",
+          location: "POP Jakarta",
+          vlan: "Customer",
+          status: "active",
+          totalAddresses: 254,
+          allocated: 148,
+          description: "Customer service network.",
+        },
+        {
+          prefixCode: "IPP-0003",
+          prefix: "10.30.0.0/25",
+          name: "South Jakarta Infrastructure",
+          type: "Infrastructure",
+          ipVersion: "ipv4",
+          gateway: "10.30.0.1",
+          location: "POP Jakarta Selatan",
+          vlan: "Infrastructure",
+          status: "active",
+          totalAddresses: 126,
+          allocated: 68,
+          description: "Infrastructure network for South Jakarta.",
+        },
+        {
+          prefixCode: "IPP-0004",
+          prefix: "10.40.0.0/24",
+          name: "Bandung Transit Network",
+          type: "Transit",
+          ipVersion: "ipv4",
+          gateway: "10.40.0.1",
+          location: "POP Bandung",
+          vlan: "Transit",
+          status: "reserved",
+          totalAddresses: 254,
+          allocated: 0,
+          description: "Reserved transit network.",
+        },
+        {
+          prefixCode: "IPP-0005",
+          prefix: "10.50.0.0/28",
+          name: "Legacy Loopback Pool",
+          type: "Loopback",
+          ipVersion: "ipv4",
+          gateway: "10.50.0.1",
+          location: "POP Jakarta",
+          vlan: "Loopback",
+          status: "deprecated",
+          totalAddresses: 14,
+          allocated: 12,
+          description: "Legacy loopback pool.",
+        },
+      ];
+
+      function getPrefixes() {
+        const raw = localStorage.getItem(PREFIX_KEY);
+
+        if (!raw) {
+          localStorage.setItem(PREFIX_KEY, JSON.stringify(PREFIX_DEMO_DATA));
+
+          return structuredClone(PREFIX_DEMO_DATA);
+        }
+
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(PREFIX_KEY, JSON.stringify(PREFIX_DEMO_DATA));
+
+          return structuredClone(PREFIX_DEMO_DATA);
+        }
+      }
+
+      function getCurrentPrefix() {
+        const params = new URLSearchParams(window.location.search);
+
+        const code = params.get("prefix") || "IPP-0001";
+
+        return (
+          getPrefixes().find((item) => item.prefixCode === code) ||
+          PREFIX_DEMO_DATA[0]
+        );
+      }
+
+      function statusLabel(status) {
+        return (
+          {
+            active: "Active",
+            reserved: "Reserved",
+            deprecated: "Deprecated",
+          }[status] ||
+          status ||
+          "—"
+        );
+      }
+
+      function statusBadgeClass(status) {
+        return (
+          {
+            active: "badge-active",
+            reserved: "badge-warning",
+            deprecated: "badge-inactive",
+          }[status] || "badge-neutral"
+        );
+      }
+
+      function versionLabel(version) {
+        return version === "ipv6" ? "IPv6" : "IPv4";
+      }
+
+      function getUtilization(item) {
+        const total = Number(item.totalAddresses) || 0;
+
+        const allocated = Math.min(Number(item.allocated) || 0, total);
+
+        const available = Math.max(total - allocated, 0);
+
+        const percent = total ? Math.round((allocated / total) * 100) : 0;
+
+        return {
+          total,
+          allocated,
+          available,
+          percent,
+        };
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value ?? "—";
+        }
+      }
+
+      function renderDetail() {
+        const item = getCurrentPrefix();
+        const utilization = getUtilization(item);
+
+        document.title = `${item.name} · IP Prefix / Pool · NETASSET`;
+
+        setText("breadcrumbCode", item.prefixCode);
+
+        setText("detailName", item.name);
+
+        setText("detailCode", item.prefixCode);
+
+        setText("detailPrefix", item.prefix);
+
+        setText("detailType", item.type);
+
+        setText("detailVersion", versionLabel(item.ipVersion));
+
+        setText("overviewCode", item.prefixCode);
+
+        setText("overviewName", item.name);
+
+        setText("overviewPrefix", item.prefix);
+
+        setText("overviewVersion", versionLabel(item.ipVersion));
+
+        setText("overviewType", item.type);
+
+        setText("overviewGateway", item.gateway);
+
+        setText("overviewLocation", item.location);
+
+        setText("overviewVlan", item.vlan || "—");
+
+        setText("overviewStatus", statusLabel(item.status));
+
+        setText(
+          "overviewAllocation",
+          `${utilization.allocated} / ${utilization.total}`,
+        );
+
+        setText("overviewAvailable", utilization.available);
+
+        setText("overviewUtilization", `${utilization.percent}%`);
+
+        setText(
+          "overviewDescription",
+          item.description || "No description provided.",
+        );
+
+        setText(
+          "addressSummary",
+          `${utilization.allocated} of ${utilization.total} addresses allocated.`,
+        );
+
+        setText("addressCount", `${utilization.allocated} allocated`);
+
+        setText("allocatedCount", utilization.allocated);
+
+        setText("availableCount", utilization.available);
+
+        setText("utilizationPercent", `${utilization.percent}%`);
+
+        setText("utilizationAllocated", utilization.allocated);
+
+        setText("utilizationAvailable", utilization.available);
+
+        setText("utilizationTotal", utilization.total);
+
+        setText("summaryPrefix", item.prefix);
+
+        setText("summaryGateway", item.gateway);
+
+        setText("summaryLocation", item.location);
+
+        setText("summaryType", item.type);
+
+        setText("historyPrefix", item.prefixCode);
+
+        setText("historyStatus", statusLabel(item.status));
+
+        const badge = document.getElementById("detailStatusBadge");
+
+        if (badge) {
+          badge.className = `badge ${statusBadgeClass(item.status)}`;
+
+          badge.innerHTML = `<span class="badge-dot"></span>${statusLabel(item.status)}`;
+        }
+
+        const fills = [
+          document.getElementById("addressAllocationFill"),
+          document.getElementById("utilizationFill"),
+        ];
+
+        fills.forEach((fill) => {
+          if (fill) {
+            fill.style.width = `${utilization.percent}%`;
+          }
+        });
+      }
+
+      function openEditFromDetail() {
+        const item = getCurrentPrefix();
+
+        window.location.href = `ip-prefix-pools.html?edit=${encodeURIComponent(item.prefixCode)}`;
+      }
+
+      document.querySelectorAll(".prefix-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          const tab = button.dataset.tab;
+
+          document.querySelectorAll(".prefix-tab").forEach((tabButton) => {
+            tabButton.classList.toggle("active", tabButton === button);
+          });
+
+          document.querySelectorAll(".prefix-tab-panel").forEach((panel) => {
+            const isActive = panel.id === `tab-${tab}`;
+
+            panel.classList.toggle("active", isActive);
+
+            panel.hidden = !isActive;
+          });
+        });
+      });
+
+      renderDetail();
+    </script>
+  </body>
+</html>

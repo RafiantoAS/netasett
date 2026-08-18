@@ -1,0 +1,1798 @@
+/* =========================================================
+   NETASSET — SETTINGS / MASTER DATA
+   settings-master-data.css
+   FINAL CLEAN VERSION
+   ========================================================= */
+
+/* =========================================================
+   PAGE / SHELL
+   ========================================================= */
+
+.settings-page {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f4f7fa;
+  color: #071b3a;
+  overflow-x: hidden;
+}
+
+.settings-page *,
+.settings-page *::before,
+.settings-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+
+/* =========================================================
+   SIDEBAR
+   NETASSET GLOBAL TEMPLATE
+   Single authoritative implementation for Settings
+   ========================================================= */
+
+.settings-page .sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+
+  width: var(--sidebar-width) !important;
+  min-width: var(--sidebar-width) !important;
+  max-width: var(--sidebar-width) !important;
+  flex: 0 0 var(--sidebar-width) !important;
+
+  height: 100vh;
+}
+
+.settings-page .sidebar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.settings-page .sidebar::-webkit-scrollbar-thumb {
+  background: #263650;
+  border-radius: 999px;
+}
+
+.settings-page .sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =========================================================
+   BRAND
+   Match Reports / global NETASSET template
+   ========================================================= */
+
+.settings-page .sidebar-brand {
+  width: 100%;
+  min-height: 76px;
+
+  padding: 17px 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-sizing: border-box;
+}
+
+.settings-page .brand-mark {
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 30px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0;
+
+  border-radius: 7px;
+
+  background: #12b8ad;
+  color: #062c2a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.settings-page .brand-text {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.15;
+}
+
+.settings-page .brand-name {
+  display: block;
+
+  color: #ffffff;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.settings-page .brand-sub {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #7087a2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  line-height: 1.15;
+  font-weight: 600;
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MAIN NAVIGATION
+   ========================================================= */
+
+.settings-page .sidebar-nav {
+  width: 100%;
+
+  padding: 17px 10px 28px;
+
+  box-sizing: border-box;
+}
+
+.settings-page .nav-top,
+.settings-page .nav-group > summary {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  min-height: 38px;
+
+  padding: 8px 10px;
+  margin: 0;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #a8bad0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  box-sizing: border-box;
+
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.settings-page .nav-top:hover,
+.settings-page .nav-group > summary:hover {
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.settings-page .nav-top.active {
+  background: #15243d;
+  color: #ffffff;
+}
+
+.settings-page .nav-group {
+  width: 100%;
+  margin: 3px 0;
+}
+
+.settings-page .nav-group > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.settings-page .nav-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-page .nav-group > summary::after {
+  content: "⌄";
+
+  flex: 0 0 auto;
+
+  color: #71859d;
+
+  font-size: 11px;
+  line-height: 1;
+
+  transition: transform 140ms ease;
+}
+
+.settings-page .nav-group[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   SUB NAVIGATION
+   ========================================================= */
+
+.settings-page .nav-children {
+  position: relative;
+
+  margin: 1px 0 4px 18px;
+  padding: 1px 0 1px 12px;
+
+  border-left: 1px solid #25364f;
+}
+
+.settings-page .nav-sub {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  min-height: 34px;
+
+  padding: 7px 9px;
+
+  border-radius: 5px;
+
+  color: #8297af;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 400;
+
+  text-decoration: none;
+
+  box-sizing: border-box;
+
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.settings-page .nav-sub::before {
+  content: "";
+
+  position: absolute;
+  left: -13px;
+  top: 50%;
+
+  width: 12px;
+  height: 1px;
+
+  background: #25364f;
+}
+
+.settings-page .nav-sub:hover {
+  background: rgba(255, 255, 255, 0.045);
+  color: #ffffff;
+}
+
+.settings-page .nav-sub.active {
+  background: #172744;
+  color: #12b8ad;
+  font-weight: 600;
+}
+
+.settings-page .nav-sub.disabled,
+.settings-page .nav-sub[aria-disabled="true"] {
+  cursor: default;
+  color: #53677d;
+}
+
+.settings-page .nav-sub.disabled:hover,
+.settings-page .nav-sub[aria-disabled="true"]:hover {
+  background: transparent;
+  color: #53677d;
+}
+
+.settings-page .soon-tag,
+.settings-page .nav-soon {
+  margin-left: auto;
+
+  color: #6f8299;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+  line-height: 1;
+
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   MAIN CONTENT / TOPBAR
+   Sidebar and content use the same 284px desktop geometry
+   ========================================================= */
+
+/* =========================================================
+   MAIN CONTENT / TOPBAR
+   ========================================================= */
+
+/* =========================================================
+   MAIN CONTENT
+   MATCH GLOBAL NETASSET SHELL
+   ========================================================= */
+
+.settings-page .main-content {
+  width: calc(100% - var(--sidebar-width)) !important;
+  min-width: 0;
+  min-height: 100vh;
+
+  margin-left: var(--sidebar-width) !important;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+.settings-page .topbar {
+  width: 100%;
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 38px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #dbe4ec;
+}
+
+.settings-page .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 0;
+
+  color: #7189a1;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.settings-page .breadcrumb a {
+  color: #557493;
+  text-decoration: none;
+}
+
+.settings-page .breadcrumb a:hover {
+  color: #079f9d;
+}
+
+.settings-page .breadcrumb-separator {
+  color: #a7b8c9;
+}
+
+.settings-page .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-page .topbar-icon-button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d5e0eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #527394;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.settings-page .topbar-icon-button:hover {
+  background: #f4fbfb;
+  border-color: #a9dcd8;
+  color: #087f79;
+}
+
+.settings-page .topbar-icon-button:active {
+  transform: rotate(-15deg);
+}
+
+/* =========================================================
+   PAGE CONTENT / HEADER
+   ========================================================= */
+
+.settings-page .page-content {
+  width: 100%;
+  min-width: 0;
+
+  padding: 30px 38px 50px;
+}
+
+.settings-page .page-header {
+  width: 100%;
+  margin: 0 0 28px;
+}
+
+.settings-page .page-header-copy {
+  min-width: 0;
+  max-width: 1050px;
+}
+
+.settings-page .page-eyebrow {
+  margin: 0 0 7px;
+
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.settings-page .page-header h1 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.settings-page .page-header p {
+  max-width: 900px;
+  margin: 8px 0 0;
+
+  color: #7187a2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   SETTINGS TWO-COLUMN LAYOUT
+   ========================================================= */
+
+.settings-page .settings-layout {
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.settings-page .settings-navigation {
+  width: 100%;
+  min-width: 0;
+
+  position: sticky;
+  top: 24px;
+
+  padding: 10px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(18, 47, 78, 0.035);
+}
+
+.settings-page .settings-nav-title {
+  padding: 10px 11px 11px;
+
+  color: #8aa0b7;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.settings-page .settings-nav-item {
+  width: 100%;
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 7px 10px;
+  margin: 2px 0;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #5f7895;
+
+  font-family: "Inter", sans-serif;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.settings-page .settings-nav-item:hover {
+  background: #f5f9fc;
+  color: #234d72;
+}
+
+.settings-page .settings-nav-item.active {
+  background: #eef9f8;
+  border-color: #c9e9e5;
+  color: #087f79;
+}
+
+.settings-page .settings-nav-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  color: #7891ab;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.settings-page .settings-nav-item.active .settings-nav-icon {
+  color: #079f9d;
+}
+
+.settings-page .settings-nav-copy {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.settings-page .settings-nav-copy strong {
+  color: inherit;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.settings-page .settings-nav-copy small {
+  color: #8aa0b7;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.settings-page .settings-nav-item.active .settings-nav-copy small {
+  color: #5d9996;
+}
+
+/* =========================================================
+   SETTINGS CONTENT / PANELS
+   ========================================================= */
+
+.settings-page .settings-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.settings-page .settings-panel {
+  width: 100%;
+  min-width: 0;
+}
+
+.settings-page .settings-panel[hidden] {
+  display: none !important;
+}
+
+.settings-page .settings-panel-header {
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dbe4ee;
+}
+
+.settings-page .settings-panel-eyebrow {
+  margin: 0 0 7px;
+
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.settings-page .settings-panel-header h2 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.settings-page .settings-panel-header p {
+  max-width: 900px;
+  margin: 7px 0 0;
+
+  color: #7187a2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.settings-page .settings-card {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 18px;
+  padding: 22px 24px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(18, 47, 78, 0.025);
+}
+
+.settings-page .settings-card-header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #e3eaf0;
+}
+
+.settings-page .settings-card-header h3 {
+  margin: 0;
+
+  color: #102b4a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.settings-page .settings-card-header p {
+  margin: 5px 0 0;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.settings-page .settings-form-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.settings-page .form-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.settings-page .form-field-full {
+  grid-column: 1 / -1;
+}
+
+.settings-page .form-field label {
+  color: #526d89;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.settings-page .form-field input,
+.settings-page .form-field select,
+.settings-page .form-field textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 11px;
+
+  border: 1px solid #d2deea;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #193a5b;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.settings-page .form-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.settings-page .form-field input:focus,
+.settings-page .form-field select:focus,
+.settings-page .form-field textarea:focus {
+  border-color: #0ba5a0;
+  box-shadow: 0 0 0 3px rgba(11, 165, 160, 0.09);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.settings-page button,
+.settings-page .button {
+  font-family: "Inter", sans-serif;
+}
+
+.settings-page .button {
+  min-height: 38px;
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 600;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.settings-page .button:active {
+  transform: translateY(1px);
+}
+
+.settings-page .button-primary {
+  border: 1px solid #079f9d;
+  background: #079f9d;
+  color: #ffffff;
+}
+
+.settings-page .button-primary:hover {
+  border-color: #078d8a;
+  background: #078d8a;
+}
+
+.settings-page .button-secondary {
+  border: 1px solid #cddbe7;
+  background: #ffffff;
+  color: #456785;
+}
+
+.settings-page .button-secondary:hover {
+  border-color: #a9c0d4;
+  background: #f6f9fc;
+}
+
+.settings-page .button-danger {
+  border: 1px solid #e3b5b5;
+  background: #ffffff;
+  color: #b13f3f;
+}
+
+.settings-page .button-danger:hover {
+  border-color: #d99393;
+  background: #fff7f7;
+}
+
+/* =========================================================
+   ACTION BAR
+   ========================================================= */
+
+.settings-page .settings-actions {
+  margin-top: 22px;
+  padding-top: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+
+  border-top: 1px solid #e3eaf0;
+}
+
+.settings-page .settings-inline-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+
+/* =========================================================
+   RADIO / OPTION LIST
+   ========================================================= */
+
+.settings-page .settings-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.settings-page .settings-radio-option {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 4px 0;
+
+  cursor: pointer;
+}
+
+.settings-page .settings-radio-option input {
+  margin: 3px 0 0;
+  flex: 0 0 auto;
+  accent-color: #079f9d;
+}
+
+.settings-page .settings-radio-option > span {
+  min-width: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.settings-page .settings-radio-option strong {
+  color: #102b4a;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-page .settings-radio-option small {
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   TOGGLE LIST
+   ========================================================= */
+
+.settings-page .settings-toggle-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-page .settings-toggle-row {
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #edf1f5;
+
+  cursor: pointer;
+}
+
+.settings-page .settings-toggle-row:first-child {
+  padding-top: 0;
+}
+
+.settings-page .settings-toggle-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.settings-page .settings-toggle-row > span {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-page .settings-toggle-row strong {
+  color: #173451;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.settings-page .settings-toggle-row small {
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.settings-page .settings-toggle-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin: 0;
+
+  accent-color: #079f9d;
+}
+
+/* =========================================================
+   MASTER DATA
+   ========================================================= */
+
+.settings-page .settings-section-block {
+  margin-top: 22px;
+}
+
+.settings-page .settings-section-heading {
+  margin-bottom: 12px;
+}
+
+.settings-page .settings-section-kicker {
+  display: block;
+  margin-bottom: 4px;
+
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.settings-page .settings-section-heading h3 {
+  margin: 0;
+
+  color: #173451;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.settings-page .master-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-page .master-data-card {
+  min-width: 0;
+  min-height: 188px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+
+  box-shadow: 0 2px 8px rgba(18, 47, 78, 0.02);
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.settings-page .master-data-card:hover {
+  border-color: #bfd6e5;
+  box-shadow: 0 5px 14px rgba(18, 47, 78, 0.045);
+  transform: translateY(-1px);
+}
+
+.settings-page .master-data-card-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #cfe4e5;
+  border-radius: 7px;
+
+  background: #f0faf9;
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-page .master-data-card-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.settings-page .master-data-card-body h4 {
+  margin: 0;
+
+  color: #163653;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.settings-page .master-data-card-body p {
+  margin: 6px 0 10px;
+
+  color: #7a91a8;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.settings-page .master-data-card-meta {
+  margin-top: auto;
+}
+
+.settings-page .master-data-card-meta span {
+  color: #557493;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.settings-page .master-data-open {
+  align-self: flex-start;
+
+  min-height: 32px;
+  margin-top: 13px;
+  padding: 0 11px;
+
+  border: 1px solid #cddbe7;
+  border-radius: 6px;
+
+  background: #ffffff;
+  color: #456785;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.settings-page .master-data-open:hover {
+  background: #f4fbfb;
+  border-color: #a9dcd8;
+  color: #087f79;
+}
+
+/* =========================================================
+   ADMIN SUMMARY
+   ========================================================= */
+
+.settings-page .admin-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-page .admin-summary-card {
+  min-width: 0;
+  padding: 18px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+}
+
+.settings-page .admin-summary-label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #8298ad;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.settings-page .admin-summary-card strong {
+  display: block;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.settings-page .admin-summary-card small {
+  display: block;
+  margin-top: 7px;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+}
+
+/* =========================================================
+   INTEGRATIONS
+   ========================================================= */
+
+.settings-page .integration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-page .integration-card {
+  min-width: 0;
+  padding: 18px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+}
+
+.settings-page .integration-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+.settings-page .integration-icon {
+  width: 38px;
+  height: 30px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #cfe4e5;
+  border-radius: 6px;
+
+  background: #f0faf9;
+  color: #087f79;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.settings-page .integration-status {
+  padding: 4px 7px;
+
+  border-radius: 999px;
+
+  background: #f3f6f8;
+  color: #7187a2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.settings-page .integration-card h3 {
+  margin: 0;
+
+  color: #173451;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.settings-page .integration-card p {
+  margin: 6px 0 14px;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.settings-page .integration-meta {
+  margin-bottom: 14px;
+
+  color: #557493;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+}
+
+/* =========================================================
+   SYSTEM INFO / HEALTH
+   ========================================================= */
+
+.settings-page .system-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-page .system-info-card {
+  min-width: 0;
+  padding: 18px;
+
+  background: #ffffff;
+  border: 1px solid #d9e3ed;
+  border-radius: 9px;
+}
+
+.settings-page .system-info-card > span {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #8298ad;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.settings-page .system-info-card strong {
+  display: block;
+
+  color: #173451;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.settings-page .system-info-card small {
+  display: block;
+  margin-top: 5px;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+}
+
+.settings-page .system-health-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.settings-page .system-health-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-page .system-health-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+
+  border-radius: 50%;
+  background: #20b486;
+  box-shadow: 0 0 0 4px rgba(32, 180, 134, 0.1);
+}
+
+.settings-page .system-health-status strong {
+  display: block;
+
+  color: #173451;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-page .system-health-status small {
+  display: block;
+  margin-top: 3px;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+}
+
+.settings-page .system-health-badge {
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  background: #eaf8f2;
+  color: #19835f;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   DANGER ZONE
+   ========================================================= */
+
+.settings-page .danger-zone {
+  border-color: #e4caca;
+}
+
+.settings-page .danger-zone .settings-card-header h3 {
+  color: #9d3f3f;
+}
+
+.settings-page .danger-zone-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.settings-page .danger-zone-row > div {
+  min-width: 0;
+}
+
+.settings-page .danger-zone-row strong {
+  display: block;
+
+  color: #173451;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-page .danger-zone-row small {
+  display: block;
+  margin-top: 4px;
+
+  color: #7b91aa;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.settings-page .settings-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 3000;
+
+  max-width: 360px;
+  padding: 12px 15px;
+
+  border: 1px solid #c9e9e5;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #173451;
+
+  box-shadow: 0 10px 30px rgba(18, 47, 78, 0.12);
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.settings-page .settings-toast[hidden] {
+  display: none !important;
+}
+
+/* =========================================================
+   MASTER DATA DIALOG
+   ========================================================= */
+
+.settings-page .master-data-dialog {
+  width: min(720px, calc(100vw - 40px));
+  max-width: 720px;
+  max-height: calc(100vh - 40px);
+
+  padding: 0;
+
+  border: 1px solid #d9e3ed;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #071b3a;
+
+  box-shadow: 0 20px 60px rgba(7, 27, 58, 0.18);
+
+  overflow: hidden;
+}
+
+.settings-page .master-data-dialog::backdrop {
+  background: rgba(7, 21, 38, 0.45);
+}
+
+.settings-page .master-data-dialog-header {
+  min-height: 78px;
+  padding: 18px 22px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-bottom: 1px solid #e3eaf0;
+}
+
+.settings-page .master-data-dialog-header h2 {
+  margin: 2px 0 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.settings-page .master-data-dialog-header p {
+  margin: 5px 0 0;
+
+  color: #7187a2;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.settings-page .dialog-close {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d5e0eb;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #607b95;
+
+  font-size: 18px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.settings-page .dialog-close:hover {
+  background: #f6f9fc;
+  color: #173451;
+}
+
+.settings-page .master-data-dialog-body {
+  min-height: 180px;
+  max-height: 55vh;
+  padding: 20px 22px;
+
+  overflow-y: auto;
+}
+
+.settings-page .master-data-dialog-footer {
+  padding: 13px 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  border-top: 1px solid #e3eaf0;
+  background: #fbfcfd;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.settings-page button:focus-visible,
+.settings-page a:focus-visible,
+.settings-page input:focus-visible,
+.settings-page select:focus-visible,
+.settings-page textarea:focus-visible {
+  outline: 2px solid rgba(7, 159, 157, 0.55);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1250px) {
+  .settings-page .page-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .settings-page .settings-layout {
+    grid-template-columns: 235px minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .settings-page .integration-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .settings-page .system-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1050px) {
+  .settings-page .settings-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .settings-page .settings-nav-copy small {
+    font-size: 9px;
+  }
+
+  .settings-page .settings-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .settings-page .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-page .settings-navigation {
+    position: static;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .settings-page .settings-nav-title {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 850px) {
+  .settings-page .topbar {
+    padding: 0 24px;
+  }
+
+  .settings-page .page-content {
+    padding: 24px 20px 40px;
+  }
+
+  .settings-page .settings-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-page .form-field-full {
+    grid-column: auto;
+  }
+
+  .settings-page .master-data-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .settings-page .sidebar-footer {
+    margin-top: 0;
+  }
+
+  .settings-page .topbar {
+    min-height: 64px;
+    padding: 0 16px;
+  }
+
+  .settings-page .page-content {
+    padding: 20px 16px 32px;
+  }
+
+  .settings-page .page-header h1 {
+    font-size: 28px;
+  }
+
+  .settings-page .settings-panel-header h2 {
+    font-size: 22px;
+  }
+
+  .settings-page .settings-navigation {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-page .settings-nav-title {
+    grid-column: auto;
+  }
+
+  .settings-page .admin-summary-grid,
+  .settings-page .integration-grid,
+  .settings-page .system-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-page .settings-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .settings-page .settings-actions .button {
+    width: 100%;
+  }
+
+  .settings-page .settings-inline-action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .settings-page .settings-inline-action .button {
+    width: 100%;
+  }
+
+  .settings-page .danger-zone-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .settings-page .danger-zone-row .button {
+    width: 100%;
+  }
+
+  .settings-page .system-health-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .settings-page .master-data-dialog {
+    width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+  }
+
+  .settings-page .master-data-dialog-header,
+  .settings-page .master-data-dialog-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .settings-page .master-data-dialog-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-page *,
+  .settings-page *::before,
+  .settings-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE SHELL
+   ========================================================= */
+
+@media (max-width: 680px) {
+  .settings-page .sidebar {
+    position: relative;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    flex-basis: auto !important;
+    height: auto;
+    min-height: 0;
+  }
+
+  .settings-page .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}

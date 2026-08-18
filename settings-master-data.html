@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Settings / Master Data · NETASSET</title>
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================
+         GLOBAL CSS
+    ====================================================== -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- =====================================================
+         PAGE CSS
+    ====================================================== -->
+    <link rel="stylesheet" href="settings-master-data.css" />
+  </head>
+
+  <body class="settings-page">
+    <!-- =====================================================
+         APP SHELL
+    ====================================================== -->
+    <div class="app-shell">
+      <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+      <!-- =================================================
+     SIDEBAR
+================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top active"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+      <main class="main-content">
+        <!-- =================================================
+                 TOPBAR
+            ================================================== -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="breadcrumb">
+              <a href="index.html"> NETASSET </a>
+
+              <span class="breadcrumb-separator"> / </span>
+
+              <span> Settings </span>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <button
+              type="button"
+              class="topbar-icon-button"
+              id="settingsRefresh"
+              title="Refresh settings"
+              aria-label="Refresh settings"
+            >
+              ↻
+            </button>
+          </div>
+        </header>
+
+        <!-- =================================================
+                 PAGE CONTENT
+            ================================================== -->
+        <div class="page-content">
+          <!-- =================================================
+                     PAGE HEADER
+                ================================================== -->
+          <section class="page-header settings-page-header">
+            <div class="page-header-copy">
+              <div class="page-eyebrow">SYSTEM CONFIGURATION</div>
+
+              <h1>Settings</h1>
+
+              <p>
+                Configure NETASSET system preferences, master data,
+                administration and operational rules.
+              </p>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     SETTINGS LAYOUT
+                ================================================== -->
+          <section class="settings-layout">
+            <!-- =============================================
+                         SETTINGS NAVIGATION
+                    ============================================== -->
+            <aside class="settings-navigation" aria-label="Settings navigation">
+              <div class="settings-nav-title">Settings</div>
+
+              <!-- General -->
+              <button
+                type="button"
+                class="settings-nav-item active"
+                data-settings-section="general"
+              >
+                <span class="settings-nav-icon"> ◉ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> General </strong>
+
+                  <small> System preferences </small>
+                </span>
+              </button>
+
+              <!-- Appearance -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="appearance"
+              >
+                <span class="settings-nav-icon"> ◐ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Appearance </strong>
+
+                  <small> Interface preferences </small>
+                </span>
+              </button>
+
+              <!-- Notifications -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="notifications"
+              >
+                <span class="settings-nav-icon"> ◇ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Notifications </strong>
+
+                  <small> Alerts and warnings </small>
+                </span>
+              </button>
+
+              <!-- Master Data -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="master-data"
+              >
+                <span class="settings-nav-icon"> ▦ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Master Data </strong>
+
+                  <small> Reference data </small>
+                </span>
+              </button>
+
+              <!-- Users & Roles -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="users-roles"
+              >
+                <span class="settings-nav-icon"> ◎ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Users & Roles </strong>
+
+                  <small> Access control </small>
+                </span>
+              </button>
+
+              <!-- Asset Configuration -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="asset-configuration"
+              >
+                <span class="settings-nav-icon"> ◈ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Asset Configuration </strong>
+
+                  <small> Asset rules </small>
+                </span>
+              </button>
+
+              <!-- Network Configuration -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="network-configuration"
+              >
+                <span class="settings-nav-icon"> ◎ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Network Configuration </strong>
+
+                  <small> Network rules </small>
+                </span>
+              </button>
+
+              <!-- Location Configuration -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="location-configuration"
+              >
+                <span class="settings-nav-icon"> ◉ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Location Configuration </strong>
+
+                  <small> Location rules </small>
+                </span>
+              </button>
+
+              <!-- Integrations -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="integrations"
+              >
+                <span class="settings-nav-icon"> ⛓ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Integrations </strong>
+
+                  <small> External systems </small>
+                </span>
+              </button>
+
+              <!-- Audit & Logs -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="audit-logs"
+              >
+                <span class="settings-nav-icon"> ▤ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> Audit & Logs </strong>
+
+                  <small> System activity </small>
+                </span>
+              </button>
+
+              <!-- System -->
+              <button
+                type="button"
+                class="settings-nav-item"
+                data-settings-section="system"
+              >
+                <span class="settings-nav-icon"> ⚙ </span>
+
+                <span class="settings-nav-copy">
+                  <strong> System </strong>
+
+                  <small> Application status </small>
+                </span>
+              </button>
+            </aside>
+
+            <!-- =============================================
+                         SETTINGS CONTENT
+                    ============================================== -->
+            <div class="settings-content">
+              <!-- =================================================
+                             GENERAL
+                        ================================================== -->
+              <section
+                class="settings-panel active"
+                data-settings-panel="general"
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">GENERAL</div>
+
+                    <h2>General Settings</h2>
+
+                    <p>
+                      Manage system identity and regional preferences used
+                      throughout NETASSET.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- System Information -->
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <h3>System Information</h3>
+
+                      <p>
+                        Basic information displayed by the NETASSET application.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-form-grid">
+                    <div class="form-field">
+                      <label for="systemName"> System Name </label>
+
+                      <input
+                        type="text"
+                        id="systemName"
+                        name="systemName"
+                        value="NETASSET"
+                      />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="organizationName"> Organization </label>
+
+                      <input
+                        type="text"
+                        id="organizationName"
+                        name="organizationName"
+                        value="ISP Network"
+                      />
+                    </div>
+
+                    <div class="form-field form-field-full">
+                      <label for="systemDescription">
+                        System Description
+                      </label>
+
+                      <textarea
+                        id="systemDescription"
+                        name="systemDescription"
+                        rows="3"
+                      >
+ISP Asset Management System</textarea
+                      >
+                    </div>
+
+                    <div class="form-field">
+                      <label for="environment"> Environment </label>
+
+                      <select id="environment" name="environment">
+                        <option value="development">Development</option>
+
+                        <option value="staging">Staging</option>
+
+                        <option value="production">Production</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Regional Settings -->
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <div>
+                      <h3>Regional Settings</h3>
+
+                      <p>
+                        Configure date, time and regional display preferences.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-form-grid">
+                    <div class="form-field">
+                      <label for="timezone"> Timezone </label>
+
+                      <select id="timezone" name="timezone">
+                        <option value="Asia/Jakarta">Asia/Jakarta</option>
+
+                        <option value="Asia/Makassar">Asia/Makassar</option>
+
+                        <option value="Asia/Jayapura">Asia/Jayapura</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="dateFormat"> Date Format </label>
+
+                      <select id="dateFormat" name="dateFormat">
+                        <option value="DD MMM YYYY">DD MMM YYYY</option>
+
+                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+
+                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="timeFormat"> Time Format </label>
+
+                      <select id="timeFormat" name="timeFormat">
+                        <option value="24">24-hour</option>
+
+                        <option value="12">12-hour</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="firstDay"> First Day of Week </label>
+
+                      <select id="firstDay" name="firstDay">
+                        <option value="monday">Monday</option>
+
+                        <option value="sunday">Sunday</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button
+                    type="button"
+                    class="button button-secondary"
+                    data-settings-action="reset"
+                  >
+                    Reset
+                  </button>
+
+                  <button
+                    type="button"
+                    class="button button-primary"
+                    data-settings-action="save"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             APPEARANCE
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="appearance"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">APPEARANCE</div>
+
+                    <h2>Appearance</h2>
+
+                    <p>
+                      Configure the visual appearance and interface behavior of
+                      NETASSET.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Theme</h3>
+                  </div>
+
+                  <div class="settings-option-list">
+                    <label class="settings-radio-option">
+                      <input type="radio" name="theme" value="light" checked />
+
+                      <span>
+                        <strong> Light </strong>
+
+                        <small>
+                          Use the standard NETASSET light interface.
+                        </small>
+                      </span>
+                    </label>
+
+                    <label class="settings-radio-option">
+                      <input type="radio" name="theme" value="dark" />
+
+                      <span>
+                        <strong> Dark </strong>
+
+                        <small> Use a dark interface theme. </small>
+                      </span>
+                    </label>
+
+                    <label class="settings-radio-option">
+                      <input type="radio" name="theme" value="system" />
+
+                      <span>
+                        <strong> System </strong>
+
+                        <small> Follow the operating system preference. </small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Interface</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Expanded Sidebar </strong>
+
+                        <small>
+                          Keep the main navigation expanded by default.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" id="expandedSidebar" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Compact Tables </strong>
+
+                        <small>
+                          Reduce table row spacing for dense asset inventories.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" id="compactTables" />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button
+                    type="button"
+                    class="button button-primary"
+                    data-settings-action="save"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             NOTIFICATIONS
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="notifications"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">NOTIFICATIONS</div>
+
+                    <h2>Notifications</h2>
+
+                    <p>Configure operational alerts and expiration warnings.</p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Asset Notifications</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Asset Assignment Changes </strong>
+
+                        <small>
+                          Notify when an asset assignment is created or changed.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Lifecycle Changes </strong>
+
+                        <small>
+                          Notify when an asset lifecycle status changes.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> IP Allocation Changes </strong>
+
+                        <small> Notify when IP assignments change. </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Expiration Monitoring</h3>
+                  </div>
+
+                  <div class="settings-form-grid">
+                    <div class="form-field">
+                      <label for="certificateWarning">
+                        Certificate Warning
+                      </label>
+
+                      <select id="certificateWarning">
+                        <option value="7">7 days before</option>
+
+                        <option value="14">14 days before</option>
+
+                        <option value="30" selected>30 days before</option>
+
+                        <option value="60">60 days before</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="licenseWarning"> License Warning </label>
+
+                      <select id="licenseWarning">
+                        <option value="7">7 days before</option>
+
+                        <option value="14">14 days before</option>
+
+                        <option value="30" selected>30 days before</option>
+
+                        <option value="60">60 days before</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             MASTER DATA
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="master-data"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">MASTER DATA</div>
+
+                    <h2>Master Data</h2>
+
+                    <p>
+                      Manage reference and lookup data used throughout NETASSET.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Asset Configuration -->
+                <div class="settings-section-block">
+                  <div class="settings-section-heading">
+                    <div>
+                      <span class="settings-section-kicker">
+                        ASSET CONFIGURATION
+                      </span>
+
+                      <h3>Asset Reference Data</h3>
+                    </div>
+                  </div>
+
+                  <div class="master-data-grid">
+                    <!-- Asset Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">◈</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Asset Types</h4>
+
+                        <p>
+                          Configure asset classifications such as Router,
+                          Switch, Server, OLT and Equipment.
+                        </p>
+
+                        <div class="master-data-card-meta">
+                          <span> 5 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="asset-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- Asset Type Fields -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">▦</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Asset Type Fields</h4>
+
+                        <p>
+                          Configure dynamic fields for individual asset types.
+                        </p>
+
+                        <div class="master-data-card-meta">
+                          <span> 24 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="asset-type-fields"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+                  </div>
+                </div>
+
+                <!-- Reference Data -->
+                <div class="settings-section-block">
+                  <div class="settings-section-heading">
+                    <div>
+                      <span class="settings-section-kicker">
+                        REFERENCE DATA
+                      </span>
+
+                      <h3>System Lookup Values</h3>
+                    </div>
+                  </div>
+
+                  <div class="master-data-grid">
+                    <!-- Asset Status -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">●</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Asset Status</h4>
+
+                        <p>Configure lifecycle values used by asset records.</p>
+
+                        <div class="master-data-card-meta">
+                          <span> 5 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="asset-status"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- Operational Status -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">◉</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Operational Status</h4>
+
+                        <p>
+                          Configure operational condition values for
+                          infrastructure.
+                        </p>
+
+                        <div class="master-data-card-meta">
+                          <span> 5 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="operational-status"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- Location Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">⌖</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Location Types</h4>
+
+                        <p>Configure classifications for network locations.</p>
+
+                        <div class="master-data-card-meta">
+                          <span> 6 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="location-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- Relationship Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">⛓</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Relationship Types</h4>
+
+                        <p>
+                          Configure relationships used by topology and asset
+                          dependencies.
+                        </p>
+
+                        <div class="master-data-card-meta">
+                          <span> 5 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="relationship-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+                  </div>
+                </div>
+
+                <!-- Network Reference Data -->
+                <div class="settings-section-block">
+                  <div class="settings-section-heading">
+                    <div>
+                      <span class="settings-section-kicker">
+                        NETWORK REFERENCE
+                      </span>
+
+                      <h3>Network Lookup Values</h3>
+                    </div>
+                  </div>
+
+                  <div class="master-data-grid">
+                    <!-- IP Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">#</div>
+
+                      <div class="master-data-card-body">
+                        <h4>IP Types</h4>
+
+                        <p>Configure IP address classifications.</p>
+
+                        <div class="master-data-card-meta">
+                          <span> 2 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="ip-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- VLAN Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">≋</div>
+
+                      <div class="master-data-card-body">
+                        <h4>VLAN Types</h4>
+
+                        <p>Configure VLAN classification values.</p>
+
+                        <div class="master-data-card-meta">
+                          <span> 3 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="vlan-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+
+                    <!-- Interface Types -->
+                    <article class="master-data-card">
+                      <div class="master-data-card-icon">⇄</div>
+
+                      <div class="master-data-card-body">
+                        <h4>Interface Types</h4>
+
+                        <p>Configure network interface classifications.</p>
+
+                        <div class="master-data-card-meta">
+                          <span> 6 configured </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="master-data-open"
+                        data-master-data="interface-types"
+                      >
+                        Manage →
+                      </button>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             USERS & ROLES
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="users-roles"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">ACCESS CONTROL</div>
+
+                    <h2>Users & Roles</h2>
+
+                    <p>Configure application access, roles and permissions.</p>
+                  </div>
+                </div>
+
+                <div class="admin-summary-grid">
+                  <div class="admin-summary-card">
+                    <span class="admin-summary-label"> USERS </span>
+
+                    <strong> 24 </strong>
+
+                    <small> Active users </small>
+                  </div>
+
+                  <div class="admin-summary-card">
+                    <span class="admin-summary-label"> ROLES </span>
+
+                    <strong> 5 </strong>
+
+                    <small> Configured roles </small>
+                  </div>
+
+                  <div class="admin-summary-card">
+                    <span class="admin-summary-label"> PERMISSIONS </span>
+
+                    <strong> 42 </strong>
+
+                    <small> Available permissions </small>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Access Management</h3>
+
+                    <p>Use the dedicated Users page to manage user records.</p>
+                  </div>
+
+                  <div class="settings-inline-action">
+                    <a href="users.html" class="button button-secondary">
+                      Open Users →
+                    </a>
+
+                    <button type="button" class="button button-secondary">
+                      Manage Roles
+                    </button>
+
+                    <button type="button" class="button button-secondary">
+                      Manage Permissions
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             ASSET CONFIGURATION
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="asset-configuration"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">ASSET MANAGEMENT</div>
+
+                    <h2>Asset Configuration</h2>
+
+                    <p>
+                      Configure rules governing asset creation, validation and
+                      assignment.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Asset Rules</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Require Asset Code </strong>
+
+                        <small>
+                          Every asset must have a unique asset code.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Prevent Duplicate Serial Numbers </strong>
+
+                        <small>
+                          Prevent duplicate serial numbers across physical
+                          assets.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Require Location for Physical Assets </strong>
+
+                        <small>
+                          Physical assets must have a registered location.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Prevent Retired Asset Assignment </strong>
+
+                        <small>
+                          Retired assets cannot receive active assignments.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Assignment Rules</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Prevent Overlapping Assignments </strong>
+
+                        <small>
+                          Prevent conflicting assignment periods for the same
+                          asset.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Require Assignment Start Date </strong>
+
+                        <small>
+                          Every assignment must define when it becomes
+                          effective.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             NETWORK CONFIGURATION
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="network-configuration"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">NETWORK RESOURCES</div>
+
+                    <h2>Network Configuration</h2>
+
+                    <p>
+                      Configure validation and operational rules for network
+                      resources.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>IP Address Validation</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Validate IP Against IP Pool </strong>
+
+                        <small>
+                          IP addresses must belong to a configured IP pool.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Prevent Duplicate IP Address </strong>
+
+                        <small> Prevent duplicate active IP addresses. </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>VLAN Configuration</h3>
+                  </div>
+
+                  <div class="settings-form-grid">
+                    <div class="form-field">
+                      <label for="vlanMinimum"> Minimum VLAN ID </label>
+
+                      <input
+                        type="number"
+                        id="vlanMinimum"
+                        value="1"
+                        min="1"
+                        max="4094"
+                      />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="vlanMaximum"> Maximum VLAN ID </label>
+
+                      <input
+                        type="number"
+                        id="vlanMaximum"
+                        value="4094"
+                        min="1"
+                        max="4094"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             LOCATION CONFIGURATION
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="location-configuration"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">LOCATIONS</div>
+
+                    <h2>Location Configuration</h2>
+
+                    <p>Configure rules governing network locations.</p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Location Rules</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Allow Hierarchical Locations </strong>
+
+                        <small>
+                          Allow locations to have parent and child
+                          relationships.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Require Location Code </strong>
+
+                        <small>
+                          Every location must have a unique location code.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Require Address </strong>
+
+                        <small>
+                          Require an address for each registered location.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Location Types</h3>
+
+                    <p>
+                      Master values are managed through the Master Data section.
+                    </p>
+                  </div>
+
+                  <a
+                    href="#"
+                    class="button button-secondary"
+                    data-jump-settings="master-data"
+                  >
+                    Open Master Data →
+                  </a>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             INTEGRATIONS
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="integrations"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">INTEGRATIONS</div>
+
+                    <h2>Integrations</h2>
+
+                    <p>
+                      Configure connections between NETASSET and external
+                      systems.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="integration-grid">
+                  <article class="integration-card">
+                    <div class="integration-card-header">
+                      <div class="integration-icon">API</div>
+
+                      <span class="integration-status"> Prototype </span>
+                    </div>
+
+                    <h3>REST API</h3>
+
+                    <p>Configure API connectivity for external applications.</p>
+
+                    <div class="integration-meta">
+                      <span> /api/v1 </span>
+                    </div>
+
+                    <button type="button" class="button button-secondary">
+                      Configure
+                    </button>
+                  </article>
+
+                  <article class="integration-card">
+                    <div class="integration-card-header">
+                      <div class="integration-icon">SMTP</div>
+
+                      <span class="integration-status"> Not Configured </span>
+                    </div>
+
+                    <h3>Email / SMTP</h3>
+
+                    <p>Configure email delivery for system notifications.</p>
+
+                    <div class="integration-meta">
+                      <span> Email notifications </span>
+                    </div>
+
+                    <button type="button" class="button button-secondary">
+                      Configure
+                    </button>
+                  </article>
+
+                  <article class="integration-card">
+                    <div class="integration-card-header">
+                      <div class="integration-icon">MON</div>
+
+                      <span class="integration-status"> Not Connected </span>
+                    </div>
+
+                    <h3>Monitoring System</h3>
+
+                    <p>
+                      Connect NETASSET with an external monitoring platform.
+                    </p>
+
+                    <div class="integration-meta">
+                      <span> External monitoring </span>
+                    </div>
+
+                    <button type="button" class="button button-secondary">
+                      Configure
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             AUDIT & LOGS
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="audit-logs"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">AUDIT & LOGS</div>
+
+                    <h2>Audit & Logs</h2>
+
+                    <p>Configure system activity tracking and audit history.</p>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Audit Logging</h3>
+                  </div>
+
+                  <div class="settings-toggle-list">
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Audit Logging </strong>
+
+                        <small>
+                          Record important system and asset changes.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+
+                    <label class="settings-toggle-row">
+                      <span>
+                        <strong> Configuration Changes </strong>
+
+                        <small>
+                          Record changes made to system configuration.
+                        </small>
+                      </span>
+
+                      <input type="checkbox" checked />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>Log Retention</h3>
+                  </div>
+
+                  <div class="settings-form-grid">
+                    <div class="form-field">
+                      <label for="auditRetention"> Audit Log Retention </label>
+
+                      <select id="auditRetention">
+                        <option value="30">30 days</option>
+
+                        <option value="90">90 days</option>
+
+                        <option value="180">180 days</option>
+
+                        <option value="365" selected>365 days</option>
+
+                        <option value="730">2 years</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             SYSTEM
+                        ================================================== -->
+              <section
+                class="settings-panel"
+                data-settings-panel="system"
+                hidden
+              >
+                <div class="settings-panel-header">
+                  <div>
+                    <div class="settings-panel-eyebrow">SYSTEM</div>
+
+                    <h2>System</h2>
+
+                    <p>View application information and system health.</p>
+                  </div>
+                </div>
+
+                <div class="system-info-grid">
+                  <div class="system-info-card">
+                    <span> APPLICATION </span>
+
+                    <strong> NETASSET </strong>
+
+                    <small> ISP Asset Management System </small>
+                  </div>
+
+                  <div class="system-info-card">
+                    <span> VERSION </span>
+
+                    <strong> v1.0.0 </strong>
+
+                    <small> Frontend Prototype </small>
+                  </div>
+
+                  <div class="system-info-card">
+                    <span> ENVIRONMENT </span>
+
+                    <strong> Development </strong>
+
+                    <small> Prototype environment </small>
+                  </div>
+
+                  <div class="system-info-card">
+                    <span> BACKEND </span>
+
+                    <strong> Laravel </strong>
+
+                    <small> Planned integration </small>
+                  </div>
+                </div>
+
+                <div class="settings-card">
+                  <div class="settings-card-header">
+                    <h3>System Health</h3>
+                  </div>
+
+                  <div class="system-health-row">
+                    <div class="system-health-status">
+                      <span class="system-health-dot"></span>
+
+                      <div>
+                        <strong> Operational </strong>
+
+                        <small> Frontend prototype is running normally. </small>
+                      </div>
+                    </div>
+
+                    <span class="system-health-badge"> HEALTHY </span>
+                  </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-card danger-zone">
+                  <div class="settings-card-header">
+                    <div>
+                      <h3>Danger Zone</h3>
+
+                      <p>
+                        Actions in this section can reset application
+                        configuration.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="danger-zone-row">
+                    <div>
+                      <strong> Reset Configuration </strong>
+
+                      <small>
+                        Restore prototype settings to their default values.
+                      </small>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="button button-danger"
+                      data-settings-action="reset-all"
+                    >
+                      Reset Configuration
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+    <div
+      id="settingsToast"
+      class="settings-toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <!-- =====================================================
+         MASTER DATA MODAL
+    ====================================================== -->
+    <dialog id="masterDataDialog" class="master-data-dialog">
+      <div class="master-data-dialog-header">
+        <div>
+          <span class="settings-panel-eyebrow" id="masterDataDialogEyebrow">
+            MASTER DATA
+          </span>
+
+          <h2 id="masterDataDialogTitle">Asset Types</h2>
+
+          <p id="masterDataDialogDescription">Manage configuration values.</p>
+        </div>
+
+        <button
+          type="button"
+          class="dialog-close"
+          id="closeMasterDataDialog"
+          aria-label="Close dialog"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="master-data-dialog-body" id="masterDataDialogBody">
+        <!-- Populated by settings-master-data.js -->
+      </div>
+
+      <div class="master-data-dialog-footer">
+        <button
+          type="button"
+          class="button button-secondary"
+          id="cancelMasterDataDialog"
+        >
+          Close
+        </button>
+
+        <button type="button" class="button button-primary" id="saveMasterData">
+          Save Changes
+        </button>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         PAGE JS
+    ====================================================== -->
+    <script src="settings-master-data.js"></script>
+  </body>
+</html>

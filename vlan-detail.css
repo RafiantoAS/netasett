@@ -1,0 +1,251 @@
+/* ==========================================================================
+   vlan-detail.css — VLAN detail page
+   ========================================================================== */
+
+.vlan-detail-page {
+  width: 100%;
+}
+
+.detail-hero {
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+  background: var(--surface, #fff);
+}
+
+.detail-hero-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.detail-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #e7f8f7;
+  color: #008f8b;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detail-eyebrow,
+.modal-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent, #08aaa5);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detail-hero h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 7px;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.detail-status {
+  margin-top: 12px;
+}
+
+.detail-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 20px;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: var(--surface, #fff);
+}
+
+.detail-tab {
+  padding: 15px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+}
+
+.detail-tab:hover {
+  color: var(--text);
+}
+
+.detail-tab.active {
+  border-bottom-color: var(--accent, #08aaa5);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.detail-panel {
+  display: none;
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+}
+
+.detail-panel.active {
+  display: block;
+}
+
+.panel-heading {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+.panel-heading p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.info-card {
+  min-height: 92px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.info-card:nth-child(even) {
+  border-right: none;
+}
+
+.info-card span {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.info-card strong {
+  font-size: 14px;
+}
+
+.description-box {
+  margin: 20px 24px 24px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent, #08aaa5);
+  background: #f1fbfa;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.empty-state {
+  display: flex;
+  min-height: 180px;
+  padding: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.empty-state span {
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.timeline {
+  padding: 26px 30px;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding-bottom: 22px;
+}
+
+.timeline-dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: var(--accent, #08aaa5);
+}
+
+.timeline-item p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.vlan-modal {
+  width: min(900px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.vlan-modal::backdrop {
+  background: rgba(15, 23, 42, 0.56);
+}
+
+.vlan-form {
+  display: flex;
+  max-height: calc(100vh - 32px);
+  flex-direction: column;
+}
+
+.vlan-modal .modal-body {
+  overflow-y: auto;
+}
+
+@media (max-width: 760px) {
+  .detail-hero {
+    padding: 22px;
+  }
+
+  .detail-hero-main {
+    align-items: flex-start;
+  }
+
+  .detail-tabs {
+    overflow-x: auto;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    border-right: none;
+  }
+}

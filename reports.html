@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Reports · NETASSET</title>
+
+    <!-- ================= FONTS ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ================= GLOBAL CSS ================= -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- ================= REPORTS PAGE CSS ================= -->
+    <link rel="stylesheet" href="reports.css" />
+  </head>
+
+  <body class="reports-page">
+    <div class="shell">
+      <!-- =========================================================
+           SIDEBAR
+      ========================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top active">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+           MAIN CONTENT
+      ========================================================== -->
+      <div class="main reports-main">
+        <!-- =======================================================
+             PAGE HEADER
+        ======================================================== -->
+        <header class="topbar reports-topbar">
+          <div class="reports-heading">
+            <div class="breadcrumb">Reports</div>
+
+            <h1 class="page-title">Reports</h1>
+
+            <p class="reports-description">
+              Generate and review NETASSET operational and asset reports.
+            </p>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              type="button"
+              class="reports-refresh-btn"
+              id="refreshReports"
+              aria-label="Refresh reports"
+              title="Refresh"
+            >
+              ↻
+            </button>
+          </div>
+        </header>
+
+        <!-- =======================================================
+             PAGE CONTENT
+        ======================================================== -->
+        <main class="content reports-content">
+          <section class="reports-panel">
+            <!-- =================================================
+                 REPORT OVERVIEW
+            ================================================== -->
+            <section class="reports-overview">
+              <div class="reports-section-heading">
+                <div>
+                  <span class="reports-eyebrow"> REPORT CENTER </span>
+
+                  <h2>System Overview</h2>
+
+                  <p>Current resource summary available across NETASSET.</p>
+                </div>
+              </div>
+
+              <div class="reports-overview-grid">
+                <!-- Total Assets -->
+                <article class="reports-overview-card">
+                  <span class="reports-stat-label"> Total Assets </span>
+
+                  <strong class="reports-stat-value" id="reportTotalAssets">
+                    42
+                  </strong>
+
+                  <span class="reports-stat-description">
+                    Physical and logical assets
+                  </span>
+                </article>
+
+                <!-- Network Resources -->
+                <article class="reports-overview-card">
+                  <span class="reports-stat-label"> Network Resources </span>
+
+                  <strong
+                    class="reports-stat-value"
+                    id="reportNetworkResources"
+                  >
+                    35
+                  </strong>
+
+                  <span class="reports-stat-description">
+                    IP, VLAN, ASN and interfaces
+                  </span>
+                </article>
+
+                <!-- Locations -->
+                <article class="reports-overview-card">
+                  <span class="reports-stat-label"> Locations </span>
+
+                  <strong class="reports-stat-value" id="reportLocations">
+                    14
+                  </strong>
+
+                  <span class="reports-stat-description">
+                    Registered network locations
+                  </span>
+                </article>
+
+                <!-- Virtual Resources -->
+                <article class="reports-overview-card">
+                  <span class="reports-stat-label"> Virtual Resources </span>
+
+                  <strong
+                    class="reports-stat-value"
+                    id="reportVirtualResources"
+                  >
+                    12
+                  </strong>
+
+                  <span class="reports-stat-description">
+                    VM, VPN, license and certificate
+                  </span>
+                </article>
+              </div>
+            </section>
+
+            <!-- =================================================
+                 REPORT CATALOG
+            ================================================== -->
+            <section class="reports-catalog">
+              <div class="reports-section-heading reports-catalog-heading">
+                <div>
+                  <span class="reports-eyebrow"> REPORT CATALOG </span>
+
+                  <h2>Available Reports</h2>
+
+                  <p>
+                    Select a report to review operational data and resource
+                    information.
+                  </p>
+                </div>
+
+                <span class="reports-catalog-count" id="reportCatalogCount">
+                  14 reports
+                </span>
+              </div>
+
+              <!-- =================================================
+                   ASSET REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="asset">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Asset Reports</h3>
+
+                    <p>
+                      Inventory, lifecycle and location-based asset reporting.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- Asset Inventory -->
+                  <article class="report-card" data-report="asset-inventory">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> ASSET </span>
+
+                      <h4>Asset Inventory</h4>
+
+                      <p>
+                        Complete inventory of NETASSET physical and logical
+                        assets.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Assets </span>
+
+                        <span> Inventory </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="asset-inventory"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Asset Lifecycle -->
+                  <article class="report-card" data-report="asset-lifecycle">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> ASSET </span>
+
+                      <h4>Asset Lifecycle</h4>
+
+                      <p>
+                        Review asset distribution across lifecycle and
+                        operational statuses.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Lifecycle </span>
+
+                        <span> Status </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="asset-lifecycle"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Assets by Location -->
+                  <article class="report-card" data-report="assets-by-location">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> ASSET </span>
+
+                      <h4>Assets by Location</h4>
+
+                      <p>
+                        Review asset distribution across registered network
+                        locations.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Assets </span>
+
+                        <span> Location </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="assets-by-location"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                   NETWORK REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="network">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Network Reports</h3>
+
+                    <p>
+                      IP, VLAN and ASN resource reporting across the network.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- IP Address Utilization -->
+                  <article class="report-card" data-report="ip-utilization">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> NETWORK </span>
+
+                      <h4>IP Address Utilization</h4>
+
+                      <p>
+                        Review IP allocation and utilization across IP pools.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> IP Address </span>
+
+                        <span> Utilization </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="ip-utilization"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- VLAN Inventory -->
+                  <article class="report-card" data-report="vlan-inventory">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> NETWORK </span>
+
+                      <h4>VLAN Inventory</h4>
+
+                      <p>
+                        Review VLAN allocation, purpose, VRF and operational
+                        status.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> VLAN </span>
+
+                        <span> Inventory </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="vlan-inventory"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- ASN Inventory -->
+                  <article class="report-card" data-report="asn-inventory">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> NETWORK </span>
+
+                      <h4>ASN Inventory</h4>
+
+                      <p>
+                        Review registered autonomous system numbers and
+                        ownership.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> ASN </span>
+
+                        <span> Registry </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="asn-inventory"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                   LOCATION REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="location">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Location Reports</h3>
+
+                    <p>Network location inventory and asset distribution.</p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- Location Inventory -->
+                  <article class="report-card" data-report="location-inventory">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> LOCATION </span>
+
+                      <h4>Location Inventory</h4>
+
+                      <p>Review all network locations and their hierarchy.</p>
+
+                      <div class="report-card-meta">
+                        <span> Locations </span>
+
+                        <span> Hierarchy </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="location-inventory"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Location Asset Summary -->
+                  <article
+                    class="report-card"
+                    data-report="location-asset-summary"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> LOCATION </span>
+
+                      <h4>Location Asset Summary</h4>
+
+                      <p>
+                        Review asset distribution and composition by location.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Location </span>
+
+                        <span> Assets </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="location-asset-summary"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                   VIRTUAL RESOURCE REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="virtual">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Virtual Resource Reports</h3>
+
+                    <p>
+                      Virtual resources, certificates and license monitoring.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- Virtual Resource Inventory -->
+                  <article
+                    class="report-card"
+                    data-report="virtual-resource-inventory"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> VIRTUAL </span>
+
+                      <h4>Virtual Resource Inventory</h4>
+
+                      <p>
+                        Review VM, VPN, certificate, license and storage
+                        resources.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Virtual </span>
+
+                        <span> Inventory </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="virtual-resource-inventory"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Certificate & License Expiration -->
+                  <article
+                    class="report-card"
+                    data-report="expiration-monitoring"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> VIRTUAL </span>
+
+                      <h4>Certificate &amp; License Expiration</h4>
+
+                      <p>
+                        Monitor certificates and licenses approaching
+                        expiration.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Expiration </span>
+
+                        <span> Compliance </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="expiration-monitoring"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                   BUSINESS REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="business">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Business Reports</h3>
+
+                    <p>Provider and customer resource relationships.</p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- Provider Resource Summary -->
+                  <article
+                    class="report-card"
+                    data-report="provider-resource-summary"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> BUSINESS </span>
+
+                      <h4>Provider Resource Summary</h4>
+
+                      <p>
+                        Review assets and network resources associated with
+                        providers.
+                      </p>
+
+                      <div class="report-card-meta">
+                        <span> Provider </span>
+
+                        <span> Resources </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="provider-resource-summary"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Customer Resource Summary -->
+                  <article
+                    class="report-card"
+                    data-report="customer-resource-summary"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> BUSINESS </span>
+
+                      <h4>Customer Resource Summary</h4>
+
+                      <p>Review resources assigned to customers.</p>
+
+                      <div class="report-card-meta">
+                        <span> Customer </span>
+
+                        <span> Assignments </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="customer-resource-summary"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+
+              <!-- =================================================
+                   INFRASTRUCTURE REPORTS
+              ================================================== -->
+              <section class="report-category" data-category="infrastructure">
+                <div class="report-category-header">
+                  <div>
+                    <h3>Infrastructure Reports</h3>
+
+                    <p>Asset assignments and network topology relationships.</p>
+                  </div>
+                </div>
+
+                <div class="report-card-grid">
+                  <!-- Asset Assignment -->
+                  <article class="report-card" data-report="asset-assignment">
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> INFRASTRUCTURE </span>
+
+                      <h4>Asset Assignment</h4>
+
+                      <p>Review current and historical asset assignments.</p>
+
+                      <div class="report-card-meta">
+                        <span> Assignment </span>
+
+                        <span> History </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="asset-assignment"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+
+                  <!-- Network Topology Summary -->
+                  <article
+                    class="report-card"
+                    data-report="network-topology-summary"
+                  >
+                    <div class="report-card-content">
+                      <span class="report-card-eyebrow"> INFRASTRUCTURE </span>
+
+                      <h4>Network Topology Summary</h4>
+
+                      <p>Review asset relationships and network connections.</p>
+
+                      <div class="report-card-meta">
+                        <span> Topology </span>
+
+                        <span> Connections </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="report-open-btn"
+                      data-report-action="open"
+                      data-report="network-topology-summary"
+                    >
+                      Open Report
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </article>
+                </div>
+              </section>
+            </section>
+
+            <!-- =================================================
+                 REPORT WORKSPACE
+                 Hidden until reports.js activates a report.
+            ================================================== -->
+            <section class="report-workspace" id="reportWorkspace" hidden>
+              <!-- Workspace Header -->
+              <div class="report-workspace-header">
+                <div>
+                  <span class="reports-eyebrow" id="workspaceEyebrow">
+                    REPORT
+                  </span>
+
+                  <h2 id="workspaceTitle">Report</h2>
+
+                  <p id="workspaceDescription">
+                    Report result and operational data.
+                  </p>
+                </div>
+
+                <div class="report-workspace-actions">
+                  <button
+                    type="button"
+                    class="report-secondary-btn"
+                    id="backToReports"
+                  >
+                    ← Back
+                  </button>
+
+                  <button
+                    type="button"
+                    class="report-secondary-btn"
+                    id="printReport"
+                  >
+                    Print
+                  </button>
+
+                  <button
+                    type="button"
+                    class="report-primary-btn"
+                    id="exportReport"
+                  >
+                    Export CSV
+                  </button>
+                </div>
+              </div>
+
+              <!-- Workspace Filters -->
+              <div class="report-workspace-toolbar">
+                <div class="report-search">
+                  <svg
+                    class="report-search-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+
+                  <input
+                    type="search"
+                    id="reportSearch"
+                    autocomplete="off"
+                    placeholder="Search report data..."
+                  />
+                </div>
+
+                <div class="report-filters">
+                  <select id="reportLocationFilter" class="report-filter">
+                    <option value="all">All Locations</option>
+
+                    <option value="POP Jakarta">POP Jakarta</option>
+
+                    <option value="DCI Cibitung">DCI Cibitung</option>
+
+                    <option value="POP Bandung">POP Bandung</option>
+
+                    <option value="POP Surabaya">POP Surabaya</option>
+                  </select>
+
+                  <select id="reportStatusFilter" class="report-filter">
+                    <option value="all">All Status</option>
+
+                    <option value="Active">Active</option>
+
+                    <option value="Provisioned">Provisioned</option>
+
+                    <option value="Inactive">Inactive</option>
+
+                    <option value="Retired">Retired</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Workspace Statistics -->
+              <div class="report-workspace-stats">
+                <div class="report-workspace-stat">
+                  <span> Total Results </span>
+
+                  <strong id="workspaceTotal"> 0 </strong>
+                </div>
+
+                <div class="report-workspace-stat">
+                  <span> Active </span>
+
+                  <strong id="workspaceActive"> 0 </strong>
+                </div>
+
+                <div class="report-workspace-stat">
+                  <span> Available </span>
+
+                  <strong id="workspaceAvailable"> 0 </strong>
+                </div>
+
+                <div class="report-workspace-stat">
+                  <span> Updated </span>
+
+                  <strong id="workspaceUpdated"> — </strong>
+                </div>
+              </div>
+
+              <!-- Workspace Table -->
+              <div class="report-result-table-wrapper">
+                <table class="report-result-table">
+                  <thead id="reportTableHead">
+                    <tr>
+                      <th>Resource</th>
+
+                      <th>Type</th>
+
+                      <th>Location</th>
+
+                      <th>Status</th>
+
+                      <th>Updated</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="reportTableBody">
+                    <tr>
+                      <td colspan="5">
+                        <div class="report-empty-state">
+                          <div class="report-empty-icon">◌</div>
+
+                          <h3>No report generated</h3>
+
+                          <p>
+                            Select a report from the catalog to generate
+                            results.
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Workspace Footer -->
+              <footer class="report-workspace-footer">
+                <span id="reportResultCount"> 0 results </span>
+
+                <div class="report-pagination">
+                  <button
+                    type="button"
+                    class="report-pagination-btn"
+                    disabled
+                    aria-label="Previous page"
+                  >
+                    ‹
+                  </button>
+
+                  <button type="button" class="report-pagination-btn active">
+                    1
+                  </button>
+
+                  <button type="button" class="report-pagination-btn" disabled>
+                    ›
+                  </button>
+                </div>
+              </footer>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Will be added after HTML + CSS are finalized.
+    ========================================================== -->
+    <script src="reports.js"></script>
+  </body>
+</html>

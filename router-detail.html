@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Router Detail · NETASSET</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link
+    rel="stylesheet"
+    href="customer-detail.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="router-detail.css"
+  />
+
+</head>
+
+
+<body>
+
+  <div class="shell">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+   <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub active"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" >
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub ">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="main">
+
+
+      <!-- TOPBAR -->
+
+      <div class="topbar">
+
+        <div>
+
+          <div class="breadcrumb">
+
+            Asset Management
+
+            <span class="sep">
+              /
+            </span>
+
+            Physical Assets
+
+            <span class="sep">
+              /
+            </span>
+
+            Router
+
+            <span class="sep">
+              /
+            </span>
+
+            <span id="detailBreadcrumbCode">
+              RTR-0001
+            </span>
+
+          </div>
+
+          <h1 class="page-title">
+            Router Detail
+          </h1>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+          <button
+            class="btn btn-ghost"
+            onclick="toggleSidebar()"
+          >
+            ☰
+          </button>
+
+          <a
+            href="router.html"
+            class="btn btn-ghost"
+          >
+            ← Back to List
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTENT -->
+
+      <div class="content">
+
+
+        <!-- HEADER -->
+
+        <div class="panel detail-header router-detail-header">
+
+          <div class="detail-header-left">
+
+            <div class="detail-avatar router-detail-avatar">
+              RTR
+            </div>
+
+            <div class="detail-title-block">
+
+              <h1 id="routerDetailTitle">
+                Core Router Jakarta-01
+              </h1>
+
+              <div class="detail-id-row">
+
+                <span id="routerDetailCode">
+                  RTR-0001
+                </span>
+
+                <span>
+                  ·
+                </span>
+
+                <span>
+                  Physical Asset / Router
+                </span>
+
+              </div>
+
+
+              <div class="detail-badge-row">
+
+                <span
+                  id="detailLifecycleBadge"
+                  class="badge badge-active"
+                >
+                  Active
+                </span>
+
+                <span
+                  id="detailOperationalBadge"
+                  class="router-operational router-operational-up"
+                >
+                  UP
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-header-actions">
+
+            <a
+              id="editRouterDetailBtn"
+              href="router.html"
+              class="btn btn-ghost"
+            >
+              ✎ Edit
+            </a>
+
+            <button
+              class="btn btn-ghost"
+              type="button"
+              onclick="showToast('Action lifecycle akan dihubungkan ke backend')"
+            >
+              Change Status
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- TABS -->
+
+        <div class="detail-tabs router-detail-tabs">
+
+          <button
+            class="tab-btn active"
+            data-tab="overview"
+          >
+            Overview
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="topology"
+          >
+            Topology
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="relationships"
+          >
+            Relationships
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="interfaces"
+          >
+            Interfaces
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="resources"
+          >
+            Resources
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="assignment"
+          >
+            Assignment
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="maintenance"
+          >
+            Maintenance
+          </button>
+
+          <button
+            class="tab-btn"
+            data-tab="history"
+          >
+            History
+          </button>
+
+        </div>
+
+
+        <!-- ================= OVERVIEW ================= -->
+
+        <div
+          class="panel tab-panel active"
+          data-tab-panel="overview"
+        >
+
+          <div class="detail-section-title">
+            Basic Information
+          </div>
+
+          <div class="kv-grid">
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Asset Code
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailAssetCode"
+              >
+                RTR-0001
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Asset Name
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailAssetName"
+              >
+                Core Router Jakarta-01
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Hostname
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailHostname"
+              >
+                core-jkt-01
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Vendor
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailVendor"
+              >
+                MikroTik
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Model
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailModel"
+              >
+                CCR1009-7G-1C-1S+
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Serial Number
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailSerial"
+              >
+                MIK-CCR1009-24001
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Part Number
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailPartNumber"
+              >
+                —
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Router Role
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailRouterRole"
+              >
+                Core
+              </div>
+
+            </div>
+
+
+            <!-- NETWORK -->
+
+            <div
+              class="detail-section-title"
+              style="grid-column: 1 / -1"
+            >
+              Network
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Management IP
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailManagementIp"
+              >
+                10.10.0.1
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                MAC Address
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailMac"
+              >
+                4C:5E:0C:91:10:01
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                OS
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailOs"
+              >
+                RouterOS
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                OS Version
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailOsVersion"
+              >
+                7.16.2
+              </div>
+
+            </div>
+
+
+            <!-- PLACEMENT -->
+
+            <div
+              class="detail-section-title"
+              style="grid-column: 1 / -1"
+            >
+              Placement & Status
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Location
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailLocation"
+              >
+                POP Jakarta
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Rack
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailRack"
+              >
+                Rack-01
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Rack U
+              </div>
+
+              <div
+                class="kv-value mono"
+                id="detailRackU"
+              >
+                U20
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Provider
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailProvider"
+              >
+                NAP-A
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Lifecycle Status
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailLifecycle"
+              >
+                Active
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Operational Status
+              </div>
+
+              <div
+                class="kv-value"
+                id="detailOperational"
+              >
+                UP
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= TOPOLOGY ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="topology"
+        >
+
+          <div class="detail-section-title">
+            Network Topology
+          </div>
+
+          <div class="topology-canvas">
+
+            <div class="topology-flow">
+
+
+              <div class="topology-node">
+
+                <div class="node-type">
+                  Upstream
+                </div>
+
+                <div
+                  class="node-name"
+                  id="detailUpstream"
+                >
+                  —
+                </div>
+
+                <div class="node-code">
+                  Parent / upstream
+                </div>
+
+              </div>
+
+
+              <div class="topology-arrow">
+                →
+              </div>
+
+
+              <div class="topology-node current">
+
+                <div class="node-type">
+                  Router
+                </div>
+
+                <div
+                  class="node-name"
+                  id="topologyCurrentName"
+                >
+                  Core Router Jakarta-01
+                </div>
+
+                <div
+                  class="node-code"
+                  id="topologyCurrentCode"
+                >
+                  RTR-0001
+                </div>
+
+              </div>
+
+
+              <div class="topology-arrow">
+                →
+              </div>
+
+
+              <div class="topology-node">
+
+                <div class="node-type">
+                  Downstream
+                </div>
+
+                <div
+                  class="node-name"
+                  id="detailDownstream"
+                >
+                  RTR-0002
+                </div>
+
+                <div class="node-code">
+                  Child / downstream
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-callout">
+
+            Topology pada prototype mengambil relationship
+            Upstream / Downstream dari data Router.
+            Visual network map penuh akan dibuat pada tahap
+            Network Topology.
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= RELATIONSHIPS ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="relationships"
+        >
+
+          <div class="detail-section-title">
+            Asset Relationships
+          </div>
+
+
+          <div class="relationship-list">
+
+            <div class="relationship-card">
+
+              <span class="rel-label">
+                Upstream
+              </span>
+
+              <span
+                class="rel-value"
+                id="relUpstream"
+              >
+                —
+              </span>
+
+            </div>
+
+
+            <div class="relationship-card">
+
+              <span class="rel-label">
+                Downstream
+              </span>
+
+              <span
+                class="rel-value"
+                id="relDownstream"
+              >
+                —
+              </span>
+
+            </div>
+
+
+            <div class="relationship-card">
+
+              <span class="rel-label">
+                Connected To
+              </span>
+
+              <span
+                class="rel-value"
+                id="relConnectedTo"
+              >
+                —
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-callout">
+
+            Satu asset dapat memiliki lebih dari satu
+            relationship sesuai requirement NETASSET.
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= INTERFACES ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="interfaces"
+        >
+
+          <div class="detail-section-title">
+            Interfaces
+          </div>
+
+
+          <table class="router-mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Interface
+                </th>
+
+                <th>
+                  Type
+                </th>
+
+                <th>
+                  IP / VLAN
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr>
+
+                <td class="cell-mono">
+                  ether1
+                </td>
+
+                <td>
+                  Ethernet
+                </td>
+
+                <td class="cell-mono">
+                  10.10.0.1/31
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    UP
+                  </span>
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="cell-mono">
+                  ether2
+                </td>
+
+                <td>
+                  Ethernet
+                </td>
+
+                <td class="cell-mono">
+                  103.150.24.1/30
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    UP
+                  </span>
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="cell-mono">
+                  sfp-sfpplus1
+                </td>
+
+                <td>
+                  SFP+
+                </td>
+
+                <td class="cell-mono">
+                  Transit VLAN 210
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    UP
+                  </span>
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- ================= RESOURCES ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="resources"
+        >
+
+          <div class="detail-section-title">
+            Assigned Network Resources
+          </div>
+
+
+          <table class="router-mini-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Resource
+                </th>
+
+                <th>
+                  Type
+                </th>
+
+                <th>
+                  Purpose
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr>
+
+                <td class="cell-mono">
+                  10.10.0.1
+                </td>
+
+                <td>
+                  IP Address
+                </td>
+
+                <td>
+                  Management
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    Active
+                  </span>
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="cell-mono">
+                  AS64520
+                </td>
+
+                <td>
+                  ASN
+                </td>
+
+                <td>
+                  Routing
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    Active
+                  </span>
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="cell-mono">
+                  VLAN 210
+                </td>
+
+                <td>
+                  VLAN
+                </td>
+
+                <td>
+                  Transit
+                </td>
+
+                <td>
+                  <span class="badge badge-active">
+                    Active
+                  </span>
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- ================= ASSIGNMENT ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="assignment"
+        >
+
+          <div class="detail-section-title">
+            Assignment
+          </div>
+
+
+          <div class="kv-grid">
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Assignment Type
+              </div>
+
+              <div class="kv-value">
+                Infrastructure
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Assigned To
+              </div>
+
+              <div class="kv-value">
+                Network Operations
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                Start Date
+              </div>
+
+              <div class="kv-value mono">
+                2023-01-15
+              </div>
+
+            </div>
+
+
+            <div class="kv-item">
+
+              <div class="kv-label">
+                End Date
+              </div>
+
+              <div class="kv-value">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-callout">
+
+            Assignment tidak boleh overlap untuk asset
+            yang sama. Asset retired tidak boleh di-assign.
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= MAINTENANCE ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="maintenance"
+        >
+
+          <div class="detail-section-title">
+            Maintenance History
+          </div>
+
+
+          <div class="maintenance-item">
+
+            <div>
+
+              <div class="maintenance-title">
+                Preventive maintenance
+              </div>
+
+              <div class="maintenance-meta">
+                Firmware review & configuration backup ·
+                NOC Team
+              </div>
+
+            </div>
+
+            <span class="cell-mono">
+              2026-07-18
+            </span>
+
+          </div>
+
+
+          <div class="maintenance-item">
+
+            <div>
+
+              <div class="maintenance-title">
+                Hardware inspection
+              </div>
+
+              <div class="maintenance-meta">
+                Rack, power, temperature check ·
+                Infrastructure Team
+              </div>
+
+            </div>
+
+            <span class="cell-mono">
+              2026-04-11
+            </span>
+
+          </div>
+
+
+          <div class="maintenance-item">
+
+            <div>
+
+              <div class="maintenance-title">
+                Initial installation
+              </div>
+
+              <div class="maintenance-meta">
+                Installed at POP Jakarta ·
+                Network Engineering
+              </div>
+
+            </div>
+
+            <span class="cell-mono">
+              2023-01-15
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <div
+          class="panel tab-panel"
+          data-tab-panel="history"
+        >
+
+          <div class="detail-section-title">
+            Audit Log
+          </div>
+
+
+          <div class="timeline">
+
+
+            <div class="timeline-item event-update">
+
+              <div class="timeline-head">
+
+                <span class="timeline-action">
+                  Configuration updated
+                </span>
+
+                <span class="timeline-time">
+                  2026-07-30 14:02
+                </span>
+
+              </div>
+
+              <div class="timeline-meta">
+
+                OS version and management configuration
+                diperbarui oleh
+                <strong>
+                  Rizky Ramadhan
+                </strong>.
+
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item event-status">
+
+              <div class="timeline-head">
+
+                <span class="timeline-action">
+                  Operational status changed
+                </span>
+
+                <span class="timeline-time">
+                  2026-07-18 09:20
+                </span>
+
+              </div>
+
+              <div class="timeline-meta">
+
+                Status berubah menjadi
+                <strong>
+                  UP
+                </strong>
+                setelah preventive maintenance.
+
+              </div>
+
+            </div>
+
+
+            <div class="timeline-item event-create">
+
+              <div class="timeline-head">
+
+                <span class="timeline-action">
+                  Router created
+                </span>
+
+                <span class="timeline-time">
+                  2023-01-15 10:15
+                </span>
+
+              </div>
+
+              <div class="timeline-meta">
+
+                Asset dibuat dan ditempatkan di
+                <strong>
+                  POP Jakarta / Rack-01
+                </strong>.
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+      class="toast"
+      id="toast"
+    >
+
+      <span class="dot"></span>
+
+      <span class="toast-text">
+        Saved
+      </span>
+
+    </div>
+
+
+    <script src="./app.js"></script>
+
+  </body>
+
+</html>

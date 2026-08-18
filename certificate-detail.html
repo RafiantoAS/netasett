@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Certificate Detail · NETASSET</title>
+
+    <!-- GLOBAL DESIGN SYSTEM -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- CERTIFICATE DETAIL -->
+    <link rel="stylesheet" href="certificate-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+           SIDEBAR
+           SAME TEMPLATE AS VPN DETAIL
+           ========================================================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub active">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+           MAIN
+           ========================================================= -->
+
+      <main class="main">
+        <div class="certificate-detail-page">
+          <!-- =====================================================
+               BREADCRUMB
+               ===================================================== -->
+
+          <div class="certificate-detail-breadcrumb">
+            <a href="certificate.html"> Virtual Resources </a>
+
+            <span>/</span>
+
+            <a href="certificate.html"> Certificate </a>
+
+            <span>/</span>
+
+            <strong id="detailBreadcrumbCode"> CERT-0001 </strong>
+          </div>
+
+          <!-- =====================================================
+               HERO
+               ===================================================== -->
+
+          <section class="certificate-detail-hero">
+            <div class="certificate-detail-hero-main">
+              <!-- CERTIFICATE ICON -->
+              <div class="certificate-detail-icon">CERT</div>
+
+              <!-- TITLE -->
+              <div class="certificate-detail-title">
+                <div class="certificate-detail-eyebrow">
+                  DIGITAL CERTIFICATE
+                </div>
+
+                <h1 id="detailCertificateName">Wildcard Core Certificate</h1>
+
+                <div class="certificate-detail-meta">
+                  <span id="detailCertificateCode" class="mono">
+                    CERT-0001
+                  </span>
+
+                  <span>·</span>
+
+                  <span> Virtual Resource </span>
+
+                  <span>·</span>
+
+                  <span id="detailCertificateType"> SSL / TLS </span>
+                </div>
+
+                <!-- STATUS -->
+                <div class="certificate-detail-status-row">
+                  <span
+                    id="detailLifecycle"
+                    class="certificate-status-badge active"
+                  >
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+
+                  <span
+                    id="detailOperational"
+                    class="certificate-status-badge active"
+                  >
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO ACTIONS -->
+
+            <div class="certificate-detail-hero-actions">
+              <a
+                href="certificate.html"
+                class="certificate-btn certificate-btn-secondary"
+              >
+                ← Back
+              </a>
+
+              <a
+                href="certificate.html"
+                class="certificate-btn certificate-btn-primary"
+                id="editCertificateBtn"
+              >
+                ✎ Edit
+              </a>
+            </div>
+          </section>
+
+          <!-- =====================================================
+               TABS
+               ===================================================== -->
+
+          <nav class="certificate-detail-tabs">
+            <button
+              type="button"
+              class="certificate-detail-tab active"
+              data-tab="overview"
+            >
+              Overview
+            </button>
+
+            <button
+              type="button"
+              class="certificate-detail-tab"
+              data-tab="security"
+            >
+              Security
+            </button>
+
+            <button
+              type="button"
+              class="certificate-detail-tab"
+              data-tab="relationships"
+            >
+              Relationships
+            </button>
+
+            <button
+              type="button"
+              class="certificate-detail-tab"
+              data-tab="history"
+            >
+              History
+            </button>
+          </nav>
+
+          <!-- =====================================================
+               OVERVIEW
+               ===================================================== -->
+
+          <section class="certificate-detail-panel active" id="tab-overview">
+            <div class="certificate-detail-section-header">
+              <div>
+                <h2>Overview</h2>
+
+                <p>
+                  Certificate identity, validity and operational information.
+                </p>
+              </div>
+            </div>
+
+            <div class="certificate-detail-grid">
+              <!-- CERTIFICATE INFORMATION -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Certificate Information</h3>
+
+                    <p>Core digital certificate information.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Certificate Code </span>
+
+                    <strong
+                      id="overviewCertificateCode"
+                      class="certificate-kv-value mono"
+                    >
+                      CERT-0001
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Certificate Name </span>
+
+                    <strong
+                      id="overviewCertificateName"
+                      class="certificate-kv-value"
+                    >
+                      Wildcard Core Certificate
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Certificate Type </span>
+
+                    <strong
+                      id="overviewCertificateType"
+                      class="certificate-kv-value"
+                    >
+                      SSL / TLS
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Issuer </span>
+
+                    <strong id="overviewIssuer" class="certificate-kv-value">
+                      DigiCert Commercial CA
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VALIDITY -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Validity & Status</h3>
+
+                    <p>Certificate validity period and current state.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Valid From </span>
+
+                    <strong
+                      id="overviewValidFrom"
+                      class="certificate-kv-value mono"
+                    >
+                      2026-01-10
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Valid Until </span>
+
+                    <strong
+                      id="overviewValidUntil"
+                      class="certificate-kv-value mono"
+                    >
+                      2027-01-10
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Lifecycle </span>
+
+                    <strong id="overviewLifecycle" class="certificate-kv-value">
+                      Active
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Operational </span>
+
+                    <strong
+                      id="overviewOperational"
+                      class="certificate-kv-value"
+                    >
+                      Active
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- DESCRIPTION -->
+
+              <article class="certificate-info-card certificate-info-card-full">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Description</h3>
+
+                    <p>
+                      Purpose and operational description of this certificate.
+                    </p>
+                  </div>
+                </header>
+
+                <div class="certificate-description">
+                  <p id="overviewDescription">*.netasset.id</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- =====================================================
+               SECURITY
+               ===================================================== -->
+
+          <section class="certificate-detail-panel" id="tab-security">
+            <div class="certificate-detail-section-header">
+              <div>
+                <h2>Security</h2>
+
+                <p>
+                  Certificate identity, cryptographic and domain information.
+                </p>
+              </div>
+            </div>
+
+            <div class="certificate-detail-grid">
+              <!-- CERTIFICATE SECURITY -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Certificate Security</h3>
+
+                    <p>Issuer and certificate identification information.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Issuer </span>
+
+                    <strong id="securityIssuer" class="certificate-kv-value">
+                      DigiCert Commercial CA
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv">
+                    <span class="certificate-kv-label"> Provider </span>
+
+                    <strong id="securityProvider" class="certificate-kv-value">
+                      DigiCert
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Serial Number </span>
+
+                    <strong
+                      id="securitySerial"
+                      class="certificate-kv-value mono"
+                    >
+                      DGC-2026-0001
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- DOMAIN -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Domain Identity</h3>
+
+                    <p>Primary domain and Subject Alternative Names.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Primary Domain </span>
+
+                    <strong
+                      id="securityDomain"
+                      class="certificate-kv-value mono"
+                    >
+                      *.netasset.id
+                    </strong>
+                  </div>
+
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label">
+                      Subject Alternative Names
+                    </span>
+
+                    <strong id="securitySan" class="certificate-kv-value">
+                      netasset.id, *.netasset.id
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- =====================================================
+               RELATIONSHIPS
+               ===================================================== -->
+
+          <section class="certificate-detail-panel" id="tab-relationships">
+            <div class="certificate-detail-section-header">
+              <div>
+                <h2>Relationships</h2>
+
+                <p>Resources and entities associated with this certificate.</p>
+              </div>
+            </div>
+
+            <div class="certificate-detail-grid">
+              <!-- CUSTOMER -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Customer</h3>
+
+                    <p>Customer associated with this certificate.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Customer </span>
+
+                    <strong
+                      id="relationshipCustomer"
+                      class="certificate-kv-value"
+                    >
+                      PT Nusantara Digital
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- PROVIDER -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Provider</h3>
+
+                    <p>
+                      Certificate provider associated with this certificate.
+                    </p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Provider </span>
+
+                    <strong
+                      id="relationshipProvider"
+                      class="certificate-kv-value"
+                    >
+                      DigiCert
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- LOCATION -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Location</h3>
+
+                    <p>Primary location associated with this certificate.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Location </span>
+
+                    <strong
+                      id="relationshipLocation"
+                      class="certificate-kv-value"
+                    >
+                      Jakarta DC-01
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- RELATED ASSET -->
+
+              <article class="certificate-info-card">
+                <header class="certificate-info-card-header">
+                  <div>
+                    <h3>Related Asset</h3>
+
+                    <p>Asset associated with this certificate.</p>
+                  </div>
+                </header>
+
+                <div class="certificate-kv-grid">
+                  <div class="certificate-kv certificate-kv-full">
+                    <span class="certificate-kv-label"> Related Asset </span>
+
+                    <strong
+                      id="relationshipAsset"
+                      class="certificate-kv-value mono"
+                    >
+                      SRV-JKT-001
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- =====================================================
+               HISTORY
+               ===================================================== -->
+
+          <section class="certificate-detail-panel" id="tab-history">
+            <div class="certificate-detail-section-header">
+              <div>
+                <h2>History</h2>
+
+                <p>
+                  Recent changes and operational events for this certificate.
+                </p>
+              </div>
+            </div>
+
+            <div class="certificate-history">
+              <article class="certificate-history-item">
+                <div class="certificate-history-marker"></div>
+
+                <div class="certificate-history-content">
+                  <div class="certificate-history-top">
+                    <strong> Certificate created </strong>
+
+                    <span class="certificate-history-date"> 2026-01-10 </span>
+                  </div>
+
+                  <p>
+                    CERT-0001 was created as an SSL / TLS certificate issued by
+                    DigiCert Commercial CA.
+                  </p>
+                </div>
+              </article>
+
+              <article class="certificate-history-item">
+                <div class="certificate-history-marker"></div>
+
+                <div class="certificate-history-content">
+                  <div class="certificate-history-top">
+                    <strong> Certificate activated </strong>
+
+                    <span class="certificate-history-date"> 2026-01-10 </span>
+                  </div>
+
+                  <p>
+                    Certificate lifecycle and operational status are Active.
+                  </p>
+                </div>
+              </article>
+
+              <article class="certificate-history-item">
+                <div class="certificate-history-marker"></div>
+
+                <div class="certificate-history-content">
+                  <div class="certificate-history-top">
+                    <strong> Certificate assigned </strong>
+
+                    <span class="certificate-history-date"> 2026-01-10 </span>
+                  </div>
+
+                  <p>
+                    Certificate was associated with SRV-JKT-001 at Jakarta
+                    DC-01.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+         DETAIL SCRIPT
+         ========================================================= -->
+
+    <script src="app.js"></script>
+    <script src="virtual-resources.js"></script>
+
+    <script>
+      const CERTIFICATE_STORAGE_KEY = "netasset_certificates";
+
+      const CERTIFICATE_DEMO_DATA = [
+        {
+          certificateCode: "CERT-0001",
+          certificateName: "Wildcard Core Certificate",
+          description: "*.netasset.id",
+          type: "SSL / TLS",
+          issuer: "DigiCert Commercial CA",
+          serialNumber: "DGC-2026-0001",
+          domain: "*.netasset.id",
+          san: "netasset.id, *.netasset.id",
+          validFrom: "2026-01-10",
+          validUntil: "2027-01-10",
+          lifecycleStatus: "Active",
+          operationalStatus: "Active",
+          customer: "PT Nusantara Digital",
+          provider: "DigiCert",
+          location: "Jakarta DC-01",
+          relatedAsset: "SRV-JKT-001",
+        },
+        {
+          certificateCode: "CERT-0002",
+          certificateName: "Customer Portal Certificate",
+          description: "portal.netasset.id",
+          type: "SSL / TLS",
+          issuer: "Let's Encrypt Public CA",
+          serialNumber: "LE-2026-0002",
+          domain: "portal.netasset.id",
+          san: "portal.netasset.id",
+          validFrom: "2026-07-01",
+          validUntil: "2026-09-28",
+          lifecycleStatus: "Active",
+          operationalStatus: "Expiring Soon",
+          customer: "PT Global Network Indonesia",
+          provider: "Let's Encrypt",
+          location: "Jakarta POP-01",
+          relatedAsset: "SRV-JKT-002",
+        },
+        {
+          certificateCode: "CERT-0003",
+          certificateName: "API Gateway Certificate",
+          description: "api.netasset.id",
+          type: "SSL / TLS",
+          issuer: "GlobalSign Commercial CA",
+          serialNumber: "GS-2026-0003",
+          domain: "api.netasset.id",
+          san: "api.netasset.id",
+          validFrom: "2026-03-15",
+          validUntil: "2027-03-15",
+          lifecycleStatus: "Active",
+          operationalStatus: "Active",
+          customer: "PT Nusantara Digital",
+          provider: "GlobalSign",
+          location: "Jakarta DC-01",
+          relatedAsset: "RTR-JKT-001",
+        },
+        {
+          certificateCode: "CERT-0004",
+          certificateName: "Customer VPN Certificate",
+          description: "Certificate for customer VPN authentication.",
+          type: "VPN Certificate",
+          issuer: "DigiCert Commercial CA",
+          serialNumber: "DGC-2026-0004",
+          domain: "vpn.netasset.id",
+          san: "vpn.netasset.id",
+          validFrom: "2026-02-01",
+          validUntil: "2027-02-01",
+          lifecycleStatus: "Provisioned",
+          operationalStatus: "Active",
+          customer: "PT Data Prima",
+          provider: "DigiCert",
+          location: "Jakarta POP-01",
+          relatedAsset: "SRV-JKT-003",
+        },
+        {
+          certificateCode: "CERT-0005",
+          certificateName: "Legacy Portal Certificate",
+          description: "Legacy certificate scheduled for retirement.",
+          type: "SSL / TLS",
+          issuer: "GlobalSign Commercial CA",
+          serialNumber: "GS-2024-0005",
+          domain: "legacy.netasset.id",
+          san: "legacy.netasset.id",
+          validFrom: "2024-01-01",
+          validUntil: "2026-06-30",
+          lifecycleStatus: "Retired",
+          operationalStatus: "Expired",
+          customer: "PT Global Network Indonesia",
+          provider: "GlobalSign",
+          location: "Surabaya POP-01",
+          relatedAsset: "SRV-SBY-001",
+        },
+      ];
+
+      function getCertificates() {
+        try {
+          const saved = localStorage.getItem(CERTIFICATE_STORAGE_KEY);
+
+          if (!saved) {
+            localStorage.setItem(
+              CERTIFICATE_STORAGE_KEY,
+              JSON.stringify(CERTIFICATE_DEMO_DATA),
+            );
+
+            return [...CERTIFICATE_DEMO_DATA];
+          }
+
+          const data = JSON.parse(saved);
+
+          if (!Array.isArray(data) || data.length === 0) {
+            return [...CERTIFICATE_DEMO_DATA];
+          }
+
+          return data;
+        } catch (error) {
+          console.error(error);
+          return [...CERTIFICATE_DEMO_DATA];
+        }
+      }
+
+      function getCertificateFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+
+        const code = params.get("certificate") || "CERT-0001";
+
+        const certificates = getCertificates();
+
+        return (
+          certificates.find(
+            (certificate) => certificate.certificateCode === code,
+          ) || certificates[0]
+        );
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value ?? "—";
+        }
+      }
+
+      function getStatusClass(status) {
+        const value = String(status || "").toLowerCase();
+
+        if (value.includes("expired") || value.includes("retired")) {
+          return "danger";
+        }
+
+        if (value.includes("expiring") || value.includes("warning")) {
+          return "warning";
+        }
+
+        if (value.includes("inactive")) {
+          return "inactive";
+        }
+
+        return "active";
+      }
+
+      function updateStatusBadge(id, status) {
+        const badge = document.getElementById(id);
+
+        if (!badge) return;
+
+        badge.className = "certificate-status-badge " + getStatusClass(status);
+
+        badge.innerHTML = `<span class="status-dot"></span>${status}`;
+      }
+
+      function renderCertificateDetail() {
+        const certificate = getCertificateFromUrl();
+
+        if (!certificate) return;
+
+        /* HERO */
+
+        setText("detailBreadcrumbCode", certificate.certificateCode);
+
+        setText("detailCertificateCode", certificate.certificateCode);
+
+        setText("detailCertificateName", certificate.certificateName);
+
+        setText("detailCertificateType", certificate.type);
+
+        updateStatusBadge("detailLifecycle", certificate.lifecycleStatus);
+
+        updateStatusBadge("detailOperational", certificate.operationalStatus);
+
+        /* OVERVIEW */
+
+        setText("overviewCertificateCode", certificate.certificateCode);
+
+        setText("overviewCertificateName", certificate.certificateName);
+
+        setText("overviewCertificateType", certificate.type);
+
+        setText("overviewIssuer", certificate.issuer);
+
+        setText("overviewValidFrom", certificate.validFrom);
+
+        setText("overviewValidUntil", certificate.validUntil);
+
+        setText("overviewLifecycle", certificate.lifecycleStatus);
+
+        setText("overviewOperational", certificate.operationalStatus);
+
+        setText("overviewDescription", certificate.description);
+
+        /* SECURITY */
+
+        setText("securityIssuer", certificate.issuer);
+
+        setText("securityProvider", certificate.provider);
+
+        setText("securitySerial", certificate.serialNumber);
+
+        setText("securityDomain", certificate.domain);
+
+        setText("securitySan", certificate.san);
+
+        /* RELATIONSHIPS */
+
+        setText("relationshipCustomer", certificate.customer);
+
+        setText("relationshipProvider", certificate.provider);
+
+        setText("relationshipLocation", certificate.location);
+
+        setText("relationshipAsset", certificate.relatedAsset);
+
+        /* EDIT */
+
+        const editButton = document.getElementById("editCertificateBtn");
+
+        if (editButton) {
+          editButton.href = `certificate.html?edit=${encodeURIComponent(
+            certificate.certificateCode,
+          )}`;
+        }
+      }
+
+      /* =========================================================
+         TABS
+         Same interaction pattern as VPN Detail
+         ========================================================= */
+
+      document.querySelectorAll(".certificate-detail-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+
+          document
+            .querySelectorAll(".certificate-detail-tab")
+            .forEach((item) => {
+              item.classList.remove("active");
+            });
+
+          document
+            .querySelectorAll(".certificate-detail-panel")
+            .forEach((panel) => {
+              panel.classList.remove("active");
+            });
+
+          tab.classList.add("active");
+
+          const panel = document.getElementById(`tab-${target}`);
+
+          if (panel) {
+            panel.classList.add("active");
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", renderCertificateDetail);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Locations · NETASSET</title>
+
+    <!-- ================= FONTS ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ================= GLOBAL CSS ================= -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- ================= LOCATION PAGE CSS ================= -->
+    <link rel="stylesheet" href="locations.css" />
+  </head>
+
+  <body class="locations-page">
+    <div class="shell">
+      <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group" open>
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub active">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+      <div class="main locations-main">
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+        <header class="topbar locations-topbar">
+          <div class="locations-heading">
+            <div class="breadcrumb">Locations</div>
+
+            <h1 class="page-title">Locations</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              type="button"
+              class="locations-refresh-btn"
+              id="refreshLocations"
+              aria-label="Refresh locations"
+              title="Refresh"
+            >
+              ↻
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary locations-add-btn"
+              id="addLocationButton"
+            >
+              + Add Location
+            </button>
+          </div>
+        </header>
+
+        <!-- =====================================================
+             PAGE CONTENT
+        ====================================================== -->
+        <main class="content locations-content">
+          <section class="locations-panel">
+            <!-- =================================================
+                     TOOLBAR
+                ================================================== -->
+            <div class="locations-toolbar">
+              <!-- Search -->
+              <div class="locations-search">
+                <svg
+                  class="locations-search-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7" />
+
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+
+                <input
+                  id="locationSearch"
+                  type="search"
+                  autocomplete="off"
+                  placeholder="Cari nama lokasi, alamat, koordinat..."
+                />
+              </div>
+
+              <!-- Filters -->
+              <div class="locations-filters">
+                <select id="locationTypeFilter" class="locations-filter">
+                  <option value="all">Semua Type</option>
+
+                  <option value="POP">POP</option>
+
+                  <option value="Data Center">Data Center</option>
+
+                  <option value="Building">Building</option>
+
+                  <option value="Floor">Floor</option>
+
+                  <option value="Room">Room</option>
+
+                  <option value="Rack">Rack</option>
+
+                  <option value="Other">Other</option>
+                </select>
+
+                <select id="locationParentFilter" class="locations-filter">
+                  <option value="all">Semua Parent</option>
+
+                  <option value="none">Tanpa Parent</option>
+
+                  <option value="POP Jakarta">POP Jakarta</option>
+
+                  <option value="DCI Cibitung">DCI Cibitung</option>
+
+                  <option value="Gedung Menara Sudirman">
+                    Gedung Menara Sudirman
+                  </option>
+
+                  <option value="POP Bandung">POP Bandung</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     STATISTICS
+                ================================================== -->
+            <div class="locations-stats">
+              <div class="locations-stat">
+                <span class="locations-stat-label"> Total Location </span>
+
+                <strong class="locations-stat-value" id="totalLocations">
+                  14
+                </strong>
+              </div>
+
+              <div class="locations-stat">
+                <span class="locations-stat-label"> POP </span>
+
+                <strong class="locations-stat-value" id="popLocations">
+                  5
+                </strong>
+              </div>
+
+              <div class="locations-stat">
+                <span class="locations-stat-label"> Data Center </span>
+
+                <strong class="locations-stat-value" id="dataCenterLocations">
+                  3
+                </strong>
+              </div>
+
+              <div class="locations-stat">
+                <span class="locations-stat-label"> Child Locations </span>
+
+                <strong class="locations-stat-value" id="childLocations">
+                  6
+                </strong>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     TABLE
+                ================================================== -->
+            <div class="locations-table-wrapper">
+              <table class="locations-table">
+                <thead>
+                  <tr>
+                    <th class="location-column">Location</th>
+
+                    <th class="type-column">Type</th>
+
+                    <th class="parent-column">Parent Location</th>
+
+                    <th class="coordinates-column">Coordinates</th>
+
+                    <th class="address-column">Address</th>
+
+                    <th class="actions-column">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="locationTableBody">
+                  <!-- ==========================
+                                 LOCATION 01
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-JKT-001"
+                    data-type="POP"
+                    data-parent=""
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">POP Jakarta</div>
+
+                      <div class="location-code">LOC-JKT-001</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> POP </span>
+                    </td>
+
+                    <td class="parent-cell">—</td>
+
+                    <td class="coordinates-cell">-6.2088, 106.8456</td>
+
+                    <td class="address-cell">
+                      Jl. Gatot Subroto, Jakarta Selatan
+                    </td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-JKT-001"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-JKT-001"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 02
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-BKS-001"
+                    data-type="Data Center"
+                    data-parent=""
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">DCI Cibitung</div>
+
+                      <div class="location-code">LOC-BKS-001</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Data Center </span>
+                    </td>
+
+                    <td class="parent-cell">—</td>
+
+                    <td class="coordinates-cell">-6.2447, 107.1364</td>
+
+                    <td class="address-cell">Jl. Industri Cibitung, Bekasi</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-BKS-001"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-BKS-001"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 03
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-JKT-002"
+                    data-type="Building"
+                    data-parent="POP Jakarta"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Gedung Menara Sudirman</div>
+
+                      <div class="location-code">LOC-JKT-002</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Building </span>
+                    </td>
+
+                    <td class="parent-cell">POP Jakarta</td>
+
+                    <td class="coordinates-cell">-6.2091, 106.8231</td>
+
+                    <td class="address-cell">Jl. Jend. Sudirman Kav. 60</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-JKT-002"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-JKT-002"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 04
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-BKS-002"
+                    data-type="Rack"
+                    data-parent="DCI Cibitung"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Rack-01</div>
+
+                      <div class="location-code">LOC-BKS-002</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Rack </span>
+                    </td>
+
+                    <td class="parent-cell">DCI Cibitung — Lt. 2</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Ruang server utama</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-BKS-002"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-BKS-002"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 05
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-BDG-001"
+                    data-type="POP"
+                    data-parent=""
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">POP Bandung</div>
+
+                      <div class="location-code">LOC-BDG-001</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> POP </span>
+                    </td>
+
+                    <td class="parent-cell">—</td>
+
+                    <td class="coordinates-cell">-6.9175, 107.6191</td>
+
+                    <td class="address-cell">Jl. Asia Afrika, Bandung</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-BDG-001"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-BDG-001"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 06
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-SBY-001"
+                    data-type="POP"
+                    data-parent=""
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">POP Surabaya</div>
+
+                      <div class="location-code">LOC-SBY-001</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> POP </span>
+                    </td>
+
+                    <td class="parent-cell">—</td>
+
+                    <td class="coordinates-cell">-7.2575, 112.7521</td>
+
+                    <td class="address-cell">Jl. Basuki Rahmat, Surabaya</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-SBY-001"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-SBY-001"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 07
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-SBY-002"
+                    data-type="Data Center"
+                    data-parent="POP Surabaya"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Surabaya Data Center</div>
+
+                      <div class="location-code">LOC-SBY-002</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Data Center </span>
+                    </td>
+
+                    <td class="parent-cell">POP Surabaya</td>
+
+                    <td class="coordinates-cell">-7.2658, 112.7341</td>
+
+                    <td class="address-cell">Jl. Raya Darmo, Surabaya</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-SBY-002"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-SBY-002"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 08
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-JKT-003"
+                    data-type="Floor"
+                    data-parent="Gedung Menara Sudirman"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Floor 12</div>
+
+                      <div class="location-code">LOC-JKT-003</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Floor </span>
+                    </td>
+
+                    <td class="parent-cell">Gedung Menara Sudirman</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Lantai 12</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-JKT-003"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-JKT-003"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 09
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-JKT-004"
+                    data-type="Room"
+                    data-parent="Floor 12"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Server Room A</div>
+
+                      <div class="location-code">LOC-JKT-004</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Room </span>
+                    </td>
+
+                    <td class="parent-cell">Floor 12</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Server Room A</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-JKT-004"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-JKT-004"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 10
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-JKT-005"
+                    data-type="Rack"
+                    data-parent="Server Room A"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Rack-JKT-01</div>
+
+                      <div class="location-code">LOC-JKT-005</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Rack </span>
+                    </td>
+
+                    <td class="parent-cell">Server Room A</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Rack 01</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-JKT-005"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-JKT-005"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 11
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-BDG-002"
+                    data-type="Building"
+                    data-parent="POP Bandung"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Bandung Network Building</div>
+
+                      <div class="location-code">LOC-BDG-002</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Building </span>
+                    </td>
+
+                    <td class="parent-cell">POP Bandung</td>
+
+                    <td class="coordinates-cell">-6.9147, 107.6098</td>
+
+                    <td class="address-cell">Jl. Pasteur, Bandung</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-BDG-002"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-BDG-002"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 12
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-BDG-003"
+                    data-type="Rack"
+                    data-parent="Bandung Network Building"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Rack-BDG-01</div>
+
+                      <div class="location-code">LOC-BDG-003</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Rack </span>
+                    </td>
+
+                    <td class="parent-cell">Bandung Network Building</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Main Network Rack</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-BDG-003"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-BDG-003"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 13
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-SBY-003"
+                    data-type="Building"
+                    data-parent="POP Surabaya"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Surabaya POP Building</div>
+
+                      <div class="location-code">LOC-SBY-003</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Building </span>
+                    </td>
+
+                    <td class="parent-cell">POP Surabaya</td>
+
+                    <td class="coordinates-cell">-7.2504, 112.7688</td>
+
+                    <td class="address-cell">Jl. Pemuda, Surabaya</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-SBY-003"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-SBY-003"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- ==========================
+                                 LOCATION 14
+                            =========================== -->
+                  <tr
+                    data-location-id="LOC-SBY-004"
+                    data-type="Rack"
+                    data-parent="Surabaya POP Building"
+                  >
+                    <td class="location-cell">
+                      <div class="location-name">Rack-SBY-01</div>
+
+                      <div class="location-code">LOC-SBY-004</div>
+                    </td>
+
+                    <td>
+                      <span class="location-type-badge"> Rack </span>
+                    </td>
+
+                    <td class="parent-cell">Surabaya POP Building</td>
+
+                    <td class="coordinates-cell">—</td>
+
+                    <td class="address-cell">Network Equipment Room</td>
+
+                    <td class="location-actions">
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="view"
+                        data-id="LOC-SBY-004"
+                      >
+                        View
+                      </button>
+
+                      <button
+                        type="button"
+                        class="location-action-btn"
+                        data-action="edit"
+                        data-id="LOC-SBY-004"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Empty State -->
+              <div class="locations-empty-state" id="locationEmptyState" hidden>
+                <div class="locations-empty-icon">⌕</div>
+
+                <h3>Tidak ada lokasi ditemukan</h3>
+
+                <p>Coba kata kunci lain atau ubah filter lokasi.</p>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     TABLE FOOTER
+                ================================================== -->
+            <footer class="locations-table-footer">
+              <span class="locations-result-count" id="locationResultCount">
+                5 of 14 Locations shown
+              </span>
+
+              <div class="locations-pagination">
+                <button
+                  type="button"
+                  class="pagination-btn"
+                  disabled
+                  aria-label="Previous page"
+                >
+                  ‹
+                </button>
+
+                <button type="button" class="pagination-btn active">1</button>
+
+                <button type="button" class="pagination-btn">2</button>
+
+                <button type="button" class="pagination-btn">3</button>
+
+                <button
+                  type="button"
+                  class="pagination-btn"
+                  aria-label="Next page"
+                >
+                  ›
+                </button>
+              </div>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =============================================================
+     JAVASCRIPT
+     Untuk sementara hanya global app.js.
+     locations.js kita buat setelah HTML + CSS sudah fix.
+============================================================= -->
+    <script src="assets/js/app.js"></script>
+    <script src="locations.js"></script>
+  </body>
+</html>

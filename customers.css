@@ -1,0 +1,1401 @@
+/* =========================================================
+   NETASSET — CUSTOMERS
+   Page-specific CSS only.
+   style.css remains untouched.
+========================================================= */
+
+.customers-page {
+  --navy: #071b3a;
+  --text: #183956;
+  --muted: #7489a0;
+  --border: #dbe4ec;
+  --soft: #edf1f5;
+  --bg: #f4f7fa;
+  --card: #ffffff;
+  --accent: #079f9d;
+  --accent-soft: #edf9f8;
+  --success: #21845f;
+  --success-bg: #eaf8f2;
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.customers-page *,
+.customers-page *::before,
+.customers-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.customers-page .topbar {
+  min-height: 70px;
+  padding: 0 38px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.customers-page .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.customers-page .breadcrumb a {
+  color: #5e7791;
+  text-decoration: none;
+}
+
+.customers-page .breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.customers-page .breadcrumb-separator {
+  color: #a8b8c7;
+}
+
+.customers-page .topbar-button {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+
+  background: #fff;
+  color: #5c7894;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.customers-page .page-content {
+  width: 100%;
+  min-width: 0;
+
+  padding: 30px 38px 48px;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.customer-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.customer-page-heading {
+  min-width: 0;
+}
+
+.customer-page-heading .page-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--accent);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.09em;
+}
+
+.customer-page-heading h1 {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 31px;
+  line-height: 1.15;
+}
+
+.customer-page-heading p {
+  max-width: 720px;
+
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.customer-button {
+  min-height: 39px;
+
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 7px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.customer-button:active {
+  transform: translateY(1px);
+}
+
+.customer-button-primary {
+  border: 1px solid var(--accent);
+
+  background: var(--accent);
+  color: #fff;
+}
+
+.customer-button-primary:hover {
+  background: #078b88;
+  border-color: #078b88;
+}
+
+.customer-button-secondary {
+  border: 1px solid #cfdce7;
+
+  background: #fff;
+  color: #4e6c88;
+}
+
+.customer-button-secondary:hover {
+  background: #f6f9fc;
+}
+
+/* =========================================================
+   CUSTOMER LIST CARD
+========================================================= */
+
+.customer-list-card {
+  width: 100%;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  box-shadow: 0 2px 9px rgba(22, 48, 76, 0.025);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.customer-toolbar {
+  min-height: 76px;
+
+  padding: 17px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  border-bottom: 1px solid var(--soft);
+}
+
+.customer-search {
+  position: relative;
+
+  width: min(390px, 100%);
+}
+
+.customer-search-icon {
+  position: absolute;
+
+  left: 11px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #8ba0b4;
+
+  pointer-events: none;
+}
+
+.customer-search input {
+  width: 100%;
+  height: 39px;
+
+  padding: 0 12px 0 34px;
+
+  border: 1px solid #d3dfe9;
+  border-radius: 7px;
+
+  background: #fff;
+  color: var(--text);
+
+  font-size: 11px;
+
+  outline: none;
+}
+
+.customer-filter {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.customer-filter label {
+  color: #7b90a5;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.customer-filter select {
+  height: 39px;
+  min-width: 125px;
+
+  padding: 0 10px;
+
+  border: 1px solid #d3dfe9;
+  border-radius: 7px;
+
+  background: #fff;
+  color: #46647f;
+
+  font-size: 11px;
+
+  outline: none;
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.customer-search input:focus,
+.customer-filter select:focus,
+.customer-field input:focus,
+.customer-field select:focus,
+.customer-field textarea:focus {
+  border-color: #76c9c5;
+
+  box-shadow: 0 0 0 3px rgba(7, 159, 157, 0.08);
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.customer-summary {
+  display: flex;
+
+  gap: 9px;
+
+  padding: 14px 20px;
+
+  border-bottom: 1px solid var(--soft);
+
+  overflow-x: auto;
+}
+
+.summary-chip {
+  min-width: 115px;
+
+  padding: 9px 12px;
+
+  display: flex;
+  align-items: baseline;
+
+  gap: 6px;
+
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+
+  background: #fbfcfd;
+  color: #70869d;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.summary-chip:hover,
+.summary-chip.active {
+  border-color: #b9e2df;
+  background: var(--accent-soft);
+}
+
+.summary-chip strong {
+  color: var(--navy);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+}
+
+.summary-chip.active strong,
+.summary-chip.active span {
+  color: #087f79;
+}
+
+.summary-chip span {
+  font-size: 9px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.customer-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.customer-table {
+  width: 100%;
+  min-width: 780px;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+.customer-table th {
+  height: 44px;
+
+  padding: 0 16px;
+
+  background: #f8fafc;
+
+  border-bottom: 1px solid var(--border);
+
+  color: #7c91a6;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+}
+
+.customer-table th:nth-child(1) {
+  width: 27%;
+}
+
+.customer-table th:nth-child(2) {
+  width: 15%;
+}
+
+.customer-table th:nth-child(3) {
+  width: 29%;
+}
+
+.customer-table th:nth-child(4) {
+  width: 15%;
+}
+
+.customer-table th:nth-child(5) {
+  width: 14%;
+}
+
+.customer-table td {
+  height: 72px;
+
+  padding: 13px 16px;
+
+  border-bottom: 1px solid var(--soft);
+
+  vertical-align: middle;
+
+  font-size: 11px;
+}
+
+.customer-table tbody tr:hover {
+  background: #fbfdfe;
+}
+
+.customer-actions-heading,
+.customer-actions-cell {
+  text-align: right;
+}
+
+/* =========================================================
+   CUSTOMER IDENTITY
+========================================================= */
+
+.customer-identity {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+}
+
+.customer-avatar {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #cde4e4;
+  border-radius: 7px;
+
+  background: #eff9f8;
+  color: #087f79;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.customer-identity-copy {
+  min-width: 0;
+}
+
+.customer-name {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #173654;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.customer-id {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #8b9eaf;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+}
+
+/* =========================================================
+   TYPE BADGES
+========================================================= */
+
+.customer-type-badge,
+.customer-status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 25px;
+
+  padding: 0 8px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.customer-type-badge {
+  background: #f1f5f8;
+  color: #607992;
+}
+
+.customer-type-corporate {
+  background: #eef5fb;
+  color: #466d92;
+}
+
+.customer-type-sme {
+  background: #f4f5fb;
+  color: #655f91;
+}
+
+.customer-type-retail {
+  background: #f5f8f3;
+  color: #648055;
+}
+
+.customer-type-government {
+  background: #f8f3f1;
+  color: #8b695a;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.customer-contact {
+  min-width: 0;
+}
+
+.customer-contact-name,
+.customer-contact-detail {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.customer-contact-name {
+  color: #355570;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.customer-contact-detail {
+  margin-top: 3px;
+
+  color: #7d91a4;
+
+  font-size: 9px;
+}
+
+.customer-contact-phone {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #8b9dac;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.customer-status-badge {
+  gap: 5px;
+}
+
+.customer-status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.customer-status-active {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.customer-status-inactive {
+  background: #f1f3f5;
+  color: #7b8793;
+}
+
+/* =========================================================
+   ROW ACTIONS
+========================================================= */
+
+.customer-row-actions {
+  display: inline-flex;
+  justify-content: flex-end;
+
+  gap: 5px;
+}
+
+.customer-row-action {
+  width: 30px;
+  height: 30px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 6px;
+
+  background: #fff;
+  color: #607b95;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.customer-row-action:hover {
+  border-color: #a9d6d3;
+
+  background: #f4fbfb;
+  color: #087f79;
+}
+
+.customer-row-action-danger:hover {
+  border-color: #e3bcbc;
+
+  background: #fff7f7;
+  color: #b45757;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.customer-empty-state {
+  padding: 54px 20px;
+
+  text-align: center;
+}
+
+.customer-empty-state[hidden] {
+  display: none;
+}
+
+.customer-empty-icon {
+  width: 42px;
+  height: 42px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 9px;
+
+  color: #8ba0b4;
+  background: #f8fafc;
+}
+
+.customer-empty-state h3 {
+  margin: 0;
+
+  color: #2a4864;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+}
+
+.customer-empty-state p {
+  margin: 6px auto 0;
+
+  color: #8497a9;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   LIST FOOTER
+========================================================= */
+
+.customer-list-footer {
+  min-height: 61px;
+
+  padding: 11px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  border-top: 1px solid var(--soft);
+}
+
+.customer-result-summary {
+  color: #8799aa;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+}
+
+.customer-pagination {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+}
+
+.pagination-pages {
+  display: flex;
+
+  gap: 4px;
+}
+
+.pagination-button,
+.pagination-page {
+  width: 29px;
+  height: 29px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 6px;
+
+  background: #fff;
+  color: #607b95;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+
+  cursor: pointer;
+}
+
+.pagination-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+.pagination-page.active {
+  border-color: var(--accent);
+
+  background: var(--accent);
+  color: #fff;
+}
+
+/* =========================================================
+   ADD / EDIT MODAL
+========================================================= */
+
+.customer-dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-width: 720px;
+
+  max-height: calc(100vh - 32px);
+
+  padding: 0;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 10px;
+
+  background: #fff;
+
+  box-shadow: 0 24px 70px rgba(7, 27, 58, 0.2);
+
+  overflow: hidden;
+}
+
+.customer-dialog::backdrop,
+.customer-details-dialog::backdrop {
+  background: rgba(7, 21, 38, 0.48);
+}
+
+.customer-dialog-shell {
+  max-height: calc(100vh - 32px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-dialog-header,
+.customer-details-header {
+  min-height: 86px;
+
+  padding: 18px 22px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  border-bottom: 1px solid var(--soft);
+}
+
+.modal-eyebrow {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--accent);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.customer-dialog-header h2,
+.customer-details-header h2 {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+}
+
+.customer-dialog-header p,
+.customer-details-header p {
+  margin: 5px 0 0;
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.dialog-close {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 6px;
+
+  background: #fff;
+  color: #6b8198;
+
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.dialog-close:hover {
+  background: #f6f9fc;
+  color: #31516d;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.customer-form {
+  min-height: 0;
+
+  overflow-y: auto;
+}
+
+.customer-form-section {
+  padding: 19px 22px;
+
+  border-bottom: 1px solid var(--soft);
+}
+
+.customer-form-section-heading,
+.customer-details-section-heading {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+.customer-form-section-heading > span,
+.customer-details-section-heading > span {
+  width: 25px;
+  height: 25px;
+
+  flex: 0 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #cfe4e4;
+  border-radius: 6px;
+
+  background: #f0faf9;
+  color: #087f79;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+}
+
+.customer-form-section-heading h3,
+.customer-details-section-heading h3 {
+  margin: 1px 0 0;
+
+  color: #173654;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+}
+
+.customer-form-section-heading p,
+.customer-details-section-heading p {
+  margin: 4px 0 0;
+
+  color: #8497a9;
+
+  font-size: 9px;
+}
+
+.customer-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 15px 18px;
+}
+
+.customer-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.customer-field label {
+  color: #526d87;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.customer-field label span {
+  color: #c25b5b;
+}
+
+.customer-field input,
+.customer-field select,
+.customer-field textarea {
+  width: 100%;
+
+  min-height: 39px;
+
+  padding: 9px 10px;
+
+  border: 1px solid #d2dfe9;
+  border-radius: 6px;
+
+  background: #fff;
+  color: #23445f;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+
+  outline: none;
+}
+
+.customer-field textarea {
+  min-height: 90px;
+
+  resize: vertical;
+}
+
+.customer-field small {
+  color: #8a9cad;
+
+  font-size: 8px;
+}
+
+.customer-field-status {
+  max-width: 280px;
+}
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.customer-form-actions {
+  min-height: 65px;
+
+  padding: 12px 22px;
+
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  border-top: 1px solid var(--border);
+
+  background: #fbfcfd;
+}
+
+/* =========================================================
+   CUSTOMER DETAILS MODAL
+========================================================= */
+
+.customer-details-dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-width: 720px;
+
+  max-height: calc(100vh - 32px);
+
+  padding: 0;
+
+  border: 1px solid #d7e2eb;
+  border-radius: 10px;
+
+  background: #fff;
+
+  box-shadow: 0 24px 70px rgba(7, 27, 58, 0.2);
+
+  overflow: hidden;
+}
+
+.customer-details-shell {
+  max-height: calc(100vh - 32px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-details-content {
+  min-height: 0;
+
+  overflow-y: auto;
+}
+
+.customer-details-section {
+  padding: 19px 22px;
+
+  border-bottom: 1px solid var(--soft);
+}
+
+.customer-details-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px 18px;
+}
+
+.customer-detail-item {
+  min-width: 0;
+
+  padding: 12px 13px;
+
+  border: 1px solid #e0e8ef;
+  border-radius: 7px;
+
+  background: #fbfcfd;
+}
+
+.customer-detail-item-wide {
+  grid-column: 1 / -1;
+}
+
+.customer-detail-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #8195a8;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.customer-detail-value {
+  display: block;
+
+  color: #23445f;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.customer-detail-value.customer-detail-mono {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+}
+
+.customer-detail-address {
+  padding: 13px;
+
+  border: 1px solid #e0e8ef;
+  border-radius: 7px;
+
+  background: #fbfcfd;
+}
+
+.customer-detail-address-value {
+  color: #23445f;
+
+  font-size: 11px;
+  line-height: 1.65;
+
+  overflow-wrap: anywhere;
+}
+
+.customer-detail-status-row {
+  min-height: 52px;
+
+  padding: 12px 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border: 1px solid #e0e8ef;
+  border-radius: 7px;
+
+  background: #fbfcfd;
+}
+
+.customer-details-actions {
+  min-height: 65px;
+
+  padding: 12px 22px;
+
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  border-top: 1px solid var(--border);
+
+  background: #fbfcfd;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.customer-toast {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 3000;
+
+  max-width: 360px;
+
+  padding: 12px 15px;
+
+  border: 1px solid #c7e6e3;
+  border-radius: 8px;
+
+  background: #fff;
+  color: #294b67;
+
+  box-shadow: 0 12px 32px rgba(7, 27, 58, 0.14);
+
+  font-size: 10px;
+}
+
+.customer-toast[hidden] {
+  display: none;
+}
+
+.customer-toast-error {
+  border-color: #eccaca;
+  color: #a04d4d;
+}
+
+.customer-toast-info {
+  border-color: #cddceb;
+  color: #496b88;
+}
+
+/* =========================================================
+   FOCUS VISIBLE
+========================================================= */
+
+.customers-page button:focus-visible,
+.customers-page a:focus-visible,
+.customers-page input:focus-visible,
+.customers-page select:focus-visible,
+.customers-page textarea:focus-visible {
+  outline: 2px solid rgba(7, 159, 157, 0.5);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+  .customers-page .page-content {
+    padding: 24px 20px 40px;
+  }
+
+  .customer-page-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .customer-page-header > .customer-button {
+    width: 100%;
+  }
+
+  .customer-toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .customer-search {
+    width: 100%;
+  }
+
+  .customer-filter {
+    justify-content: flex-end;
+  }
+
+  .customer-form-grid,
+  .customer-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-detail-item-wide {
+    grid-column: auto;
+  }
+
+  .customer-field-status {
+    max-width: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .customers-page .topbar {
+    padding: 0 15px;
+  }
+
+  .customers-page .page-content {
+    padding: 20px 14px 32px;
+  }
+
+  .customer-page-heading h1 {
+    font-size: 25px;
+  }
+
+  .customer-list-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .customer-pagination {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+
+  .customer-dialog,
+  .customer-details-dialog {
+    width: calc(100vw - 20px);
+
+    max-height: calc(100vh - 20px);
+  }
+
+  .customer-dialog-header,
+  .customer-details-header,
+  .customer-form-section,
+  .customer-details-section,
+  .customer-form-actions,
+  .customer-details-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .customer-form-actions,
+  .customer-details-actions {
+    flex-direction: column-reverse;
+  }
+
+  .customer-form-actions .customer-button,
+  .customer-details-actions .customer-button {
+    width: 100%;
+  }
+
+  .customer-detail-status-row {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   SIDEBAR BRAND — MATCH LIFECYCLE TEMPLATE
+========================================================= */
+
+.customers-page .sidebar .sidebar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.customers-page .sidebar .brand-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 34px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.customers-page .sidebar .brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.customers-page .sidebar .brand-name {
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px !important;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.customers-page .sidebar .brand-sub {
+  margin-top: 3px;
+  color: #7087a2;
+  font-size: 9px !important;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

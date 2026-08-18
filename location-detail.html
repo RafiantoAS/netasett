@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>POP Jakarta · NETASSET</title>
+
+    <!-- =========================================================
+         GLOBAL DESIGN SYSTEM
+         ========================================================= -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- =========================================================
+         LOCATION DETAIL PAGE
+         ========================================================= -->
+    <link rel="stylesheet" href="location-detail.css" />
+  </head>
+
+  <body class="location-detail-page">
+    <div class="shell">
+      <!-- =======================================================
+           SIDEBAR
+           SAME TEMPLATE AS LOCATIONS.HTML
+           ======================================================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group" open>
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub active">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =======================================================
+           MAIN CONTENT
+           ======================================================= -->
+
+      <main class="main">
+        <div class="location-detail">
+          <!-- ===================================================
+               BREADCRUMB
+               =================================================== -->
+
+          <div class="location-detail-breadcrumb">
+            <a href="locations.html"> Locations </a>
+
+            <span>/</span>
+
+            <strong id="detailBreadcrumbCode"> LOC-JKT-001 </strong>
+          </div>
+
+          <!-- ===================================================
+               HERO
+               =================================================== -->
+
+          <section class="location-detail-hero">
+            <div class="location-detail-hero-main">
+              <!-- LOCATION ICON -->
+
+              <div class="location-detail-icon">POP</div>
+
+              <!-- LOCATION TITLE -->
+
+              <div class="location-detail-title">
+                <div class="location-detail-eyebrow">NETWORK LOCATION</div>
+
+                <h1 id="detailLocationName">POP Jakarta</h1>
+
+                <div class="location-detail-meta">
+                  <span id="detailLocationCode" class="location-detail-mono">
+                    LOC-JKT-001
+                  </span>
+
+                  <span>·</span>
+
+                  <span id="detailLocationType"> POP </span>
+
+                  <span>·</span>
+
+                  <span> Master Data </span>
+                </div>
+
+                <!-- STATUS -->
+
+                <div class="location-detail-status-row">
+                  <span class="location-status-badge active">
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO ACTIONS -->
+
+            <div class="location-detail-hero-actions">
+              <a
+                href="locations.html"
+                class="location-btn location-btn-secondary"
+              >
+                ← Back
+              </a>
+
+              <button
+                type="button"
+                class="location-btn location-btn-primary"
+                id="editLocationButton"
+              >
+                ✎ Edit
+              </button>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               TABS
+               =================================================== -->
+
+          <nav class="location-detail-tabs">
+            <button
+              type="button"
+              class="location-detail-tab active"
+              data-tab="overview"
+            >
+              Overview
+            </button>
+
+            <button
+              type="button"
+              class="location-detail-tab"
+              data-tab="hierarchy"
+            >
+              Hierarchy
+            </button>
+
+            <button type="button" class="location-detail-tab" data-tab="assets">
+              Assets
+            </button>
+
+            <button
+              type="button"
+              class="location-detail-tab"
+              data-tab="network"
+            >
+              Network
+            </button>
+
+            <button
+              type="button"
+              class="location-detail-tab"
+              data-tab="history"
+            >
+              History
+            </button>
+          </nav>
+
+          <!-- ===================================================
+               OVERVIEW
+               =================================================== -->
+
+          <section class="location-detail-panel active" id="tab-overview">
+            <div class="location-detail-section-header">
+              <div>
+                <h2>Overview</h2>
+
+                <p>Location identity, hierarchy and physical information.</p>
+              </div>
+            </div>
+
+            <div class="location-detail-grid">
+              <!-- =================================================
+                   LOCATION INFORMATION
+                   ================================================= -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Location Information</h3>
+
+                    <p>Core information about this network location.</p>
+                  </div>
+                </header>
+
+                <div class="location-kv-grid">
+                  <div class="location-kv">
+                    <span class="location-kv-label"> Location Code </span>
+
+                    <strong
+                      id="overviewLocationCode"
+                      class="location-kv-value location-detail-mono"
+                    >
+                      LOC-JKT-001
+                    </strong>
+                  </div>
+
+                  <div class="location-kv">
+                    <span class="location-kv-label"> Location Name </span>
+
+                    <strong id="overviewLocationName" class="location-kv-value">
+                      POP Jakarta
+                    </strong>
+                  </div>
+
+                  <div class="location-kv">
+                    <span class="location-kv-label"> Location Type </span>
+
+                    <strong id="overviewLocationType" class="location-kv-value">
+                      POP
+                    </strong>
+                  </div>
+
+                  <div class="location-kv">
+                    <span class="location-kv-label"> Parent Location </span>
+
+                    <strong
+                      id="overviewParentLocation"
+                      class="location-kv-value"
+                    >
+                      —
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                   PHYSICAL INFORMATION
+                   ================================================= -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Physical Information</h3>
+
+                    <p>Geographic and physical location information.</p>
+                  </div>
+                </header>
+
+                <div class="location-kv-grid">
+                  <div class="location-kv location-kv-full">
+                    <span class="location-kv-label"> Coordinates </span>
+
+                    <strong
+                      id="overviewCoordinates"
+                      class="location-kv-value location-detail-mono"
+                    >
+                      -6.2088, 106.8456
+                    </strong>
+                  </div>
+
+                  <div class="location-kv location-kv-full">
+                    <span class="location-kv-label"> Address </span>
+
+                    <strong id="overviewAddress" class="location-kv-value">
+                      Jl. Gatot Subroto, Jakarta Selatan
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                   DESCRIPTION
+                   ================================================= -->
+
+              <article class="location-info-card location-info-card-full">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Location Summary</h3>
+
+                    <p>Operational summary of this location.</p>
+                  </div>
+                </header>
+
+                <div class="location-description">
+                  <p id="overviewDescription">
+                    Primary Point of Presence (POP) serving the Jakarta network
+                    infrastructure and connected network resources.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               HIERARCHY
+               =================================================== -->
+
+          <section class="location-detail-panel" id="tab-hierarchy">
+            <div class="location-detail-section-header">
+              <div>
+                <h2>Hierarchy</h2>
+
+                <p>Parent and child location relationships.</p>
+              </div>
+            </div>
+
+            <div class="location-detail-grid">
+              <!-- PARENT -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Parent Location</h3>
+
+                    <p>Location containing this location.</p>
+                  </div>
+                </header>
+
+                <div class="location-hierarchy-empty">
+                  <div class="location-empty-icon">—</div>
+
+                  <strong> No Parent Location </strong>
+
+                  <span> This location is a top-level location. </span>
+                </div>
+              </article>
+
+              <!-- CHILD LOCATIONS -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Child Locations</h3>
+
+                    <p>Locations contained under this location.</p>
+                  </div>
+                </header>
+
+                <div class="location-child-list">
+                  <a
+                    href="location-detail.html?id=LOC-JKT-002"
+                    class="location-child-item"
+                  >
+                    <div class="location-child-icon">BLD</div>
+
+                    <div class="location-child-content">
+                      <strong> Gedung Menara Sudirman </strong>
+
+                      <span> LOC-JKT-002 · Building </span>
+                    </div>
+
+                    <span class="location-child-arrow"> → </span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- LOCATION TREE -->
+
+              <article class="location-info-card location-info-card-full">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>Location Hierarchy</h3>
+
+                    <p>Current location structure.</p>
+                  </div>
+                </header>
+
+                <div class="location-tree">
+                  <div class="location-tree-node current">
+                    <span class="location-tree-line"></span>
+
+                    <div class="location-tree-icon">POP</div>
+
+                    <div>
+                      <strong> POP Jakarta </strong>
+
+                      <span> LOC-JKT-001 · POP </span>
+                    </div>
+                  </div>
+
+                  <div class="location-tree-children">
+                    <div class="location-tree-node">
+                      <span class="location-tree-line"></span>
+
+                      <div class="location-tree-icon small">BLD</div>
+
+                      <div>
+                        <strong> Gedung Menara Sudirman </strong>
+
+                        <span> LOC-JKT-002 · Building </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               ASSETS
+               =================================================== -->
+
+          <section class="location-detail-panel" id="tab-assets">
+            <div class="location-detail-section-header">
+              <div>
+                <h2>Assets</h2>
+
+                <p>
+                  Physical and logical assets associated with this location.
+                </p>
+              </div>
+            </div>
+
+            <article class="location-info-card location-info-card-full">
+              <header class="location-info-card-header">
+                <div>
+                  <h3>Assigned Assets</h3>
+
+                  <p>Assets currently associated with POP Jakarta.</p>
+                </div>
+              </header>
+
+              <div class="location-assets-table-wrap">
+                <table class="location-assets-table">
+                  <thead>
+                    <tr>
+                      <th>Asset</th>
+
+                      <th>Type</th>
+
+                      <th>Role</th>
+
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="location-asset-cell">
+                          <div class="location-asset-icon">RTR</div>
+
+                          <div>
+                            <strong> Core Router </strong>
+
+                            <span class="location-detail-mono">
+                              RTR-JKT-001
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>Router</td>
+
+                      <td>Core Network</td>
+
+                      <td>
+                        <span class="location-status-badge active">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="location-asset-cell">
+                          <div class="location-asset-icon">SW</div>
+
+                          <div>
+                            <strong> Core Switch </strong>
+
+                            <span class="location-detail-mono">
+                              SW-JKT-001
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>Switch</td>
+
+                      <td>Distribution</td>
+
+                      <td>
+                        <span class="location-status-badge active">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="location-asset-cell">
+                          <div class="location-asset-icon">SRV</div>
+
+                          <div>
+                            <strong> Application Server </strong>
+
+                            <span class="location-detail-mono">
+                              SRV-JKT-001
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>Server</td>
+
+                      <td>Application</td>
+
+                      <td>
+                        <span class="location-status-badge active">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <!-- ===================================================
+               NETWORK
+               =================================================== -->
+
+          <section class="location-detail-panel" id="tab-network">
+            <div class="location-detail-section-header">
+              <div>
+                <h2>Network</h2>
+
+                <p>Network resources associated with this location.</p>
+              </div>
+            </div>
+
+            <div class="location-detail-grid">
+              <!-- IP RESOURCES -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>IP Resources</h3>
+
+                    <p>
+                      IP addressing resources associated with this location.
+                    </p>
+                  </div>
+                </header>
+
+                <div class="location-kv-grid">
+                  <div class="location-kv">
+                    <span class="location-kv-label"> IP Addresses </span>
+
+                    <strong class="location-kv-value"> 24 </strong>
+                  </div>
+
+                  <div class="location-kv">
+                    <span class="location-kv-label"> IP Pools </span>
+
+                    <strong class="location-kv-value"> 3 </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- VLAN -->
+
+              <article class="location-info-card">
+                <header class="location-info-card-header">
+                  <div>
+                    <h3>VLAN Resources</h3>
+
+                    <p>VLAN resources associated with this location.</p>
+                  </div>
+                </header>
+
+                <div class="location-kv-grid">
+                  <div class="location-kv">
+                    <span class="location-kv-label"> VLANs </span>
+
+                    <strong class="location-kv-value"> 8 </strong>
+                  </div>
+
+                  <div class="location-kv">
+                    <span class="location-kv-label"> Active </span>
+
+                    <strong class="location-kv-value"> 8 </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               HISTORY
+               =================================================== -->
+
+          <section class="location-detail-panel" id="tab-history">
+            <div class="location-detail-section-header">
+              <div>
+                <h2>History</h2>
+
+                <p>Recent changes and operational events for this location.</p>
+              </div>
+            </div>
+
+            <div class="location-history">
+              <article class="location-history-item">
+                <div class="location-history-marker"></div>
+
+                <div class="location-history-content">
+                  <div class="location-history-top">
+                    <strong> Location created </strong>
+
+                    <span> 2026-08-01 </span>
+                  </div>
+
+                  <p>
+                    POP Jakarta was created as a top-level network location.
+                  </p>
+                </div>
+              </article>
+
+              <article class="location-history-item">
+                <div class="location-history-marker"></div>
+
+                <div class="location-history-content">
+                  <div class="location-history-top">
+                    <strong> Asset assigned </strong>
+
+                    <span> 2026-08-08 </span>
+                  </div>
+
+                  <p>Core Router RTR-JKT-001 was assigned to this location.</p>
+                </div>
+              </article>
+
+              <article class="location-history-item">
+                <div class="location-history-marker"></div>
+
+                <div class="location-history-content">
+                  <div class="location-history-top">
+                    <strong> Location updated </strong>
+
+                    <span> 2026-08-11 </span>
+                  </div>
+
+                  <p>
+                    Location address and operational information were updated.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+     EDIT LOCATION MODAL
+     ========================================================= -->
+
+    <dialog id="editLocationModal" class="location-edit-modal">
+      <form method="dialog" id="editLocationForm" class="location-edit-form">
+        <!-- HEADER -->
+
+        <div class="location-edit-header">
+          <div>
+            <div class="location-edit-eyebrow">MASTER DATA</div>
+
+            <h2>Edit Location</h2>
+
+            <p>Update location information and hierarchy.</p>
+          </div>
+
+          <button
+            type="button"
+            class="location-modal-close"
+            id="closeEditLocation"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+
+        <!-- BODY -->
+
+        <div class="location-edit-body">
+          <div class="location-edit-grid">
+            <!-- LOCATION CODE -->
+
+            <div class="location-form-field">
+              <label for="editLocationCode"> Location Code </label>
+
+              <input type="text" id="editLocationCode" name="code" readonly />
+            </div>
+
+            <!-- LOCATION NAME -->
+
+            <div class="location-form-field">
+              <label for="editLocationName">
+                Location Name <span>*</span>
+              </label>
+
+              <input type="text" id="editLocationName" name="name" required />
+            </div>
+
+            <!-- LOCATION TYPE -->
+
+            <div class="location-form-field">
+              <label for="editLocationType">
+                Location Type <span>*</span>
+              </label>
+
+              <select id="editLocationType" name="type" required>
+                <option value="POP">POP</option>
+
+                <option value="Data Center">Data Center</option>
+
+                <option value="Building">Building</option>
+
+                <option value="Floor">Floor</option>
+
+                <option value="Room">Room</option>
+
+                <option value="Rack">Rack</option>
+
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- PARENT -->
+
+            <div class="location-form-field">
+              <label for="editLocationParent"> Parent Location </label>
+
+              <select id="editLocationParent" name="parent">
+                <option value="">No Parent</option>
+              </select>
+            </div>
+
+            <!-- COORDINATES -->
+
+            <div class="location-form-field">
+              <label for="editLocationCoordinates"> Coordinates </label>
+
+              <input
+                type="text"
+                id="editLocationCoordinates"
+                name="coordinates"
+                placeholder="-6.2088, 106.8456"
+              />
+            </div>
+
+            <!-- ADDRESS -->
+
+            <div class="location-form-field">
+              <label for="editLocationAddress"> Address </label>
+
+              <input
+                type="text"
+                id="editLocationAddress"
+                name="address"
+                placeholder="Location address"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+
+        <div class="location-edit-footer">
+          <button
+            type="button"
+            class="location-btn location-btn-secondary"
+            id="cancelEditLocation"
+          >
+            Cancel
+          </button>
+
+          <button type="submit" class="location-btn location-btn-primary">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <script src="location-detail.js"></script>
+  </body>
+</html>

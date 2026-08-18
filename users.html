@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Users | NETASSET</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Users page CSS -->
+    <link rel="stylesheet" href="users.css" />
+  </head>
+
+  <body class="users-page">
+    <div class="shell">
+      <!-- =====================================================
+           SIDEBAR
+      ====================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub active">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =====================================================
+           MAIN CONTENT
+      ====================================================== -->
+      <div class="main users-main">
+        <!-- ===================================================
+             TOPBAR
+        ==================================================== -->
+        <header class="topbar users-topbar">
+          <div class="breadcrumb">
+            <a href="index.html"> Customers / Users </a>
+
+            <span class="breadcrumb-separator"> / </span>
+
+            <span> Users </span>
+          </div>
+
+          <button
+            type="button"
+            class="topbar-button"
+            id="userMenuButton"
+            aria-label="User actions"
+          >
+            ☰
+          </button>
+        </header>
+
+        <!-- ===================================================
+             PAGE CONTENT
+        ==================================================== -->
+        <section class="page-content">
+          <!-- =================================================
+               PAGE HEADER
+          ================================================== -->
+          <div class="user-page-header">
+            <div class="user-page-heading">
+              <span class="page-eyebrow"> USER MANAGEMENT </span>
+
+              <h1>Users</h1>
+
+              <p>
+                Manage NETASSET users, organizational assignments, roles, and
+                account status.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="user-button user-button-primary"
+              id="addUserButton"
+            >
+              <span> + </span>
+
+              Add User
+            </button>
+          </div>
+
+          <!-- =================================================
+               USER LIST CARD
+          ================================================== -->
+          <section class="user-list-card">
+            <!-- =================================================
+                 TOOLBAR
+            ================================================== -->
+            <div class="user-toolbar">
+              <!-- Search -->
+              <div class="user-search">
+                <span class="user-search-icon"> ⌕ </span>
+
+                <input
+                  type="search"
+                  id="userSearch"
+                  placeholder="Search employee ID, name, or email..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Status Filter -->
+              <div class="user-filter">
+                <label for="userStatusFilter"> Status </label>
+
+                <select id="userStatusFilter">
+                  <option value="all">All Status</option>
+
+                  <option value="active">Active</option>
+
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+            <div class="user-summary" id="userSummary">
+              <!-- Total -->
+              <button
+                type="button"
+                class="user-summary-chip active"
+                data-filter-type="all"
+              >
+                <strong id="totalUserCount"> 0 </strong>
+
+                <span> total users </span>
+              </button>
+
+              <!-- Active -->
+              <button
+                type="button"
+                class="user-summary-chip"
+                data-filter-type="active"
+              >
+                <strong id="activeUserCount"> 0 </strong>
+
+                <span> active </span>
+              </button>
+
+              <!-- Inactive -->
+              <button
+                type="button"
+                class="user-summary-chip"
+                data-filter-type="inactive"
+              >
+                <strong id="inactiveUserCount"> 0 </strong>
+
+                <span> inactive </span>
+              </button>
+            </div>
+
+            <!-- =================================================
+                 USER TABLE
+            ================================================== -->
+            <div class="user-table-wrapper">
+              <table class="user-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+
+                    <th>Employee ID</th>
+
+                    <th>Department</th>
+
+                    <th>Role</th>
+
+                    <th>Status</th>
+
+                    <th class="user-actions-heading">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="userTableBody">
+                  <!-- JavaScript will render users here -->
+                </tbody>
+              </table>
+
+              <!-- =================================================
+                   EMPTY STATE
+              ================================================== -->
+              <div class="user-empty-state" id="userEmptyState" hidden>
+                <div class="user-empty-icon">⌕</div>
+
+                <h3>No users found</h3>
+
+                <p>No user data matches your current search or filter.</p>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 TABLE FOOTER
+            ================================================== -->
+            <div class="user-list-footer">
+              <!-- Result count -->
+              <div class="user-result-summary" id="userResultSummary">
+                Showing 0 of 0 users
+              </div>
+
+              <!-- Pagination -->
+              <div class="user-pagination">
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="previousUserPageButton"
+                  aria-label="Previous page"
+                >
+                  ←
+                </button>
+
+                <div class="pagination-pages" id="userPaginationPages"></div>
+
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="nextUserPageButton"
+                  aria-label="Next page"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         ADD / EDIT USER MODAL
+         This modal is FORM only.
+    ====================================================== -->
+    <dialog class="user-dialog" id="userModal">
+      <div class="user-dialog-shell">
+        <!-- =================================================
+             MODAL HEADER
+        ================================================== -->
+        <header class="user-dialog-header">
+          <div>
+            <span class="modal-eyebrow"> USER MANAGEMENT </span>
+
+            <h2 id="userModalTitle">Add User</h2>
+
+            <p id="userModalDescription">Create a new NETASSET user record.</p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeUserModal"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- =================================================
+             USER FORM
+        ================================================== -->
+        <form id="userForm" class="user-form" novalidate>
+          <input type="hidden" id="userFormMode" value="add" />
+
+          <input type="hidden" id="editingUserId" value="" />
+
+          <!-- =================================================
+               01 USER INFORMATION
+          ================================================== -->
+          <section class="user-form-section">
+            <div class="user-form-section-heading">
+              <span> 01 </span>
+
+              <div>
+                <h3>User Information</h3>
+
+                <p>Basic user identification information.</p>
+              </div>
+            </div>
+
+            <div class="user-form-grid">
+              <!-- Employee ID -->
+              <div class="user-field">
+                <label for="employeeId">
+                  Employee ID
+
+                  <span> * </span>
+                </label>
+
+                <input
+                  type="text"
+                  id="employeeId"
+                  name="employee_id"
+                  placeholder="EMP-0001"
+                  required
+                />
+
+                <small> Unique employee identifier. </small>
+              </div>
+
+              <!-- Name -->
+              <div class="user-field">
+                <label for="userName">
+                  Name
+
+                  <span> * </span>
+                </label>
+
+                <input
+                  type="text"
+                  id="userName"
+                  name="name"
+                  placeholder="Enter user name"
+                  required
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="user-field user-field-wide">
+                <label for="userEmail">
+                  Email
+
+                  <span> * </span>
+                </label>
+
+                <input
+                  type="email"
+                  id="userEmail"
+                  name="email"
+                  placeholder="name@example.com"
+                  required
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               02 ORGANIZATION
+          ================================================== -->
+          <section class="user-form-section">
+            <div class="user-form-section-heading">
+              <span> 02 </span>
+
+              <div>
+                <h3>Organization</h3>
+
+                <p>Assign the user to a department and role.</p>
+              </div>
+            </div>
+
+            <div class="user-form-grid">
+              <!-- Department -->
+              <div class="user-field">
+                <label for="userDepartment">
+                  Department
+
+                  <span> * </span>
+                </label>
+
+                <select id="userDepartment" name="department" required>
+                  <option value="">Select department</option>
+
+                  <option value="network-operations">Network Operations</option>
+
+                  <option value="it">IT</option>
+
+                  <option value="engineering">Engineering</option>
+
+                  <option value="finance">Finance</option>
+
+                  <option value="administration">Administration</option>
+                </select>
+              </div>
+
+              <!-- Role -->
+              <div class="user-field">
+                <label for="userRole">
+                  Role
+
+                  <span> * </span>
+                </label>
+
+                <select id="userRole" name="role" required>
+                  <option value="">Select role</option>
+
+                  <option value="administrator">Administrator</option>
+
+                  <option value="network-engineer">Network Engineer</option>
+
+                  <option value="asset-manager">Asset Manager</option>
+
+                  <option value="technician">Technician</option>
+
+                  <option value="viewer">Viewer</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               03 STATUS
+          ================================================== -->
+          <section class="user-form-section">
+            <div class="user-form-section-heading">
+              <span> 03 </span>
+
+              <div>
+                <h3>Status</h3>
+
+                <p>Current user account status.</p>
+              </div>
+            </div>
+
+            <div class="user-field user-field-status">
+              <label for="userStatus">
+                Status
+
+                <span> * </span>
+              </label>
+
+              <select id="userStatus" name="status" required>
+                <option value="active">Active</option>
+
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- =================================================
+               FORM ACTIONS
+          ================================================== -->
+          <footer class="user-form-actions">
+            <button
+              type="button"
+              class="user-button user-button-secondary"
+              id="cancelUserForm"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="user-button user-button-primary"
+              id="saveUserButton"
+            >
+              Save User
+            </button>
+          </footer>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         USER DETAILS MODAL
+         READ ONLY — NOT A FORM
+    ====================================================== -->
+    <dialog class="user-details-dialog" id="userDetailsModal">
+      <div class="user-details-shell">
+        <!-- =================================================
+             DETAILS HEADER
+        ================================================== -->
+        <header class="user-details-header">
+          <div>
+            <span class="modal-eyebrow"> USER MANAGEMENT </span>
+
+            <h2>User Details</h2>
+
+            <p>View user information registered in NETASSET.</p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeUserDetails"
+            aria-label="Close user details"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- =================================================
+             DETAILS CONTENT
+        ================================================== -->
+        <div class="user-details-content">
+          <!-- =================================================
+               01 USER INFORMATION
+          ================================================== -->
+          <section class="user-details-section">
+            <div class="user-details-section-heading">
+              <span> 01 </span>
+
+              <div>
+                <h3>User Information</h3>
+
+                <p>Basic user identification information.</p>
+              </div>
+            </div>
+
+            <div class="user-details-grid">
+              <!-- Employee ID -->
+              <div class="user-detail-item">
+                <span class="user-detail-label"> Employee ID </span>
+
+                <strong
+                  id="detailsEmployeeId"
+                  class="user-detail-value user-detail-mono"
+                >
+                  —
+                </strong>
+              </div>
+
+              <!-- Name -->
+              <div class="user-detail-item">
+                <span class="user-detail-label"> Name </span>
+
+                <strong id="detailsUserName" class="user-detail-value">
+                  —
+                </strong>
+              </div>
+
+              <!-- Email -->
+              <div class="user-detail-item user-detail-item-wide">
+                <span class="user-detail-label"> Email </span>
+
+                <span id="detailsUserEmail" class="user-detail-value"> — </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               02 ORGANIZATION
+          ================================================== -->
+          <section class="user-details-section">
+            <div class="user-details-section-heading">
+              <span> 02 </span>
+
+              <div>
+                <h3>Organization</h3>
+
+                <p>User's organizational assignment.</p>
+              </div>
+            </div>
+
+            <div class="user-details-grid">
+              <!-- Department -->
+              <div class="user-detail-item">
+                <span class="user-detail-label"> Department </span>
+
+                <span id="detailsUserDepartment" class="user-detail-value">
+                  —
+                </span>
+              </div>
+
+              <!-- Role -->
+              <div class="user-detail-item">
+                <span class="user-detail-label"> Role </span>
+
+                <span id="detailsUserRole" class="user-detail-value"> — </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               03 STATUS
+          ================================================== -->
+          <section class="user-details-section">
+            <div class="user-details-section-heading">
+              <span> 03 </span>
+
+              <div>
+                <h3>Status</h3>
+
+                <p>Current user account status.</p>
+              </div>
+            </div>
+
+            <div class="user-detail-status-row">
+              <span class="user-detail-label"> Account Status </span>
+
+              <span id="detailsUserStatus" class="user-status-badge">
+                <i class="user-status-dot"></i>
+
+                —
+              </span>
+            </div>
+          </section>
+        </div>
+
+        <!-- =================================================
+             DETAILS ACTIONS
+        ================================================== -->
+        <footer class="user-details-actions">
+          <button
+            type="button"
+            class="user-button user-button-secondary"
+            id="closeUserDetailsButton"
+          >
+            Close
+          </button>
+
+          <button
+            type="button"
+            class="user-button user-button-primary"
+            id="editUserFromDetails"
+          >
+            Edit User
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+    <div
+      class="user-toast"
+      id="userToast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+         Akan kita buat setelah users.css selesai.
+    ====================================================== -->
+    <script src="users.js"></script>
+  </body>
+</html>

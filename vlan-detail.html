@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VLAN Detail · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="vlan-detail.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub active">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Network Resources</span><span> / </span><span>VLAN</span
+              ><span> / </span><strong id="breadcrumbCode">VLAN-0001</strong>
+            </div>
+            <h1 class="page-title">VLAN Detail</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-secondary" type="button" onclick="goBack()">
+              ← Back
+            </button>
+            <button class="btn btn-primary" type="button" onclick="openEdit()">
+              ✎ Edit
+            </button>
+          </div>
+        </header>
+
+        <div class="content vlan-detail-page">
+          <section class="detail-hero">
+            <div class="detail-hero-main">
+              <div class="detail-icon">VL</div>
+              <div>
+                <span class="detail-eyebrow">VLAN</span>
+                <h2 id="detailName">Management</h2>
+                <div class="detail-meta">
+                  <span class="mono-text" id="detailCode">VLAN-0001</span>
+                  <span>·</span><span>Network Resource</span>
+                </div>
+                <div class="detail-status">
+                  <span id="detailStatus" class="status-badge status-active"
+                    ><span class="status-dot"></span>Active</span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <nav class="detail-tabs" role="tablist">
+            <button class="detail-tab active" data-tab="overview">
+              Overview
+            </button>
+            <button class="detail-tab" data-tab="network">Network</button>
+            <button class="detail-tab" data-tab="relationships">
+              Relationships
+            </button>
+            <button class="detail-tab" data-tab="history">History</button>
+          </nav>
+
+          <section id="tab-overview" class="detail-panel active">
+            <div class="panel-heading">
+              <h2>Overview</h2>
+              <p>Identity and VLAN purpose.</p>
+            </div>
+            <div class="info-grid">
+              <div class="info-card">
+                <span>VLAN ID</span><strong id="infoVlanId">—</strong>
+              </div>
+              <div class="info-card">
+                <span>VLAN NAME</span><strong id="infoName">—</strong>
+              </div>
+              <div class="info-card">
+                <span>SCOPE</span><strong id="infoScope">—</strong>
+              </div>
+              <div class="info-card">
+                <span>STATUS</span><strong id="infoStatus">—</strong>
+              </div>
+              <div class="info-card">
+                <span>LOCATION</span><strong id="infoLocation">—</strong>
+              </div>
+              <div class="info-card">
+                <span>PROVIDER</span><strong id="infoProvider">—</strong>
+              </div>
+            </div>
+            <div class="description-box" id="infoDescription">—</div>
+          </section>
+
+          <section id="tab-network" class="detail-panel">
+            <div class="panel-heading">
+              <h2>Network</h2>
+              <p>Layer 2 and associated Layer 3 information.</p>
+            </div>
+            <div class="info-grid">
+              <div class="info-card">
+                <span>NETWORK / PREFIX</span
+                ><strong class="mono-text" id="infoNetwork">—</strong>
+              </div>
+              <div class="info-card">
+                <span>GATEWAY</span
+                ><strong class="mono-text" id="infoGateway">—</strong>
+              </div>
+              <div class="info-card">
+                <span>IP PREFIX / POOL</span><strong id="infoPool">—</strong>
+              </div>
+              <div class="info-card">
+                <span>IP ADDRESS COUNT</span
+                ><strong>Managed by IP Address</strong>
+              </div>
+            </div>
+          </section>
+
+          <section id="tab-relationships" class="detail-panel">
+            <div class="panel-heading">
+              <h2>Relationships</h2>
+              <p>Assets and services associated with this VLAN.</p>
+            </div>
+            <div class="empty-state">
+              <strong>No live relationships yet</strong>
+              <span
+                >Asset-to-VLAN relationships will be connected when the
+                topology/resource relationship module is implemented.</span
+              >
+            </div>
+          </section>
+
+          <section id="tab-history" class="detail-panel">
+            <div class="panel-heading">
+              <h2>History</h2>
+              <p>Audit trail for this VLAN.</p>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Created</strong>
+                  <p>Demo VLAN record created.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Current state</strong>
+                  <p id="historyStatus">Active</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="editModal" class="vlan-modal">
+      <form method="dialog" id="editForm" class="vlan-form">
+        <header class="modal-header">
+          <div>
+            <span class="modal-eyebrow">NETWORK RESOURCE</span>
+            <h2>Edit VLAN</h2>
+          </div>
+          <button type="button" class="modal-close" onclick="closeEdit()">
+            ×
+          </button>
+        </header>
+        <div class="modal-body">
+          <div class="form-grid">
+            <label class="field"
+              ><span>VLAN ID</span
+              ><input id="editVlanId" type="number" min="1" max="4094" required
+            /></label>
+            <label class="field"
+              ><span>VLAN Name</span><input id="editName" required
+            /></label>
+            <label class="field"
+              ><span>Scope</span
+              ><select id="editScope">
+                <option value="management">Management</option>
+                <option value="customer">Customer</option>
+                <option value="infrastructure">Infrastructure</option>
+                <option value="service">Service</option>
+              </select></label
+            >
+            <label class="field"
+              ><span>Status</span
+              ><select id="editStatus">
+                <option value="active">Active</option>
+                <option value="reserved">Reserved</option>
+                <option value="deprecated">Deprecated</option>
+              </select></label
+            >
+            <label class="field"
+              ><span>Network / Prefix</span><input id="editNetwork"
+            /></label>
+            <label class="field"
+              ><span>Gateway</span><input id="editGateway"
+            /></label>
+            <label class="field"
+              ><span>Location</span><input id="editLocation"
+            /></label>
+            <label class="field"
+              ><span>Provider</span><input id="editProvider"
+            /></label>
+            <label class="field field-full"
+              ><span>Description</span
+              ><textarea id="editDescription" rows="3"></textarea>
+            </label>
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeEdit()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script>
+      const STORAGE_KEY = "netasset_vlans_v1";
+      const params = new URLSearchParams(location.search);
+      const code = params.get("code") || "VLAN-0001";
+
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      let item = data.find((x) => x.code === code) || data[0];
+
+      if (!item) {
+        document.getElementById("detailName").textContent = "VLAN Not Found";
+      } else {
+        renderDetail(item);
+      }
+
+      function renderDetail(v) {
+        document.getElementById("breadcrumbCode").textContent = v.code;
+        document.getElementById("detailCode").textContent = v.code;
+        document.getElementById("detailName").textContent = v.name;
+        document.getElementById("detailStatus").className =
+          `status-badge status-${v.status}`;
+        document.getElementById("detailStatus").innerHTML =
+          `<span class="status-dot"></span>${label(v.status)}`;
+
+        document.getElementById("infoVlanId").textContent = v.vlanId;
+        document.getElementById("infoName").textContent = v.name;
+        document.getElementById("infoScope").textContent = title(v.scope);
+        document.getElementById("infoStatus").textContent = label(v.status);
+        document.getElementById("infoLocation").textContent = v.location || "—";
+        document.getElementById("infoProvider").textContent = v.provider || "—";
+        document.getElementById("infoDescription").textContent =
+          v.description || "No description.";
+        document.getElementById("infoNetwork").textContent = v.network || "—";
+        document.getElementById("infoGateway").textContent = v.gateway || "—";
+        document.getElementById("infoPool").textContent = v.network || "—";
+        document.getElementById("historyStatus").textContent = label(v.status);
+      }
+
+      function label(v) {
+        return (
+          { active: "Active", reserved: "Reserved", deprecated: "Deprecated" }[
+            v
+          ] || v
+        );
+      }
+      function title(v) {
+        return v ? v.charAt(0).toUpperCase() + v.slice(1) : "—";
+      }
+
+      document.querySelectorAll(".detail-tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".detail-tab")
+            .forEach((x) => x.classList.remove("active"));
+          document
+            .querySelectorAll(".detail-panel")
+            .forEach((x) => x.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .getElementById(`tab-${btn.dataset.tab}`)
+            .classList.add("active");
+        });
+      });
+
+      function goBack() {
+        location.href = "vlan.html";
+      }
+
+      function openEdit() {
+        if (!item) return;
+        editVlanId.value = item.vlanId;
+        editName.value = item.name;
+        editScope.value = item.scope;
+        editStatus.value = item.status;
+        editNetwork.value = item.network || "";
+        editGateway.value = item.gateway || "";
+        editLocation.value = item.location || "";
+        editProvider.value = item.provider || "";
+        editDescription.value = item.description || "";
+        editModal.showModal();
+      }
+      function closeEdit() {
+        editModal.close();
+      }
+
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        const index = all.findIndex((x) => x.code === item.code);
+        if (index === -1) return;
+
+        all[index] = {
+          ...all[index],
+          vlanId: Number(editVlanId.value),
+          name: editName.value.trim(),
+          scope: editScope.value,
+          status: editStatus.value,
+          network: editNetwork.value.trim(),
+          gateway: editGateway.value.trim(),
+          location: editLocation.value.trim(),
+          provider: editProvider.value.trim(),
+          description: editDescription.value.trim(),
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+        item = all[index];
+        renderDetail(item);
+        closeEdit();
+      });
+    </script>
+  </body>
+</html>

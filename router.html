@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Routers · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="router.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub active"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================= MAIN ================= -->
+
+      <div class="main">
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb">
+              Asset Management
+              <span class="sep">/</span>
+              Physical Assets
+              <span class="sep">/</span>
+              Router
+            </div>
+
+            <h1 class="page-title">Routers</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="btn btn-ghost" onclick="toggleSidebar()">☰</button>
+
+            <button class="btn btn-primary" onclick="openRouterAdd()">
+              + Add Router
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="content">
+          <div class="panel">
+            <!-- TOOLBAR -->
+
+            <div class="table-toolbar">
+              <div class="search-box">
+                <input
+                  id="routerSearch"
+                  type="text"
+                  placeholder="Cari asset code, hostname, IP, vendor..."
+                />
+              </div>
+
+              <div class="topbar-actions">
+                <select id="routerRoleFilter" class="filter-select">
+                  <option value="all">Semua Role</option>
+
+                  <option value="Core">Core</option>
+
+                  <option value="Distribution">Distribution</option>
+
+                  <option value="Edge">Edge</option>
+
+                  <option value="CPE">CPE</option>
+                </select>
+
+                <select id="routerStatusFilter" class="filter-select">
+                  <option value="all">Semua Lifecycle</option>
+
+                  <option value="active">Active</option>
+
+                  <option value="maintenance">Maintenance</option>
+
+                  <option value="planned">Planned</option>
+
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SUMMARY -->
+
+            <div class="router-summary">
+              <div class="router-summary-item">
+                <span class="router-summary-label"> Total Router </span>
+
+                <strong class="router-summary-value" id="routerTotalCount">
+                  0
+                </strong>
+              </div>
+
+              <div class="router-summary-item">
+                <span class="router-summary-label"> Active </span>
+
+                <strong class="router-summary-value" id="routerActiveCount">
+                  0
+                </strong>
+              </div>
+
+              <div class="router-summary-item">
+                <span class="router-summary-label"> Maintenance </span>
+
+                <strong
+                  class="router-summary-value"
+                  id="routerMaintenanceCount"
+                >
+                  0
+                </strong>
+              </div>
+
+              <div class="router-summary-item">
+                <span class="router-summary-label"> Retired </span>
+
+                <strong class="router-summary-value" id="routerRetiredCount">
+                  0
+                </strong>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="router-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Router</th>
+
+                    <th>Hostname / Role</th>
+
+                    <th>Management IP</th>
+
+                    <th>Location</th>
+
+                    <th>Provider</th>
+
+                    <th>Lifecycle</th>
+
+                    <th>Operational</th>
+
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody id="routerTableBody"></tbody>
+              </table>
+
+              <div
+                class="empty-state"
+                id="routerEmptyState"
+                style="display: none"
+              >
+                <h3>No Router Found</h3>
+
+                <p>Tidak ada router yang sesuai dengan search atau filter.</p>
+              </div>
+            </div>
+
+            <!-- FOOTER -->
+
+            <div class="table-footer">
+              <span id="routerResultCount"> 0 routers </span>
+
+              <button
+                class="btn btn-ghost btn-sm"
+                type="button"
+                onclick="resetRouterDemoData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ADD / EDIT ROUTER MODAL ================= -->
+
+    <dialog class="modal" id="routerModal">
+      <form
+        id="routerForm"
+        method="dialog"
+        onsubmit="saveRouterFromForm(event)"
+      >
+        <div class="modal-head">
+          <h3 id="routerModalTitle">Add Router</h3>
+
+          <button
+            type="button"
+            class="modal-close"
+            onclick="closeModal('routerModal')"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <!-- BASIC INFORMATION -->
+
+          <div class="form-section-label">Basic Information</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label>
+                Asset Code
+                <span class="hint"> (auto-generated) </span>
+              </label>
+
+              <input class="mono-input" type="text" name="assetCode" disabled />
+            </div>
+
+            <div class="form-field">
+              <label> Asset Name </label>
+
+              <input
+                type="text"
+                name="assetName"
+                placeholder="cth. Core Router Jakarta-01"
+                required
+              />
+            </div>
+
+            <div class="form-field full">
+              <label> Hostname </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="hostname"
+                placeholder="core-jkt-01"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label> Vendor </label>
+
+              <select name="vendor" required>
+                <option value="">Pilih vendor</option>
+
+                <option>MikroTik</option>
+
+                <option>Cisco</option>
+
+                <option>Juniper</option>
+
+                <option>Huawei</option>
+
+                <option>Nokia</option>
+
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Model </label>
+
+              <input
+                type="text"
+                name="model"
+                placeholder="Model router"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label>
+                Serial Number
+                <span class="hint"> (optional) </span>
+              </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="serialNumber"
+                placeholder="Serial number"
+              />
+            </div>
+
+            <div class="form-field">
+              <label>
+                Part Number
+                <span class="hint"> (optional) </span>
+              </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="partNumber"
+                placeholder="Part number"
+              />
+            </div>
+          </div>
+
+          <!-- NETWORK -->
+
+          <div class="form-section-label">Network</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Management IP </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="managementIp"
+                placeholder="10.10.0.1"
+              />
+            </div>
+
+            <div class="form-field">
+              <label> MAC Address </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="macAddress"
+                placeholder="AA:BB:CC:DD:EE:FF"
+              />
+            </div>
+
+            <div class="form-field">
+              <label> OS </label>
+
+              <select name="os">
+                <option value="">Pilih OS</option>
+
+                <option>RouterOS</option>
+
+                <option>IOS XE</option>
+
+                <option>Junos</option>
+
+                <option>VRP</option>
+
+                <option>SR OS</option>
+
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> OS Version </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="osVersion"
+                placeholder="7.16.2"
+              />
+            </div>
+
+            <div class="form-field full">
+              <label> Router Role </label>
+
+              <select name="routerRole" required>
+                <option value="">Pilih role</option>
+
+                <option>Core</option>
+
+                <option>Distribution</option>
+
+                <option>Edge</option>
+
+                <option>CPE</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- LOCATION -->
+
+          <div class="form-section-label">Location</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Location </label>
+
+              <select name="location">
+                <option value="">Pilih location</option>
+
+                <option>POP Jakarta</option>
+
+                <option>POP Jakarta Selatan</option>
+
+                <option>POP Bandung</option>
+
+                <option>DC Jakarta</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Rack </label>
+
+              <select name="rack">
+                <option value="">Pilih rack</option>
+
+                <option>Rack-01</option>
+
+                <option>Rack-02</option>
+
+                <option>Rack-03</option>
+
+                <option>Rack-04</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Rack U </label>
+
+              <input
+                class="mono-input"
+                type="number"
+                name="rackU"
+                min="1"
+                max="48"
+                placeholder="20"
+              />
+            </div>
+          </div>
+
+          <!-- PROVIDER -->
+
+          <div class="form-section-label">Provider</div>
+
+          <div class="form-grid">
+            <div class="form-field full">
+              <label> Provider </label>
+
+              <select name="provider">
+                <option value="">Pilih provider</option>
+
+                <option>NAP-A</option>
+
+                <option>NAP-B</option>
+
+                <option>NAP-C</option>
+
+                <option>PT Maju Jaya Telekomunikasi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- STATUS -->
+
+          <div class="form-section-label">Status</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Lifecycle Status </label>
+
+              <select name="lifecycleStatus" required>
+                <option value="active">Active</option>
+
+                <option value="planned">Planned</option>
+
+                <option value="maintenance">Maintenance</option>
+
+                <option value="retired">Retired</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Operational Status </label>
+
+              <select name="operationalStatus" required>
+                <option value="up">UP</option>
+
+                <option value="down">DOWN</option>
+
+                <option value="degraded">Degraded</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- RELATIONSHIPS -->
+
+          <div class="form-section-label">Relationships</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Upstream </label>
+
+              <select name="upstream">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Downstream </label>
+
+              <select name="downstream">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+
+            <div class="form-field full">
+              <label> Connected To </label>
+
+              <select name="connectedTo">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="router-form-note">
+            Asset Code dibuat otomatis dan harus unique. Management IP juga
+            tidak boleh duplikat. Relationship pada router retired diblokir pada
+            prototype ini.
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            onclick="closeModal('routerModal')"
+          >
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary" id="routerSubmitLabel">
+            Save Router
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+      <span class="dot"></span>
+
+      <span class="toast-text"> Saved </span>
+    </div>
+
+    <script src="./app.js"></script>
+
+    <script>
+      const editCode = new URLSearchParams(window.location.search).get("edit");
+
+      if (editCode) {
+        window.addEventListener("DOMContentLoaded", () =>
+          openRouterEdit(editCode),
+        );
+      }
+    </script>
+  </body>
+</html>

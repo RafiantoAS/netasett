@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interface Detail · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="interface-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub active">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <a href="interface.html">Network Resources</a>
+              <span> / </span>
+              <a href="interface.html">Interface</a>
+              <span> / </span>
+              <strong id="breadcrumbCode">INT-0001</strong>
+            </div>
+            <h1 class="page-title">Interface Detail</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="btn btn-secondary" type="button" onclick="goBack()">
+              ← Back
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="editCurrent()"
+            >
+              ✎ Edit
+            </button>
+          </div>
+        </header>
+
+        <div class="content interface-detail-page">
+          <section class="interface-hero">
+            <div class="interface-hero-main">
+              <div class="interface-icon-large">IF</div>
+
+              <div class="interface-hero-copy">
+                <span class="resource-eyebrow">NETWORK INTERFACE</span>
+                <h2 id="heroName">GigabitEthernet0/0</h2>
+
+                <div class="interface-hero-meta">
+                  <span id="heroCode" class="mono-text">INT-0001</span>
+                  <span>·</span>
+                  <span id="heroDevice">Core Router Jakarta-01</span>
+                </div>
+
+                <div class="interface-hero-status">
+                  <span id="heroStatus" class="status-badge status-up">
+                    <span class="status-dot"></span>Up
+                  </span>
+                  <span id="heroType" class="type-badge">Ethernet</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <nav
+            class="detail-tabs"
+            role="tablist"
+            aria-label="Interface detail tabs"
+          >
+            <button class="detail-tab active" type="button" data-tab="overview">
+              Overview
+            </button>
+            <button class="detail-tab" type="button" data-tab="network">
+              Network
+            </button>
+            <button class="detail-tab" type="button" data-tab="relationships">
+              Relationships
+            </button>
+            <button class="detail-tab" type="button" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <section class="detail-panel active" id="tab-overview">
+            <div class="panel-heading">
+              <div>
+                <h2>Overview</h2>
+                <p>
+                  Interface identity, device assignment and operational
+                  information.
+                </p>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <article class="info-card">
+                <header>
+                  <h3>Identity</h3>
+                  <p>Basic interface information.</p>
+                </header>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span>INTERFACE</span>
+                    <strong id="overviewName">GigabitEthernet0/0</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>INTERFACE CODE</span>
+                    <strong id="overviewCode" class="mono-text"
+                      >INT-0001</strong
+                    >
+                  </div>
+                  <div class="kv-item">
+                    <span>TYPE</span>
+                    <strong id="overviewType">Ethernet</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>STATUS</span>
+                    <strong id="overviewStatus">Up</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>SPEED</span>
+                    <strong id="overviewSpeed">1 Gbps</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>MAC ADDRESS</span>
+                    <strong id="overviewMac" class="mono-text"
+                      >00:11:22:33:44:01</strong
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="info-card">
+                <header>
+                  <h3>Device & Placement</h3>
+                  <p>Where this interface is installed and managed.</p>
+                </header>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span>DEVICE</span>
+                    <strong id="overviewDevice">Core Router Jakarta-01</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>LOCATION</span>
+                    <strong id="overviewLocation">POP Jakarta</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>IP ADDRESS</span>
+                    <strong id="overviewIp" class="mono-text"
+                      >10.10.10.1/24</strong
+                    >
+                  </div>
+                  <div class="kv-item">
+                    <span>VLAN</span>
+                    <strong id="overviewVlan" class="mono-text">VLAN 10</strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="description-card">
+              <span>DESCRIPTION</span>
+              <p id="overviewDescription">Primary uplink interface.</p>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-network" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Network</h2>
+                <p>
+                  Layer 2 and Layer 3 configuration associated with this
+                  interface.
+                </p>
+              </div>
+            </div>
+
+            <div class="network-summary">
+              <div class="network-stat">
+                <span>IP ADDRESS</span>
+                <strong id="networkIp" class="mono-text">10.10.10.1/24</strong>
+              </div>
+              <div class="network-stat">
+                <span>VLAN</span>
+                <strong id="networkVlan" class="mono-text">VLAN 10</strong>
+              </div>
+              <div class="network-stat">
+                <span>SPEED</span>
+                <strong id="networkSpeed">1 Gbps</strong>
+              </div>
+              <div class="network-stat">
+                <span>LINK STATUS</span>
+                <strong id="networkStatus">Up</strong>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="table-card-header">
+                <h3>Network Configuration</h3>
+                <span>Current assignment</span>
+              </div>
+
+              <div class="network-row">
+                <div>
+                  <span>IP ADDRESS</span>
+                  <strong id="networkIpRow" class="mono-text"
+                    >10.10.10.1/24</strong
+                  >
+                </div>
+                <div>
+                  <span>VLAN</span>
+                  <strong id="networkVlanRow" class="mono-text">VLAN 10</strong>
+                </div>
+                <div>
+                  <span>MAC</span>
+                  <strong id="networkMacRow" class="mono-text"
+                    >00:11:22:33:44:01</strong
+                  >
+                </div>
+                <span id="networkStatusBadge" class="status-badge status-up">
+                  <span class="status-dot"></span>Up
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-relationships" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Relationships</h2>
+                <p>Resources directly associated with this interface.</p>
+              </div>
+            </div>
+
+            <div class="relationship-grid">
+              <article class="relationship-card">
+                <span class="relationship-icon">DV</span>
+                <div>
+                  <strong>Device</strong>
+                  <p id="relationshipDevice">Core Router Jakarta-01</p>
+                </div>
+                <span class="relationship-muted">Primary</span>
+              </article>
+
+              <article class="relationship-card">
+                <span class="relationship-icon">IP</span>
+                <div>
+                  <strong>IP Address</strong>
+                  <p id="relationshipIp">10.10.10.1/24</p>
+                </div>
+                <a href="ip-address.html">View</a>
+              </article>
+
+              <article class="relationship-card">
+                <span class="relationship-icon">VL</span>
+                <div>
+                  <strong>VLAN</strong>
+                  <p id="relationshipVlan">VLAN 10</p>
+                </div>
+                <a href="vlan.html">View</a>
+              </article>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-history" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>History</h2>
+                <p>Audit timeline for changes to this interface.</p>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Interface record created</strong>
+                  <p>Initial interface master data was created in NETASSET.</p>
+                  <small>Demo data</small>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Network assignment recorded</strong>
+                  <p id="historyAssignment">
+                    10.10.10.1/24 and VLAN 10 were assigned to this interface.
+                  </p>
+                  <small>Demo data</small>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Device relationship recorded</strong>
+                  <p id="historyDevice">
+                    Interface is associated with Core Router Jakarta-01.
+                  </p>
+                  <small>Demo data</small>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script>
+      const STORAGE_KEY = "netasset_interfaces_v1";
+
+      const FALLBACK = {
+        code: "INT-0001",
+        name: "GigabitEthernet0/0",
+        device: "Core Router Jakarta-01",
+        type: "ethernet",
+        ip: "10.10.10.1/24",
+        vlan: "VLAN 10",
+        speed: "1 Gbps",
+        location: "POP Jakarta",
+        mac: "00:11:22:33:44:01",
+        status: "up",
+        description: "Primary uplink interface.",
+      };
+
+      let currentItem = null;
+
+      function loadItem() {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code") || "INT-0001";
+
+        try {
+          const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          return data.find((item) => item.code === code) || FALLBACK;
+        } catch {
+          return FALLBACK;
+        }
+      }
+
+      function label(value) {
+        if (!value) return "—";
+        return String(value)
+          .split("-")
+          .map((x) => x.charAt(0).toUpperCase() + x.slice(1))
+          .join(" ");
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            up: "status-up",
+            down: "status-down",
+            disabled: "status-disabled",
+          }[status] || "status-up"
+        );
+      }
+
+      function statusLabel(status) {
+        return (
+          {
+            up: "Up",
+            down: "Down",
+            disabled: "Disabled",
+          }[status] || label(status)
+        );
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value ?? "—";
+      }
+
+      function applyStatus(id, status) {
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        element.className = `status-badge ${statusClass(status)}`;
+        element.innerHTML = `<span class="status-dot"></span>${statusLabel(status)}`;
+      }
+
+      function render() {
+        currentItem = loadItem();
+        const item = currentItem;
+
+        document.title = `${item.name} · Interface · NETASSET`;
+
+        setText("breadcrumbCode", item.code);
+        setText("heroName", item.name);
+        setText("heroCode", item.code);
+        setText("heroDevice", item.device);
+        setText("heroType", label(item.type));
+        applyStatus("heroStatus", item.status);
+
+        setText("overviewName", item.name);
+        setText("overviewCode", item.code);
+        setText("overviewType", label(item.type));
+        setText("overviewStatus", statusLabel(item.status));
+        setText("overviewSpeed", item.speed);
+        setText("overviewMac", item.mac);
+        setText("overviewDevice", item.device);
+        setText("overviewLocation", item.location);
+        setText("overviewIp", item.ip);
+        setText("overviewVlan", item.vlan);
+        setText("overviewDescription", item.description);
+
+        setText("networkIp", item.ip);
+        setText("networkVlan", item.vlan);
+        setText("networkSpeed", item.speed);
+        setText("networkStatus", statusLabel(item.status));
+        setText("networkIpRow", item.ip);
+        setText("networkVlanRow", item.vlan);
+        setText("networkMacRow", item.mac);
+        applyStatus("networkStatusBadge", item.status);
+
+        setText("relationshipDevice", item.device);
+        setText("relationshipIp", item.ip);
+        setText("relationshipVlan", item.vlan);
+
+        setText(
+          "historyAssignment",
+          `${item.ip} and ${item.vlan} were assigned to this interface.`,
+        );
+        setText(
+          "historyDevice",
+          `Interface is associated with ${item.device}.`,
+        );
+      }
+
+      function activateTab(name) {
+        document.querySelectorAll(".detail-tab").forEach((tab) => {
+          const active = tab.dataset.tab === name;
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        document.querySelectorAll(".detail-panel").forEach((panel) => {
+          const active = panel.id === `tab-${name}`;
+          panel.hidden = !active;
+          panel.classList.toggle("active", active);
+        });
+      }
+
+      document.querySelectorAll(".detail-tab").forEach((tab) => {
+        tab.addEventListener("click", () => activateTab(tab.dataset.tab));
+      });
+
+      function goBack() {
+        window.location.href = "interface.html";
+      }
+
+      function editCurrent() {
+        if (!currentItem) return;
+        window.location.href = `interface.html?edit=${encodeURIComponent(currentItem.code)}`;
+      }
+
+      render();
+    </script>
+  </body>
+</html>

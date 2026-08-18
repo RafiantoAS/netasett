@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VM Detail — NETASSET</title>
+
+    <!-- GLOBAL -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- VM DETAIL -->
+    <link rel="stylesheet" href="vm-detail.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+         APP SHELL
+         ========================================================= -->
+
+    <div class="app-shell">
+      <!-- =====================================================
+             SIDEBAR
+             ===================================================== -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub active">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+      <main class="main">
+        <div class="vm-detail-page">
+          <!-- =================================================
+                     BREADCRUMB
+                     ================================================= -->
+
+          <div class="vm-detail-breadcrumb">
+            <a href="vm.html"> Virtual Resources </a>
+
+            <span>/</span>
+
+            <a href="vm.html"> VM </a>
+
+            <span>/</span>
+
+            <strong id="detailBreadcrumbCode"> VM-0001 </strong>
+          </div>
+
+          <!-- =================================================
+                     HERO
+                     ================================================= -->
+
+          <section class="vm-detail-hero">
+            <div class="vm-detail-hero-main">
+              <!-- VM ICON -->
+              <div class="vm-detail-icon">VM</div>
+
+              <!-- VM INFORMATION -->
+              <div class="vm-detail-hero-copy">
+                <div class="vm-detail-eyebrow">VIRTUAL MACHINE</div>
+
+                <h1 class="vm-detail-title" id="detailTitle">
+                  Application VM Jakarta-01
+                </h1>
+
+                <div class="vm-detail-meta">
+                  <span class="mono" id="detailCode"> VM-0001 </span>
+
+                  <span>·</span>
+
+                  <span> Virtual Resource </span>
+                </div>
+
+                <!-- STATUS -->
+                <div class="vm-detail-status">
+                  <span
+                    id="detailLifecycle"
+                    class="vm-status-badge vm-status-active"
+                  >
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+
+                  <span
+                    id="detailOperational"
+                    class="vm-status-badge vm-status-running"
+                  >
+                    <span class="status-dot"></span>
+                    Running
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO ACTIONS -->
+            <div class="vm-detail-hero-actions">
+              <a href="vm.html" class="btn btn-secondary"> ← Back </a>
+
+              <a href="vm.html" id="editVmBtn" class="btn btn-primary">
+                ✎ Edit
+              </a>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     TABS
+                     ================================================= -->
+
+          <nav class="vm-detail-tabs">
+            <button
+              type="button"
+              class="vm-detail-tab active"
+              data-tab="overview"
+            >
+              Overview
+            </button>
+
+            <button type="button" class="vm-detail-tab" data-tab="network">
+              Network
+            </button>
+
+            <button
+              type="button"
+              class="vm-detail-tab"
+              data-tab="relationships"
+            >
+              Relationships
+            </button>
+
+            <button type="button" class="vm-detail-tab" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <!-- =================================================
+                     OVERVIEW
+                     ================================================= -->
+
+          <section class="vm-detail-panel active" id="tab-overview">
+            <div class="vm-detail-section-header">
+              <div>
+                <h2>Overview</h2>
+
+                <p>
+                  Identity, compute, operating system and storage information.
+                </p>
+              </div>
+            </div>
+
+            <div class="vm-detail-overview-grid">
+              <!-- =================================================
+                             IDENTITY
+                             ================================================= -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>Identity</h3>
+
+                  <p>Virtual machine master information.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Asset Code </span>
+
+                    <strong class="vm-kv-value mono" id="dAssetCode">
+                      —
+                    </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> VM Name </span>
+
+                    <strong class="vm-kv-value" id="dVmName"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Hostname </span>
+
+                    <strong class="vm-kv-value mono" id="dHostname"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Resource Type </span>
+
+                    <strong class="vm-kv-value"> Virtual Machine </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                             COMPUTE
+                             ================================================= -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>Compute</h3>
+
+                  <p>Compute resources assigned to this VM.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Hypervisor </span>
+
+                    <strong class="vm-kv-value" id="dHypervisor"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> vCPU </span>
+
+                    <strong class="vm-kv-value" id="dVcpu"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> RAM </span>
+
+                    <strong class="vm-kv-value" id="dRam"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Storage </span>
+
+                    <strong class="vm-kv-value" id="dStorage"> — </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                             STORAGE & OS
+                             ================================================= -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>Storage &amp; Operating System</h3>
+
+                  <p>Operating system and storage information.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Operating System </span>
+
+                    <strong class="vm-kv-value" id="dOs"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> OS Version </span>
+
+                    <strong class="vm-kv-value mono" id="dOsVersion">
+                      —
+                    </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Storage </span>
+
+                    <strong class="vm-kv-value" id="dStorage2"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Lifecycle </span>
+
+                    <strong class="vm-kv-value" id="dLifecycleText"> — </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                             OPERATIONAL
+                             ================================================= -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>Operational</h3>
+
+                  <p>Current network and operational state.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Private IP </span>
+
+                    <strong class="vm-kv-value mono" id="dPrivateIpOverview">
+                      —
+                    </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> VLAN </span>
+
+                    <strong class="vm-kv-value" id="dVlanOverview"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Lifecycle </span>
+
+                    <strong class="vm-kv-value" id="dLifecycleOverview">
+                      —
+                    </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Operational </span>
+
+                    <strong class="vm-kv-value" id="dOperationalOverview">
+                      —
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     NETWORK
+                     ================================================= -->
+
+          <section class="vm-detail-panel" id="tab-network">
+            <div class="vm-detail-section-header">
+              <div>
+                <h2>Network</h2>
+
+                <p>Network addressing and Layer 2 connectivity information.</p>
+              </div>
+            </div>
+
+            <div class="vm-detail-overview-grid">
+              <!-- IP ADDRESSING -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>IP Addressing</h3>
+
+                  <p>IP configuration assigned to this VM.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Private IP </span>
+
+                    <strong class="vm-kv-value mono" id="dPrivateIp">
+                      —
+                    </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Public IP </span>
+
+                    <strong class="vm-kv-value mono" id="dPublicIp"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> VLAN </span>
+
+                    <strong class="vm-kv-value" id="dVlan"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Operational </span>
+
+                    <strong class="vm-kv-value" id="dOperationalText">
+                      —
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CONNECTIVITY -->
+
+              <article class="vm-info-card">
+                <div class="vm-info-card-header">
+                  <h3>Connectivity</h3>
+
+                  <p>Network relationship information.</p>
+                </div>
+
+                <div class="vm-kv-grid">
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Connected Network </span>
+
+                    <strong class="vm-kv-value" id="dConnectedTo"> — </strong>
+                  </div>
+
+                  <div class="vm-kv">
+                    <span class="vm-kv-label"> Hosted On </span>
+
+                    <strong class="vm-kv-value" id="dHostedOn"> — </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     RELATIONSHIPS
+                     ================================================= -->
+
+          <section class="vm-detail-panel" id="tab-relationships">
+            <div class="vm-detail-section-header">
+              <div>
+                <h2>Relationships</h2>
+
+                <p>Resources associated with this virtual machine.</p>
+              </div>
+            </div>
+
+            <div class="vm-relationship-grid">
+              <div class="vm-relationship-card">
+                <div class="vm-relationship-icon">HV</div>
+
+                <div>
+                  <span class="vm-relationship-label"> Hypervisor </span>
+
+                  <strong id="rHypervisor" class="vm-relationship-value">
+                    —
+                  </strong>
+                </div>
+              </div>
+
+              <div class="vm-relationship-card">
+                <div class="vm-relationship-icon">IP</div>
+
+                <div>
+                  <span class="vm-relationship-label"> Private IP </span>
+
+                  <strong id="rIp" class="vm-relationship-value mono">
+                    —
+                  </strong>
+                </div>
+              </div>
+
+              <div class="vm-relationship-card">
+                <div class="vm-relationship-icon">VL</div>
+
+                <div>
+                  <span class="vm-relationship-label"> VLAN </span>
+
+                  <strong id="rVlan" class="vm-relationship-value"> — </strong>
+                </div>
+              </div>
+
+              <div class="vm-relationship-card">
+                <div class="vm-relationship-icon">ST</div>
+
+                <div>
+                  <span class="vm-relationship-label"> Storage </span>
+
+                  <strong id="rStorage" class="vm-relationship-value">
+                    —
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     HISTORY
+                     ================================================= -->
+
+          <section class="vm-detail-panel" id="tab-history">
+            <div class="vm-detail-section-header">
+              <div>
+                <h2>History</h2>
+
+                <p>Recent audit activity for this VM.</p>
+              </div>
+            </div>
+
+            <div class="vm-history">
+              <div class="vm-history-item">
+                <div class="vm-history-marker">✓</div>
+
+                <div class="vm-history-content">
+                  <span class="vm-history-date"> Asset </span>
+
+                  <h3>VM asset created</h3>
+
+                  <p>Virtual machine registered in NETASSET.</p>
+                </div>
+              </div>
+
+              <div class="vm-history-item">
+                <div class="vm-history-marker">✓</div>
+
+                <div class="vm-history-content">
+                  <span class="vm-history-date"> Configuration </span>
+
+                  <h3>Configuration verified</h3>
+
+                  <p>
+                    Compute, operating system and network configuration
+                    reviewed.
+                  </p>
+                </div>
+              </div>
+
+              <div class="vm-history-item">
+                <div class="vm-history-marker">✓</div>
+
+                <div class="vm-history-content">
+                  <span class="vm-history-date"> Operational </span>
+
+                  <h3>Operational status checked</h3>
+
+                  <p id="historyStatus">Current operational status verified.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+         GLOBAL JS
+         ========================================================= -->
+
+    <script src="app.js"></script>
+
+    <!-- =========================================================
+         VM DETAIL JS
+         ========================================================= -->
+
+    <script>
+      /* =========================================================
+           VM DETAIL — SHARED DATA WITH vm.html
+           ========================================================= */
+
+      const VM_STORAGE_KEY = "netasset_vms";
+
+      function getVMs() {
+        try {
+          const saved = localStorage.getItem(VM_STORAGE_KEY);
+          if (!saved) return [];
+          const parsed = JSON.parse(saved);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          console.error("Failed to load VM data:", error);
+          return [];
+        }
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const assetCode = params.get("asset");
+      const vms = getVMs();
+      const vm = vms.find((item) => item.assetCode === assetCode);
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        element.textContent =
+          value !== undefined && value !== null && value !== "" ? value : "—";
+      }
+
+      function normalizeStatus(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replace(/\s+/g, "-");
+      }
+
+      function setStatus(id, value) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        const status = value || "—";
+        element.className = `vm-status-badge vm-status-${normalizeStatus(status)}`;
+        element.innerHTML = `<span class="status-dot"></span>${status}`;
+      }
+
+      function renderVMDetail(vm) {
+        document.title = `${vm.vmName || vm.assetCode} — NETASSET`;
+
+        setText("detailBreadcrumbCode", vm.assetCode);
+        setText("detailTitle", vm.vmName);
+        setText("detailCode", vm.assetCode);
+        setStatus("detailLifecycle", vm.lifecycleStatus);
+        setStatus("detailOperational", vm.operationalStatus);
+
+        setText("dAssetCode", vm.assetCode);
+        setText("dVmName", vm.vmName);
+        setText("dHostname", vm.hostname);
+
+        setText("dHypervisor", vm.hypervisor);
+        setText("dVcpu", vm.vcpu ? `${vm.vcpu} vCPU` : "—");
+        setText("dRam", vm.ram);
+        setText("dStorage", vm.storage);
+
+        setText("dOs", vm.operatingSystem);
+        setText("dOsVersion", vm.osVersion);
+        setText("dStorage2", vm.storage);
+        setText("dLifecycleText", vm.lifecycleStatus);
+
+        setText("dPrivateIpOverview", vm.privateIp);
+        setText("dVlanOverview", vm.vlan);
+        setText("dLifecycleOverview", vm.lifecycleStatus);
+        setText("dOperationalOverview", vm.operationalStatus);
+
+        setText("dPrivateIp", vm.privateIp);
+        setText("dPublicIp", vm.publicIp);
+        setText("dVlan", vm.vlan);
+        setText("dOperationalText", vm.operationalStatus);
+        setText("dConnectedTo", vm.connectedTo);
+        setText("dHostedOn", vm.hostedOn || vm.hypervisor);
+
+        setText("rHypervisor", vm.hypervisor);
+        setText("rIp", vm.privateIp);
+        setText("rVlan", vm.vlan);
+        setText("rStorage", vm.usesStorage || vm.storage);
+
+        setText(
+          "historyStatus",
+          `Current operational status: ${vm.operationalStatus || "—"}.`,
+        );
+
+        const editButton = document.getElementById("editVmBtn");
+        if (editButton) {
+          editButton.href = `vm.html?edit=${encodeURIComponent(vm.assetCode)}`;
+        }
+      }
+
+      function showVMNotFound() {
+        document.title = "VM Not Found — NETASSET";
+        setText("detailBreadcrumbCode", assetCode || "Unknown");
+        setText("detailTitle", "VM Not Found");
+        setText("detailCode", assetCode || "Unknown");
+        setText(
+          "historyStatus",
+          `VM ${assetCode || "Unknown"} tidak ditemukan di NETASSET.`,
+        );
+        console.error(`VM dengan asset code "${assetCode}" tidak ditemukan.`);
+      }
+
+      function initTabs() {
+        const tabs = document.querySelectorAll(".vm-detail-tab");
+        const panels = document.querySelectorAll(".vm-detail-panel");
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
+            tabs.forEach((item) =>
+              item.classList.toggle("active", item === tab),
+            );
+            panels.forEach((panel) =>
+              panel.classList.toggle("active", panel.id === `tab-${target}`),
+            );
+          });
+        });
+      }
+
+      if (vm) {
+        renderVMDetail(vm);
+      } else {
+        showVMNotFound();
+      }
+
+      initTabs();
+    </script>
+  </body>
+</html>

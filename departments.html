@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Departments | NETASSET</title>
+
+    <!-- Global Design System -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="departments.css" />
+  </head>
+
+  <body class="departments-page">
+    <div class="shell">
+      <!-- =====================================================
+           SIDEBAR
+      ====================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub active">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =====================================================
+           MAIN APPLICATION AREA
+      ====================================================== -->
+      <div class="main departments-main">
+        <!-- ===================================================
+             TOPBAR
+        ==================================================== -->
+        <header class="topbar departments-topbar">
+          <div class="breadcrumb">
+            <a href="index.html"> Customers / Users </a>
+
+            <span class="breadcrumb-separator"> / </span>
+
+            <span> Departments </span>
+          </div>
+
+          <button
+            type="button"
+            class="topbar-button"
+            id="departmentMenuButton"
+            aria-label="Department actions"
+          >
+            ☰
+          </button>
+        </header>
+
+        <!-- ===================================================
+             PAGE CONTENT
+        ==================================================== -->
+        <section class="page-content">
+          <!-- =================================================
+               PAGE HEADER
+          ================================================== -->
+          <div class="department-page-header">
+            <div class="department-page-heading">
+              <span class="page-eyebrow"> MASTER DATA </span>
+
+              <h1>Departments</h1>
+
+              <p>
+                Manage organizational departments used across NETASSET users and
+                assignments.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="department-button department-button-primary"
+              id="addDepartmentButton"
+            >
+              <span> + </span>
+
+              Add Department
+            </button>
+          </div>
+
+          <!-- =================================================
+               DEPARTMENT LIST CARD
+          ================================================== -->
+          <section class="department-list-card">
+            <!-- =================================================
+                 TOOLBAR
+            ================================================== -->
+            <div class="department-toolbar">
+              <!-- Search -->
+              <div class="department-search">
+                <span class="department-search-icon"> ⌕ </span>
+
+                <input
+                  type="search"
+                  id="departmentSearch"
+                  placeholder="Search department name or code..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Status Filter -->
+              <div class="department-filter">
+                <label for="departmentStatusFilter"> Status </label>
+
+                <select id="departmentStatusFilter">
+                  <option value="all">All Status</option>
+
+                  <option value="active">Active</option>
+
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+            <div class="department-summary" id="departmentSummary">
+              <!-- Total -->
+              <button
+                type="button"
+                class="department-summary-chip active"
+                data-filter-type="all"
+              >
+                <strong id="totalDepartmentCount"> 0 </strong>
+
+                <span> departments </span>
+              </button>
+
+              <!-- Active -->
+              <button
+                type="button"
+                class="department-summary-chip"
+                data-filter-type="active"
+              >
+                <strong id="activeDepartmentCount"> 0 </strong>
+
+                <span> active </span>
+              </button>
+
+              <!-- Inactive -->
+              <button
+                type="button"
+                class="department-summary-chip"
+                data-filter-type="inactive"
+              >
+                <strong id="inactiveDepartmentCount"> 0 </strong>
+
+                <span> inactive </span>
+              </button>
+            </div>
+
+            <!-- =================================================
+                 DEPARTMENT TABLE
+            ================================================== -->
+            <div class="department-table-wrapper">
+              <table class="department-table">
+                <thead>
+                  <tr>
+                    <th>Department</th>
+
+                    <th>Code</th>
+
+                    <th>Description</th>
+
+                    <th>Users</th>
+
+                    <th>Status</th>
+
+                    <th class="department-actions-heading">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="departmentTableBody">
+                  <!-- JavaScript will render departments here -->
+                </tbody>
+              </table>
+
+              <!-- =================================================
+                   EMPTY STATE
+              ================================================== -->
+              <div
+                class="department-empty-state"
+                id="departmentEmptyState"
+                hidden
+              >
+                <div class="department-empty-icon">⌕</div>
+
+                <h3>No departments found</h3>
+
+                <p>No department data matches your current search or filter.</p>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 TABLE FOOTER
+            ================================================== -->
+            <div class="department-list-footer">
+              <!-- Result summary -->
+              <div
+                class="department-result-summary"
+                id="departmentResultSummary"
+              >
+                Showing 0 of 0 departments
+              </div>
+
+              <!-- Pagination -->
+              <div class="department-pagination">
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="previousDepartmentPageButton"
+                  aria-label="Previous page"
+                >
+                  ←
+                </button>
+
+                <div
+                  class="pagination-pages"
+                  id="departmentPaginationPages"
+                ></div>
+
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="nextDepartmentPageButton"
+                  aria-label="Next page"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         ADD / EDIT DEPARTMENT MODAL
+    ====================================================== -->
+    <dialog class="department-dialog" id="departmentModal">
+      <div class="department-dialog-shell">
+        <!-- =================================================
+             MODAL HEADER
+        ================================================== -->
+        <header class="department-dialog-header">
+          <div>
+            <span class="modal-eyebrow"> MASTER DATA </span>
+
+            <h2 id="departmentModalTitle">Add Department</h2>
+
+            <p id="departmentModalDescription">
+              Create a new organizational department.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeDepartmentModal"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- =================================================
+             DEPARTMENT FORM
+        ================================================== -->
+        <form id="departmentForm" class="department-form" novalidate>
+          <input type="hidden" id="departmentFormMode" value="add" />
+
+          <input type="hidden" id="editingDepartmentId" value="" />
+
+          <!-- =================================================
+               01 DEPARTMENT INFORMATION
+          ================================================== -->
+          <section class="department-form-section">
+            <div class="department-form-section-heading">
+              <span> 01 </span>
+
+              <div>
+                <h3>Department Information</h3>
+
+                <p>Basic organizational department information.</p>
+              </div>
+            </div>
+
+            <div class="department-form-grid">
+              <!-- Department Name -->
+              <div class="department-field">
+                <label for="departmentName">
+                  Department Name
+
+                  <span> * </span>
+                </label>
+
+                <input
+                  type="text"
+                  id="departmentName"
+                  name="department_name"
+                  placeholder="e.g. Network Operations"
+                  required
+                />
+              </div>
+
+              <!-- Department Code -->
+              <div class="department-field">
+                <label for="departmentCode">
+                  Department Code
+
+                  <span> * </span>
+                </label>
+
+                <input
+                  type="text"
+                  id="departmentCode"
+                  name="department_code"
+                  placeholder="e.g. NETOPS"
+                  maxlength="20"
+                  required
+                />
+
+                <small> Short unique identifier for the department. </small>
+              </div>
+
+              <!-- Description -->
+              <div class="department-field department-field-wide">
+                <label for="departmentDescription"> Description </label>
+
+                <textarea
+                  id="departmentDescription"
+                  name="description"
+                  rows="4"
+                  placeholder="Describe the department's responsibilities..."
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               02 STATUS
+          ================================================== -->
+          <section class="department-form-section">
+            <div class="department-form-section-heading">
+              <span> 02 </span>
+
+              <div>
+                <h3>Status</h3>
+
+                <p>Current availability of this department.</p>
+              </div>
+            </div>
+
+            <div class="department-field department-field-status">
+              <label for="departmentStatus">
+                Status
+
+                <span> * </span>
+              </label>
+
+              <select id="departmentStatus" name="status" required>
+                <option value="active">Active</option>
+
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- =================================================
+               FORM ACTIONS
+          ================================================== -->
+          <footer class="department-form-actions">
+            <button
+              type="button"
+              class="department-button department-button-secondary"
+              id="cancelDepartmentForm"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="department-button department-button-primary"
+              id="saveDepartmentButton"
+            >
+              Save Department
+            </button>
+          </footer>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         DEPARTMENT DETAILS MODAL
+         READ ONLY — NOT A FORM
+    ====================================================== -->
+    <dialog class="department-details-dialog" id="departmentDetailsModal">
+      <div class="department-details-shell">
+        <!-- =================================================
+             DETAILS HEADER
+        ================================================== -->
+        <header class="department-details-header">
+          <div>
+            <span class="modal-eyebrow"> MASTER DATA </span>
+
+            <h2>Department Details</h2>
+
+            <p>View department information registered in NETASSET.</p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeDepartmentDetails"
+            aria-label="Close department details"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- =================================================
+             DETAILS CONTENT
+        ================================================== -->
+        <div class="department-details-content">
+          <!-- =================================================
+               01 DEPARTMENT INFORMATION
+          ================================================== -->
+          <section class="department-details-section">
+            <div class="department-details-section-heading">
+              <span> 01 </span>
+
+              <div>
+                <h3>Department Information</h3>
+
+                <p>Basic organizational information.</p>
+              </div>
+            </div>
+
+            <div class="department-details-grid">
+              <!-- Name -->
+              <div class="department-detail-item">
+                <span class="department-detail-label"> Department Name </span>
+
+                <strong
+                  id="detailsDepartmentName"
+                  class="department-detail-value"
+                >
+                  —
+                </strong>
+              </div>
+
+              <!-- Code -->
+              <div class="department-detail-item">
+                <span class="department-detail-label"> Department Code </span>
+
+                <strong
+                  id="detailsDepartmentCode"
+                  class="department-detail-value department-detail-mono"
+                >
+                  —
+                </strong>
+              </div>
+
+              <!-- Description -->
+              <div class="department-detail-item department-detail-item-wide">
+                <span class="department-detail-label"> Description </span>
+
+                <span
+                  id="detailsDepartmentDescription"
+                  class="department-detail-value"
+                >
+                  —
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+               02 USAGE
+          ================================================== -->
+          <section class="department-details-section">
+            <div class="department-details-section-heading">
+              <span> 02 </span>
+
+              <div>
+                <h3>Usage</h3>
+
+                <p>Current users assigned to this department.</p>
+              </div>
+            </div>
+
+            <div class="department-details-grid">
+              <!-- User Count -->
+              <div class="department-detail-item">
+                <span class="department-detail-label"> Users </span>
+
+                <strong
+                  id="detailsDepartmentUsers"
+                  class="department-detail-value"
+                >
+                  0 users
+                </strong>
+              </div>
+
+              <!-- Status -->
+              <div class="department-detail-item">
+                <span class="department-detail-label"> Status </span>
+
+                <span
+                  id="detailsDepartmentStatus"
+                  class="department-status-badge"
+                >
+                  <i class="department-status-dot"></i>
+
+                  —
+                </span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- =================================================
+             DETAILS ACTIONS
+        ================================================== -->
+        <footer class="department-details-actions">
+          <button
+            type="button"
+            class="department-button department-button-secondary"
+            id="closeDepartmentDetailsButton"
+          >
+            Close
+          </button>
+
+          <button
+            type="button"
+            class="department-button department-button-primary"
+            id="editDepartmentFromDetails"
+          >
+            Edit Department
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+    <div
+      class="department-toast"
+      id="departmentToast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script src="departments.js"></script>
+  </body>
+</html>

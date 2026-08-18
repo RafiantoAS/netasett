@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Certificates · NETASSET</title>
+
+    <!-- Fonts — same as VM / VPN / License -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./certificate.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+           SIDEBAR
+           ========================================================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub active">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+           MAIN
+           ========================================================= -->
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Virtual Resources</span>
+              <span class="sep"> / </span>
+              <strong>Certificate</strong>
+            </div>
+
+            <h1 class="page-title">Certificates</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              id="certificateRefreshBtn"
+              title="Refresh Certificate data"
+            >
+              ↻
+            </button>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              id="certificateAddBtn"
+            >
+              + Add Certificate
+            </button>
+          </div>
+        </header>
+
+        <div class="content certificate-page">
+          <section class="certificate-list-card">
+            <!-- =====================================================
+                 TOOLBAR
+                 ===================================================== -->
+            <div class="list-toolbar">
+              <div class="search-box">
+                <span class="search-icon">⌕</span>
+
+                <input
+                  type="search"
+                  id="certificateSearch"
+                  placeholder="Cari certificate name, domain, serial number..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="certificateTypeFilter">
+                  <option value="">Semua Type</option>
+                  <option value="SSL / TLS">SSL / TLS</option>
+                  <option value="Client Certificate">Client Certificate</option>
+                  <option value="VPN Certificate">VPN Certificate</option>
+                  <option value="Code Signing">Code Signing</option>
+                </select>
+
+                <select id="certificateStatusFilter">
+                  <option value="">Semua Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Expired">Expired</option>
+                  <option value="Expiring Soon">Expiring Soon</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =====================================================
+                 STATISTICS
+                 ===================================================== -->
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span class="stat-label">TOTAL CERTIFICATE</span>
+                <strong class="stat-value" id="statCertificateTotal">5</strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">ACTIVE</span>
+                <strong class="stat-value" id="statCertificateActive">3</strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">EXPIRING SOON</span>
+                <strong class="stat-value" id="statCertificateExpiring"
+                  >1</strong
+                >
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">EXPIRED</span>
+                <strong class="stat-value" id="statCertificateExpired"
+                  >1</strong
+                >
+              </div>
+            </div>
+
+            <!-- =====================================================
+                 TABLE
+                 ===================================================== -->
+            <div class="table-wrapper">
+              <table class="certificate-table">
+                <thead>
+                  <tr>
+                    <th>CERTIFICATE</th>
+                    <th>TYPE</th>
+                    <th>ISSUER</th>
+                    <th>VALID FROM</th>
+                    <th>VALID UNTIL</th>
+                    <th>ASSIGNED TO</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+
+                <tbody id="certificateTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="list-footer">
+              <span id="certificateResultCount">
+                5 of 5 Certificates shown
+              </span>
+
+              <button type="button" class="btn-reset" id="certificateResetBtn">
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+         ADD / EDIT CERTIFICATE MODAL
+         ========================================================= -->
+    <dialog class="certificate-modal" id="certificateModal">
+      <form class="certificate-form" id="certificateForm" method="dialog">
+        <!-- MODAL HEADER -->
+        <div class="modal-header">
+          <div>
+            <div class="modal-eyebrow">VIRTUAL RESOURCE</div>
+            <h2 id="certificateModalTitle">Add Certificate</h2>
+          </div>
+
+          <button
+            aria-label="Close"
+            class="modal-close"
+            id="certificateModalClose"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <!-- ===================================================
+               CERTIFICATE INFORMATION
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Certificate Information</h3>
+              <p>Identity and basic certificate information.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="certificateCode">
+                  <span>Certificate Code</span>
+                </label>
+
+                <input
+                  id="certificateCode"
+                  name="certificate_code"
+                  placeholder="CERT-0001"
+                  type="text"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="certificateName">
+                  <span>Certificate Name <b>*</b></span>
+                </label>
+
+                <input
+                  id="certificateName"
+                  name="certificate_name"
+                  placeholder="Wildcard Core Certificate"
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="certificateDescription">
+                  <span>Description</span>
+                </label>
+
+                <textarea
+                  id="certificateDescription"
+                  name="description"
+                  placeholder="Describe the purpose and scope of this certificate..."
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateType">
+                  <span>Certificate Type <b>*</b></span>
+                </label>
+
+                <select id="certificateType" name="type" required>
+                  <option value="">Select Type</option>
+                  <option value="SSL / TLS">SSL / TLS</option>
+                  <option value="Client Certificate">Client Certificate</option>
+                  <option value="VPN Certificate">VPN Certificate</option>
+                  <option value="Code Signing">Code Signing</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateIssuer">
+                  <span>Issuer <b>*</b></span>
+                </label>
+
+                <input
+                  id="certificateIssuer"
+                  name="issuer"
+                  placeholder="DigiCert Commercial CA"
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="certificateSerial">
+                  <span>Serial Number <b>*</b></span>
+                </label>
+
+                <input
+                  id="certificateSerial"
+                  name="serial_number"
+                  placeholder="08A4C1F20001"
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="certificateDomain">
+                  <span>Primary Domain</span>
+                </label>
+
+                <input
+                  id="certificateDomain"
+                  name="domain"
+                  placeholder="*.netasset.id"
+                  type="text"
+                />
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="certificateSan">
+                  <span>Subject Alternative Names (SAN)</span>
+                </label>
+
+                <input
+                  id="certificateSan"
+                  name="san"
+                  placeholder="netasset.id, portal.netasset.id, api.netasset.id"
+                  type="text"
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               VALIDITY
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Validity</h3>
+              <p>Certificate validity period and expiration information.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="certificateValidFrom">
+                  <span>Valid From <b>*</b></span>
+                </label>
+
+                <input
+                  id="certificateValidFrom"
+                  name="valid_from"
+                  type="date"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="certificateValidUntil">
+                  <span>Valid Until <b>*</b></span>
+                </label>
+
+                <input
+                  id="certificateValidUntil"
+                  name="valid_until"
+                  type="date"
+                  required
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               LIFECYCLE & STATUS
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Lifecycle &amp; Status</h3>
+              <p>Certificate lifecycle and current operational state.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="certificateLifecycle">
+                  <span>Lifecycle Status <b>*</b></span>
+                </label>
+
+                <select
+                  id="certificateLifecycle"
+                  name="lifecycle_status"
+                  required
+                >
+                  <option value="Provisioned">Provisioned</option>
+                  <option value="Active">Active</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Retired">Retired</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateStatus">
+                  <span>Operational Status <b>*</b></span>
+                </label>
+
+                <select
+                  id="certificateStatus"
+                  name="operational_status"
+                  required
+                >
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Expiring Soon">Expiring Soon</option>
+                  <option value="Expired">Expired</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               RELATIONSHIPS
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Relationships</h3>
+              <p>Customer, location and related asset information.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="certificateCustomer">
+                  <span>Customer</span>
+                </label>
+
+                <select id="certificateCustomer" name="customer">
+                  <option value="">Select Customer</option>
+                  <option value="PT Nusantara Digital">
+                    PT Nusantara Digital
+                  </option>
+                  <option value="PT Global Network Indonesia">
+                    PT Global Network Indonesia
+                  </option>
+                  <option value="PT Data Prima">PT Data Prima</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateProvider">
+                  <span>Provider / Issuer</span>
+                </label>
+
+                <select id="certificateProvider" name="provider">
+                  <option value="">Select Provider</option>
+                  <option value="DigiCert">DigiCert</option>
+                  <option value="Let's Encrypt">Let's Encrypt</option>
+                  <option value="GlobalSign">GlobalSign</option>
+                  <option value="Sectigo">Sectigo</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateLocation">
+                  <span>Location</span>
+                </label>
+
+                <select id="certificateLocation" name="location">
+                  <option value="">Select Location</option>
+                  <option value="Jakarta DC-01">Jakarta DC-01</option>
+                  <option value="Jakarta POP-01">Jakarta POP-01</option>
+                  <option value="Surabaya POP-01">Surabaya POP-01</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="certificateRelatedAsset">
+                  <span>Assigned / Related Asset</span>
+                </label>
+
+                <select id="certificateRelatedAsset" name="related_asset">
+                  <option value="">Select Related Asset</option>
+                  <option value="SRV-JKT-001">SRV-JKT-001</option>
+                  <option value="SRV-JKT-002">SRV-JKT-002</option>
+                  <option value="RTR-JKT-001">RTR-JKT-001</option>
+                  <option value="SRV-JKT-003">SRV-JKT-003</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- MODAL FOOTER -->
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            id="certificateCancelBtn"
+            type="button"
+          >
+            Cancel
+          </button>
+
+          <button class="btn btn-primary" type="submit">
+            Save Certificate
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- =========================================================
+         PAGE SCRIPT
+         Keeps Certificate independent from the License/VPN handlers.
+         ========================================================= -->
+    <script src="app.js"></script>
+    <script src="virtual-resources.js"></script>
+
+    <script>
+      const CERTIFICATE_STORAGE_KEY = "netasset_certificates";
+
+      const CERTIFICATE_DEMO_DATA = [
+        {
+          certificateCode: "CERT-0001",
+          certificateName: "Wildcard Core Certificate",
+          description: "*.netasset.id",
+          type: "SSL / TLS",
+          issuer: "DigiCert Commercial CA",
+          serialNumber: "DGC-2026-0001",
+          domain: "*.netasset.id",
+          san: "netasset.id, *.netasset.id",
+          validFrom: "2026-01-10",
+          validUntil: "2027-01-10",
+          lifecycleStatus: "Active",
+          operationalStatus: "Active",
+          customer: "PT Nusantara Digital",
+          provider: "DigiCert",
+          location: "Jakarta DC-01",
+          relatedAsset: "SRV-JKT-001",
+        },
+        {
+          certificateCode: "CERT-0002",
+          certificateName: "Customer Portal Certificate",
+          description: "portal.netasset.id",
+          type: "SSL / TLS",
+          issuer: "Let's Encrypt Public CA",
+          serialNumber: "LE-2026-0002",
+          domain: "portal.netasset.id",
+          san: "portal.netasset.id",
+          validFrom: "2026-07-01",
+          validUntil: "2026-09-28",
+          lifecycleStatus: "Active",
+          operationalStatus: "Expiring Soon",
+          customer: "PT Global Network Indonesia",
+          provider: "Let's Encrypt",
+          location: "Jakarta POP-01",
+          relatedAsset: "SRV-JKT-002",
+        },
+        {
+          certificateCode: "CERT-0003",
+          certificateName: "API Gateway Certificate",
+          description: "api.netasset.id",
+          type: "SSL / TLS",
+          issuer: "GlobalSign Commercial CA",
+          serialNumber: "GS-2026-0003",
+          domain: "api.netasset.id",
+          san: "api.netasset.id",
+          validFrom: "2026-03-15",
+          validUntil: "2027-03-15",
+          lifecycleStatus: "Active",
+          operationalStatus: "Active",
+          customer: "PT Nusantara Digital",
+          provider: "GlobalSign",
+          location: "Jakarta DC-01",
+          relatedAsset: "RTR-JKT-001",
+        },
+        {
+          certificateCode: "CERT-0004",
+          certificateName: "Customer VPN Certificate",
+          description: "Certificate for customer VPN authentication.",
+          type: "VPN Certificate",
+          issuer: "DigiCert Commercial CA",
+          serialNumber: "DGC-2026-0004",
+          domain: "vpn.netasset.id",
+          san: "vpn.netasset.id",
+          validFrom: "2026-02-01",
+          validUntil: "2027-02-01",
+          lifecycleStatus: "Provisioned",
+          operationalStatus: "Active",
+          customer: "PT Data Prima",
+          provider: "DigiCert",
+          location: "Jakarta POP-01",
+          relatedAsset: "SRV-JKT-003",
+        },
+        {
+          certificateCode: "CERT-0005",
+          certificateName: "Legacy Portal Certificate",
+          description: "Legacy certificate scheduled for retirement.",
+          type: "SSL / TLS",
+          issuer: "GlobalSign Commercial CA",
+          serialNumber: "GS-2024-0005",
+          domain: "legacy.netasset.id",
+          san: "legacy.netasset.id",
+          validFrom: "2024-01-01",
+          validUntil: "2026-06-30",
+          lifecycleStatus: "Retired",
+          operationalStatus: "Expired",
+          customer: "PT Global Network Indonesia",
+          provider: "GlobalSign",
+          location: "Surabaya POP-01",
+          relatedAsset: "SRV-SBY-001",
+        },
+      ];
+
+      function certificateEscape(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function certificateStatusClass(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replaceAll("/", "")
+          .replaceAll(" ", "-");
+      }
+
+      function getCertificates() {
+        try {
+          const saved = localStorage.getItem(CERTIFICATE_STORAGE_KEY);
+
+          if (!saved) {
+            localStorage.setItem(
+              CERTIFICATE_STORAGE_KEY,
+              JSON.stringify(CERTIFICATE_DEMO_DATA),
+            );
+            return [...CERTIFICATE_DEMO_DATA];
+          }
+
+          const data = JSON.parse(saved);
+
+          if (!Array.isArray(data) || data.length === 0) {
+            localStorage.setItem(
+              CERTIFICATE_STORAGE_KEY,
+              JSON.stringify(CERTIFICATE_DEMO_DATA),
+            );
+            return [...CERTIFICATE_DEMO_DATA];
+          }
+
+          return data;
+        } catch (error) {
+          console.error(error);
+          localStorage.setItem(
+            CERTIFICATE_STORAGE_KEY,
+            JSON.stringify(CERTIFICATE_DEMO_DATA),
+          );
+          return [...CERTIFICATE_DEMO_DATA];
+        }
+      }
+
+      function saveCertificates(data) {
+        localStorage.setItem(CERTIFICATE_STORAGE_KEY, JSON.stringify(data));
+      }
+
+      function generateCertificateCode() {
+        const certificates = getCertificates();
+        let highest = 0;
+
+        certificates.forEach((certificate) => {
+          const match = String(certificate.certificateCode || "").match(
+            /^CERT-(\d+)$/,
+          );
+
+          if (match) {
+            highest = Math.max(highest, Number(match[1]));
+          }
+        });
+
+        return `CERT-${String(highest + 1).padStart(4, "0")}`;
+      }
+
+      function getCertificateExpiryState(certificate) {
+        if (!certificate.validUntil) return "No Expiry";
+        if (certificate.operationalStatus === "Expired") return "Expired";
+
+        const today = new Date();
+        const expiry = new Date(`${certificate.validUntil}T23:59:59`);
+        const diffDays = Math.ceil(
+          (expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+        );
+
+        if (diffDays < 0) return "Expired";
+        if (diffDays <= 30) return "Expiring Soon";
+
+        return "Valid";
+      }
+
+      function getFilteredCertificates() {
+        const certificates = getCertificates();
+
+        const search =
+          document
+            .getElementById("certificateSearch")
+            ?.value.trim()
+            .toLowerCase() || "";
+
+        const type =
+          document.getElementById("certificateTypeFilter")?.value || "";
+
+        const status =
+          document.getElementById("certificateStatusFilter")?.value || "";
+
+        return certificates.filter((certificate) => {
+          const text = [
+            certificate.certificateCode,
+            certificate.certificateName,
+            certificate.type,
+            certificate.issuer,
+            certificate.serialNumber,
+            certificate.domain,
+            certificate.san,
+            certificate.customer,
+            certificate.provider,
+            certificate.location,
+            certificate.relatedAsset,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return (
+            (!search || text.includes(search)) &&
+            (!type || certificate.type === type) &&
+            (!status || certificate.operationalStatus === status)
+          );
+        });
+      }
+
+      function updateCertificateStats(certificates) {
+        const active = certificates.filter(
+          (item) => item.operationalStatus === "Active",
+        ).length;
+
+        const expiring = certificates.filter(
+          (item) => getCertificateExpiryState(item) === "Expiring Soon",
+        ).length;
+
+        const expired = certificates.filter(
+          (item) => getCertificateExpiryState(item) === "Expired",
+        ).length;
+
+        const values = {
+          statCertificateTotal: certificates.length,
+          statCertificateActive: active,
+          statCertificateExpiring: expiring,
+          statCertificateExpired: expired,
+        };
+
+        Object.entries(values).forEach(([id, value]) => {
+          const element = document.getElementById(id);
+          if (element) element.textContent = value;
+        });
+      }
+
+      function renderCertificateTable() {
+        const tbody = document.getElementById("certificateTableBody");
+        if (!tbody) return;
+
+        const all = getCertificates();
+        const filtered = getFilteredCertificates();
+
+        updateCertificateStats(all);
+        tbody.innerHTML = "";
+
+        if (!filtered.length) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="8">
+                <div class="empty-state">
+                  <strong>No Certificate found</strong>
+                  <span>Tidak ada certificate yang sesuai dengan filter.</span>
+                </div>
+              </td>
+            </tr>
+          `;
+
+          updateCertificateCount(0, all.length);
+          return;
+        }
+
+        filtered.forEach((certificate) => {
+          const row = document.createElement("tr");
+          const expiryState = getCertificateExpiryState(certificate);
+
+          row.innerHTML = `
+            <td>
+              <button
+                type="button"
+                class="table-link"
+                data-certificate-view="${certificateEscape(
+                  certificate.certificateCode,
+                )}"
+              >
+                ${certificateEscape(certificate.certificateCode)}
+              </button>
+
+              <div class="table-primary">
+                ${certificateEscape(certificate.certificateName)}
+              </div>
+
+              ${
+                certificate.description
+                  ? `
+                    <div class="table-secondary">
+                      ${certificateEscape(certificate.description)}
+                    </div>
+                  `
+                  : ""
+              }
+            </td>
+
+            <td>${certificateEscape(certificate.type)}</td>
+
+            <td>
+              <div class="table-primary">
+                ${certificateEscape(certificate.issuer)}
+              </div>
+            </td>
+
+            <td>
+              <span class="mono">
+                ${certificateEscape(certificate.validFrom || "—")}
+              </span>
+            </td>
+
+            <td>
+              <span class="mono">
+                ${certificateEscape(certificate.validUntil || "—")}
+              </span>
+
+              ${
+                expiryState !== "Valid" && expiryState !== "No Expiry"
+                  ? `
+                    <div class="table-secondary">
+                      ${certificateEscape(expiryState)}
+                    </div>
+                  `
+                  : ""
+              }
+            </td>
+
+            <td>
+              <div class="table-primary">
+                ${certificateEscape(certificate.relatedAsset || "—")}
+              </div>
+
+              ${
+                certificate.location
+                  ? `
+                    <div class="table-secondary">
+                      ${certificateEscape(certificate.location)}
+                    </div>
+                  `
+                  : ""
+              }
+            </td>
+
+            <td>
+              <span class="status-badge ${certificateStatusClass(
+                certificate.operationalStatus,
+              )}">
+                ${certificateEscape(certificate.operationalStatus)}
+              </span>
+            </td>
+
+            <td>
+              <div class="table-actions">
+                <button
+                  type="button"
+                  class="action-btn"
+                  data-certificate-view="${certificateEscape(
+                    certificate.certificateCode,
+                  )}"
+                >
+                  View
+                </button>
+
+                <button
+                  type="button"
+                  class="action-btn"
+                  data-certificate-edit="${certificateEscape(
+                    certificate.certificateCode,
+                  )}"
+                >
+                  Edit
+                </button>
+
+                <button
+                  type="button"
+                  class="action-btn action-btn-danger"
+                  data-certificate-delete="${certificateEscape(
+                    certificate.certificateCode,
+                  )}"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+          `;
+
+          tbody.appendChild(row);
+        });
+
+        updateCertificateCount(filtered.length, all.length);
+      }
+
+      function updateCertificateCount(filtered, total) {
+        const element = document.getElementById("certificateResultCount");
+
+        if (element) {
+          element.textContent = `${filtered} of ${total} Certificates shown`;
+        }
+      }
+
+      function setCertificateField(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.value = value ?? "";
+      }
+
+      function openCertificateModal(mode = "add", certificateCode = "") {
+        const modal = document.getElementById("certificateModal");
+        const form = document.getElementById("certificateForm");
+
+        if (!modal || !form) return;
+
+        form.reset();
+
+        const title = document.getElementById("certificateModalTitle");
+
+        if (title) {
+          title.textContent =
+            mode === "edit" ? "Edit Certificate" : "Add Certificate";
+        }
+
+        const certificate = getCertificates().find(
+          (item) => item.certificateCode === certificateCode,
+        );
+
+        const codeInput = document.getElementById("certificateCode");
+
+        if (mode === "edit" && certificate) {
+          setCertificateField("certificateCode", certificate.certificateCode);
+          setCertificateField("certificateName", certificate.certificateName);
+          setCertificateField(
+            "certificateDescription",
+            certificate.description,
+          );
+          setCertificateField("certificateType", certificate.type);
+          setCertificateField("certificateIssuer", certificate.issuer);
+          setCertificateField("certificateSerial", certificate.serialNumber);
+          setCertificateField("certificateDomain", certificate.domain);
+          setCertificateField("certificateSan", certificate.san);
+          setCertificateField("certificateValidFrom", certificate.validFrom);
+          setCertificateField("certificateValidUntil", certificate.validUntil);
+          setCertificateField(
+            "certificateLifecycle",
+            certificate.lifecycleStatus,
+          );
+          setCertificateField(
+            "certificateStatus",
+            certificate.operationalStatus,
+          );
+          setCertificateField("certificateCustomer", certificate.customer);
+          setCertificateField("certificateProvider", certificate.provider);
+          setCertificateField("certificateLocation", certificate.location);
+          setCertificateField(
+            "certificateRelatedAsset",
+            certificate.relatedAsset,
+          );
+
+          if (codeInput) codeInput.readOnly = true;
+        } else {
+          setCertificateField("certificateCode", generateCertificateCode());
+          setCertificateField("certificateLifecycle", "Active");
+          setCertificateField("certificateStatus", "Active");
+
+          if (codeInput) codeInput.readOnly = true;
+        }
+
+        modal.dataset.mode = mode;
+        modal.dataset.certificateCode = certificateCode;
+
+        if (typeof modal.showModal === "function") {
+          modal.showModal();
+        } else {
+          modal.setAttribute("open", "");
+        }
+      }
+
+      function closeCertificateModal() {
+        const modal = document.getElementById("certificateModal");
+        if (!modal) return;
+
+        if (typeof modal.close === "function") {
+          modal.close();
+        } else {
+          modal.removeAttribute("open");
+        }
+      }
+
+      function collectCertificateForm() {
+        return {
+          certificateCode: document
+            .getElementById("certificateCode")
+            ?.value.trim(),
+          certificateName: document
+            .getElementById("certificateName")
+            ?.value.trim(),
+          description: document
+            .getElementById("certificateDescription")
+            ?.value.trim(),
+          type: document.getElementById("certificateType")?.value,
+          issuer: document.getElementById("certificateIssuer")?.value.trim(),
+          serialNumber: document
+            .getElementById("certificateSerial")
+            ?.value.trim(),
+          domain: document.getElementById("certificateDomain")?.value.trim(),
+          san: document.getElementById("certificateSan")?.value.trim(),
+          validFrom: document.getElementById("certificateValidFrom")?.value,
+          validUntil: document.getElementById("certificateValidUntil")?.value,
+          lifecycleStatus: document.getElementById("certificateLifecycle")
+            ?.value,
+          operationalStatus:
+            document.getElementById("certificateStatus")?.value,
+          customer: document.getElementById("certificateCustomer")?.value,
+          provider: document.getElementById("certificateProvider")?.value,
+          location: document.getElementById("certificateLocation")?.value,
+          relatedAsset: document.getElementById("certificateRelatedAsset")
+            ?.value,
+        };
+      }
+
+      function saveCertificateFromForm(event) {
+        event.preventDefault();
+
+        const modal = document.getElementById("certificateModal");
+        const mode = modal?.dataset.mode || "add";
+        const oldCode = modal?.dataset.certificateCode || "";
+
+        const formData = collectCertificateForm();
+
+        if (!formData.certificateName) {
+          alert("Certificate Name wajib diisi.");
+          return;
+        }
+
+        if (!formData.type) {
+          alert("Certificate Type wajib dipilih.");
+          return;
+        }
+
+        if (!formData.issuer) {
+          alert("Issuer wajib diisi.");
+          return;
+        }
+
+        if (!formData.serialNumber) {
+          alert("Serial Number wajib diisi.");
+          return;
+        }
+
+        if (
+          formData.validFrom &&
+          formData.validUntil &&
+          formData.validUntil < formData.validFrom
+        ) {
+          alert("Valid Until tidak boleh sebelum Valid From.");
+          return;
+        }
+
+        const certificates = getCertificates();
+
+        if (mode === "edit") {
+          const index = certificates.findIndex(
+            (item) => item.certificateCode === oldCode,
+          );
+
+          if (index === -1) {
+            alert("Certificate tidak ditemukan.");
+            return;
+          }
+
+          const duplicateSerial = certificates.some(
+            (item, itemIndex) =>
+              itemIndex !== index &&
+              item.serialNumber === formData.serialNumber,
+          );
+
+          if (duplicateSerial) {
+            alert("Serial Number sudah digunakan.");
+            return;
+          }
+
+          certificates[index] = {
+            ...certificates[index],
+            ...formData,
+            updatedAt: new Date().toISOString().slice(0, 10),
+          };
+        } else {
+          const duplicateCode = certificates.some(
+            (item) => item.certificateCode === formData.certificateCode,
+          );
+
+          if (duplicateCode) {
+            formData.certificateCode = generateCertificateCode();
+          }
+
+          const duplicateSerial = certificates.some(
+            (item) => item.serialNumber === formData.serialNumber,
+          );
+
+          if (duplicateSerial) {
+            alert("Serial Number sudah digunakan.");
+            return;
+          }
+
+          certificates.push({
+            ...formData,
+            createdAt: new Date().toISOString().slice(0, 10),
+            updatedAt: new Date().toISOString().slice(0, 10),
+          });
+        }
+
+        saveCertificates(certificates);
+        closeCertificateModal();
+        renderCertificateTable();
+
+        if (typeof showToast === "function") {
+          showToast(
+            mode === "edit"
+              ? "Certificate berhasil diperbarui."
+              : "Certificate berhasil ditambahkan.",
+          );
+        }
+      }
+
+      function viewCertificate(certificateCode) {
+        if (!certificateCode) return;
+
+        window.location.href = `certificate-detail.html?certificate=${encodeURIComponent(
+          certificateCode,
+        )}`;
+      }
+
+      function deleteCertificate(certificateCode) {
+        const certificates = getCertificates();
+
+        const certificate = certificates.find(
+          (item) => item.certificateCode === certificateCode,
+        );
+
+        if (!certificate) {
+          alert("Certificate tidak ditemukan.");
+          return;
+        }
+
+        const confirmed = window.confirm(
+          `Hapus Certificate ${certificate.certificateCode}?\n\n` +
+            `"${certificate.certificateName}" akan dihapus dari demo data.`,
+        );
+
+        if (!confirmed) return;
+
+        saveCertificates(
+          certificates.filter(
+            (item) => item.certificateCode !== certificateCode,
+          ),
+        );
+
+        renderCertificateTable();
+
+        if (typeof showToast === "function") {
+          showToast("Certificate berhasil dihapus.");
+        }
+      }
+
+      function resetCertificateDemoData() {
+        const confirmed = window.confirm(
+          "Reset Certificate Demo Data?\n\n" +
+            "Semua data Certificate akan dikembalikan ke data demo awal.",
+        );
+
+        if (!confirmed) return;
+
+        saveCertificates(CERTIFICATE_DEMO_DATA);
+        renderCertificateTable();
+
+        if (typeof showToast === "function") {
+          showToast("Certificate demo data berhasil di-reset.");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        getCertificates();
+        renderCertificateTable();
+
+        document
+          .getElementById("certificateSearch")
+          ?.addEventListener("input", renderCertificateTable);
+
+        document
+          .getElementById("certificateTypeFilter")
+          ?.addEventListener("change", renderCertificateTable);
+
+        document
+          .getElementById("certificateStatusFilter")
+          ?.addEventListener("change", renderCertificateTable);
+
+        document
+          .getElementById("certificateAddBtn")
+          ?.addEventListener("click", () => openCertificateModal("add"));
+
+        document
+          .getElementById("certificateForm")
+          ?.addEventListener("submit", saveCertificateFromForm);
+
+        document
+          .getElementById("certificateCancelBtn")
+          ?.addEventListener("click", closeCertificateModal);
+
+        document
+          .getElementById("certificateModalClose")
+          ?.addEventListener("click", closeCertificateModal);
+
+        document
+          .getElementById("certificateResetBtn")
+          ?.addEventListener("click", resetCertificateDemoData);
+
+        document
+          .getElementById("certificateRefreshBtn")
+          ?.addEventListener("click", renderCertificateTable);
+
+        document.addEventListener("click", (event) => {
+          const view = event.target.closest("[data-certificate-view]");
+          if (view) {
+            viewCertificate(view.dataset.certificateView);
+            return;
+          }
+
+          const edit = event.target.closest("[data-certificate-edit]");
+          if (edit) {
+            openCertificateModal("edit", edit.dataset.certificateEdit);
+            return;
+          }
+
+          const remove = event.target.closest("[data-certificate-delete]");
+
+          if (remove) {
+            deleteCertificate(remove.dataset.certificateDelete);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

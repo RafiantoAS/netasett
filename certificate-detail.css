@@ -1,0 +1,806 @@
+/* ==========================================================================
+   NETASSET — CERTIFICATE DETAIL
+   SAME VISUAL TEMPLATE AS VPN DETAIL
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+
+.certificate-detail-page {
+  width: min(1480px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 30px 0 60px;
+}
+
+/* ==========================================================================
+   BREADCRUMB
+   ========================================================================== */
+
+.certificate-detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.certificate-detail-breadcrumb a {
+  color: #52708f;
+}
+
+.certificate-detail-breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.certificate-detail-breadcrumb strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.certificate-detail-breadcrumb span {
+  color: #9aacbf;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.certificate-detail-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 194px;
+
+  padding: 34px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow-sm);
+
+  gap: 30px;
+}
+
+.certificate-detail-hero-main {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 22px;
+}
+
+/* ==========================================================================
+   CERTIFICATE ICON
+   ========================================================================== */
+
+.certificate-detail-icon {
+  display: grid;
+  place-items: center;
+
+  width: 78px;
+  height: 78px;
+
+  flex: 0 0 78px;
+
+  border-radius: 14px;
+
+  background: var(--accent-soft);
+
+  border: 1px solid #c8e8e5;
+
+  color: var(--accent-dark);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
+
+.certificate-detail-title {
+  min-width: 0;
+}
+
+.certificate-detail-eyebrow {
+  margin-bottom: 6px;
+
+  color: var(--accent-dark);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.certificate-detail-title h1 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(30px, 3vw, 40px);
+
+  line-height: 1.08;
+
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+}
+
+/* ==========================================================================
+   META
+   ========================================================================== */
+
+.certificate-detail-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-top: 12px;
+
+  gap: 8px;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+}
+
+.certificate-detail-meta .mono {
+  color: #486580;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   STATUS
+   ========================================================================== */
+
+.certificate-detail-status-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+
+  gap: 8px;
+}
+
+.certificate-status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 29px;
+
+  padding: 5px 11px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  gap: 7px;
+}
+
+.certificate-status-badge.active {
+  background: var(--success-soft);
+  color: #08764f;
+}
+
+.certificate-status-badge.inactive {
+  background: var(--neutral-soft);
+  color: #61748a;
+}
+
+.certificate-status-badge.warning {
+  background: var(--warning-soft);
+  color: #9a6500;
+}
+
+.certificate-status-badge.danger {
+  background: var(--danger-soft);
+  color: #b42318;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+/* ==========================================================================
+   HERO ACTIONS
+   ========================================================================== */
+
+.certificate-detail-hero-actions {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  gap: 10px;
+}
+
+.certificate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 0 17px;
+
+  border-radius: 9px;
+
+  border: 1px solid transparent;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
+}
+
+.certificate-btn:hover {
+  transform: translateY(-1px);
+}
+
+.certificate-btn-secondary {
+  background: transparent;
+
+  border-color: transparent;
+
+  color: var(--text);
+}
+
+.certificate-btn-secondary:hover {
+  background: var(--surface-soft);
+}
+
+.certificate-btn-primary {
+  background: var(--accent);
+
+  color: #ffffff;
+
+  border-color: var(--accent);
+}
+
+.certificate-btn-primary:hover {
+  background: var(--accent-dark);
+
+  border-color: var(--accent-dark);
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+
+.certificate-detail-tabs {
+  display: flex;
+  align-items: stretch;
+
+  min-height: 64px;
+
+  margin-top: 0;
+
+  padding: 0 18px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-top: 0;
+
+  border-radius: 0 0 12px 12px;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.certificate-detail-tab {
+  position: relative;
+
+  min-width: 120px;
+
+  padding: 0 20px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #52708f;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    color 140ms ease,
+    background 140ms ease;
+}
+
+.certificate-detail-tab:hover {
+  color: var(--text);
+
+  background: rgba(18, 184, 173, 0.035);
+}
+
+.certificate-detail-tab.active {
+  color: var(--accent-dark);
+}
+
+.certificate-detail-tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+
+  bottom: -1px;
+
+  height: 2px;
+
+  background: var(--accent);
+}
+
+/* ==========================================================================
+   DETAIL PANEL
+   ========================================================================== */
+
+.certificate-detail-panel {
+  display: none;
+
+  margin-top: 24px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  box-shadow: var(--shadow-sm);
+
+  overflow: hidden;
+}
+
+.certificate-detail-panel.active {
+  display: block;
+}
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+
+.certificate-detail-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 28px 30px 25px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.certificate-detail-section-header h2 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 25px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+.certificate-detail-section-header p {
+  margin: 7px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   DETAIL GRID
+   ========================================================================== */
+
+.certificate-detail-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+
+  padding: 24px 30px 30px;
+}
+
+/* ==========================================================================
+   INFO CARD
+   ========================================================================== */
+
+.certificate-info-card {
+  min-width: 0;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+.certificate-info-card-full {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   INFO CARD HEADER
+   ========================================================================== */
+
+.certificate-info-card-header {
+  padding: 22px 23px 19px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.certificate-info-card-header h3 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.certificate-info-card-header p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   KEY VALUE GRID
+   ========================================================================== */
+
+.certificate-kv-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.certificate-kv {
+  min-width: 0;
+
+  min-height: 84px;
+
+  padding: 17px 21px;
+
+  border-right: 1px solid var(--border);
+
+  border-bottom: 1px solid var(--border);
+}
+
+.certificate-kv:nth-child(2n) {
+  border-right: 0;
+}
+
+.certificate-kv:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.certificate-kv-full {
+  grid-column: 1 / -1;
+
+  border-right: 0;
+}
+
+.certificate-kv-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #69839d;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+.certificate-kv-value {
+  display: block;
+
+  color: var(--text);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.certificate-kv-value.mono {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   DESCRIPTION
+   ========================================================================== */
+
+.certificate-description {
+  padding: 22px 23px;
+}
+
+.certificate-description p {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   HISTORY
+   ========================================================================== */
+
+.certificate-history {
+  padding: 26px 30px 32px;
+}
+
+.certificate-history-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 18px minmax(0, 1fr);
+
+  gap: 15px;
+
+  padding-bottom: 28px;
+}
+
+.certificate-history-item:last-child {
+  padding-bottom: 0;
+}
+
+.certificate-history-marker {
+  position: relative;
+
+  width: 10px;
+  height: 10px;
+
+  margin-top: 5px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.certificate-history-item:not(:last-child)::before {
+  content: "";
+
+  position: absolute;
+
+  left: 4px;
+
+  top: 15px;
+
+  bottom: 0;
+
+  width: 1px;
+
+  background: var(--border);
+}
+
+.certificate-history-content {
+  min-width: 0;
+}
+
+.certificate-history-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.certificate-history-top strong {
+  color: var(--text);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.certificate-history-date {
+  flex: 0 0 auto;
+
+  color: var(--text-muted);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 11px;
+}
+
+.certificate-history-content p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .certificate-detail-page {
+    width: min(100% - 36px, 1200px);
+  }
+
+  .certificate-detail-hero {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .certificate-detail-hero-actions {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 820px) {
+  .certificate-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-info-card-full {
+    grid-column: auto;
+  }
+
+  .certificate-detail-tabs {
+    overflow-x: auto;
+
+    padding: 0 8px;
+  }
+
+  .certificate-detail-tab {
+    flex: 0 0 auto;
+
+    min-width: 105px;
+  }
+}
+
+@media (max-width: 640px) {
+  .certificate-detail-page {
+    width: calc(100% - 24px);
+
+    padding-top: 20px;
+  }
+
+  .certificate-detail-hero {
+    padding: 24px 20px;
+  }
+
+  .certificate-detail-hero-main {
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .certificate-detail-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-basis: 60px;
+  }
+
+  .certificate-detail-title h1 {
+    font-size: 26px;
+  }
+
+  .certificate-detail-hero-actions {
+    justify-content: stretch;
+  }
+
+  .certificate-btn {
+    flex: 1;
+  }
+
+  .certificate-detail-section-header {
+    padding: 23px 20px;
+  }
+
+  .certificate-detail-grid {
+    padding: 18px 20px 22px;
+  }
+
+  .certificate-kv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-kv {
+    border-right: 0;
+  }
+
+  .certificate-kv:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .certificate-kv:last-child {
+    border-bottom: 0;
+  }
+
+  .certificate-history {
+    padding: 22px 20px 26px;
+  }
+
+  .certificate-history-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+}

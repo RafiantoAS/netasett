@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VPN Detail · NETASSET</title>
+
+    <!-- =========================================================
+         GLOBAL DESIGN SYSTEM
+         ========================================================= -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- =========================================================
+         VPN DETAIL PAGE
+         ========================================================= -->
+    <link rel="stylesheet" href="vpn-detail.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+         APP SHELL
+         ========================================================= -->
+
+    <div class="shell">
+      <!-- =======================================================
+           SIDEBAR
+           SAME TEMPLATE AS VM DETAIL
+           ======================================================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub active">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =======================================================
+           MAIN
+           ======================================================= -->
+
+      <main class="main">
+        <div class="vpn-detail-page">
+          <!-- ===================================================
+               BREADCRUMB
+               =================================================== -->
+
+          <div class="vpn-detail-breadcrumb">
+            <a href="vpn.html"> Virtual Resources </a>
+
+            <span>/</span>
+
+            <a href="vpn.html"> VPN </a>
+
+            <span>/</span>
+
+            <strong id="detailBreadcrumbCode"> VPN-0001 </strong>
+          </div>
+
+          <!-- ===================================================
+               HERO
+               =================================================== -->
+
+          <section class="vpn-detail-hero">
+            <div class="vpn-detail-hero-main">
+              <!-- VPN ICON -->
+
+              <div class="vpn-detail-icon">VPN</div>
+
+              <!-- VPN TITLE -->
+
+              <div class="vpn-detail-title">
+                <div class="vpn-detail-eyebrow">VIRTUAL PRIVATE NETWORK</div>
+
+                <h1 id="detailVpnName">Jakarta–Surabaya Core VPN</h1>
+
+                <div class="vpn-detail-meta">
+                  <span id="detailVpnCode" class="mono"> VPN-0001 </span>
+
+                  <span>·</span>
+
+                  <span> Virtual Resource </span>
+
+                  <span>·</span>
+
+                  <span id="detailVpnType"> Site-to-Site </span>
+                </div>
+
+                <!-- STATUS -->
+
+                <div class="vpn-detail-status-row">
+                  <span
+                    id="detailLifecycle"
+                    class="vpn-status-badge active"
+                    title="Lifecycle status"
+                  >
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+
+                  <span
+                    id="detailOperational"
+                    class="vpn-status-badge active"
+                    title="Operational status"
+                  >
+                    <span class="status-dot"></span>
+                    Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO ACTIONS -->
+
+            <div class="vpn-detail-hero-actions">
+              <a href="vpn.html" class="vpn-btn vpn-btn-secondary"> ← Back </a>
+
+              <a
+                href="vpn.html"
+                class="vpn-btn vpn-btn-primary"
+                id="editVpnBtn"
+              >
+                ✎ Edit
+              </a>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               TABS
+               =================================================== -->
+
+          <nav class="vpn-detail-tabs">
+            <button
+              type="button"
+              class="vpn-detail-tab active"
+              data-tab="overview"
+            >
+              Overview
+            </button>
+
+            <button type="button" class="vpn-detail-tab" data-tab="network">
+              Network
+            </button>
+
+            <button
+              type="button"
+              class="vpn-detail-tab"
+              data-tab="relationships"
+            >
+              Relationships
+            </button>
+
+            <button type="button" class="vpn-detail-tab" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <!-- ===================================================
+               OVERVIEW
+               =================================================== -->
+
+          <section class="vpn-detail-panel active" id="tab-overview">
+            <div class="vpn-detail-section-header">
+              <div>
+                <h2>Overview</h2>
+
+                <p>
+                  VPN identity, security, connectivity and operational
+                  information.
+                </p>
+              </div>
+            </div>
+
+            <div class="vpn-detail-grid">
+              <!-- =================================================
+                   VPN INFORMATION
+                   ================================================= -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>VPN Information</h3>
+
+                    <p>Core virtual private network information.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> VPN Code </span>
+
+                    <strong id="overviewVpnCode" class="vpn-kv-value mono">
+                      VPN-0001
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> VPN Name </span>
+
+                    <strong id="overviewVpnName" class="vpn-kv-value">
+                      Jakarta–Surabaya Core VPN
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> VPN Type </span>
+
+                    <strong id="overviewVpnType" class="vpn-kv-value">
+                      Site-to-Site
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Protocol </span>
+
+                    <strong id="overviewVpnProtocol" class="vpn-kv-value mono">
+                      IPSec
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                   SECURITY
+                   ================================================= -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Security</h3>
+
+                    <p>Encryption and authentication configuration.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Encryption </span>
+
+                    <strong id="overviewEncryption" class="vpn-kv-value">
+                      AES-256
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Authentication </span>
+
+                    <strong id="overviewAuthentication" class="vpn-kv-value">
+                      PSK
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Lifecycle </span>
+
+                    <strong id="overviewLifecycle" class="vpn-kv-value">
+                      Active
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Operational </span>
+
+                    <strong id="overviewOperational" class="vpn-kv-value">
+                      Active
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- =================================================
+                   DESCRIPTION
+                   ================================================= -->
+
+              <article class="vpn-info-card vpn-info-card-full">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Description</h3>
+
+                    <p>Purpose and operational description of this VPN.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-description">
+                  <p id="overviewDescription">
+                    Secure site-to-site connection between Jakarta and Surabaya
+                    core infrastructure.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               NETWORK
+               =================================================== -->
+
+          <section class="vpn-detail-panel" id="tab-network">
+            <div class="vpn-detail-section-header">
+              <div>
+                <h2>Network</h2>
+
+                <p>VPN endpoints and remote network configuration.</p>
+              </div>
+            </div>
+
+            <div class="vpn-detail-grid">
+              <!-- ENDPOINTS -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Endpoints</h3>
+
+                    <p>Local and remote VPN endpoint information.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Local Endpoint </span>
+
+                    <strong id="networkLocalEndpoint" class="vpn-kv-value mono">
+                      203.0.113.10
+                    </strong>
+                  </div>
+
+                  <div class="vpn-kv">
+                    <span class="vpn-kv-label"> Remote Endpoint </span>
+
+                    <strong
+                      id="networkRemoteEndpoint"
+                      class="vpn-kv-value mono"
+                    >
+                      198.51.100.10
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- REMOTE NETWORK -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Remote Network</h3>
+
+                    <p>Network reachable through the VPN tunnel.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv vpn-kv-full">
+                    <span class="vpn-kv-label"> Remote Network </span>
+
+                    <strong id="networkRemoteNetwork" class="vpn-kv-value mono">
+                      10.20.0.0/16
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               RELATIONSHIPS
+               =================================================== -->
+
+          <section class="vpn-detail-panel" id="tab-relationships">
+            <div class="vpn-detail-section-header">
+              <div>
+                <h2>Relationships</h2>
+
+                <p>Resources and entities associated with this VPN.</p>
+              </div>
+            </div>
+
+            <div class="vpn-detail-grid">
+              <!-- CUSTOMER -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Customer</h3>
+
+                    <p>Customer associated with this VPN.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv vpn-kv-full">
+                    <span class="vpn-kv-label"> Customer </span>
+
+                    <strong id="relationshipCustomer" class="vpn-kv-value">
+                      PT Nusantara Digital
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- LOCATION -->
+
+              <article class="vpn-info-card">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Location</h3>
+
+                    <p>Primary location associated with this VPN.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv vpn-kv-full">
+                    <span class="vpn-kv-label"> Location </span>
+
+                    <strong id="relationshipLocation" class="vpn-kv-value">
+                      Jakarta DC-01
+                    </strong>
+                  </div>
+                </div>
+              </article>
+
+              <!-- RELATED ASSET -->
+
+              <article class="vpn-info-card vpn-info-card-full">
+                <header class="vpn-info-card-header">
+                  <div>
+                    <h3>Related Asset</h3>
+
+                    <p>Network asset associated with this VPN.</p>
+                  </div>
+                </header>
+
+                <div class="vpn-kv-grid">
+                  <div class="vpn-kv vpn-kv-full">
+                    <span class="vpn-kv-label"> Related Asset </span>
+
+                    <strong id="relationshipAsset" class="vpn-kv-value mono">
+                      RTR-JKT-001
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               HISTORY
+               =================================================== -->
+
+          <section class="vpn-detail-panel" id="tab-history">
+            <div class="vpn-detail-section-header">
+              <div>
+                <h2>History</h2>
+
+                <p>Recent changes and operational events for this VPN.</p>
+              </div>
+            </div>
+
+            <div class="vpn-history">
+              <article class="vpn-history-item">
+                <div class="vpn-history-marker"></div>
+
+                <div class="vpn-history-content">
+                  <div class="vpn-history-top">
+                    <strong> VPN created </strong>
+
+                    <span class="vpn-history-date"> 2026-08-01 </span>
+                  </div>
+
+                  <p>
+                    VPN-0001 was created as a Site-to-Site IPSec connection.
+                  </p>
+                </div>
+              </article>
+
+              <article class="vpn-history-item">
+                <div class="vpn-history-marker"></div>
+
+                <div class="vpn-history-content">
+                  <div class="vpn-history-top">
+                    <strong> Configuration updated </strong>
+
+                    <span class="vpn-history-date"> 2026-08-11 </span>
+                  </div>
+
+                  <p>
+                    VPN configuration and endpoint information were updated.
+                  </p>
+                </div>
+              </article>
+
+              <article class="vpn-history-item">
+                <div class="vpn-history-marker"></div>
+
+                <div class="vpn-history-content">
+                  <div class="vpn-history-top">
+                    <strong> Operational status </strong>
+
+                    <span class="vpn-history-date"> 2026-08-11 </span>
+                  </div>
+
+                  <p>VPN operational status remains Active.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+         VPN DETAIL SCRIPT
+         ========================================================= -->
+    <script src="app.js"></script>
+
+    <script>
+      /*
+       * VPN DETAIL DATA SYNC
+       *
+       * Priority:
+       * 1. VPN selected from URL: ?code=VPN-0001
+       * 2. Data saved by vpn.html in localStorage
+       * 3. Demo fallback data
+       *
+       * Supported localStorage keys:
+       * - netasset_vpns
+       * - vpnData
+       * - vpns
+       */
+
+      const fallbackVpnData = [
+        {
+          code: "VPN-0001",
+          vpnCode: "VPN-0001",
+          name: "Jakarta–Surabaya Core VPN",
+          description:
+            "Secure site-to-site connection between Jakarta and Surabaya core infrastructure.",
+          type: "Site-to-Site",
+          protocol: "IPSec",
+          localEndpoint: "203.0.113.10",
+          remoteEndpoint: "198.51.100.10",
+          status: "Active",
+          operational: "Active",
+          lifecycle: "Active",
+          encryption: "AES-256",
+          authentication: "PSK",
+          remoteNetwork: "10.20.0.0/16",
+          customer: "PT Nusantara Digital",
+          location: "Jakarta DC-01",
+          relatedAsset: "RTR-JKT-001",
+        },
+        {
+          code: "VPN-0002",
+          vpnCode: "VPN-0002",
+          name: "Jakarta–Bandung Branch VPN",
+          description:
+            "Secure branch connectivity between Jakarta and Bandung.",
+          type: "Site-to-Site",
+          protocol: "IPSec",
+          localEndpoint: "203.0.113.11",
+          remoteEndpoint: "198.51.100.11",
+          status: "Active",
+          operational: "Active",
+          lifecycle: "Active",
+          encryption: "AES-256",
+          authentication: "PSK",
+          remoteNetwork: "10.30.0.0/16",
+          customer: "PT Nusantara Digital",
+          location: "Jakarta DC-01",
+          relatedAsset: "RTR-JKT-002",
+        },
+        {
+          code: "VPN-0003",
+          vpnCode: "VPN-0003",
+          name: "Remote Engineer VPN",
+          description: "Remote access VPN for authorized network engineers.",
+          type: "Remote Access",
+          protocol: "WireGuard",
+          localEndpoint: "203.0.113.20",
+          remoteEndpoint: "Dynamic",
+          status: "Active",
+          operational: "Active",
+          lifecycle: "Active",
+          encryption: "ChaCha20-Poly1305",
+          authentication: "Key",
+          remoteNetwork: "10.40.0.0/16",
+          customer: "PT Nusantara Digital",
+          location: "Jakarta DC-01",
+          relatedAsset: "RTR-JKT-003",
+        },
+        {
+          code: "VPN-0004",
+          vpnCode: "VPN-0004",
+          name: "Customer Portal Secure VPN",
+          description:
+            "Secure VPN connection for customer portal infrastructure.",
+          type: "IPSec",
+          protocol: "IPSec",
+          localEndpoint: "203.0.113.30",
+          remoteEndpoint: "198.51.100.30",
+          status: "Inactive",
+          operational: "Inactive",
+          lifecycle: "Provisioned",
+          encryption: "AES-256",
+          authentication: "PSK",
+          remoteNetwork: "10.60.0.0/16",
+          customer: "PT Nusantara Digital",
+          location: "South Jakarta DC",
+          relatedAsset: "RTR-JKT-004",
+        },
+        {
+          code: "VPN-0005",
+          vpnCode: "VPN-0005",
+          name: "Legacy Branch VPN",
+          description: "Legacy branch VPN connection scheduled for retirement.",
+          type: "Site-to-Site",
+          protocol: "OpenVPN",
+          localEndpoint: "203.0.113.40",
+          remoteEndpoint: "198.51.100.40",
+          status: "Expired",
+          operational: "Expired",
+          lifecycle: "Retired",
+          encryption: "AES-256",
+          authentication: "Certificate",
+          remoteNetwork: "10.70.0.0/16",
+          customer: "PT Nusantara Digital",
+          location: "Legacy Branch",
+          relatedAsset: "RTR-JKT-005",
+        },
+      ];
+
+      function normalizeVpn(item) {
+        if (!item || typeof item !== "object") return null;
+
+        return {
+          code: item.code || item.vpnCode || item.assetCode || item.id || "",
+          vpnCode:
+            item.vpnCode || item.code || item.assetCode || item.id || "—",
+          name: item.name || item.vpnName || item.title || "—",
+          description: item.description || item.desc || "—",
+          type: item.type || item.vpnType || "—",
+          protocol: item.protocol || "—",
+          localEndpoint:
+            item.localEndpoint || item.local_endpoint || item.localIp || "—",
+          remoteEndpoint:
+            item.remoteEndpoint || item.remote_endpoint || item.remoteIp || "—",
+          status: item.status || item.operational || "—",
+          operational:
+            item.operational ||
+            item.operationalStatus ||
+            item.operationStatus ||
+            item.operational_status ||
+            item.operation_status ||
+            item.connectedStatus ||
+            item.connected_status ||
+            item.status ||
+            item.lifecycle ||
+            "—",
+          lifecycle: item.lifecycle || item.lifecycleStatus || "—",
+          encryption: item.encryption || "—",
+          authentication: item.authentication || item.auth || "—",
+          remoteNetwork:
+            item.remoteNetwork || item.remote_network || item.network || "—",
+          customer: item.customer || item.customerName || "—",
+          location: item.location || item.locationName || "—",
+          relatedAsset:
+            item.relatedAsset || item.relatedAssetCode || item.asset || "—",
+        };
+      }
+
+      function readVpnStorage() {
+        const keys = ["netasset_vpns", "vpnData", "vpns"];
+
+        for (const key of keys) {
+          try {
+            const raw = localStorage.getItem(key);
+            if (!raw) continue;
+
+            const parsed = JSON.parse(raw);
+            const list = Array.isArray(parsed)
+              ? parsed
+              : Array.isArray(parsed?.data)
+                ? parsed.data
+                : Array.isArray(parsed?.items)
+                  ? parsed.items
+                  : [];
+
+            if (list.length) {
+              return list.map(normalizeVpn).filter(Boolean);
+            }
+          } catch (error) {
+            console.warn(`Unable to read ${key}:`, error);
+          }
+        }
+
+        return [];
+      }
+
+      function getRequestedCode() {
+        const params = new URLSearchParams(window.location.search);
+
+        return (
+          params.get("code") ||
+          params.get("vpn") ||
+          params.get("id") ||
+          "VPN-0001"
+        );
+      }
+
+      const requestedCode = getRequestedCode();
+
+      const storedVpnData = readVpnStorage();
+
+      const vpnList = storedVpnData.length
+        ? storedVpnData
+        : fallbackVpnData.map(normalizeVpn);
+
+      const vpn =
+        vpnList.find(
+          (item) =>
+            String(item.code).toLowerCase() ===
+              String(requestedCode).toLowerCase() ||
+            String(item.vpnCode).toLowerCase() ===
+              String(requestedCode).toLowerCase(),
+        ) || vpnList[0];
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent =
+            value === undefined || value === null || value === "" ? "—" : value;
+        }
+      }
+
+      function statusClass(value) {
+        const normalized = String(value || "")
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, "-");
+
+        if (
+          ["active", "connected", "running", "provisioned"].includes(normalized)
+        ) {
+          return "active";
+        }
+
+        if (["inactive", "stopped", "disabled"].includes(normalized)) {
+          return "inactive";
+        }
+
+        if (["expired", "retired", "failed"].includes(normalized)) {
+          return "danger";
+        }
+
+        return "neutral";
+      }
+
+      function updateStatus(id, value) {
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        element.className = `vpn-status-badge ${statusClass(value)}`;
+        element.innerHTML = `
+          <span class="status-dot"></span>
+          ${value || "—"}
+        `;
+      }
+
+      /*
+       * HERO
+       */
+      setText("detailBreadcrumbCode", vpn.vpnCode);
+      setText("detailVpnName", vpn.name);
+      setText("detailVpnCode", vpn.vpnCode);
+      setText("detailVpnType", vpn.type);
+
+      updateStatus("detailLifecycle", vpn.lifecycle);
+      updateStatus("detailOperational", vpn.operational);
+
+      /*
+       * OVERVIEW
+       */
+      setText("overviewVpnCode", vpn.vpnCode);
+      setText("overviewVpnName", vpn.name);
+      setText("overviewVpnType", vpn.type);
+      setText("overviewVpnProtocol", vpn.protocol);
+      setText("overviewEncryption", vpn.encryption);
+      setText("overviewAuthentication", vpn.authentication);
+      setText("overviewLifecycle", vpn.lifecycle);
+      setText("overviewOperational", vpn.operational);
+      setText("overviewDescription", vpn.description);
+
+      /*
+       * NETWORK
+       */
+      setText("networkLocalEndpoint", vpn.localEndpoint);
+      setText("networkRemoteEndpoint", vpn.remoteEndpoint);
+      setText("networkRemoteNetwork", vpn.remoteNetwork);
+
+      /*
+       * RELATIONSHIPS
+       */
+      setText("relationshipCustomer", vpn.customer);
+      setText("relationshipLocation", vpn.location);
+      setText("relationshipAsset", vpn.relatedAsset);
+
+      /*
+       * PAGE TITLE
+       */
+      document.title = `${vpn.name} · NETASSET`;
+
+      /*
+       * EDIT BUTTON
+       *
+       * vpn.html should read ?edit=VPN-XXXX.
+       */
+      const editButton = document.getElementById("editVpnBtn");
+
+      if (editButton) {
+        editButton.href = `vpn.html?edit=${encodeURIComponent(vpn.vpnCode)}`;
+      }
+
+      /*
+       * HISTORY
+       */
+      const historyStatus = document.querySelector(
+        "#tab-history .vpn-history-item:nth-child(3) p",
+      );
+
+      if (historyStatus) {
+        historyStatus.textContent = `VPN operational status is currently ${vpn.operational}.`;
+      }
+
+      const historyCreated = document.querySelector(
+        "#tab-history .vpn-history-item:nth-child(1) p",
+      );
+
+      if (historyCreated) {
+        historyCreated.textContent = `${vpn.vpnCode} was created as a ${vpn.type} ${vpn.protocol} connection.`;
+      }
+
+      /*
+       * TAB SYSTEM
+       */
+      const tabs = document.querySelectorAll(".vpn-detail-tab");
+      const panels = document.querySelectorAll(".vpn-detail-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach((item) => {
+            item.classList.toggle("active", item === tab);
+          });
+
+          panels.forEach((panel) => {
+            panel.classList.toggle("active", panel.id === `tab-${target}`);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

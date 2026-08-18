@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Network Topology · NETASSET</title>
+
+    <!-- Fonts — same NETASSET design system -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global NETASSET -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Shared sidebar/layout reference -->
+    <link rel="stylesheet" href="certificate.css" />
+
+    <!-- Network Topology only -->
+    <link rel="stylesheet" href="network-topology.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+         SIDEBAR
+         MASTER STRUCTURE — SAME AS CERTIFICATE.HTML
+         ========================================================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top active"
+            >Network Topology
+          </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+      <main class="main">
+        <!-- =====================================================
+             PAGE HEADER
+             ===================================================== -->
+
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span> Network Resources </span>
+
+              <span class="sep"> / </span>
+
+              <strong> Network Topology </strong>
+            </div>
+
+            <h1 class="page-title">Network Topology</h1>
+
+            <p class="topology-page-description">
+              Visualize relationships between physical assets, network resources
+              and virtual resources.
+            </p>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary topology-reset-btn"
+              type="button"
+              id="topologyResetViewBtn"
+            >
+              ↻ Reset View
+            </button>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              id="topologyFullscreenBtn"
+            >
+              ⛶ Fullscreen
+            </button>
+          </div>
+        </header>
+
+        <!-- =====================================================
+             CONTENT
+             ===================================================== -->
+
+        <div class="content network-topology-page">
+          <!-- =================================================
+                 CONTROL / FILTER CARD
+                 ================================================= -->
+
+          <section class="topology-control-card">
+            <div class="topology-toolbar">
+              <!-- Search -->
+
+              <div class="topology-search">
+                <span class="topology-search-icon"> ⌕ </span>
+
+                <input
+                  type="search"
+                  id="topologySearch"
+                  placeholder="Search assets, IPs, VLANs..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Filters -->
+
+              <div class="topology-filter-group">
+                <select id="topologyTypeFilter" aria-label="Filter by type">
+                  <option value="">All Types</option>
+
+                  <option value="router">Router</option>
+
+                  <option value="switch">Switch</option>
+
+                  <option value="server">Server</option>
+
+                  <option value="olt">OLT</option>
+
+                  <option value="ip">IP Address</option>
+
+                  <option value="vlan">VLAN</option>
+
+                  <option value="vm">VM</option>
+
+                  <option value="vpn">VPN</option>
+                </select>
+
+                <select
+                  id="topologyLocationFilter"
+                  aria-label="Filter by location"
+                >
+                  <option value="">All Locations</option>
+
+                  <option value="Jakarta DC-01">Jakarta DC-01</option>
+
+                  <option value="Jakarta POP-01">Jakarta POP-01</option>
+
+                  <option value="Surabaya POP-01">Surabaya POP-01</option>
+                </select>
+
+                <select id="topologyStatusFilter" aria-label="Filter by status">
+                  <option value="">All Status</option>
+
+                  <option value="Active">Active</option>
+
+                  <option value="Inactive">Inactive</option>
+
+                  <option value="Maintenance">Maintenance</option>
+                </select>
+
+                <select id="topologyLayoutSelect" aria-label="Topology layout">
+                  <option value="auto">Auto Layout</option>
+
+                  <option value="hierarchical">Hierarchical</option>
+
+                  <option value="horizontal">Horizontal</option>
+
+                  <option value="vertical">Vertical</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     STATISTICS
+                     ================================================= -->
+
+            <div class="topology-stat-grid">
+              <div class="topology-stat-card">
+                <span class="topology-stat-label"> NODES </span>
+
+                <strong class="topology-stat-value" id="topologyStatNodes">
+                  0
+                </strong>
+              </div>
+
+              <div class="topology-stat-card">
+                <span class="topology-stat-label"> LINKS </span>
+
+                <strong class="topology-stat-value" id="topologyStatLinks">
+                  0
+                </strong>
+              </div>
+
+              <div class="topology-stat-card">
+                <span class="topology-stat-label"> ACTIVE </span>
+
+                <strong class="topology-stat-value" id="topologyStatActive">
+                  0
+                </strong>
+              </div>
+
+              <div class="topology-stat-card">
+                <span class="topology-stat-label"> LOCATIONS </span>
+
+                <strong class="topology-stat-value" id="topologyStatLocations">
+                  0
+                </strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                 TOPOLOGY CARD
+                 ================================================= -->
+
+          <section class="topology-map-card" id="topologyMapCard">
+            <!-- Card Header -->
+
+            <div class="topology-map-header">
+              <div>
+                <h2>Topology</h2>
+
+                <p>Network infrastructure relationship map.</p>
+              </div>
+
+              <div class="topology-map-header-actions">
+                <button
+                  type="button"
+                  class="topology-header-btn"
+                  id="topologyFitBtn"
+                >
+                  Fit
+                </button>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     MAP / CANVAS
+                     ================================================= -->
+
+            <div class="topology-canvas" id="topologyCanvas">
+              <!-- Grid -->
+
+              <div class="topology-grid"></div>
+
+              <!-- Connection Layer -->
+
+              <svg class="topology-links" id="topologyLinks" aria-hidden="true">
+                <defs>
+                  <marker
+                    id="topologyArrow"
+                    markerWidth="8"
+                    markerHeight="8"
+                    refX="6"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <path d="M0,0 L0,6 L6,3 z"></path>
+                  </marker>
+                </defs>
+              </svg>
+
+              <!-- Nodes -->
+
+              <div class="topology-nodes" id="topologyNodes">
+                <!-- Empty state -->
+                <div class="topology-empty-state">
+                  <div class="topology-empty-icon">N</div>
+
+                  <strong> No topology data </strong>
+
+                  <span>
+                    Network nodes and relationships will appear here.
+                  </span>
+                </div>
+              </div>
+
+              <!-- Zoom Controls -->
+
+              <div class="topology-zoom-controls">
+                <button type="button" id="topologyZoomIn" aria-label="Zoom in">
+                  +
+                </button>
+
+                <button
+                  type="button"
+                  id="topologyZoomOut"
+                  aria-label="Zoom out"
+                >
+                  −
+                </button>
+
+                <button
+                  type="button"
+                  id="topologyFitCanvas"
+                  aria-label="Fit topology"
+                >
+                  Fit
+                </button>
+              </div>
+
+              <!-- Legend -->
+
+              <div class="topology-legend">
+                <div class="topology-legend-title">NODE TYPES</div>
+
+                <div class="topology-legend-item">
+                  <span class="legend-dot legend-router"></span>
+
+                  Router
+                </div>
+
+                <div class="topology-legend-item">
+                  <span class="legend-dot legend-switch"></span>
+
+                  Switch
+                </div>
+
+                <div class="topology-legend-item">
+                  <span class="legend-dot legend-server"></span>
+
+                  Server
+                </div>
+
+                <div class="topology-legend-item">
+                  <span class="legend-dot legend-olt"></span>
+
+                  OLT
+                </div>
+
+                <div class="topology-legend-item">
+                  <span class="legend-dot legend-virtual"></span>
+
+                  Virtual
+                </div>
+              </div>
+            </div>
+
+            <!-- =================================================
+                     FOOTER
+                     ================================================= -->
+
+            <div class="topology-map-footer">
+              <span id="topologyResultCount"> 0 nodes shown </span>
+
+              <span class="topology-footer-separator"> · </span>
+
+              <span> Drag to pan · Scroll to zoom </span>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =============================================================
+     SHARED APP
+     ============================================================= -->
+
+    <script src="app.js"></script>
+
+    <!-- =============================================================
+     NETWORK TOPOLOGY
+     JS WILL BE ADDED AFTER LAYOUT IS CONFIRMED
+     ============================================================= -->
+
+    <script src="network-topology.js"></script>
+  </body>
+</html>

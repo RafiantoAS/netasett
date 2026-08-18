@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top active">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================= MAIN ================= -->
+      <div class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb">Asset Management</div>
+            <h1 class="page-title">Dashboard</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-ghost" onclick="toggleSidebar()">
+              ☰ Menu
+            </button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="stat-grid">
+            <div class="panel stat-card">
+              <div class="stat-label">Total Assets</div>
+              <div class="stat-value">1,248</div>
+              <div class="stat-sub">
+                <span class="stat-dot" style="background: var(--success)"></span
+                >1,102 active
+              </div>
+            </div>
+            <div class="panel stat-card">
+              <div class="stat-label">Customers</div>
+              <div class="stat-value">86</div>
+              <div class="stat-sub">
+                <span class="stat-dot" style="background: var(--accent)"></span
+                >12 corporate
+              </div>
+            </div>
+            <div class="panel stat-card">
+              <div class="stat-label">Locations</div>
+              <div class="stat-value">14</div>
+              <div class="stat-sub">
+                <span class="stat-dot" style="background: var(--warning)"></span
+                >4 datacenter
+              </div>
+            </div>
+            <div class="panel stat-card">
+              <div class="stat-label">Providers</div>
+              <div class="stat-value">9</div>
+              <div class="stat-sub">
+                <span class="stat-dot" style="background: var(--neutral)"></span
+                >3 upstream ISP
+              </div>
+            </div>
+          </div>
+
+          <h2 style="font-size: 15px; margin-bottom: 14px">Category</h2>
+          <div class="category-grid">
+            <div class="panel category-card">
+              <span class="cat-count">612</span>
+              <span class="cat-label">Physical Assets</span>
+              <div class="cat-tags">
+                <span class="tag">Router</span><span class="tag">Switch</span
+                ><span class="tag">Server</span><span class="tag">OLT</span
+                ><span class="tag">Equipment</span>
+              </div>
+            </div>
+            <div class="panel category-card">
+              <span class="cat-count">418</span>
+              <span class="cat-label">Network Resources</span>
+              <div class="cat-tags">
+                <span class="tag">IP Address</span
+                ><span class="tag">IP Pool</span><span class="tag">VLAN</span
+                ><span class="tag">ASN</span><span class="tag">Interface</span>
+              </div>
+            </div>
+            <div class="panel category-card">
+              <span class="cat-count">218</span>
+              <span class="cat-label">Virtual Resources</span>
+              <div class="cat-tags">
+                <span class="tag">VM</span><span class="tag">VPN</span
+                ><span class="tag">License</span
+                ><span class="tag">Certificate</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 style="font-size: 15px; margin-bottom: 14px">
+            Master Data — mulai di sini
+          </h2>
+          <div class="category-grid">
+            <a
+              href="customers.html"
+              class="panel category-card"
+              style="color: inherit"
+            >
+              <span class="cat-count">86</span>
+              <span class="cat-label">Customers</span>
+              <div class="cat-tags"><span class="tag">Buka daftar →</span></div>
+            </a>
+            <a
+              href="locations.html"
+              class="panel category-card"
+              style="color: inherit"
+            >
+              <span class="cat-count">14</span>
+              <span class="cat-label">Locations</span>
+              <div class="cat-tags"><span class="tag">Buka daftar →</span></div>
+            </a>
+            <a
+              href="providers.html"
+              class="panel category-card"
+              style="color: inherit"
+            >
+              <span class="cat-count">9</span>
+              <span class="cat-label">Providers</span>
+              <div class="cat-tags"><span class="tag">Buka daftar →</span></div>
+            </a>
+          </div>
+          <div class="category-grid" style="grid-template-columns: 1fr">
+            <a
+              href="users.html"
+              class="panel category-card"
+              style="color: inherit"
+            >
+              <span class="cat-count">34</span>
+              <span class="cat-label">Users</span>
+              <div class="cat-tags"><span class="tag">Buka daftar →</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">
+      <span class="dot"></span><span class="toast-text">Saved</span>
+    </div>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

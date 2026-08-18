@@ -1,0 +1,1211 @@
+/* ==========================================================================
+   VPN.CSS
+   NETASSET — Virtual Resources / VPN
+   Synced with vpn.html
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+
+.vpn-page {
+  width: 100%;
+}
+
+/* ==========================================================================
+   VPN LIST CARD
+   ========================================================================== */
+
+.vpn-list-card {
+  width: 100%;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface, #ffffff);
+}
+
+/* ==========================================================================
+   TOOLBAR
+   ========================================================================== */
+
+.vpn-list-card .list-toolbar {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 14px 20px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: var(--surface, #ffffff);
+}
+
+/* ==========================================================================
+   SEARCH
+   ========================================================================== */
+
+.vpn-list-card .search-box {
+  display: flex;
+
+  align-items: center;
+
+  width: min(390px, 100%);
+  height: 40px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+.vpn-list-card .search-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+
+  flex: 0 0 38px;
+
+  color: var(--text-muted);
+
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+.vpn-list-card .search-box input {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0 12px 0 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+}
+
+.vpn-list-card .search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FILTER GROUP
+   ========================================================================== */
+
+.vpn-list-card .filter-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.vpn-list-card .filter-group select {
+  min-width: 150px;
+  height: 40px;
+
+  box-sizing: border-box;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.vpn-list-card .filter-group select:focus {
+  border-color: #0ea5a8;
+
+  box-shadow: 0 0 0 3px rgba(14, 165, 168, 0.1);
+}
+
+/* ==========================================================================
+   STATISTICS
+   ========================================================================== */
+
+.vpn-list-card .stat-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  border-bottom: 1px solid var(--border);
+}
+
+.vpn-list-card .stat-card {
+  min-height: 74px;
+
+  padding: 16px 20px;
+
+  border-right: 1px solid var(--border);
+}
+
+.vpn-list-card .stat-card:last-child {
+  border-right: none;
+}
+
+.vpn-list-card .stat-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+.vpn-list-card .stat-value {
+  display: block;
+
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 24px;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+/* ==========================================================================
+   TABLE WRAPPER
+   ========================================================================== */
+
+.vpn-list-card .table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.vpn-table {
+  width: 100%;
+
+  /*
+   * 8 columns:
+   * VPN
+   * TYPE
+   * PROTOCOL
+   * LOCAL ENDPOINT
+   * REMOTE ENDPOINT
+   * STATUS
+   * LIFECYCLE
+   * ACTIONS
+   */
+  min-width: 1280px;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+/* ==========================================================================
+   TABLE CELLS
+   ========================================================================== */
+
+.vpn-table th,
+.vpn-table td {
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid var(--border);
+
+  text-align: left;
+
+  vertical-align: middle;
+}
+
+.vpn-table th {
+  height: 44px;
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  background: var(--bg, #f5f7fa);
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.vpn-table td {
+  min-height: 76px;
+
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.vpn-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.vpn-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.vpn-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   COLUMN WIDTHS
+   EXACTLY 8 COLUMNS
+   ========================================================================== */
+
+.vpn-table th:nth-child(1),
+.vpn-table td:nth-child(1) {
+  width: 25%;
+}
+
+.vpn-table th:nth-child(2),
+.vpn-table td:nth-child(2) {
+  width: 13%;
+}
+
+.vpn-table th:nth-child(3),
+.vpn-table td:nth-child(3) {
+  width: 11%;
+}
+
+.vpn-table th:nth-child(4),
+.vpn-table td:nth-child(4) {
+  width: 12%;
+}
+
+.vpn-table th:nth-child(5),
+.vpn-table td:nth-child(5) {
+  width: 12%;
+}
+
+.vpn-table th:nth-child(6),
+.vpn-table td:nth-child(6) {
+  width: 10%;
+}
+
+.vpn-table th:nth-child(7),
+.vpn-table td:nth-child(7) {
+  width: 10%;
+}
+
+.vpn-table th:nth-child(8),
+.vpn-table td:nth-child(8) {
+  width: 7%;
+}
+
+/* ==========================================================================
+   VPN FIRST COLUMN
+   ========================================================================== */
+
+.vpn-table td:first-child {
+  color: var(--text);
+}
+
+/* VPN CODE */
+
+.vpn-table .vpn-code,
+.vpn-table .table-link {
+  display: inline-block;
+
+  margin-bottom: 4px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #008f8b;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.vpn-table .vpn-code:hover,
+.vpn-table .table-link:hover {
+  text-decoration: underline;
+}
+
+/* VPN NAME */
+
+.vpn-table .vpn-name,
+.vpn-table .table-primary {
+  display: block;
+
+  overflow: hidden;
+
+  color: var(--text);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.35;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* VPN DESCRIPTION */
+
+.vpn-table .vpn-description,
+.vpn-table .table-secondary {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   TABLE TYPE / PROTOCOL
+   ========================================================================== */
+
+.vpn-table td:nth-child(2),
+.vpn-table td:nth-child(3) {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.vpn-table .vpn-type,
+.vpn-table .vpn-protocol {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   ENDPOINT
+   ========================================================================== */
+
+.vpn-table td:nth-child(4),
+.vpn-table td:nth-child(5) {
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+.vpn-table .vpn-endpoint {
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   MONOSPACE
+   ========================================================================== */
+
+.vpn-table .mono,
+.vpn-table .vpn-mono {
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   STATUS BADGES
+   ========================================================================== */
+
+.vpn-table .status-badge,
+.vpn-table .vpn-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  width: fit-content;
+
+  min-height: 26px;
+
+  box-sizing: border-box;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.vpn-table .status-badge::before,
+.vpn-table .vpn-badge::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  flex: 0 0 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+/* ACTIVE */
+
+.vpn-table .status-badge.active,
+.vpn-table .status-badge.provisioned,
+.vpn-table .vpn-badge-active,
+.vpn-table .vpn-badge-provisioned {
+  background: #e8f7ef;
+
+  color: #067647;
+}
+
+/* INACTIVE */
+
+.vpn-table .status-badge.inactive,
+.vpn-table .vpn-badge-inactive {
+  background: #eef2f6;
+
+  color: #475467;
+}
+
+/* EXPIRED */
+
+.vpn-table .status-badge.expired,
+.vpn-table .vpn-badge-expired {
+  background: #fdeaea;
+
+  color: #b42318;
+}
+
+/* MAINTENANCE */
+
+.vpn-table .status-badge.maintenance,
+.vpn-table .vpn-badge-maintenance {
+  background: #fff3df;
+
+  color: #b54708;
+}
+
+/* RETIRED */
+
+.vpn-table .status-badge.retired,
+.vpn-table .vpn-badge-retired {
+  background: #fdeaea;
+
+  color: #b42318;
+}
+
+/* ==========================================================================
+   ACTIONS
+   ========================================================================== */
+
+.vpn-table td:last-child {
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+.vpn-table .table-actions,
+.vpn-table .vpn-row-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+.vpn-table .action-btn,
+.vpn-table .vpn-action-btn,
+.vpn-table td:last-child button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 36px;
+  height: 36px;
+
+  box-sizing: border-box;
+
+  padding: 0 10px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vpn-table .action-btn:hover,
+.vpn-table .vpn-action-btn:hover,
+.vpn-table td:last-child button:hover {
+  background: var(--bg, #f5f7fa);
+
+  border-color: #b8c7d9;
+}
+
+/* DELETE */
+
+.vpn-table .action-btn-danger:hover,
+.vpn-table .vpn-action-btn-danger:hover,
+.vpn-table td:last-child button[data-action="delete"]:hover {
+  background: #fdeaea;
+
+  border-color: #f1b8b4;
+
+  color: #b42318;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.vpn-list-card .list-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 10px 16px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+/* RESET BUTTON */
+
+.vpn-list-card .btn-reset {
+  min-height: 32px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.vpn-list-card .btn-reset:hover {
+  background: var(--bg, #f5f7fa);
+
+  border-color: #b8c7d9;
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.vpn-list-card .empty-state {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  min-height: 220px;
+
+  gap: 6px;
+
+  color: var(--text-muted);
+
+  text-align: center;
+}
+
+.vpn-list-card .empty-state strong {
+  color: var(--text);
+
+  font-size: 13px;
+}
+
+.vpn-list-card .empty-state span {
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   VPN MODAL
+   ========================================================================== */
+
+.vpn-modal {
+  width: min(900px, calc(100vw - 32px));
+
+  max-width: 900px;
+
+  max-height: calc(100vh - 32px);
+
+  margin: auto;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.vpn-modal::backdrop {
+  background: rgba(15, 23, 42, 0.56);
+}
+
+/* ==========================================================================
+   FORM
+   ========================================================================== */
+
+.vpn-form {
+  display: flex;
+
+  width: 100%;
+
+  max-height: calc(100vh - 32px);
+
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   MODAL HEADER
+   ========================================================================== */
+
+.vpn-modal .modal-header {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 28px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: #ffffff;
+}
+
+.vpn-modal .modal-eyebrow {
+  margin-bottom: 5px;
+
+  color: #008f8b;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.vpn-modal .modal-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  line-height: 1.2;
+}
+
+/* CLOSE */
+
+.vpn-modal .modal-close {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-size: 20px;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.vpn-modal .modal-close:hover {
+  background: var(--bg, #f5f7fa);
+
+  border-color: #b8c7d9;
+}
+
+/* ==========================================================================
+   MODAL BODY
+   ========================================================================== */
+
+.vpn-modal .modal-body {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-x: hidden;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   FORM SECTION
+   ========================================================================== */
+
+.vpn-modal .form-section {
+  padding: 24px 28px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: #ffffff;
+}
+
+.vpn-modal .form-section:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   FORM SECTION HEADER
+   ========================================================================== */
+
+.vpn-modal .form-section-header {
+  margin-bottom: 18px;
+}
+
+.vpn-modal .form-section-header h3 {
+  margin: 0 0 5px;
+
+  color: var(--text);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.vpn-modal .form-section-header p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   FORM GRID
+   ========================================================================== */
+
+.vpn-modal .form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px 20px;
+}
+
+.vpn-modal .form-field {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.vpn-modal .form-field-full {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   LABEL
+   ========================================================================== */
+
+.vpn-modal .form-field label {
+  display: block;
+
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.vpn-modal .form-field label span {
+  color: var(--text);
+}
+
+.vpn-modal .form-field label b {
+  color: #d92d20;
+
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FORM INPUTS
+   ========================================================================== */
+
+.vpn-modal .form-field input,
+.vpn-modal .form-field select,
+.vpn-modal .form-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  min-height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.vpn-modal .form-field textarea {
+  min-height: 100px;
+
+  padding: 10px 12px;
+
+  resize: vertical;
+}
+
+.vpn-modal .form-field input::placeholder,
+.vpn-modal .form-field textarea::placeholder {
+  color: #98a2b3;
+}
+
+.vpn-modal .form-field input:focus,
+.vpn-modal .form-field select:focus,
+.vpn-modal .form-field textarea:focus {
+  border-color: #0ea5a8;
+
+  box-shadow: 0 0 0 3px rgba(14, 165, 168, 0.1);
+}
+
+/* ==========================================================================
+   DATE INPUT
+   ========================================================================== */
+
+.vpn-modal .form-field input[type="date"] {
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   MODAL FOOTER
+   ========================================================================== */
+
+.vpn-modal .modal-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 14px 28px;
+
+  border-top: 1px solid var(--border);
+
+  background: #ffffff;
+}
+
+/*
+   HTML menggunakan:
+   .btn.btn-secondary
+   .btn.btn-primary
+
+   Jadi kita hanya memberi penyesuaian khusus modal.
+*/
+
+.vpn-modal .modal-footer .btn {
+  min-height: 42px;
+
+  padding: 0 16px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   RESPONSIVE — TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .vpn-list-card .list-toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .vpn-list-card .search-box {
+    width: 100%;
+  }
+
+  .vpn-list-card .filter-group {
+    width: 100%;
+  }
+
+  .vpn-list-card .filter-group select {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  /* Modal */
+
+  .vpn-modal {
+    width: calc(100vw - 20px);
+
+    max-height: calc(100vh - 20px);
+  }
+
+  .vpn-modal .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vpn-modal .form-field-full {
+    grid-column: auto;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE — MOBILE
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .vpn-list-card .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vpn-list-card .stat-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .vpn-list-card .stat-card:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .vpn-list-card .filter-group {
+    flex-direction: column;
+  }
+
+  .vpn-list-card .filter-group select {
+    width: 100%;
+  }
+
+  .vpn-modal .modal-header {
+    padding: 18px 20px;
+  }
+
+  .vpn-modal .form-section {
+    padding: 20px;
+  }
+
+  .vpn-modal .modal-footer {
+    padding: 12px 20px;
+  }
+}
+
+/* ==========================================================================
+   VPN FORM FIELD COMPATIBILITY
+   ========================================================================== */
+
+.vpn-modal .field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.vpn-modal .field-full {
+  grid-column: 1 / -1;
+}
+
+.vpn-modal .field label {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vpn-modal .field label span {
+  color: var(--danger);
+}
+
+.vpn-modal .field input,
+.vpn-modal .field select,
+.vpn-modal .field textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+
+  outline: none;
+
+  background: var(--surface);
+  color: var(--text);
+
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+}
+
+.vpn-modal .field textarea {
+  min-height: 100px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.vpn-modal .field input:focus,
+.vpn-modal .field select:focus,
+.vpn-modal .field textarea:focus {
+  border-color: var(--accent);
+
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}

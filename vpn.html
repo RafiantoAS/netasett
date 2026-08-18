@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VPNs · NETASSET</title>
+
+    <!-- Fonts — same as VM -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global — same as VM -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Page -->
+    <link rel="stylesheet" href="vpn.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+           SIDEBAR — SAME STRUCTURE AS VM
+           ========================================================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub active">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+           MAIN — SAME STRUCTURE AS VM
+           ========================================================= -->
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Virtual Resources</span>
+              <span class="sep"> / </span>
+              <strong>VPN</strong>
+            </div>
+            <h1 class="page-title">Virtual Private Networks</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              id="vpnRefreshBtn"
+              title="Refresh VPN data"
+            >
+              ↻
+            </button>
+            <button class="btn btn-primary" type="button" id="vpnAddBtn">
+              + Add VPN
+            </button>
+          </div>
+        </header>
+
+        <div class="content vpn-page">
+          <section class="vpn-list-card">
+            <div class="list-toolbar">
+              <div class="search-box">
+                <span class="search-icon">⌕</span>
+                <input
+                  type="search"
+                  id="vpnSearch"
+                  placeholder="Cari VPN name, endpoint, protocol..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="vpnTypeFilter">
+                  <option value="">Semua Type</option>
+                  <option value="Site-to-Site">Site-to-Site</option>
+                  <option value="Remote Access">Remote Access</option>
+                  <option value="IPSec">IPSec</option>
+                </select>
+                <select id="vpnStatusFilter">
+                  <option value="">Semua Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Expired">Expired</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span class="stat-label">TOTAL VPN</span>
+                <strong class="stat-value" id="statTotal">5</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">ACTIVE</span>
+                <strong class="stat-value" id="statActive">3</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">CONNECTED</span>
+                <strong class="stat-value" id="statConnected">3</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">EXPIRING SOON</span>
+                <strong class="stat-value" id="statExpiring">0</strong>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="vpn-table">
+                <thead>
+                  <tr>
+                    <th>VPN</th>
+                    <th>TYPE</th>
+                    <th>PROTOCOL</th>
+                    <th>LOCAL ENDPOINT</th>
+                    <th>REMOTE ENDPOINT</th>
+                    <th>STATUS</th>
+                    <th>LIFECYCLE</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="vpnTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="list-footer">
+              <span id="vpnResultCount">5 of 5 VPNs shown</span>
+              <button type="button" class="btn-reset" id="vpnResetBtn">
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- ADD / EDIT VPN MODAL -->
+    <dialog class="vpn-modal" id="vpnModal">
+      <form class="vpn-form" id="vpnForm" method="dialog">
+        <!-- =====================================================
+             MODAL HEADER
+             ===================================================== -->
+        <div class="modal-header">
+          <div>
+            <div class="modal-eyebrow">VIRTUAL RESOURCE</div>
+            <h2 id="vpnModalTitle">Add VPN</h2>
+          </div>
+          <button
+            aria-label="Close"
+            class="modal-close"
+            id="vpnModalClose"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <!-- =====================================================
+             MODAL BODY
+             ===================================================== -->
+        <div class="modal-body">
+          <!-- ===================================================
+               VPN INFORMATION
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>VPN Information</h3>
+              <p>Identity and basic VPN information.</p>
+            </div>
+            <div class="form-grid">
+              <!-- VPN CODE -->
+              <div class="form-field">
+                <label for="vpnCode"><span>VPN Code</span></label>
+                <input
+                  id="vpnCode"
+                  name="vpn_code"
+                  placeholder="VPN-0001"
+                  type="text"
+                />
+              </div>
+              <!-- VPN NAME -->
+              <div class="form-field">
+                <label for="vpnName"
+                  ><span>VPN Name <b>*</b></span></label
+                >
+                <input
+                  id="vpnName"
+                  name="vpn_name"
+                  placeholder="Jakarta–Surabaya Core VPN"
+                  required=""
+                  type="text"
+                />
+              </div>
+              <!-- DESCRIPTION -->
+              <div class="form-field form-field-full">
+                <label for="vpnDescription"><span>Description</span></label>
+                <textarea
+                  id="vpnDescription"
+                  name="description"
+                  placeholder="Secure site-to-site connection..."
+                  rows="3"
+                ></textarea>
+              </div>
+              <!-- TYPE -->
+              <div class="form-field">
+                <label for="vpnType"
+                  ><span>VPN Type <b>*</b></span></label
+                >
+                <select id="vpnType" name="type" required="">
+                  <option value="">Select Type</option>
+                  <option value="Site-to-Site">Site-to-Site</option>
+                  <option value="Remote Access">Remote Access</option>
+                  <option value="IPSec">IPSec</option>
+                </select>
+              </div>
+              <!-- PROTOCOL -->
+              <div class="form-field">
+                <label for="vpnProtocol"
+                  ><span>Protocol <b>*</b></span></label
+                >
+                <select id="vpnProtocol" name="protocol" required="">
+                  <option value="">Select Protocol</option>
+                  <option value="IPSec">IPSec</option>
+                  <option value="WireGuard">WireGuard</option>
+                  <option value="OpenVPN">OpenVPN</option>
+                </select>
+              </div>
+            </div>
+          </section>
+          <!-- ===================================================
+               SECURITY
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Security</h3>
+              <p>Encryption and authentication configuration.</p>
+            </div>
+            <div class="form-grid">
+              <!-- ENCRYPTION -->
+              <div class="form-field">
+                <label for="vpnEncryption"><span>Encryption</span></label>
+                <select id="vpnEncryption" name="encryption">
+                  <option value="">Select Encryption</option>
+                  <option value="AES-256">AES-256</option>
+                  <option value="AES-128">AES-128</option>
+                  <option value="ChaCha20">ChaCha20</option>
+                </select>
+              </div>
+              <!-- AUTHENTICATION -->
+              <div class="form-field">
+                <label for="vpnAuthentication"
+                  ><span>Authentication</span></label
+                >
+                <select id="vpnAuthentication" name="authentication">
+                  <option value="">Select Authentication</option>
+                  <option value="PSK">PSK</option>
+                  <option value="Certificate">Certificate</option>
+                </select>
+              </div>
+            </div>
+          </section>
+          <!-- ===================================================
+               NETWORK
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Network</h3>
+              <p>VPN endpoint and remote network configuration.</p>
+            </div>
+            <div class="form-grid">
+              <!-- LOCAL ENDPOINT -->
+              <div class="form-field">
+                <label for="vpnLocalEndpoint"
+                  ><span>Local Endpoint <b>*</b></span></label
+                >
+                <input
+                  id="vpnLocalEndpoint"
+                  name="local_endpoint"
+                  placeholder="203.0.113.10"
+                  required=""
+                  type="text"
+                />
+              </div>
+              <!-- REMOTE ENDPOINT -->
+              <div class="form-field">
+                <label for="vpnRemoteEndpoint"
+                  ><span>Remote Endpoint <b>*</b></span></label
+                >
+                <input
+                  id="vpnRemoteEndpoint"
+                  name="remote_endpoint"
+                  placeholder="198.51.100.10"
+                  required=""
+                  type="text"
+                />
+              </div>
+              <!-- REMOTE NETWORK -->
+              <div class="form-field form-field-full">
+                <label for="vpnRemoteNetwork"
+                  ><span>Remote Network</span></label
+                >
+                <input
+                  id="vpnRemoteNetwork"
+                  name="remote_network"
+                  placeholder="10.20.0.0/16"
+                  type="text"
+                />
+              </div>
+            </div>
+          </section>
+          <!-- ===================================================
+               LIFECYCLE & STATUS
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Lifecycle &amp; Status</h3>
+              <p>VPN lifecycle and operational state.</p>
+            </div>
+            <div class="form-grid">
+              <!-- LIFECYCLE -->
+              <div class="form-field">
+                <label for="vpnLifecycle"
+                  ><span>Lifecycle Status <b>*</b></span></label
+                >
+                <select id="vpnLifecycle" name="lifecycle_status" required="">
+                  <option value="Provisioned">Provisioned</option>
+                  <option value="Active">Active</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Retired">Retired</option>
+                </select>
+              </div>
+              <!-- OPERATIONAL -->
+              <div class="form-field">
+                <label for="vpnStatus"
+                  ><span>Operational Status <b>*</b></span></label
+                >
+                <select id="vpnStatus" name="operational_status" required="">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Expired">Expired</option>
+                </select>
+              </div>
+              <!-- START DATE -->
+              <div class="form-field">
+                <label for="vpnStartDate"><span>Start Date</span></label>
+                <input id="vpnStartDate" name="start_date" type="date" />
+              </div>
+              <!-- EXPIRY DATE -->
+              <div class="form-field">
+                <label for="vpnExpiryDate"><span>Expiry Date</span></label>
+                <input id="vpnExpiryDate" name="expiry_date" type="date" />
+              </div>
+            </div>
+          </section>
+          <!-- ===================================================
+               RELATIONSHIPS
+               =================================================== -->
+          <section class="form-section">
+            <div class="form-section-header">
+              <h3>Relationships</h3>
+              <p>Customer, location and related asset information.</p>
+            </div>
+            <div class="form-grid">
+              <!-- CUSTOMER -->
+              <div class="form-field">
+                <label for="vpnCustomer"><span>Customer</span></label>
+                <select id="vpnCustomer" name="customer">
+                  <option value="">Select Customer</option>
+                  <option value="PT Nusantara Digital">
+                    PT Nusantara Digital
+                  </option>
+                  <option value="PT Global Network Indonesia">
+                    PT Global Network Indonesia
+                  </option>
+                  <option value="PT Data Prima">PT Data Prima</option>
+                </select>
+              </div>
+              <!-- LOCATION -->
+              <div class="form-field">
+                <label for="vpnLocation"><span>Location</span></label>
+                <select id="vpnLocation" name="location">
+                  <option value="">Select Location</option>
+                  <option value="Jakarta DC-01">Jakarta DC-01</option>
+                  <option value="Jakarta POP-01">Jakarta POP-01</option>
+                  <option value="Surabaya POP-01">Surabaya POP-01</option>
+                </select>
+              </div>
+              <!-- RELATED ASSET -->
+              <div class="form-field form-field-full">
+                <label for="vpnRelatedAsset"><span>Related Asset</span></label>
+                <select id="vpnRelatedAsset" name="related_asset">
+                  <option value="">Select Related Asset</option>
+                  <option value="RTR-JKT-001">RTR-JKT-001</option>
+                  <option value="RTR-JKT-002">RTR-JKT-002</option>
+                  <option value="RTR-JKT-003">RTR-JKT-003</option>
+                  <option value="RTR-SBY-001">RTR-SBY-001</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- =====================================================
+             MODAL FOOTER
+             ===================================================== -->
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="vpnCancelBtn" type="button">
+            Cancel
+          </button>
+          <button class="btn btn-primary" type="submit">Save VPN</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script src="virtual-resources.js"></script>
+  </body>
+</html>

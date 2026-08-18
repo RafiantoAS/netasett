@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OLT Detail · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="olt-detail.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub active">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <div class="olt-detail-page">
+          <div class="detail-breadcrumb">
+            <a href="olt.html">Asset Management</a>
+            <span>/</span>
+            <a href="olt.html">Physical Assets</a>
+            <span>/</span>
+            <span>OLT</span>
+            <span>/</span>
+            <strong id="detailBreadcrumbCode">OLT-0001</strong>
+          </div>
+
+          <section class="detail-header">
+            <div class="detail-header-main">
+              <div class="detail-avatar">OL</div>
+              <div class="detail-title-block">
+                <div class="eyebrow">OLT</div>
+                <h1 id="detailTitle">Core OLT Jakarta-01</h1>
+                <div class="detail-id-row">
+                  <span class="mono" id="detailCode">OLT-0001</span>
+                  <span>·</span>
+                  <span>Physical Asset</span>
+                </div>
+                <div class="detail-badge-row">
+                  <span id="detailLifecycle" class="badge badge-active"
+                    >Active</span
+                  >
+                  <span
+                    id="detailOperational"
+                    class="detail-operational operational-up"
+                    ><i></i>UP</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-header-actions">
+              <a
+                id="editOltBtn"
+                href="olt.html?edit=OLT-0001"
+                class="btn btn-ghost"
+                >✎ Edit</a
+              >
+            </div>
+          </section>
+
+          <nav class="detail-tabs">
+            <button class="detail-tab active" data-tab="overview">
+              Overview
+            </button>
+            <button class="detail-tab" data-tab="network">Network</button>
+            <button class="detail-tab" data-tab="relationships">
+              Relationships
+            </button>
+            <button class="detail-tab" data-tab="history">History</button>
+          </nav>
+
+          <section class="detail-panel tab-panel active" id="tab-overview">
+            <div class="section-title">
+              <div>
+                <h2>Overview</h2>
+                <p>Identity, hardware and physical placement</p>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <h3>Basic Information</h3>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <span>Asset Code</span><strong id="dAssetCode">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Asset Name</span><strong id="dAssetName">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Hostname</span
+                  ><strong class="mono" id="dHostname">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Vendor</span><strong id="dVendor">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Model</span><strong id="dModel">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Serial Number</span
+                  ><strong class="mono" id="dSerial">—</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <h3>OLT Capacity</h3>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <span>OLT Type</span><strong id="dType">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>PON Ports</span><strong id="dPon">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Uplink Ports</span><strong id="dUplink">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Software Version</span
+                  ><strong class="mono" id="dSoftware">—</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <h3>Location</h3>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <span>Location</span><strong id="dLocation">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Rack</span><strong id="dRack">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Rack U</span><strong id="dRackU">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Provider</span><strong id="dProvider">—</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-panel tab-panel" id="tab-network">
+            <div class="section-title">
+              <div>
+                <h2>Network</h2>
+                <p>Management and connectivity information</p>
+              </div>
+            </div>
+            <div class="detail-section">
+              <h3>Management</h3>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <span>Management IP</span
+                  ><strong class="mono" id="dIp">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>MAC Address</span
+                  ><strong class="mono" id="dMac">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Software Version</span
+                  ><strong class="mono" id="dSoftware2">—</strong>
+                </div>
+                <div class="detail-item">
+                  <span>Operational Status</span
+                  ><strong id="dOperationalText">—</strong>
+                </div>
+              </div>
+            </div>
+            <div class="detail-section">
+              <h3>PON / Uplink</h3>
+              <div class="port-summary">
+                <div><strong id="dPon2">16</strong><span>PON Ports</span></div>
+                <div>
+                  <strong id="dUplink2">4</strong><span>Uplink Ports</span>
+                </div>
+                <div><strong>0</strong><span>Active Uplink</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-panel tab-panel" id="tab-relationships">
+            <div class="section-title">
+              <div>
+                <h2>Relationships</h2>
+                <p>Connections associated with this OLT</p>
+              </div>
+            </div>
+            <div class="relationship-grid">
+              <div class="relationship-card">
+                <span class="relationship-icon">IP</span>
+                <div>
+                  <strong>Management IP</strong>
+                  <p id="rIp">—</p>
+                </div>
+              </div>
+              <div class="relationship-card">
+                <span class="relationship-icon">LC</span>
+                <div>
+                  <strong>Location</strong>
+                  <p id="rLocation">—</p>
+                </div>
+              </div>
+              <div class="relationship-card">
+                <span class="relationship-icon">PR</span>
+                <div>
+                  <strong>Provider</strong>
+                  <p id="rProvider">—</p>
+                </div>
+              </div>
+              <div class="relationship-card">
+                <span class="relationship-icon">TO</span>
+                <div>
+                  <strong>Topology</strong>
+                  <p>Not connected in demo</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-panel tab-panel" id="tab-history">
+            <div class="section-title">
+              <div>
+                <h2>History</h2>
+                <p>Recent audit activity</p>
+              </div>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Asset created</strong>
+                  <p>OLT asset registered in NETASSET demo data.</p>
+                  <small>2026-08-11 · 08:00</small>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Status verified</strong>
+                  <p>Operational status confirmed as UP.</p>
+                  <small>2026-08-11 · 08:10</small>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Inventory check</strong>
+                  <p>Hardware and rack placement reviewed.</p>
+                  <small>2026-08-11 · 08:20</small>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const OLT_KEY = "netasset_olts";
+      const demo = [
+        {
+          assetCode: "OLT-0001",
+          assetName: "Core OLT Jakarta-01",
+          hostname: "olt-core-jkt-01",
+          vendor: "Huawei",
+          model: "MA5800-X7",
+          serialNumber: "HW-5800-24001",
+          managementIp: "10.10.200.1",
+          macAddress: "00:11:22:33:44:01",
+          oltType: "GPON",
+          softwareVersion: "V8R21",
+          ponPorts: 16,
+          uplinkPorts: 4,
+          location: "POP Jakarta",
+          rack: "Rack-05",
+          rackU: 20,
+          provider: "NAP-A",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0002",
+          assetName: "Distribution OLT Jakarta-01",
+          hostname: "olt-dist-jkt-01",
+          vendor: "ZTE",
+          model: "C320",
+          serialNumber: "ZT-C320-24002",
+          managementIp: "10.10.200.2",
+          macAddress: "00:11:22:33:44:02",
+          oltType: "GPON",
+          softwareVersion: "V3.2",
+          ponPorts: 16,
+          uplinkPorts: 4,
+          location: "POP Jakarta",
+          rack: "Rack-06",
+          rackU: 24,
+          provider: "NAP-A",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0003",
+          assetName: "Access OLT South Jakarta",
+          hostname: "olt-access-jksel-01",
+          vendor: "Huawei",
+          model: "MA5800-X2",
+          serialNumber: "HW-5800-24003",
+          managementIp: "10.20.200.1",
+          macAddress: "00:11:22:33:44:03",
+          oltType: "XGS-PON",
+          softwareVersion: "V8R21",
+          ponPorts: 8,
+          uplinkPorts: 4,
+          location: "POP Jakarta Selatan",
+          rack: "Rack-02",
+          rackU: 18,
+          provider: "NAP-B",
+          lifecycleStatus: "maintenance",
+          operationalStatus: "degraded",
+        },
+        {
+          assetCode: "OLT-0004",
+          assetName: "Access OLT Bandung-01",
+          hostname: "olt-access-bdg-01",
+          vendor: "ZTE",
+          model: "C650",
+          serialNumber: "ZT-C650-24004",
+          managementIp: "10.40.200.1",
+          macAddress: "00:11:22:33:44:04",
+          oltType: "GPON",
+          softwareVersion: "V2.8",
+          ponPorts: 16,
+          uplinkPorts: 8,
+          location: "POP Bandung",
+          rack: "Rack-01",
+          rackU: 10,
+          provider: "NAP-C",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0005",
+          assetName: "Legacy OLT Jakarta",
+          hostname: "olt-legacy-jkt-01",
+          vendor: "Huawei",
+          model: "MA5608T",
+          serialNumber: "HW-5608-24005",
+          managementIp: "10.50.200.1",
+          macAddress: "00:11:22:33:44:05",
+          oltType: "GPON",
+          softwareVersion: "V5.1",
+          ponPorts: 8,
+          uplinkPorts: 2,
+          location: "POP Jakarta",
+          rack: "Rack-04",
+          rackU: 8,
+          provider: "NAP-B",
+          lifecycleStatus: "retired",
+          operationalStatus: "down",
+        },
+      ];
+
+      function getData() {
+        try {
+          return JSON.parse(localStorage.getItem(OLT_KEY)) || demo;
+        } catch {
+          return demo;
+        }
+      }
+      function set(id, v) {
+        const e = document.getElementById(id);
+        if (e) e.textContent = v ?? "—";
+      }
+      function badgeLifecycle(s) {
+        const map = {
+          active: "Active",
+          maintenance: "Maintenance",
+          retired: "Retired",
+        };
+        const e = document.getElementById("detailLifecycle");
+        e.className = `badge badge-${s === "active" ? "active" : s}`;
+        e.textContent = map[s] || s;
+      }
+      function load() {
+        const p = new URLSearchParams(location.search),
+          code = p.get("code") || p.get("assetCode") || "OLT-0001";
+        const o = getData().find((x) => x.assetCode === code) || getData()[0];
+        if (!o) return;
+        set("detailTitle", o.assetName);
+        set("detailCode", o.assetCode);
+        set("detailBreadcrumbCode", o.assetCode);
+        set("dAssetCode", o.assetCode);
+        set("dAssetName", o.assetName);
+        set("dHostname", o.hostname);
+        set("dVendor", o.vendor);
+        set("dModel", o.model);
+        set("dSerial", o.serialNumber);
+        set("dType", o.oltType);
+        set("dPon", `${o.ponPorts} Ports`);
+        set("dUplink", `${o.uplinkPorts} Ports`);
+        set("dSoftware", o.softwareVersion);
+        set("dLocation", o.location);
+        set("dRack", o.rack);
+        set("dRackU", `U${o.rackU}`);
+        set("dProvider", o.provider);
+        set("dIp", o.managementIp);
+        set("dMac", o.macAddress);
+        set("dSoftware2", o.softwareVersion);
+        set("dOperationalText", o.operationalStatus.toUpperCase());
+        set("dPon2", o.ponPorts);
+        set("dUplink2", o.uplinkPorts);
+        set("rIp", o.managementIp);
+        set("rLocation", `${o.location} · ${o.rack} U${o.rackU}`);
+        set("rProvider", o.provider);
+        badgeLifecycle(o.lifecycleStatus);
+        const op = document.getElementById("detailOperational");
+        op.className = `detail-operational operational-${o.operationalStatus}`;
+        op.innerHTML = `<i></i>${o.operationalStatus.toUpperCase()}`;
+        document.getElementById("editOltBtn").href =
+          `olt.html?edit=${encodeURIComponent(o.assetCode)}`;
+        document.title = `${o.assetName} · NETASSET`;
+      }
+      document.querySelectorAll(".detail-tab").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".detail-tab")
+            .forEach((x) => x.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-panel")
+            .forEach((x) => x.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .getElementById("tab-" + btn.dataset.tab)
+            .classList.add("active");
+        }),
+      );
+      load();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1292 @@
+/* =========================================================
+   NETASSET — REPORTS PAGE
+   reports.css
+========================================================= */
+
+/* =========================================================
+   PAGE ROOT
+========================================================= */
+
+.reports-page {
+  background: #f4f7fb;
+  color: #071b3a;
+  font-family: "Inter", sans-serif;
+}
+
+.reports-main {
+  min-width: 0;
+  background: #f4f7fb;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.reports-topbar {
+  min-height: 114px;
+
+  padding: 26px 36px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #d7e1ed;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+.reports-heading {
+  min-width: 0;
+}
+
+.reports-heading .breadcrumb {
+  margin-bottom: 5px;
+
+  color: #6682a4;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+.reports-heading .page-title {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+}
+
+.reports-description {
+  margin: 7px 0 0;
+
+  color: #6682a4;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.45;
+}
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.reports-topbar .topbar-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.reports-refresh-btn {
+  width: 46px;
+  height: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 10px;
+
+  background: #f1f3f6;
+
+  color: #071b3a;
+
+  font-family: "Inter", sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.reports-refresh-btn:hover {
+  background: #ffffff;
+
+  border-color: #0fb7b0;
+
+  color: #009e9a;
+}
+
+.reports-refresh-btn:active {
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.reports-content {
+  padding: 34px 36px 48px;
+}
+
+.reports-panel {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 12px;
+
+  box-shadow: 0 1px 2px rgba(7, 27, 58, 0.02);
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.reports-section-heading {
+  padding: 25px 24px 22px;
+
+  border-bottom: 1px solid #d5e0ed;
+
+  background: #ffffff;
+}
+
+.reports-eyebrow {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.reports-section-heading h2 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.reports-section-heading p {
+  margin: 6px 0 0;
+
+  color: #6682a4;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.45;
+}
+
+/* =========================================================
+   OVERVIEW
+========================================================= */
+
+.reports-overview {
+  background: #ffffff;
+}
+
+.reports-overview-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #d5e0ed;
+}
+
+.reports-overview-card {
+  min-height: 126px;
+
+  padding: 22px 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-right: 1px solid #d5e0ed;
+}
+
+.reports-overview-card:last-child {
+  border-right: none;
+}
+
+.reports-stat-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #5d7b9f;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.reports-stat-value {
+  display: block;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.reports-stat-description {
+  display: block;
+
+  margin-top: 8px;
+
+  color: #6b87a7;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   REPORT CATALOG
+========================================================= */
+
+.reports-catalog {
+  background: #ffffff;
+}
+
+.reports-catalog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.reports-catalog-count {
+  flex-shrink: 0;
+
+  color: #607d9e;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   REPORT CATEGORY
+========================================================= */
+
+.report-category {
+  border-bottom: 1px solid #d5e0ed;
+}
+
+.report-category:last-child {
+  border-bottom: none;
+}
+
+.report-category-header {
+  padding: 20px 24px 14px;
+
+  background: #ffffff;
+}
+
+.report-category-header h3 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.report-category-header p {
+  margin: 5px 0 0;
+
+  color: #718aa7;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.45;
+}
+
+/* =========================================================
+   REPORT CARD GRID
+========================================================= */
+
+.report-card-grid {
+  padding: 0 24px 24px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+/* =========================================================
+   REPORT CARD
+========================================================= */
+
+.report-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 214px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 10px;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+
+.report-card:hover {
+  border-color: #b9cedf;
+
+  background: #fcfeff;
+
+  box-shadow: 0 7px 20px rgba(7, 27, 58, 0.06);
+
+  transform: translateY(-1px);
+}
+
+.report-card-content {
+  min-width: 0;
+}
+
+.report-card-eyebrow {
+  display: inline-flex;
+
+  margin-bottom: 10px;
+
+  color: #079f9d;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.9px;
+}
+
+.report-card h4 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.report-card p {
+  margin: 8px 0 0;
+
+  color: #64809f;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+.report-card-meta {
+  margin-top: 17px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  flex-wrap: wrap;
+}
+
+.report-card-meta span {
+  min-height: 25px;
+
+  padding: 0 8px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border: 1px solid #d3e0ec;
+  border-radius: 6px;
+
+  background: #f6f9fc;
+
+  color: #52749a;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   REPORT OPEN BUTTON
+========================================================= */
+
+.report-open-btn {
+  width: 100%;
+
+  min-height: 38px;
+
+  margin-top: 20px;
+
+  padding: 0 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #d2dfed;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #426486;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.report-open-btn span {
+  font-size: 15px;
+
+  transition: transform 0.18s ease;
+}
+
+.report-open-btn:hover {
+  border-color: #0fb7b0;
+
+  background: #f4fffe;
+
+  color: #009f9b;
+}
+
+.report-open-btn:hover span {
+  transform: translateX(2px);
+}
+
+.report-open-btn:focus-visible {
+  outline: none;
+
+  border-color: #0fb7b0;
+
+  box-shadow: 0 0 0 3px rgba(15, 183, 176, 0.1);
+}
+
+/* =========================================================
+   REPORT WORKSPACE
+========================================================= */
+
+.report-workspace {
+  background: #ffffff;
+
+  border-top: 1px solid #d5e0ed;
+}
+
+.report-workspace[hidden] {
+  display: none;
+}
+
+/* =========================================================
+   WORKSPACE HEADER
+========================================================= */
+
+.report-workspace-header {
+  min-height: 102px;
+
+  padding: 22px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  border-bottom: 1px solid #d5e0ed;
+}
+
+.report-workspace-header h2 {
+  margin: 0;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.report-workspace-header p {
+  margin: 6px 0 0;
+
+  color: #6682a4;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.45;
+}
+
+.report-workspace-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   WORKSPACE BUTTONS
+========================================================= */
+
+.report-secondary-btn,
+.report-primary-btn {
+  min-height: 38px;
+
+  padding: 0 13px;
+
+  border-radius: 8px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.report-secondary-btn {
+  border: 1px solid #d2dfed;
+
+  background: #ffffff;
+
+  color: #426486;
+}
+
+.report-secondary-btn:hover {
+  border-color: #0fb7b0;
+
+  background: #f4fffe;
+
+  color: #009f9b;
+}
+
+.report-primary-btn {
+  border: 1px solid #0fb7b0;
+
+  background: #0fb7b0;
+
+  color: #ffffff;
+}
+
+.report-primary-btn:hover {
+  border-color: #0aa69b;
+
+  background: #0aa69b;
+}
+
+/* =========================================================
+   WORKSPACE TOOLBAR
+========================================================= */
+
+.report-workspace-toolbar {
+  min-height: 76px;
+
+  padding: 16px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  border-bottom: 1px solid #d5e0ed;
+
+  background: #ffffff;
+}
+
+/* =========================================================
+   REPORT SEARCH
+========================================================= */
+
+.report-search {
+  width: min(520px, 100%);
+
+  height: 44px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.report-search-icon {
+  position: absolute;
+
+  left: 14px;
+
+  color: #52759e;
+
+  pointer-events: none;
+}
+
+.report-search input {
+  width: 100%;
+  height: 44px;
+
+  padding: 0 15px 0 42px;
+
+  border: 1px solid #d2dfed;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #071b3a;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.report-search input::placeholder {
+  color: #7891af;
+}
+
+.report-search input:hover {
+  border-color: #bdcede;
+}
+
+.report-search input:focus {
+  border-color: #0fb7b0;
+
+  box-shadow: 0 0 0 3px rgba(15, 183, 176, 0.1);
+}
+
+/* =========================================================
+   WORKSPACE FILTERS
+========================================================= */
+
+.report-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.report-filter {
+  width: 178px;
+  height: 44px;
+
+  padding: 0 38px 0 14px;
+
+  border: 1px solid #d2dfed;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #071b3a;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.report-filter:hover {
+  border-color: #bdcede;
+}
+
+.report-filter:focus {
+  border-color: #0fb7b0;
+
+  box-shadow: 0 0 0 3px rgba(15, 183, 176, 0.1);
+}
+
+/* =========================================================
+   WORKSPACE STATISTICS
+========================================================= */
+
+.report-workspace-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #d5e0ed;
+}
+
+.report-workspace-stat {
+  min-height: 92px;
+
+  padding: 19px 22px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-right: 1px solid #d5e0ed;
+}
+
+.report-workspace-stat:last-child {
+  border-right: none;
+}
+
+.report-workspace-stat span {
+  margin-bottom: 7px;
+
+  color: #5d7b9f;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+.report-workspace-stat strong {
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   RESULT TABLE
+========================================================= */
+
+.report-result-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  background: #ffffff;
+}
+
+.report-result-table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-family: "Inter", sans-serif;
+}
+
+.report-result-table thead {
+  background: #f4f7fa;
+}
+
+.report-result-table th {
+  height: 50px;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid #d5e0ed;
+
+  color: #58769a;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.65px;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.report-result-table td {
+  padding: 17px 18px;
+
+  border-bottom: 1px solid #dbe4ee;
+
+  vertical-align: middle;
+
+  color: #071b3a;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+}
+
+.report-result-table tbody tr:hover {
+  background: #f9fbfd;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.report-empty-state {
+  min-height: 250px;
+
+  padding: 45px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background: #ffffff;
+}
+
+.report-empty-icon {
+  width: 46px;
+  height: 46px;
+
+  margin-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d6e2ee;
+  border-radius: 12px;
+
+  background: #f5f8fb;
+
+  color: #6884a5;
+
+  font-size: 21px;
+}
+
+.report-empty-state h3 {
+  margin: 0 0 7px;
+
+  color: #071b3a;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.report-empty-state p {
+  margin: 0;
+
+  color: #6c87a7;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   WORKSPACE FOOTER
+========================================================= */
+
+.report-workspace-footer {
+  min-height: 58px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  border-top: 1px solid #d5e0ed;
+
+  background: #ffffff;
+}
+
+#reportResultCount {
+  color: #607d9e;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.report-pagination {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.report-pagination-btn {
+  min-width: 34px;
+  height: 34px;
+
+  padding: 0 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #557492;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.report-pagination-btn:hover:not(:disabled) {
+  border-color: #0fb7b0;
+
+  background: #f5fffe;
+
+  color: #009f9b;
+}
+
+.report-pagination-btn.active {
+  border-color: #0fb7b0;
+
+  background: #0fb7b0;
+
+  color: #ffffff;
+}
+
+.report-pagination-btn:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.reports-page button:focus-visible,
+.reports-page select:focus-visible,
+.reports-page input:focus-visible {
+  outline: 2px solid rgba(15, 183, 176, 0.35);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+  .reports-topbar {
+    padding: 26px 28px;
+  }
+
+  .reports-content {
+    padding: 28px 28px 40px;
+  }
+
+  .report-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-workspace-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .report-search {
+    width: min(480px, 100%);
+  }
+
+  .report-filters {
+    margin-left: auto;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .reports-topbar {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .reports-topbar .topbar-actions {
+    width: 100%;
+  }
+
+  .reports-refresh-btn {
+    width: 100%;
+  }
+
+  .reports-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reports-overview-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .reports-overview-card:nth-child(-n + 2) {
+    border-bottom: 1px solid #d5e0ed;
+  }
+
+  .report-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-workspace-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .report-workspace-actions {
+    width: 100%;
+  }
+
+  .report-secondary-btn,
+  .report-primary-btn {
+    flex: 1;
+  }
+
+  .report-workspace-toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .report-search {
+    width: 100%;
+  }
+
+  .report-filters {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-filter {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .reports-topbar {
+    min-height: auto;
+
+    padding: 22px 18px;
+  }
+
+  .reports-heading .page-title {
+    font-size: 24px;
+  }
+
+  .reports-description {
+    max-width: 420px;
+  }
+
+  .reports-content {
+    padding: 20px 14px 32px;
+  }
+
+  .reports-panel {
+    border-radius: 10px;
+  }
+
+  .reports-section-heading {
+    padding: 20px 18px;
+  }
+
+  .reports-catalog-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .reports-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reports-overview-card {
+    min-height: 105px;
+
+    padding: 18px;
+  }
+
+  .reports-stat-value {
+    font-size: 24px;
+  }
+
+  .reports-stat-description {
+    font-size: 11px;
+  }
+
+  .report-category-header {
+    padding: 18px 18px 13px;
+  }
+
+  .report-card-grid {
+    padding: 0 14px 18px;
+  }
+
+  .report-card {
+    min-height: 205px;
+
+    padding: 18px;
+  }
+
+  .report-workspace-header {
+    padding: 20px 18px;
+  }
+
+  .report-workspace-toolbar {
+    padding: 14px;
+  }
+
+  .report-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .report-workspace-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-workspace-stat {
+    min-height: 82px;
+
+    padding: 17px;
+  }
+
+  .report-workspace-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .report-workspace-stat:nth-child(-n + 2) {
+    border-bottom: 1px solid #d5e0ed;
+  }
+
+  .report-workspace-actions {
+    flex-wrap: wrap;
+  }
+
+  .report-secondary-btn,
+  .report-primary-btn {
+    flex: 1 1 calc(50% - 4px);
+  }
+
+  .report-workspace-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    padding: 14px 16px;
+  }
+
+  .report-pagination {
+    width: 100%;
+  }
+}

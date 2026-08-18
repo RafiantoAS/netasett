@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VMs · NETASSET</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Page -->
+    <link rel="stylesheet" href="vm.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+           SIDEBAR
+           ========================================================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub active">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+      <!-- =========================================================
+           MAIN
+           ========================================================= -->
+
+      <main class="main">
+        <!-- PAGE HEADER -->
+
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Virtual Resources</span>
+              <span> / </span>
+              <strong>VM</strong>
+            </div>
+
+            <h1 class="page-title">Virtual Machines</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              id="resetVmDataBtn"
+              title="Reset demo data"
+            >
+              ↻
+            </button>
+
+            <button class="btn btn-primary" type="button" id="addVmBtn">
+              + Add VM
+            </button>
+          </div>
+        </header>
+
+        <!-- =========================================================
+             CONTENT
+             ========================================================= -->
+
+        <div class="content vm-page">
+          <section class="vm-list-card">
+            <!-- TOOLBAR -->
+
+            <div class="list-toolbar">
+              <div class="search-wrap">
+                <span class="search-icon"> ⌕ </span>
+
+                <input
+                  type="search"
+                  id="vmSearch"
+                  placeholder="Cari VM name, hostname, IP..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="vmLifecycleFilter">
+                  <option value="all">Semua Lifecycle</option>
+
+                  <option value="Provisioned">Provisioned</option>
+
+                  <option value="Active">Active</option>
+
+                  <option value="Maintenance">Maintenance</option>
+
+                  <option value="Retired">Retired</option>
+                </select>
+
+                <select id="vmOperationalFilter">
+                  <option value="all">Semua Operational</option>
+
+                  <option value="Running">Running</option>
+
+                  <option value="Stopped">Stopped</option>
+
+                  <option value="Paused">Paused</option>
+
+                  <option value="Down">Down</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-label"> TOTAL VM </span>
+
+                <strong id="totalVm"> 5 </strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label"> RUNNING </span>
+
+                <strong id="runningVm"> 3 </strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label"> STOPPED </span>
+
+                <strong id="stoppedVm"> 1 </strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label"> PROVISIONED </span>
+
+                <strong id="provisionedVm"> 1 </strong>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="table-wrap">
+              <table class="vm-table">
+                <thead>
+                  <tr>
+                    <th>VM</th>
+
+                    <th>HOSTNAME / HYPERVISOR</th>
+
+                    <th>IP</th>
+
+                    <th>CPU / RAM</th>
+
+                    <th>STORAGE</th>
+
+                    <th>OPERATING SYSTEM</th>
+
+                    <th>LIFECYCLE</th>
+
+                    <th>OPERATIONAL</th>
+
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+
+                <tbody id="vmTableBody">
+                  <!-- JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- FOOTER -->
+
+            <div class="list-footer">
+              <span id="vmResultCount"> 5 of 5 VMs shown </span>
+
+              <button type="button" class="btn-reset" id="resetVmDataBottom">
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+         VM MODAL
+         ========================================================= -->
+
+    <dialog id="vmModal" class="vm-modal">
+      <form method="dialog" id="vmForm" class="vm-form">
+        <!-- =====================================================
+             MODAL HEADER
+             ===================================================== -->
+
+        <header class="modal-header">
+          <div>
+            <span class="modal-eyebrow"> VIRTUAL RESOURCE </span>
+
+            <h2 id="vmModalTitle">Add VM</h2>
+          </div>
+
+          <button
+            type="button"
+            class="modal-close"
+            id="vmModalClose"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- =====================================================
+             MODAL BODY
+             ===================================================== -->
+
+        <div class="modal-body">
+          <!-- ===================================================
+               VM INFORMATION
+               =================================================== -->
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>VM Information</h3>
+
+              <p>Identity and virtual machine information.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span> Asset Code </span>
+
+                <input
+                  type="text"
+                  id="vmAssetCode"
+                  name="asset_code"
+                  placeholder="VM-0001"
+                />
+              </label>
+
+              <label class="field">
+                <span> VM Name <b>*</b> </span>
+
+                <input
+                  type="text"
+                  id="vmName"
+                  name="vm_name"
+                  placeholder="Ubuntu Jakarta-01"
+                  required
+                />
+              </label>
+
+              <label class="field field-full">
+                <span> Hostname </span>
+
+                <input
+                  type="text"
+                  id="vmHostname"
+                  name="hostname"
+                  placeholder="vm-jkt-01"
+                />
+              </label>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               COMPUTE
+               =================================================== -->
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Compute</h3>
+
+              <p>Compute resources and operating system.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span> Hypervisor <b>*</b> </span>
+
+                <select id="vmHypervisor" name="hypervisor" required>
+                  <option value="">Select Hypervisor</option>
+
+                  <option value="Proxmox-01">Proxmox-01</option>
+
+                  <option value="Proxmox-02">Proxmox-02</option>
+
+                  <option value="VMware-01">VMware-01</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span> vCPU <b>*</b> </span>
+
+                <input
+                  type="number"
+                  id="vmVcpu"
+                  name="vcpu"
+                  min="1"
+                  placeholder="4"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span> RAM <b>*</b> </span>
+
+                <input
+                  type="text"
+                  id="vmRam"
+                  name="ram"
+                  placeholder="8 GB"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span> Storage <b>*</b> </span>
+
+                <input
+                  type="text"
+                  id="vmStorage"
+                  name="storage"
+                  placeholder="100 GB"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span> Operating System <b>*</b> </span>
+
+                <select id="vmOs" name="operating_system" required>
+                  <option value="">Select OS</option>
+
+                  <option value="Ubuntu">Ubuntu</option>
+
+                  <option value="Debian">Debian</option>
+
+                  <option value="Windows Server">Windows Server</option>
+
+                  <option value="Rocky Linux">Rocky Linux</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span> OS Version </span>
+
+                <input
+                  type="text"
+                  id="vmOsVersion"
+                  name="os_version"
+                  placeholder="24.04"
+                />
+              </label>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               NETWORK
+               =================================================== -->
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Network</h3>
+
+              <p>IP and Layer 2 network assignment.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span> Private IP </span>
+
+                <select id="vmPrivateIp" name="private_ip">
+                  <option value="">Select IP</option>
+
+                  <option value="10.10.10.20">10.10.10.20</option>
+
+                  <option value="10.10.10.21">10.10.10.21</option>
+
+                  <option value="10.20.10.20">10.20.10.20</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span> Public IP </span>
+
+                <select id="vmPublicIp" name="public_ip">
+                  <option value="">Select IP</option>
+
+                  <option value="203.0.113.10">203.0.113.10</option>
+
+                  <option value="203.0.113.11">203.0.113.11</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span> VLAN </span>
+
+                <select id="vmVlan" name="vlan">
+                  <option value="">Select VLAN</option>
+
+                  <option value="VLAN 10">VLAN 10 — Management</option>
+
+                  <option value="VLAN 20">VLAN 20 — Customer Internet</option>
+
+                  <option value="VLAN 30">VLAN 30 — Infrastructure</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               STATUS
+               =================================================== -->
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Status</h3>
+
+              <p>Lifecycle and operational state.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span> Lifecycle Status <b>*</b> </span>
+
+                <select id="vmLifecycle" name="lifecycle_status" required>
+                  <option value="Provisioned">Provisioned</option>
+
+                  <option value="Active">Active</option>
+
+                  <option value="Maintenance">Maintenance</option>
+
+                  <option value="Retired">Retired</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span> Operational Status <b>*</b> </span>
+
+                <select id="vmOperational" name="operational_status" required>
+                  <option value="Running">Running</option>
+
+                  <option value="Stopped">Stopped</option>
+
+                  <option value="Paused">Paused</option>
+
+                  <option value="Down">Down</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <!-- ===================================================
+               RELATIONSHIPS
+               =================================================== -->
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Relationships</h3>
+
+              <p>Resources associated with this VM.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span> Hosted On </span>
+
+                <select id="vmHostedOn" name="hosted_on">
+                  <option value="">Select Hypervisor</option>
+
+                  <option value="Proxmox-01">Proxmox-01</option>
+
+                  <option value="Proxmox-02">Proxmox-02</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span> Uses Storage </span>
+
+                <select id="vmStorageRelation" name="uses_storage">
+                  <option value="">Select Storage</option>
+
+                  <option value="Storage-JKT-01">Storage-JKT-01</option>
+
+                  <option value="Storage-JKT-02">Storage-JKT-02</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span> Connected To </span>
+
+                <select id="vmNetworkRelation" name="connected_to">
+                  <option value="">Select Network</option>
+
+                  <option value="Management Network">Management Network</option>
+
+                  <option value="Customer Network">Customer Network</option>
+
+                  <option value="Infrastructure Network">
+                    Infrastructure Network
+                  </option>
+                </select>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <!-- =====================================================
+             MODAL FOOTER
+             ===================================================== -->
+
+        <footer class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="vmCancelBtn">
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary" id="vmSaveBtn">
+            Save VM
+          </button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- =========================================================
+         SCRIPTS
+         ========================================================= -->
+
+    <script src="app.js"></script>
+    <script src="virtual-resources.js"></script>
+  </body>
+</html>

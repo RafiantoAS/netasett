@@ -1,0 +1,538 @@
+/* ==========================================================================
+   NETASSET — SERVER DETAIL PAGE
+   server-detail.css
+   Loaded AFTER style.css and server.css
+   ========================================================================== */
+
+/* ---------- Detail page shell ---------- */
+
+.server-detail-page {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 36px 56px;
+  box-sizing: border-box;
+}
+
+.server-detail-page,
+.server-detail-page * {
+  box-sizing: border-box;
+}
+
+/* ---------- Header card ---------- */
+
+.server-detail-page .detail-header-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.server-detail-page .detail-header-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.server-detail-page .server-detail-avatar {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.server-detail-page .detail-title-block {
+  min-width: 0;
+}
+
+.server-detail-page .detail-title-block .eyebrow {
+  margin-bottom: 5px;
+}
+
+.server-detail-page .detail-title-block h1 {
+  margin: 0;
+  max-width: 900px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.server-detail-page .detail-id-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 7px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.server-detail-page .detail-id-row .mono {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.server-detail-page .detail-badge-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 11px;
+}
+
+.server-detail-page .detail-header-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.server-detail-page .detail-header-actions .btn {
+  min-height: 38px;
+  padding: 8px 14px;
+}
+
+/* ---------- Tabs ---------- */
+
+.server-detail-page .detail-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 5px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--bg);
+}
+
+.server-detail-page .detail-tabs .tab-btn {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.server-detail-page .detail-tabs .tab-btn:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.server-detail-page .detail-tabs .tab-btn.active {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Tab panels ----------
+   Only the active panel is visible.
+   app.js toggles the .active class.
+   ---------- */
+
+.server-detail-page .tab-panel {
+  display: none;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.server-detail-page .tab-panel.active {
+  display: block;
+}
+
+/* ---------- Section heading ---------- */
+
+.server-detail-page .section-title {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.server-detail-page .section-title h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.server-detail-page .section-title p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ---------- Detail grids ---------- */
+
+.server-detail-page .detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 20px 22px 22px;
+}
+
+.server-detail-page .detail-group {
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.server-detail-page .detail-group h3 {
+  margin: 0 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+/* ---------- Key/value rows ---------- */
+
+.server-detail-page .detail-kv {
+  display: grid;
+  grid-template-columns: minmax(125px, 0.7fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: 18px;
+  min-height: 47px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.server-detail-page .detail-kv:last-child {
+  border-bottom: none;
+}
+
+.server-detail-page .detail-kv span {
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.server-detail-page .detail-kv strong {
+  min-width: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.server-detail-page .detail-kv .mono,
+.server-detail-page .mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ---------- Relationships ---------- */
+
+.server-detail-page .relationship-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 20px 22px 22px;
+}
+
+.server-detail-page .relationship-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  min-height: 74px;
+  padding: 15px 16px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.server-detail-page .relationship-card:hover {
+  border-color: var(--border-strong);
+  background: var(--bg);
+  transform: translateY(-1px);
+}
+
+.server-detail-page .relationship-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.server-detail-page .relationship-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.server-detail-page .relationship-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.server-detail-page .relationship-card strong {
+  min-width: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- History / timeline ---------- */
+
+.server-detail-page .timeline {
+  position: relative;
+  margin: 0;
+  padding: 22px 26px 24px;
+}
+
+.server-detail-page .timeline-item {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  min-width: 0;
+  padding-bottom: 24px;
+}
+
+.server-detail-page .timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.server-detail-page .timeline-marker {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.server-detail-page .timeline-item:not(:last-child) .timeline-marker::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 1px;
+  height: calc(100% + 24px);
+  background: var(--border);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.server-detail-page .timeline-content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 3px;
+}
+
+.server-detail-page .timeline-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.server-detail-page .timeline-action {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.server-detail-page .timeline-time {
+  flex-shrink: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.server-detail-page .timeline-meta {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.server-detail-page .timeline-meta strong {
+  color: var(--text);
+}
+
+/* ---------- Status badges ---------- */
+
+.server-detail-page .server-operational {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.server-detail-page .server-operational::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.server-detail-page .server-operational-up {
+  color: var(--success);
+}
+
+.server-detail-page .server-operational-degraded {
+  color: var(--warning);
+}
+
+.server-detail-page .server-operational-down {
+  color: var(--danger);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .server-detail-page {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .server-detail-page .detail-header-card {
+    align-items: flex-start;
+  }
+
+  .server-detail-page .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .server-detail-page {
+    padding: 20px 16px 40px;
+  }
+
+  .server-detail-page .detail-header-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .server-detail-page .detail-header-actions {
+    width: 100%;
+  }
+
+  .server-detail-page .detail-header-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .server-detail-page .detail-header-main {
+    align-items: flex-start;
+  }
+
+  .server-detail-page .server-detail-avatar {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+  }
+
+  .server-detail-page .detail-title-block h1 {
+    font-size: 23px;
+  }
+
+  .server-detail-page .detail-grid,
+  .server-detail-page .relationship-grid {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .server-detail-page .section-title {
+    padding: 18px;
+  }
+
+  .server-detail-page .detail-group {
+    padding: 16px;
+  }
+
+  .server-detail-page .detail-kv {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .server-detail-page .detail-kv strong {
+    text-align: left;
+  }
+
+  .server-detail-page .timeline {
+    padding: 18px;
+  }
+
+  .server-detail-page .timeline-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

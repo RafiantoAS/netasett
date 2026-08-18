@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>IP Address Detail · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="ip-address-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================================================================
+         SIDEBAR
+         ================================================================ -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub active">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================================================================
+         MAIN
+         ================================================================ -->
+      <main class="main">
+        <header class="topbar detail-topbar">
+          <div class="breadcrumb">
+            <a href="ip-address.html">Network Resources</a>
+            <span>/</span>
+            <a href="ip-address.html">IP Address</a>
+            <span>/</span>
+            <strong id="breadcrumbCode">IP-0001</strong>
+          </div>
+
+          <div class="topbar-actions">
+            <a href="ip-address.html" class="btn btn-secondary"> ← Back </a>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="openEditModal()"
+            >
+              ✎ Edit
+            </button>
+          </div>
+        </header>
+
+        <div class="content ip-detail-page">
+          <!-- ============================================================
+             HERO
+             ============================================================ -->
+          <section class="detail-hero">
+            <div class="hero-main">
+              <div class="resource-symbol">IP</div>
+
+              <div class="hero-copy">
+                <span class="hero-eyebrow">IP ADDRESS</span>
+
+                <h1 id="detailAddress" class="hero-title">10.10.0.10</h1>
+
+                <div class="hero-meta">
+                  <span id="detailCode" class="mono"> IP-0001 </span>
+
+                  <span>·</span>
+
+                  <span id="detailVersion"> IPv4 </span>
+
+                  <span>·</span>
+
+                  <span id="detailPrefix"> /32 </span>
+                </div>
+
+                <div class="hero-status">
+                  <span id="detailStatus" class="status-badge status-assigned">
+                    <span class="status-dot"></span>
+                    Assigned
+                  </span>
+
+                  <span id="detailAllocation" class="allocation-pill">
+                    Static
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-pool">
+              <span class="hero-pool-label">IP POOL / PREFIX</span>
+
+              <a
+                id="detailPool"
+                href="ip-prefix-pool-detail.html?prefix=10.10.0.0%2F24"
+                class="pool-link mono"
+              >
+                10.10.0.0/24
+              </a>
+
+              <span id="detailPurpose" class="pool-purpose"> Management </span>
+            </div>
+          </section>
+
+          <!-- ============================================================
+             TABS
+             ============================================================ -->
+          <nav class="detail-tabs" aria-label="IP detail tabs">
+            <button type="button" class="detail-tab active" data-tab="overview">
+              Overview
+            </button>
+
+            <button type="button" class="detail-tab" data-tab="assignment">
+              Assignment
+            </button>
+
+            <button type="button" class="detail-tab" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <!-- ============================================================
+             OVERVIEW
+             ============================================================ -->
+          <section class="detail-panel" data-panel="overview">
+            <div class="section-heading">
+              <h2>IP Address Overview</h2>
+              <p>Addressing information, allocation and network ownership.</p>
+            </div>
+
+            <div class="overview-grid">
+              <article class="info-card">
+                <div class="card-heading">
+                  <div>
+                    <h3>IP Information</h3>
+                    <p>Core address information.</p>
+                  </div>
+                </div>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span class="kv-label">IP ADDRESS</span>
+                    <strong id="ovAddress" class="kv-value mono">
+                      10.10.0.10
+                    </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">IP VERSION</span>
+                    <strong id="ovVersion" class="kv-value"> IPv4 </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">PREFIX LENGTH</span>
+                    <strong id="ovPrefix" class="kv-value mono"> /32 </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">IP POOL / PREFIX</span>
+                    <a
+                      id="ovPool"
+                      class="kv-value link mono"
+                      href="ip-prefix-pool-detail.html?prefix=10.10.0.0%2F24"
+                    >
+                      10.10.0.0/24
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="info-card">
+                <div class="card-heading">
+                  <div>
+                    <h3>Allocation</h3>
+                    <p>Current state and allocation context.</p>
+                  </div>
+                </div>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span class="kv-label">STATUS</span>
+                    <strong id="ovStatus" class="kv-value"> Assigned </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">ALLOCATION TYPE</span>
+                    <strong id="ovAllocation" class="kv-value"> Static </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">PURPOSE</span>
+                    <strong id="ovPurpose" class="kv-value">
+                      Management
+                    </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">PROVIDER</span>
+                    <strong id="ovProvider" class="kv-value"> NAP-A </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">ASN</span>
+                    <strong id="ovAsn" class="kv-value mono"> AS64501 </strong>
+                  </div>
+
+                  <div class="kv-item">
+                    <span class="kv-label">DESCRIPTION</span>
+                    <strong id="ovDescription" class="kv-value">
+                      Router management address.
+                    </strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="overview-grid second-row">
+              <article class="info-card">
+                <div class="card-heading">
+                  <div>
+                    <h3>Network Assignment</h3>
+                    <p>Resource currently configured on the network.</p>
+                  </div>
+                </div>
+
+                <div class="assignment-summary">
+                  <div class="assignment-row">
+                    <div class="assignment-icon">A</div>
+
+                    <div>
+                      <span>CONFIGURED ON</span>
+
+                      <strong id="ovConfiguredOn">
+                        Core Router Jakarta-01
+                      </strong>
+                    </div>
+                  </div>
+
+                  <div class="assignment-row">
+                    <div class="assignment-icon">C</div>
+
+                    <div>
+                      <span>ASSIGNED TO</span>
+
+                      <strong id="ovAssignedTo"> Internal </strong>
+                    </div>
+                  </div>
+
+                  <div class="assignment-row">
+                    <div class="assignment-icon">S</div>
+
+                    <div>
+                      <span>USED BY</span>
+
+                      <strong id="ovUsedBy"> Management Service </strong>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="info-card">
+                <div class="card-heading">
+                  <div>
+                    <h3>Pool Context</h3>
+                    <p>Relationship with the parent IP Prefix / Pool.</p>
+                  </div>
+                </div>
+
+                <div class="pool-context">
+                  <div class="pool-context-head">
+                    <div class="pool-context-icon">IP</div>
+
+                    <div>
+                      <span>IP PREFIX / POOL</span>
+
+                      <a
+                        id="contextPool"
+                        href="ip-prefix-pool-detail.html?prefix=10.10.0.0%2F24"
+                        class="mono"
+                      >
+                        10.10.0.0/24
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="utilization">
+                    <div class="utilization-head">
+                      <span>POOL UTILIZATION</span>
+                      <strong>13%</strong>
+                    </div>
+
+                    <div class="utilization-bar">
+                      <span style="width: 13%"></span>
+                    </div>
+
+                    <div class="utilization-foot">
+                      <span>32 / 254 used</span>
+                      <span>222 available</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ============================================================
+             ASSIGNMENT
+             ============================================================ -->
+          <section class="detail-panel hidden" data-panel="assignment">
+            <div class="section-heading">
+              <h2>Assignment</h2>
+              <p>Current relationships for this IP address.</p>
+            </div>
+
+            <div class="single-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Current Assignment</h3>
+                  <p>
+                    An IP marked as available must not have an active
+                    assignment.
+                  </p>
+                </div>
+              </div>
+
+              <div class="assignment-table-wrap">
+                <table class="assignment-table">
+                  <thead>
+                    <tr>
+                      <th>RELATIONSHIP</th>
+                      <th>RESOURCE</th>
+                      <th>TYPE</th>
+                      <th>STATUS</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Configured On</td>
+                      <td id="assignAsset">Core Router Jakarta-01</td>
+                      <td>Physical Asset</td>
+                      <td>
+                        <span class="status-badge status-assigned">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Assigned To</td>
+                      <td id="assignCustomer">Internal</td>
+                      <td>Customer / Owner</td>
+                      <td>
+                        <span class="status-badge status-assigned">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Used By</td>
+                      <td id="assignService">Management Service</td>
+                      <td>Service</td>
+                      <td>
+                        <span class="status-badge status-assigned">
+                          <span class="status-dot"></span>
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============================================================
+             HISTORY
+             ============================================================ -->
+          <section class="detail-panel hidden" data-panel="history">
+            <div class="section-heading">
+              <h2>History</h2>
+              <p>Changes and audit events related to this IP address.</p>
+            </div>
+
+            <div class="single-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Audit Timeline</h3>
+                  <p>Demo audit history for this resource.</p>
+                </div>
+              </div>
+
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+
+                  <div class="timeline-content">
+                    <div class="timeline-head">
+                      <strong>IP assigned</strong>
+                      <span>2026-08-01 10:20</span>
+                    </div>
+
+                    <p>
+                      IP address configured on
+                      <strong>Core Router Jakarta-01</strong>.
+                    </p>
+
+                    <span class="timeline-user"> by admin </span>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-marker"></div>
+
+                  <div class="timeline-content">
+                    <div class="timeline-head">
+                      <strong>IP created</strong>
+                      <span>2026-07-28 14:12</span>
+                    </div>
+
+                    <p>
+                      IP address created under
+                      <strong>10.10.0.0/24</strong>.
+                    </p>
+
+                    <span class="timeline-user"> by admin </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================================================================
+       EDIT MODAL
+       ================================================================ -->
+    <dialog id="editModal" class="edit-modal">
+      <form method="dialog" id="editForm">
+        <header class="modal-header">
+          <div>
+            <span>NETWORK RESOURCE</span>
+            <h2>Edit IP Address</h2>
+          </div>
+
+          <button type="button" class="modal-close" onclick="closeEditModal()">
+            ×
+          </button>
+        </header>
+
+        <div class="modal-body">
+          <div class="form-grid">
+            <label class="field">
+              <span>IP Address</span>
+              <input id="editAddress" type="text" />
+            </label>
+
+            <label class="field">
+              <span>IP Version</span>
+              <select id="editVersion">
+                <option value="ipv4">IPv4</option>
+                <option value="ipv6">IPv6</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Prefix Length</span>
+              <input id="editPrefix" type="number" min="0" max="128" />
+            </label>
+
+            <label class="field">
+              <span>IP Pool / Prefix</span>
+              <select id="editPool">
+                <option value="10.10.0.0/24">10.10.0.0/24</option>
+                <option value="10.20.0.0/24">10.20.0.0/24</option>
+                <option value="10.30.0.0/25">10.30.0.0/25</option>
+                <option value="10.40.0.0/24">10.40.0.0/24</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Status</span>
+              <select id="editStatus">
+                <option value="available">Available</option>
+                <option value="assigned">Assigned</option>
+                <option value="reserved">Reserved</option>
+                <option value="deprecated">Deprecated</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Allocation Type</span>
+              <select id="editAllocation">
+                <option value="static">Static</option>
+                <option value="dynamic">Dynamic</option>
+                <option value="reserved">Reserved</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Provider</span>
+              <select id="editProvider">
+                <option value="NAP-A">NAP-A</option>
+                <option value="NAP-B">NAP-B</option>
+                <option value="NAP-C">NAP-C</option>
+                <option value="Internal">Internal</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>ASN</span>
+              <input id="editAsn" type="text" />
+            </label>
+
+            <label class="field">
+              <span>Purpose</span>
+              <select id="editPurpose">
+                <option value="Management">Management</option>
+                <option value="Customer">Customer</option>
+                <option value="Infrastructure">Infrastructure</option>
+                <option value="Transit">Transit</option>
+                <option value="Loopback">Loopback</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Configured On</span>
+              <select id="editAsset">
+                <option value="">Select Asset</option>
+                <option value="Core Router Jakarta-01">
+                  Core Router Jakarta-01
+                </option>
+                <option value="Core Switch Jakarta-01">
+                  Core Switch Jakarta-01
+                </option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Assigned To</span>
+              <select id="editCustomer">
+                <option value="">Select Customer</option>
+                <option value="Internal">Internal</option>
+                <option value="PT Customer A">PT Customer A</option>
+                <option value="PT Customer B">PT Customer B</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Used By</span>
+              <select id="editUsedBy">
+                <option value="">Select Asset / Service</option>
+                <option value="Management Service">Management Service</option>
+                <option value="Internet Service">Internet Service</option>
+                <option value="Transit Service">Transit Service</option>
+              </select>
+            </label>
+
+            <label class="field field-full">
+              <span>Description</span>
+              <textarea id="editDescription" rows="3"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeEditModal()"
+          >
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script>
+      const DEMO_IP = {
+        code: "IP-0001",
+        address: "10.10.0.10",
+        version: "ipv4",
+        prefixLength: 32,
+        pool: "10.10.0.0/24",
+        status: "assigned",
+        allocationType: "static",
+        provider: "NAP-A",
+        asn: "AS64501",
+        purpose: "Management",
+        description: "Router management address.",
+        configuredOn: "Core Router Jakarta-01",
+        assignedTo: "Internal",
+        usedBy: "Management Service",
+      };
+
+      let currentIp = loadIp();
+
+      function loadIp() {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+
+        const raw = localStorage.getItem("netasset_ip_addresses_v1");
+
+        if (raw) {
+          try {
+            const data = JSON.parse(raw);
+
+            const found = code
+              ? data.find((item) => item.code === code)
+              : data[0];
+
+            if (found) {
+              return {
+                ...DEMO_IP,
+                ...found,
+              };
+            }
+          } catch {
+            // Fall back to demo data.
+          }
+        }
+
+        return { ...DEMO_IP };
+      }
+
+      function statusLabel(status) {
+        return (
+          {
+            available: "Available",
+            assigned: "Assigned",
+            reserved: "Reserved",
+            deprecated: "Deprecated",
+          }[status] || status
+        );
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            available: "status-available",
+            assigned: "status-assigned",
+            reserved: "status-reserved",
+            deprecated: "status-deprecated",
+          }[status] || "status-assigned"
+        );
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value ?? "—";
+        }
+      }
+
+      function populateDetail(ip) {
+        const version = ip.version === "ipv6" ? "IPv6" : "IPv4";
+
+        const prefix = `/${ip.prefixLength}`;
+
+        setText("breadcrumbCode", ip.code);
+
+        setText("detailAddress", ip.address);
+        setText("detailCode", ip.code);
+        setText("detailVersion", version);
+        setText("detailPrefix", prefix);
+        setText("detailPurpose", ip.purpose);
+
+        setText("detailPool", ip.pool);
+        setText("detailAllocation", capitalize(ip.allocationType));
+
+        const statusElement = document.getElementById("detailStatus");
+
+        statusElement.className = `status-badge ${statusClass(ip.status)}`;
+
+        statusElement.innerHTML = `<span class="status-dot"></span>${statusLabel(ip.status)}`;
+
+        setText("ovAddress", ip.address);
+        setText("ovVersion", version);
+        setText("ovPrefix", prefix);
+        setText("ovPool", ip.pool);
+
+        setText("ovStatus", statusLabel(ip.status));
+        setText("ovAllocation", capitalize(ip.allocationType));
+        setText("ovPurpose", ip.purpose);
+        setText("ovProvider", ip.provider || "—");
+        setText("ovAsn", ip.asn || "—");
+        setText("ovDescription", ip.description || "—");
+
+        setText("ovConfiguredOn", ip.configuredOn || "—");
+        setText("ovAssignedTo", ip.assignedTo || "—");
+        setText("ovUsedBy", ip.usedBy || "—");
+
+        setText("assignAsset", ip.configuredOn || "—");
+        setText("assignCustomer", ip.assignedTo || "—");
+        setText("assignService", ip.usedBy || "—");
+
+        const encodedPool = encodeURIComponent(ip.pool);
+
+        const poolUrl = `ip-prefix-pool-detail.html?prefix=${encodedPool}`;
+
+        document.getElementById("detailPool").href = poolUrl;
+
+        document.getElementById("ovPool").href = poolUrl;
+
+        document.getElementById("contextPool").href = poolUrl;
+
+        setText("contextPool", ip.pool);
+      }
+
+      function capitalize(value) {
+        if (!value) return "—";
+
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      /* ================================================================
+       TABS
+       ================================================================ */
+
+      document.querySelectorAll(".detail-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.dataset.tab;
+
+          document.querySelectorAll(".detail-tab").forEach((tab) => {
+            tab.classList.toggle("active", tab === button);
+          });
+
+          document.querySelectorAll(".detail-panel").forEach((panel) => {
+            panel.classList.toggle("hidden", panel.dataset.panel !== target);
+          });
+        });
+      });
+
+      /* ================================================================
+       EDIT
+       ================================================================ */
+
+      function openEditModal() {
+        document.getElementById("editAddress").value = currentIp.address || "";
+
+        document.getElementById("editVersion").value =
+          currentIp.version || "ipv4";
+
+        document.getElementById("editPrefix").value =
+          currentIp.prefixLength ?? 32;
+
+        document.getElementById("editPool").value =
+          currentIp.pool || "10.10.0.0/24";
+
+        document.getElementById("editStatus").value =
+          currentIp.status || "available";
+
+        document.getElementById("editAllocation").value =
+          currentIp.allocationType || "static";
+
+        document.getElementById("editProvider").value =
+          currentIp.provider || "NAP-A";
+
+        document.getElementById("editAsn").value = currentIp.asn || "";
+
+        document.getElementById("editPurpose").value =
+          currentIp.purpose || "Management";
+
+        document.getElementById("editAsset").value =
+          currentIp.configuredOn || "";
+
+        document.getElementById("editCustomer").value =
+          currentIp.assignedTo || "";
+
+        document.getElementById("editUsedBy").value = currentIp.usedBy || "";
+
+        document.getElementById("editDescription").value =
+          currentIp.description || "";
+
+        document.getElementById("editModal").showModal();
+      }
+
+      function closeEditModal() {
+        document.getElementById("editModal").close();
+      }
+
+      document
+        .getElementById("editForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          currentIp = {
+            ...currentIp,
+
+            address: document.getElementById("editAddress").value.trim(),
+
+            version: document.getElementById("editVersion").value,
+
+            prefixLength: Number(document.getElementById("editPrefix").value),
+
+            pool: document.getElementById("editPool").value,
+
+            status: document.getElementById("editStatus").value,
+
+            allocationType: document.getElementById("editAllocation").value,
+
+            provider: document.getElementById("editProvider").value,
+
+            asn: document.getElementById("editAsn").value.trim(),
+
+            purpose: document.getElementById("editPurpose").value,
+
+            configuredOn: document.getElementById("editAsset").value,
+
+            assignedTo: document.getElementById("editCustomer").value,
+
+            usedBy: document.getElementById("editUsedBy").value,
+
+            description: document
+              .getElementById("editDescription")
+              .value.trim(),
+          };
+
+          const raw = localStorage.getItem("netasset_ip_addresses_v1");
+
+          if (raw) {
+            try {
+              const data = JSON.parse(raw);
+
+              const index = data.findIndex(
+                (item) => item.code === currentIp.code,
+              );
+
+              if (index !== -1) {
+                data[index] = {
+                  ...data[index],
+                  ...currentIp,
+                };
+
+                localStorage.setItem(
+                  "netasset_ip_addresses_v1",
+                  JSON.stringify(data),
+                );
+              }
+            } catch {
+              // Keep the detail page usable even if storage is unavailable.
+            }
+          }
+
+          populateDetail(currentIp);
+          closeEditModal();
+        });
+
+      populateDetail(currentIp);
+    </script>
+  </body>
+</html>

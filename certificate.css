@@ -1,0 +1,1206 @@
+/* ==========================================================================
+   CERTIFICATE.CSS
+   NETASSET — Virtual Resources / Certificate
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+
+.certificate-list-card {
+  width: 100%;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface, #ffffff);
+}
+
+/* ==========================================================================
+   TOOLBAR
+   ========================================================================== */
+
+.certificate-list-card .list-toolbar {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 14px 20px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: var(--surface, #ffffff);
+}
+
+.certificate-list-card .search-box {
+  display: flex;
+
+  align-items: center;
+
+  width: min(380px, 100%);
+  height: 40px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+.certificate-list-card .search-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.certificate-list-card .search-box input {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: var(--text);
+
+  font-size: 13px;
+}
+
+.certificate-list-card .search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.certificate-list-card .filter-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.certificate-list-card .filter-group select {
+  min-width: 155px;
+  height: 40px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: var(--text);
+
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   STATISTICS
+   ========================================================================== */
+
+.certificate-list-card .stat-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  border-bottom: 1px solid var(--border);
+}
+
+.certificate-list-card .stat-card {
+  min-height: 74px;
+
+  padding: 16px 20px;
+
+  border-right: 1px solid var(--border);
+}
+
+.certificate-list-card .stat-card:last-child {
+  border-right: none;
+}
+
+.certificate-list-card .stat-label {
+  margin-bottom: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+.certificate-list-card .stat-value {
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.certificate-list-card .table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.certificate-table {
+  width: 100%;
+  min-width: 1180px;
+
+  border-collapse: collapse;
+}
+
+.certificate-table th,
+.certificate-table td {
+  padding: 14px 16px;
+
+  border-bottom: 1px solid var(--border);
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+.certificate-table th {
+  background: var(--bg, #f5f7fa);
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.certificate-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.certificate-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.certificate-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   CERTIFICATE CELL
+   ========================================================================== */
+
+.certificate-cell {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 250px;
+}
+
+.certificate-icon {
+  display: grid;
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  place-items: center;
+
+  border-radius: 9px;
+
+  background: #e7f8f7;
+  color: #008f8b;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+}
+
+.certificate-cell-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.certificate-name {
+  color: var(--text);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.certificate-domain {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+}
+
+.certificate-code {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   TYPE
+   ========================================================================== */
+
+.certificate-type {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 5px 8px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   STACKED CELLS
+   ========================================================================== */
+
+.certificate-stack {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.certificate-stack-primary {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.certificate-stack-secondary {
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   MONOSPACE VALUES
+   ========================================================================== */
+
+.certificate-mono {
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   STATUS
+   ========================================================================== */
+
+.certificate-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  width: fit-content;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.certificate-status::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.certificate-status-active {
+  background: #e8f7ef;
+  color: #067647;
+}
+
+.certificate-status-expiring {
+  background: #fff3df;
+  color: #b54708;
+}
+
+.certificate-status-expired,
+.certificate-status-revoked {
+  background: #fdeaea;
+  color: #b42318;
+}
+
+/* ==========================================================================
+   ACTIONS
+   ========================================================================== */
+
+.certificate-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+}
+
+.certificate-action-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: var(--text);
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.certificate-action-btn:hover {
+  background: var(--bg, #f5f7fa);
+
+  border-color: #b8c7d9;
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.certificate-empty-state {
+  display: none;
+
+  padding: 48px 24px;
+
+  border-top: 1px solid var(--border);
+
+  text-align: center;
+}
+
+.certificate-empty-icon {
+  display: grid;
+
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 14px;
+
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: #eef2f6;
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.certificate-empty-state h3 {
+  margin: 0 0 6px;
+
+  color: var(--text);
+
+  font-size: 15px;
+}
+
+.certificate-empty-state p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   LIST FOOTER
+   ========================================================================== */
+
+.certificate-list-card .list-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 10px 16px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+.btn-small {
+  min-height: 32px;
+
+  padding: 0 12px;
+
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+
+.certificate-modal {
+  width: min(900px, calc(100vw - 32px));
+
+  max-width: 900px;
+  max-height: calc(100vh - 32px);
+
+  margin: auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.certificate-modal::backdrop {
+  background: rgba(15, 23, 42, 0.56);
+}
+
+/* ==========================================================================
+   FORM
+   ========================================================================== */
+
+.certificate-form {
+  display: flex;
+
+  max-height: calc(100vh - 32px);
+
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   MODAL HEADER
+   ========================================================================== */
+
+.certificate-modal .modal-header {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 28px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: #ffffff;
+}
+
+.certificate-modal .modal-eyebrow {
+  margin-bottom: 5px;
+
+  color: #008f8b;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.certificate-modal .modal-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 22px;
+
+  line-height: 1.2;
+}
+
+.certificate-modal .modal-close {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  margin: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: var(--text);
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.certificate-modal .modal-close:hover {
+  background: var(--bg, #f5f7fa);
+}
+
+/* ==========================================================================
+   MODAL BODY
+   ========================================================================== */
+
+.certificate-modal .modal-body {
+  flex: 1;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+}
+
+.certificate-modal .form-section {
+  padding: 24px 28px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.certificate-modal .form-section:last-child {
+  border-bottom: none;
+}
+
+.certificate-modal .form-section-header {
+  margin-bottom: 18px;
+}
+
+.certificate-modal .form-section-header h3 {
+  margin: 0 0 5px;
+
+  color: var(--text);
+
+  font-size: 16px;
+}
+
+.certificate-modal .form-section-header p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   FORM GRID
+   ========================================================================== */
+
+.certificate-modal .form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px 20px;
+}
+
+.certificate-modal .form-field {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.certificate-modal .form-field-full {
+  grid-column: 1 / -1;
+}
+
+.certificate-modal .form-field label {
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.certificate-modal .form-field label span {
+  color: #d92d20;
+}
+
+.certificate-modal .form-field input,
+.certificate-modal .form-field select,
+.certificate-modal .form-field textarea {
+  width: 100%;
+
+  min-height: 42px;
+
+  box-sizing: border-box;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.certificate-modal .form-field textarea {
+  min-height: 100px;
+
+  padding: 10px 12px;
+
+  resize: vertical;
+}
+
+.certificate-modal .form-field input:focus,
+.certificate-modal .form-field select:focus,
+.certificate-modal .form-field textarea:focus {
+  border-color: #0ea5a8;
+
+  box-shadow: 0 0 0 3px rgba(14, 165, 168, 0.1);
+}
+
+.certificate-modal .form-field input::placeholder,
+.certificate-modal .form-field textarea::placeholder {
+  color: #98a2b3;
+}
+
+.certificate-modal .mono-input {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   MODAL FOOTER
+   ========================================================================== */
+
+.certificate-modal .modal-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 14px 28px;
+
+  border-top: 1px solid var(--border);
+
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .certificate-list-card .list-toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .certificate-list-card .search-box {
+    width: 100%;
+  }
+
+  .certificate-list-card .filter-group {
+    width: 100%;
+  }
+
+  .certificate-list-card .filter-group select {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  .certificate-modal {
+    width: calc(100vw - 20px);
+
+    max-height: calc(100vh - 20px);
+  }
+
+  .certificate-modal .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-modal .form-field-full {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .certificate-list-card .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certificate-list-card .stat-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .certificate-list-card .stat-card:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .certificate-list-card .filter-group {
+    flex-direction: column;
+  }
+
+  .certificate-list-card .filter-group select {
+    width: 100%;
+  }
+
+  .certificate-modal .modal-header {
+    padding: 18px 20px;
+  }
+
+  .certificate-modal .form-section {
+    padding: 20px;
+  }
+
+  .certificate-modal .modal-footer {
+    padding: 12px 20px;
+  }
+}
+
+/* =========================================================
+   CERTIFICATE ACTION BUTTON — FORCE TEMPLATE STYLE
+   ========================================================= */
+
+.certificate-page .table-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+}
+
+.certificate-page .table-actions .action-btn {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+
+  margin: 0 !important;
+  padding: 0 11px !important;
+
+  border: 1px solid #cbd8e8 !important;
+  border-radius: 9px !important;
+
+  background: #ffffff !important;
+  color: #496887 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+
+  text-align: center !important;
+  white-space: nowrap !important;
+
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+
+  box-shadow: none !important;
+}
+
+.certificate-page .table-actions .action-btn:hover {
+  border-color: #10b7b0 !important;
+  background: #f5fffe !important;
+  color: #008f8b !important;
+}
+
+.certificate-page .table-actions .action-btn-danger {
+  color: #496887 !important;
+}
+
+.certificate-page .table-actions .action-btn-danger:hover {
+  border-color: #efb1b1 !important;
+  background: #fff8f8 !important;
+  color: #cf3737 !important;
+}
+
+/* =========================================================
+   CERTIFICATE CODE — TABLE LINK
+   ========================================================= */
+
+.certificate-page .certificate-table .table-link {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: inline-block !important;
+
+  margin: 0 0 5px 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  color: #009e9a !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+
+  text-align: left !important;
+  white-space: nowrap !important;
+
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+.certificate-page .certificate-table .table-link:hover {
+  color: #007f7b !important;
+  text-decoration: underline !important;
+}
+
+/* =========================================================
+   CERTIFICATE TABLE PRIMARY TEXT
+   ========================================================= */
+
+.certificate-page .certificate-table .table-primary {
+  margin: 0 !important;
+
+  color: #0b1f3a !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+}
+
+.certificate-page .certificate-table .table-secondary {
+  margin-top: 2px !important;
+
+  color: #617b99 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+}
+
+/* =========================================================
+   RESET DEMO DATA
+   ========================================================= */
+
+.certificate-page .list-footer .btn-reset,
+.certificate-page #certificateResetBtn {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: 34px !important;
+  min-height: 34px !important;
+
+  margin: 0 !important;
+  padding: 0 13px !important;
+
+  border: 1px solid #cbd8e8 !important;
+  border-radius: 8px !important;
+
+  background: #ffffff !important;
+  color: #496887 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+
+  box-shadow: none !important;
+}
+
+.certificate-page .list-footer .btn-reset:hover,
+.certificate-page #certificateResetBtn:hover {
+  border-color: #10b7b0 !important;
+  background: #f5fffe !important;
+  color: #008f8b !important;
+}
+
+/* =========================================================
+   LIST FOOTER
+   ========================================================= */
+
+.certificate-page .list-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  min-height: 52px !important;
+
+  padding: 0 18px !important;
+
+  border-top: 1px solid #d7e1ec !important;
+
+  box-sizing: border-box !important;
+}
+
+.certificate-page .list-footer #certificateResultCount {
+  color: #607b98 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+}
+
+/* =========================================================
+   CERTIFICATE STAT CARDS
+   MATCH LICENSE PAGE TEMPLATE
+   ========================================================= */
+
+.certificate-page .stat-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border-top: 1px solid #d7e1ec !important;
+  border-bottom: 1px solid #d7e1ec !important;
+}
+
+.certificate-page .stat-card {
+  min-height: 100px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  padding: 18px 24px !important;
+
+  border-right: 1px solid #d7e1ec !important;
+
+  background: #ffffff !important;
+
+  box-sizing: border-box !important;
+}
+
+.certificate-page .stat-card:last-child {
+  border-right: 0 !important;
+}
+
+/* Label berada DI ATAS angka */
+.certificate-page .stat-label {
+  display: block !important;
+
+  margin: 0 0 7px 0 !important;
+
+  color: #587493 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Angka berada DI BAWAH label */
+.certificate-page .stat-value {
+  display: block !important;
+
+  margin: 0 !important;
+
+  color: #071b35 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 27px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+
+  letter-spacing: -0.02em !important;
+}
+
+/* =========================================================
+   CERTIFICATE STATUS BADGES
+   MATCH LICENSE TEMPLATE
+   ========================================================= */
+
+.certificate-page .status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 30px !important;
+
+  padding: 0 11px !important;
+
+  border: 0 !important;
+  border-radius: 999px !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Titik indikator */
+.certificate-page .status-badge::before {
+  content: "" !important;
+
+  width: 6px !important;
+  height: 6px !important;
+
+  margin-right: 7px !important;
+
+  border-radius: 50% !important;
+
+  background: currentColor !important;
+}
+
+/* ACTIVE — HIJAU */
+.certificate-page .status-badge.active {
+  background: #e4f7ef !important;
+  color: #0a9b72 !important;
+}
+
+/* EXPIRING SOON — ORANGE */
+.certificate-page .status-badge.expiring-soon {
+  background: #fff3df !important;
+  color: #c76a00 !important;
+}
+
+/* EXPIRED — MERAH */
+.certificate-page .status-badge.expired {
+  background: #fdeaea !important;
+  color: #c93636 !important;
+}
+
+/* =========================================================
+   STATUS TABLE CELL
+   ========================================================= */
+
+.certificate-page .certificate-table td .status-badge {
+  vertical-align: middle !important;
+}
+
+/* =========================================================
+   CERTIFICATE FORM LABEL FIX
+   Text = BLACK / Required * = RED
+   ========================================================= */
+
+.certificate-modal .form-field > label {
+  color: #071b35 !important;
+  font-family: var(--font-sans, "Inter", sans-serif) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+/* Semua teks yang dibungkus span tetap HITAM */
+.certificate-modal .form-field > label > span {
+  color: #071b35 !important;
+}
+
+/* Hanya tanda * yang merah */
+.certificate-modal .form-field > label > span > b {
+  color: #d92d20 !important;
+  font-weight: 600 !important;
+}

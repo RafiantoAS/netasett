@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT Maju Jaya Telekomunikasi · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="customers.css" />
+    <link rel="stylesheet" href="customer-detail.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub active">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================= MAIN ================= -->
+      <div class="main">
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb">
+              Customers / Users <span class="sep">/</span> Customers
+              <span class="sep">/</span> CUST-0001
+            </div>
+            <h1 class="page-title">Customer Detail</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="btn btn-ghost" onclick="toggleSidebar()">☰</button>
+            <a href="customers.html" class="btn btn-ghost">← Back to List</a>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- ===== Header card ===== -->
+          <div class="panel detail-header">
+            <div class="detail-header-left">
+              <div class="detail-avatar">PM</div>
+              <div class="detail-title-block">
+                <h1>PT Maju Jaya Telekomunikasi</h1>
+                <div class="detail-id-row">
+                  <span>CUST-0001</span>
+                  <span>·</span>
+                  <span>Terdaftar sejak 12 Jan 2023</span>
+                </div>
+                <div class="detail-badge-row">
+                  <span class="type-badge type-corporate">Corporate</span>
+                  <span class="badge badge-active">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail-header-actions">
+              <button
+                class="btn btn-ghost"
+                onclick="showToast('Edit form menyusul di iterasi berikutnya')"
+              >
+                ✎ Edit
+              </button>
+              <button
+                class="btn btn-ghost"
+                style="color: var(--danger); border-color: #f8c9c5"
+              >
+                Deactivate
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== Tabs ===== -->
+          <div class="detail-tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="assets">
+              Assigned Assets
+              <span class="tag" style="margin-left: 4px">4</span>
+            </button>
+            <button class="tab-btn" data-tab="history">History</button>
+          </div>
+
+          <!-- ===== Overview panel ===== -->
+          <div class="panel tab-panel active" data-tab-panel="overview">
+            <div class="detail-section-title">Informasi Customer</div>
+            <div class="kv-grid">
+              <div class="kv-item">
+                <div class="kv-label">Customer ID</div>
+                <div class="kv-value mono">CUST-0001</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Customer Type</div>
+                <div class="kv-value">Corporate</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Contact / PIC</div>
+                <div class="kv-value">Budi Santoso</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Status</div>
+                <div class="kv-value">
+                  <span class="badge badge-active">Active</span>
+                </div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Email</div>
+                <div class="kv-value mono">budi@majujaya.co.id</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Phone</div>
+                <div class="kv-value mono">0812-3456-7890</div>
+              </div>
+              <div class="kv-item full">
+                <div class="kv-label">Address</div>
+                <div class="kv-value">
+                  Jl. Gatot Subroto Kav. 12, Jakarta Selatan, DKI Jakarta 12930
+                </div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Created At</div>
+                <div class="kv-value mono">2023-01-12 09:41</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-label">Updated At</div>
+                <div class="kv-value mono">2026-07-30 14:02</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Assigned Assets panel ===== -->
+          <div class="panel tab-panel" data-tab-panel="assets">
+            <div class="detail-section-title">
+              Asset yang digunakan customer ini
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Assigned Since</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="asset-type-icon">IP</span
+                    ><span class="cell-primary">103.150.24.10</span>
+                  </td>
+                  <td class="cell-muted">IP Address</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td class="cell-mono">2023-01-15</td>
+                  <td class="row-actions">
+                    <button class="icon-btn" title="View">👁</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="asset-type-icon">RT</span
+                    ><span class="cell-primary">CE-MajuJaya-01</span>
+                  </td>
+                  <td class="cell-muted">Router (CPE)</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td class="cell-mono">2023-01-15</td>
+                  <td class="row-actions">
+                    <button class="icon-btn" title="View">👁</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="asset-type-icon">VP</span
+                    ><span class="cell-primary">VPN-MajuJaya-Site2Site</span>
+                  </td>
+                  <td class="cell-muted">VPN</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td class="cell-mono">2023-03-02</td>
+                  <td class="row-actions">
+                    <button class="icon-btn" title="View">👁</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="asset-type-icon">VL</span
+                    ><span class="cell-primary"
+                      >VLAN 210 — Customer-MajuJaya</span
+                    >
+                  </td>
+                  <td class="cell-muted">VLAN</td>
+                  <td><span class="badge badge-pending">Pending</span></td>
+                  <td class="cell-mono">2026-06-18</td>
+                  <td class="row-actions">
+                    <button class="icon-btn" title="View">👁</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ===== History panel ===== -->
+          <div class="panel tab-panel" data-tab-panel="history">
+            <div class="detail-section-title">Audit Log</div>
+            <div class="timeline">
+              <div class="timeline-item event-status">
+                <div class="timeline-head">
+                  <span class="timeline-action"
+                    >VLAN 210 di-assign ke customer</span
+                  >
+                  <span class="timeline-time">2026-06-18 10:22</span>
+                </div>
+                <div class="timeline-meta">
+                  oleh <strong>Rizky Ramadhan</strong> (NOC Engineer)
+                </div>
+              </div>
+              <div class="timeline-item event-update">
+                <div class="timeline-head">
+                  <span class="timeline-action">Phone number diperbarui</span>
+                  <span class="timeline-time">2026-07-30 14:02</span>
+                </div>
+                <div class="timeline-meta">
+                  <strong>0812-3456-7890</strong> — diubah oleh
+                  <strong>Ananda Satria Ariyanto</strong>
+                </div>
+              </div>
+              <div class="timeline-item event-update">
+                <div class="timeline-head">
+                  <span class="timeline-action"
+                    >VPN Site-to-Site dikonfigurasi</span
+                  >
+                  <span class="timeline-time">2023-03-02 11:15</span>
+                </div>
+                <div class="timeline-meta">
+                  oleh <strong>Bagus Setiawan</strong> (Network Engineer)
+                </div>
+              </div>
+              <div class="timeline-item event-create">
+                <div class="timeline-head">
+                  <span class="timeline-action">Customer dibuat</span>
+                  <span class="timeline-time">2023-01-12 09:41</span>
+                </div>
+                <div class="timeline-meta">
+                  oleh <strong>Putri Ayu Lestari</strong> (Support Lead)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">
+      <span class="dot"></span><span class="toast-text">Saved</span>
+    </div>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>IP Addresses · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="ip-address.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================================================================
+         SIDEBAR
+         ================================================================ -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub active">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ================================================================
+         MAIN
+         ================================================================ -->
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Network Resources</span>
+              <span> / </span>
+              <strong>IP Address</strong>
+            </div>
+
+            <h1 class="page-title">IP Addresses</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              onclick="resetDemoData()"
+            >
+              ↻
+            </button>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openAddModal()"
+            >
+              + Add IP Address
+            </button>
+          </div>
+        </header>
+
+        <div class="content ip-address-page">
+          <!-- ============================================================
+             LIST CARD
+             ============================================================ -->
+          <section class="ip-list-card">
+            <div class="list-toolbar">
+              <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="Cari IP address, prefix, hostname, customer..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="versionFilter" aria-label="Filter IP Version">
+                  <option value="all">Semua IP Version</option>
+                  <option value="ipv4">IPv4</option>
+                  <option value="ipv6">IPv6</option>
+                </select>
+
+                <select id="statusFilter" aria-label="Filter Status">
+                  <option value="all">Semua Status</option>
+                  <option value="available">Available</option>
+                  <option value="assigned">Assigned</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ==========================================================
+               STATS
+               ========================================================== -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-label">TOTAL IP</span>
+                <strong id="totalStat">5</strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">AVAILABLE</span>
+                <strong id="availableStat">2</strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">ASSIGNED</span>
+                <strong id="assignedStat">2</strong>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">RESERVED</span>
+                <strong id="reservedStat">1</strong>
+              </div>
+            </div>
+
+            <!-- ==========================================================
+               TABLE
+               ========================================================== -->
+            <div class="table-wrap">
+              <table class="ip-table">
+                <thead>
+                  <tr>
+                    <th>IP ADDRESS</th>
+                    <th>PREFIX / POOL</th>
+                    <th>ALLOCATION</th>
+                    <th>ASSIGNED TO</th>
+                    <th>PURPOSE</th>
+                    <th>PROVIDER</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+
+                <tbody id="ipTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="list-footer">
+              <span id="resultCount">5 of 5 IP addresses shown</span>
+
+              <button
+                type="button"
+                class="btn btn-reset"
+                onclick="resetDemoData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================================================================
+       ADD / EDIT MODAL
+       ================================================================ -->
+    <dialog id="ipModal" class="ip-modal">
+      <form method="dialog" id="ipForm" class="ip-form">
+        <header class="modal-header">
+          <div>
+            <span class="modal-eyebrow">NETWORK RESOURCE</span>
+            <h2 id="modalTitle">Add IP Address</h2>
+          </div>
+
+          <button
+            type="button"
+            class="modal-close"
+            aria-label="Close"
+            onclick="closeModal()"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="modal-body">
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>IP Information</h3>
+              <p>Core addressing information.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>IP Address <b>*</b></span>
+                <input
+                  id="formIpAddress"
+                  type="text"
+                  placeholder="103.x.x.10"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>IP Version <b>*</b></span>
+                <select id="formIpVersion" required>
+                  <option value="ipv4">IPv4</option>
+                  <option value="ipv6">IPv6</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Prefix Length <b>*</b></span>
+                <input
+                  id="formPrefixLength"
+                  type="number"
+                  min="0"
+                  max="128"
+                  value="32"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>IP Pool / Prefix <b>*</b></span>
+                <select id="formPool" required>
+                  <option value="10.10.0.0/24">10.10.0.0/24</option>
+                  <option value="10.20.0.0/24">10.20.0.0/24</option>
+                  <option value="10.30.0.0/25">10.30.0.0/25</option>
+                  <option value="10.40.0.0/24">10.40.0.0/24</option>
+                  <option value="10.50.0.0/28">10.50.0.0/28</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Allocation</h3>
+              <p>Current allocation and ownership.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Status <b>*</b></span>
+                <select id="formStatus" required>
+                  <option value="available">Available</option>
+                  <option value="assigned">Assigned</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Allocation Type <b>*</b></span>
+                <select id="formAllocationType" required>
+                  <option value="static">Static</option>
+                  <option value="dynamic">Dynamic</option>
+                  <option value="reserved">Reserved</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Provider</span>
+                <select id="formProvider">
+                  <option value="">Select Provider</option>
+                  <option value="NAP-A">NAP-A</option>
+                  <option value="NAP-B">NAP-B</option>
+                  <option value="NAP-C">NAP-C</option>
+                  <option value="Internal">Internal</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>ASN</span>
+                <input id="formAsn" type="text" placeholder="ASxxxxx" />
+              </label>
+
+              <label class="field field-full">
+                <span>Purpose</span>
+                <select id="formPurpose">
+                  <option value="Management">Management</option>
+                  <option value="Customer">Customer</option>
+                  <option value="Infrastructure">Infrastructure</option>
+                  <option value="Transit">Transit</option>
+                  <option value="Loopback">Loopback</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span>Description</span>
+                <textarea
+                  id="formDescription"
+                  rows="3"
+                  placeholder="Describe the purpose of this IP address..."
+                ></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Relationships</h3>
+              <p>Where this IP address is configured and used.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Configured On</span>
+                <select id="formAsset">
+                  <option value="">Select Asset</option>
+                  <option value="Core Router Jakarta-01">
+                    Core Router Jakarta-01
+                  </option>
+                  <option value="Core Switch Jakarta-01">
+                    Core Switch Jakarta-01
+                  </option>
+                  <option value="Core Application Server Jakarta-01">
+                    Core Application Server Jakarta-01
+                  </option>
+                  <option value="Core OLT Jakarta-01">
+                    Core OLT Jakarta-01
+                  </option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Assigned To</span>
+                <select id="formCustomer">
+                  <option value="">Select Customer</option>
+                  <option value="PT Customer A">PT Customer A</option>
+                  <option value="PT Customer B">PT Customer B</option>
+                  <option value="Internal">Internal</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span>Used By</span>
+                <select id="formUsedBy">
+                  <option value="">Select Asset / Service</option>
+                  <option value="Management Service">Management Service</option>
+                  <option value="Internet Service">Internet Service</option>
+                  <option value="Transit Service">Transit Service</option>
+                </select>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary">Save IP Address</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script>
+      const STORAGE_KEY = "netasset_ip_addresses_v1";
+
+      const DEMO_DATA = [
+        {
+          code: "IP-0001",
+          address: "10.10.0.10",
+          version: "ipv4",
+          prefixLength: 32,
+          pool: "10.10.0.0/24",
+          status: "assigned",
+          allocationType: "static",
+          provider: "NAP-A",
+          asn: "AS64501",
+          purpose: "Management",
+          configuredOn: "Core Router Jakarta-01",
+          assignedTo: "Internal",
+          usedBy: "Management Service",
+          description: "Router management address.",
+        },
+        {
+          code: "IP-0002",
+          address: "10.10.0.11",
+          version: "ipv4",
+          prefixLength: 32,
+          pool: "10.10.0.0/24",
+          status: "assigned",
+          allocationType: "static",
+          provider: "NAP-A",
+          asn: "AS64501",
+          purpose: "Management",
+          configuredOn: "Core Switch Jakarta-01",
+          assignedTo: "Internal",
+          usedBy: "Management Service",
+          description: "Core switch management address.",
+        },
+        {
+          code: "IP-0003",
+          address: "10.20.0.10",
+          version: "ipv4",
+          prefixLength: 32,
+          pool: "10.20.0.0/24",
+          status: "available",
+          allocationType: "static",
+          provider: "NAP-A",
+          asn: "AS64501",
+          purpose: "Customer",
+          configuredOn: "",
+          assignedTo: "",
+          usedBy: "",
+          description: "Available customer IP.",
+        },
+        {
+          code: "IP-0004",
+          address: "10.30.0.10",
+          version: "ipv4",
+          prefixLength: 32,
+          pool: "10.30.0.0/25",
+          status: "reserved",
+          allocationType: "reserved",
+          provider: "NAP-B",
+          asn: "AS64502",
+          purpose: "Infrastructure",
+          configuredOn: "",
+          assignedTo: "",
+          usedBy: "",
+          description: "Reserved infrastructure address.",
+        },
+        {
+          code: "IP-0005",
+          address: "10.40.0.10",
+          version: "ipv4",
+          prefixLength: 32,
+          pool: "10.40.0.0/24",
+          status: "available",
+          allocationType: "static",
+          provider: "NAP-C",
+          asn: "AS64503",
+          purpose: "Transit",
+          configuredOn: "",
+          assignedTo: "",
+          usedBy: "",
+          description: "Available transit address.",
+        },
+      ];
+
+      let ipData = loadData();
+      let editingCode = null;
+
+      function loadData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+
+          return structuredClone(DEMO_DATA);
+        }
+
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+
+          return structuredClone(DEMO_DATA);
+        }
+      }
+
+      function saveData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(ipData));
+      }
+
+      function statusLabel(status) {
+        return (
+          {
+            available: "Available",
+            assigned: "Assigned",
+            reserved: "Reserved",
+            deprecated: "Deprecated",
+          }[status] || status
+        );
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            available: "status-available",
+            assigned: "status-assigned",
+            reserved: "status-reserved",
+            deprecated: "status-deprecated",
+          }[status] || ""
+        );
+      }
+
+      function versionLabel(version) {
+        return version === "ipv6" ? "IPv6" : "IPv4";
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById("ipTableBody");
+
+        const search = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+
+        const version = document.getElementById("versionFilter").value;
+
+        const status = document.getElementById("statusFilter").value;
+
+        const filtered = ipData.filter((item) => {
+          const haystack = [
+            item.code,
+            item.address,
+            item.pool,
+            item.configuredOn,
+            item.assignedTo,
+            item.usedBy,
+            item.provider,
+            item.asn,
+            item.purpose,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          const matchesSearch = !search || haystack.includes(search);
+
+          const matchesVersion = version === "all" || item.version === version;
+
+          const matchesStatus = status === "all" || item.status === status;
+
+          return matchesSearch && matchesVersion && matchesStatus;
+        });
+
+        tbody.innerHTML = filtered
+          .map((item) => {
+            const assigned = item.configuredOn || item.assignedTo || "—";
+
+            return `
+            <tr>
+              <td>
+                <div class="ip-cell">
+                  <div class="resource-icon">IP</div>
+
+                  <div>
+                    <strong class="mono-text">
+                      ${escapeHtml(item.address)}
+                    </strong>
+
+                    <span>
+                      ${escapeHtml(item.code)}
+                    </span>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <div class="pool-cell">
+                  <strong class="mono-text">
+                    ${escapeHtml(item.pool)}
+                  </strong>
+
+                  <span>
+                    ${versionLabel(item.version)}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <div class="allocation-cell">
+                  <strong>
+                    ${escapeHtml(item.allocationType)}
+                  </strong>
+
+                  <span>
+                    /${escapeHtml(String(item.prefixLength))}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <div class="assignment-cell">
+                  <strong>
+                    ${escapeHtml(assigned)}
+                  </strong>
+
+                  <span>
+                    ${escapeHtml(item.usedBy || "Unassigned")}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <span class="purpose-text">
+                  ${escapeHtml(item.purpose)}
+                </span>
+              </td>
+
+              <td>
+                <div class="provider-cell">
+                  <strong>
+                    ${escapeHtml(item.provider || "—")}
+                  </strong>
+
+                  <span class="mono-text">
+                    ${escapeHtml(item.asn || "—")}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <span class="status-badge ${statusClass(item.status)}">
+                  <span class="status-dot"></span>
+                  ${statusLabel(item.status)}
+                </span>
+              </td>
+
+              <td>
+                <div class="row-actions">
+                  <button
+                    class="icon-btn"
+                    type="button"
+                    title="View IP"
+                    onclick="viewIp('${escapeAttribute(item.code)}')"
+                  >
+                    ◉
+                  </button>
+
+                  <button
+                    class="icon-btn"
+                    type="button"
+                    title="Edit IP"
+                    onclick="editIp('${escapeAttribute(item.code)}')"
+                  >
+                    ✎
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          })
+          .join("");
+
+        updateStats();
+        updateResultCount(filtered.length);
+      }
+
+      function updateStats() {
+        const total = ipData.length;
+
+        const available = ipData.filter(
+          (item) => item.status === "available",
+        ).length;
+
+        const assigned = ipData.filter(
+          (item) => item.status === "assigned",
+        ).length;
+
+        const reserved = ipData.filter(
+          (item) => item.status === "reserved",
+        ).length;
+
+        document.getElementById("totalStat").textContent = total;
+
+        document.getElementById("availableStat").textContent = available;
+
+        document.getElementById("assignedStat").textContent = assigned;
+
+        document.getElementById("reservedStat").textContent = reserved;
+      }
+
+      function updateResultCount(count) {
+        document.getElementById("resultCount").textContent =
+          `${count} of ${ipData.length} IP addresses shown`;
+      }
+
+      function openAddModal() {
+        editingCode = null;
+
+        document.getElementById("modalTitle").textContent = "Add IP Address";
+
+        document.getElementById("ipForm").reset();
+
+        document.getElementById("formIpVersion").value = "ipv4";
+
+        document.getElementById("formPrefixLength").value = "32";
+
+        document.getElementById("formStatus").value = "available";
+
+        document.getElementById("formAllocationType").value = "static";
+
+        document.getElementById("ipModal").showModal();
+      }
+
+      function editIp(code) {
+        const item = ipData.find((entry) => entry.code === code);
+
+        if (!item) return;
+
+        editingCode = code;
+
+        document.getElementById("modalTitle").textContent = "Edit IP Address";
+
+        document.getElementById("formIpAddress").value = item.address;
+
+        document.getElementById("formIpVersion").value = item.version;
+
+        document.getElementById("formPrefixLength").value = item.prefixLength;
+
+        document.getElementById("formPool").value = item.pool;
+
+        document.getElementById("formStatus").value = item.status;
+
+        document.getElementById("formAllocationType").value =
+          item.allocationType;
+
+        document.getElementById("formProvider").value = item.provider;
+
+        document.getElementById("formAsn").value = item.asn;
+
+        document.getElementById("formPurpose").value = item.purpose;
+
+        document.getElementById("formDescription").value = item.description;
+
+        document.getElementById("formAsset").value = item.configuredOn;
+
+        document.getElementById("formCustomer").value = item.assignedTo;
+
+        document.getElementById("formUsedBy").value = item.usedBy;
+
+        document.getElementById("ipModal").showModal();
+      }
+
+      function viewIp(code) {
+        const item = ipData.find((entry) => entry.code === code);
+
+        if (!item) return;
+
+        /*
+         * Buka halaman detail dengan code sebagai query parameter.
+         * Detail page akan membaca IP yang sama dari localStorage
+         * menggunakan STORAGE_KEY yang sama.
+         */
+        window.location.href = `ip-address-detail.html?code=${encodeURIComponent(item.code)}`;
+      }
+
+      function closeModal() {
+        document.getElementById("ipModal").close();
+      }
+
+      function resetDemoData() {
+        ipData = structuredClone(DEMO_DATA);
+
+        saveData();
+
+        document.getElementById("searchInput").value = "";
+
+        document.getElementById("versionFilter").value = "all";
+
+        document.getElementById("statusFilter").value = "all";
+
+        renderTable();
+      }
+
+      document.getElementById("ipForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const payload = {
+          address: document.getElementById("formIpAddress").value.trim(),
+
+          version: document.getElementById("formIpVersion").value,
+
+          prefixLength: Number(
+            document.getElementById("formPrefixLength").value,
+          ),
+
+          pool: document.getElementById("formPool").value,
+
+          status: document.getElementById("formStatus").value,
+
+          allocationType: document.getElementById("formAllocationType").value,
+
+          provider: document.getElementById("formProvider").value,
+
+          asn: document.getElementById("formAsn").value.trim(),
+
+          purpose: document.getElementById("formPurpose").value,
+
+          description: document.getElementById("formDescription").value.trim(),
+
+          configuredOn: document.getElementById("formAsset").value,
+
+          assignedTo: document.getElementById("formCustomer").value,
+
+          usedBy: document.getElementById("formUsedBy").value,
+        };
+
+        if (!payload.address) {
+          return;
+        }
+
+        if (editingCode) {
+          const index = ipData.findIndex((item) => item.code === editingCode);
+
+          if (index !== -1) {
+            ipData[index] = {
+              ...ipData[index],
+              ...payload,
+            };
+          }
+        } else {
+          const nextNumber =
+            ipData.reduce((max, item) => {
+              const number = Number(item.code.replace("IP-", "")) || 0;
+
+              return Math.max(max, number);
+            }, 0) + 1;
+
+          ipData.push({
+            code: `IP-${String(nextNumber).padStart(4, "0")}`,
+            ...payload,
+          });
+        }
+
+        saveData();
+        renderTable();
+        closeModal();
+      });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderTable);
+
+      document
+        .getElementById("versionFilter")
+        .addEventListener("change", renderTable);
+
+      document
+        .getElementById("statusFilter")
+        .addEventListener("change", renderTable);
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function escapeAttribute(value) {
+        return String(value ?? "")
+          .replaceAll("\\", "\\\\")
+          .replaceAll("'", "\\'");
+      }
+
+      renderTable();
+    </script>
+  </body>
+</html>

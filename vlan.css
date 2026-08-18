@@ -1,0 +1,698 @@
+/* ==========================================================================
+   vlan.css — NETASSET VLAN page
+   Synced specifically with vlan.html
+   ========================================================================== */
+
+/* ---------- VLAN LIST ---------- */
+
+.vlan-page {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vlan-list-card {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+}
+
+/* Toolbar: search left, filters right */
+.vlan-list-card .list-toolbar {
+  display: flex;
+  width: 100%;
+  min-height: 72px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface, #fff);
+}
+
+.vlan-list-card .search-wrap {
+  position: relative;
+  width: 390px;
+  max-width: 100%;
+  flex: 0 1 390px;
+}
+
+.vlan-list-card .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  z-index: 2;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.vlan-list-card #searchInput {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 14px 0 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: var(--text);
+  font-family: var(--font-sans, Inter, Arial, sans-serif);
+  font-size: 13px;
+}
+
+.vlan-list-card #searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.vlan-list-card #searchInput:focus {
+  border-color: var(--accent, #0bb5b0);
+  box-shadow: 0 0 0 3px rgba(11, 181, 176, 0.1);
+}
+
+.vlan-list-card .filter-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.vlan-list-card .filter-group select {
+  width: 150px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 34px 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: var(--text);
+  font-family: var(--font-sans, Inter, Arial, sans-serif);
+  font-size: 13px;
+}
+
+.vlan-list-card .filter-group select:focus {
+  border-color: var(--accent, #0bb5b0);
+  box-shadow: 0 0 0 3px rgba(11, 181, 176, 0.1);
+}
+
+/* ---------- Statistics ---------- */
+
+.vlan-list-card .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+
+.vlan-list-card .stat-card {
+  min-height: 92px;
+  box-sizing: border-box;
+  padding: 19px 22px;
+  border-right: 1px solid var(--border);
+}
+
+.vlan-list-card .stat-card:last-child {
+  border-right: none;
+}
+
+.vlan-list-card .stat-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.vlan-list-card .stat-card strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-display, "Space Grotesk", Arial, sans-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ---------- Table ---------- */
+
+.vlan-list-card .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.vlan-table {
+  width: 100%;
+  min-width: 1080px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.vlan-table th,
+.vlan-table td {
+  box-sizing: border-box;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.vlan-table th {
+  height: 44px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--bg, #f5f7fa);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vlan-table td {
+  height: 76px;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.vlan-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.vlan-table tbody tr:hover {
+  background: #f9fbfd;
+}
+
+.vlan-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Match the 8 columns in vlan.html */
+.vlan-table th:nth-child(1),
+.vlan-table td:nth-child(1) {
+  width: 19%;
+}
+
+.vlan-table th:nth-child(2),
+.vlan-table td:nth-child(2) {
+  width: 22%;
+}
+
+.vlan-table th:nth-child(3),
+.vlan-table td:nth-child(3) {
+  width: 13%;
+}
+
+.vlan-table th:nth-child(4),
+.vlan-table td:nth-child(4) {
+  width: 10%;
+}
+
+.vlan-table th:nth-child(5),
+.vlan-table td:nth-child(5) {
+  width: 12%;
+}
+
+.vlan-table th:nth-child(6),
+.vlan-table td:nth-child(6) {
+  width: 8%;
+}
+
+.vlan-table th:nth-child(7),
+.vlan-table td:nth-child(7) {
+  width: 9%;
+}
+
+.vlan-table th:nth-child(8),
+.vlan-table td:nth-child(8) {
+  width: 7%;
+}
+
+/* ---------- Table cells ---------- */
+
+.vlan-cell,
+.name-cell,
+.network-cell {
+  min-width: 0;
+}
+
+.vlan-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vlan-cell > div:last-child {
+  min-width: 0;
+}
+
+.name-cell,
+.network-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vlan-cell strong,
+.name-cell strong,
+.network-cell strong {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.vlan-cell span,
+.name-cell span,
+.network-cell span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.name-cell span {
+  overflow: hidden;
+  max-width: 270px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border-radius: 9px;
+  background: #e7f8f7;
+  color: #008f8b;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mono-text {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+}
+
+/* ---------- Status ---------- */
+
+.status-badge {
+  display: inline-flex;
+  min-height: 28px;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-active {
+  background: #e8f7ef;
+  color: #067647;
+}
+
+.status-reserved {
+  background: #fff3df;
+  color: #b54708;
+}
+
+.status-deprecated {
+  background: #fdeaea;
+  color: #b42318;
+}
+
+/* ---------- Actions ---------- */
+
+.vlan-list-card .row-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.vlan-list-card .icon-btn {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.vlan-list-card .icon-btn:hover {
+  border-color: var(--accent, #0bb5b0);
+  color: var(--accent, #0bb5b0);
+  background: #f4fbfb;
+}
+
+/* ---------- Footer ---------- */
+
+.vlan-list-card .list-footer {
+  display: flex;
+  min-height: 56px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.vlan-list-card .btn-reset {
+  height: 34px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   ADD / EDIT VLAN MODAL
+   Exact selectors from vlan.html:
+   .vlan-modal > .vlan-form > .modal-header/.modal-body/.modal-footer
+   ========================================================================== */
+
+.vlan-modal {
+  width: min(860px, calc(100vw - 32px));
+  max-width: 860px;
+  max-height: calc(100vh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.vlan-modal::backdrop {
+  background: rgba(15, 23, 42, 0.56);
+}
+
+.vlan-modal .vlan-form {
+  display: flex;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.vlan-modal .modal-header {
+  display: flex;
+  min-height: 78px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px 26px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+
+.vlan-modal .modal-header > div {
+  min-width: 0;
+}
+
+.vlan-modal .modal-eyebrow {
+  display: block;
+  margin: 0 0 5px;
+  color: #008f8b;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vlan-modal .modal-header h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display, "Space Grotesk", Arial, sans-serif);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Close button — explicitly pushed to the RIGHT */
+.vlan-modal .modal-close {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.vlan-modal .modal-close:hover {
+  border-color: var(--accent, #0bb5b0);
+  color: #008f8b;
+  background: #f4fbfb;
+}
+
+/* Body */
+.vlan-modal .modal-body {
+  min-height: 0;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.vlan-modal .form-section {
+  padding: 24px 26px 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vlan-modal .form-section:last-child {
+  border-bottom: none;
+}
+
+.vlan-modal .form-section-title {
+  margin: 0 0 19px;
+}
+
+.vlan-modal .form-section-title h3 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display, "Space Grotesk", Arial, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.vlan-modal .form-section-title p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* 2-column form — matches the labels in vlan.html */
+.vlan-modal .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 18px;
+  row-gap: 17px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vlan-modal .field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+}
+
+.vlan-modal .field-full {
+  grid-column: 1 / -1;
+}
+
+.vlan-modal .field > span {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.vlan-modal .field > span b {
+  color: #b42318;
+  font-weight: 600;
+}
+
+.vlan-modal .field input,
+.vlan-modal .field select,
+.vlan-modal .field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: var(--text);
+  font-family: var(--font-sans, Inter, Arial, sans-serif);
+  font-size: 13px;
+}
+
+.vlan-modal .field input,
+.vlan-modal .field select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.vlan-modal .field textarea {
+  min-height: 88px;
+  padding: 11px 12px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.vlan-modal .field input:focus,
+.vlan-modal .field select:focus,
+.vlan-modal .field textarea:focus {
+  border-color: var(--accent, #0bb5b0);
+  box-shadow: 0 0 0 3px rgba(11, 181, 176, 0.1);
+}
+
+/* Footer */
+.vlan-modal .modal-footer {
+  display: flex;
+  min-height: 70px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 13px 26px;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+
+.vlan-modal .modal-footer .btn {
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 17px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vlan-modal .modal-footer .btn-secondary {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+
+.vlan-modal .modal-footer .btn-primary {
+  border: 1px solid var(--accent, #0bb5b0);
+  background: var(--accent, #0bb5b0);
+  color: #06363a;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1050px) {
+  .vlan-list-card .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vlan-list-card .stat-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .vlan-list-card .stat-card:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 760px) {
+  .vlan-list-card .list-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .vlan-list-card .search-wrap {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .vlan-list-card .filter-group {
+    width: 100%;
+  }
+
+  .vlan-list-card .filter-group select {
+    flex: 1;
+    width: auto;
+  }
+
+  .vlan-modal {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+  }
+
+  .vlan-modal .vlan-form {
+    max-height: calc(100vh - 20px);
+  }
+
+  .vlan-modal .modal-header {
+    padding: 16px 18px;
+  }
+
+  .vlan-modal .form-section {
+    padding: 20px 18px 22px;
+  }
+
+  .vlan-modal .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vlan-modal .field-full {
+    grid-column: auto;
+  }
+
+  .vlan-modal .modal-footer {
+    padding: 12px 18px;
+  }
+}

@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Customers | NETASSET</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Customers page CSS -->
+    <link rel="stylesheet" href="customers.css" />
+  </head>
+
+  <body class="customers-page">
+    <div class="shell">
+      <!-- =====================================================
+           SIDEBAR
+      ====================================================== -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub active">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =====================================================
+           MAIN
+      ====================================================== -->
+      <div class="main customers-main">
+        <!-- Topbar -->
+        <header class="topbar customers-topbar">
+          <div class="breadcrumb">
+            <a href="index.html">Customers / Users</a>
+
+            <span class="breadcrumb-separator">/</span>
+
+            <span>Customers</span>
+          </div>
+
+          <button
+            type="button"
+            class="topbar-button"
+            id="customerMenuButton"
+            aria-label="Customer actions"
+          >
+            ☰
+          </button>
+        </header>
+
+        <!-- ===================================================
+             PAGE CONTENT
+        ==================================================== -->
+        <section class="page-content">
+          <!-- Page Header -->
+          <div class="customer-page-header">
+            <div class="customer-page-heading">
+              <span class="page-eyebrow"> CUSTOMER MANAGEMENT </span>
+
+              <h1>Customers</h1>
+
+              <p>
+                Manage customer records, contacts, classification, and account
+                status in NETASSET.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="customer-button customer-button-primary"
+              id="addCustomerButton"
+            >
+              <span>+</span>
+              Add Customer
+            </button>
+          </div>
+
+          <!-- =================================================
+               CUSTOMER LIST
+          ================================================== -->
+          <section class="customer-list-card">
+            <!-- Toolbar -->
+            <div class="customer-toolbar">
+              <div class="customer-search">
+                <span class="customer-search-icon"> ⌕ </span>
+
+                <input
+                  type="search"
+                  id="customerSearch"
+                  placeholder="Cari nama, ID, atau contact..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="customer-filter">
+                <label for="customerStatusFilter"> Status </label>
+
+                <select id="customerStatusFilter">
+                  <option value="all">All Status</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="customer-summary" id="customerSummary">
+              <button
+                type="button"
+                class="summary-chip active"
+                data-filter-type="all"
+              >
+                <strong id="totalCustomerCount">0</strong>
+                <span>total customer</span>
+              </button>
+
+              <button
+                type="button"
+                class="summary-chip"
+                data-filter-type="corporate"
+              >
+                <strong id="corporateCount">0</strong>
+                <span>corporate</span>
+              </button>
+
+              <button type="button" class="summary-chip" data-filter-type="sme">
+                <strong id="smeCount">0</strong>
+                <span>SME</span>
+              </button>
+
+              <button
+                type="button"
+                class="summary-chip"
+                data-filter-type="retail"
+              >
+                <strong id="retailCount">0</strong>
+                <span>retail</span>
+              </button>
+
+              <button
+                type="button"
+                class="summary-chip"
+                data-filter-type="government"
+              >
+                <strong id="governmentCount">0</strong>
+                <span>government</span>
+              </button>
+            </div>
+
+            <!-- Table -->
+            <div class="customer-table-wrapper">
+              <table class="customer-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th class="customer-actions-heading">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="customerTableBody"></tbody>
+              </table>
+
+              <!-- Empty -->
+              <div class="customer-empty-state" id="customerEmptyState" hidden>
+                <div class="customer-empty-icon">⌕</div>
+
+                <h3>No customers found</h3>
+
+                <p>No customer data matches your current search or filter.</p>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="customer-list-footer">
+              <div class="customer-result-summary" id="customerResultSummary">
+                Menampilkan 0 dari 0 customer
+              </div>
+
+              <div class="customer-pagination">
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="previousPageButton"
+                  aria-label="Previous page"
+                >
+                  ←
+                </button>
+
+                <div class="pagination-pages" id="paginationPages"></div>
+
+                <button
+                  type="button"
+                  class="pagination-button"
+                  id="nextPageButton"
+                  aria-label="Next page"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         ADD / EDIT CUSTOMER MODAL
+    ====================================================== -->
+    <dialog class="customer-dialog" id="customerModal">
+      <div class="customer-dialog-shell">
+        <header class="customer-dialog-header">
+          <div>
+            <span class="modal-eyebrow"> CUSTOMER MANAGEMENT </span>
+
+            <h2 id="customerModalTitle">Add Customer</h2>
+
+            <p id="customerModalDescription">
+              Create a new customer record for NETASSET.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeCustomerModal"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <form id="customerForm" class="customer-form" novalidate>
+          <input type="hidden" id="customerFormMode" value="add" />
+
+          <input type="hidden" id="editingCustomerId" value="" />
+
+          <!-- Customer Information -->
+          <section class="customer-form-section">
+            <div class="customer-form-section-heading">
+              <span>01</span>
+
+              <div>
+                <h3>Customer Information</h3>
+
+                <p>Basic customer identification and classification.</p>
+              </div>
+            </div>
+
+            <div class="customer-form-grid">
+              <div class="customer-field">
+                <label for="customerId">
+                  Customer ID
+                  <span>*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="customerId"
+                  name="customer_id"
+                  placeholder="CUST-0001"
+                  required
+                />
+
+                <small> Unique customer identifier. </small>
+              </div>
+
+              <div class="customer-field">
+                <label for="customerName">
+                  Customer Name
+                  <span>*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="customerName"
+                  name="customer_name"
+                  placeholder="Enter customer name"
+                  required
+                />
+              </div>
+
+              <div class="customer-field">
+                <label for="customerType">
+                  Customer Type
+                  <span>*</span>
+                </label>
+
+                <select id="customerType" name="customer_type" required>
+                  <option value="">Select customer type</option>
+
+                  <option value="corporate">Corporate</option>
+
+                  <option value="sme">SME</option>
+
+                  <option value="retail">Retail</option>
+
+                  <option value="government">Government</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- Contact -->
+          <section class="customer-form-section">
+            <div class="customer-form-section-heading">
+              <span>02</span>
+
+              <div>
+                <h3>Contact</h3>
+
+                <p>Primary contact details for the customer.</p>
+              </div>
+            </div>
+
+            <div class="customer-form-grid">
+              <div class="customer-field">
+                <label for="customerContact">
+                  Contact
+                  <span>*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="customerContact"
+                  name="contact"
+                  placeholder="Contact person"
+                  required
+                />
+              </div>
+
+              <div class="customer-field">
+                <label for="customerEmail">
+                  Email
+                  <span>*</span>
+                </label>
+
+                <input
+                  type="email"
+                  id="customerEmail"
+                  name="email"
+                  placeholder="name@example.com"
+                  required
+                />
+              </div>
+
+              <div class="customer-field">
+                <label for="customerPhone">
+                  Phone
+                  <span>*</span>
+                </label>
+
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  name="phone"
+                  placeholder="08xxxxxxxxxx"
+                  required
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- Address -->
+          <section class="customer-form-section">
+            <div class="customer-form-section-heading">
+              <span>03</span>
+
+              <div>
+                <h3>Address</h3>
+
+                <p>Registered address of the customer.</p>
+              </div>
+            </div>
+
+            <div class="customer-field">
+              <label for="customerAddress">
+                Address
+                <span>*</span>
+              </label>
+
+              <textarea
+                id="customerAddress"
+                name="address"
+                rows="4"
+                placeholder="Enter customer address"
+                required
+              ></textarea>
+            </div>
+          </section>
+
+          <!-- Status -->
+          <section class="customer-form-section customer-form-section-status">
+            <div class="customer-form-section-heading">
+              <span>04</span>
+
+              <div>
+                <h3>Status</h3>
+
+                <p>Control the current customer record status.</p>
+              </div>
+            </div>
+
+            <div class="customer-field customer-field-status">
+              <label for="customerStatus">
+                Status
+                <span>*</span>
+              </label>
+
+              <select id="customerStatus" name="status" required>
+                <option value="active">Active</option>
+
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- Form Actions -->
+          <footer class="customer-form-actions">
+            <button
+              type="button"
+              class="customer-button customer-button-secondary"
+              id="cancelCustomerForm"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="customer-button customer-button-primary"
+              id="saveCustomerButton"
+            >
+              Save Customer
+            </button>
+          </footer>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- =====================================================
+         CUSTOMER DETAILS MODAL
+         READ ONLY — NOT A FORM
+    ====================================================== -->
+    <dialog class="customer-details-dialog" id="customerDetailsModal">
+      <div class="customer-details-shell">
+        <!-- Header -->
+        <header class="customer-details-header">
+          <div>
+            <span class="modal-eyebrow"> CUSTOMER MANAGEMENT </span>
+
+            <h2>Customer Details</h2>
+
+            <p>View customer information registered in NETASSET.</p>
+          </div>
+
+          <button
+            type="button"
+            class="dialog-close"
+            id="closeCustomerDetails"
+            aria-label="Close customer details"
+          >
+            ×
+          </button>
+        </header>
+
+        <!-- Detail Content -->
+        <div class="customer-details-content">
+          <!-- 01 Customer Information -->
+          <section class="customer-details-section">
+            <div class="customer-details-section-heading">
+              <span>01</span>
+
+              <div>
+                <h3>Customer Information</h3>
+
+                <p>Basic customer identification and classification.</p>
+              </div>
+            </div>
+
+            <div class="customer-details-grid">
+              <div class="customer-detail-item">
+                <span class="customer-detail-label"> Customer ID </span>
+
+                <strong
+                  id="detailsCustomerId"
+                  class="customer-detail-value customer-detail-mono"
+                >
+                  —
+                </strong>
+              </div>
+
+              <div class="customer-detail-item">
+                <span class="customer-detail-label"> Customer Type </span>
+
+                <span id="detailsCustomerType" class="customer-detail-value">
+                  —
+                </span>
+              </div>
+
+              <div class="customer-detail-item customer-detail-item-wide">
+                <span class="customer-detail-label"> Customer Name </span>
+
+                <strong id="detailsCustomerName" class="customer-detail-value">
+                  —
+                </strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 Contact -->
+          <section class="customer-details-section">
+            <div class="customer-details-section-heading">
+              <span>02</span>
+
+              <div>
+                <h3>Contact</h3>
+
+                <p>Primary contact details for the customer.</p>
+              </div>
+            </div>
+
+            <div class="customer-details-grid">
+              <div class="customer-detail-item">
+                <span class="customer-detail-label"> Contact </span>
+
+                <strong id="detailsContact" class="customer-detail-value">
+                  —
+                </strong>
+              </div>
+
+              <div class="customer-detail-item">
+                <span class="customer-detail-label"> Email </span>
+
+                <span id="detailsEmail" class="customer-detail-value"> — </span>
+              </div>
+
+              <div class="customer-detail-item">
+                <span class="customer-detail-label"> Phone </span>
+
+                <span
+                  id="detailsPhone"
+                  class="customer-detail-value customer-detail-mono"
+                >
+                  —
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 03 Address -->
+          <section class="customer-details-section">
+            <div class="customer-details-section-heading">
+              <span>03</span>
+
+              <div>
+                <h3>Address</h3>
+
+                <p>Registered address of the customer.</p>
+              </div>
+            </div>
+
+            <div class="customer-detail-address">
+              <span class="customer-detail-label"> Registered Address </span>
+
+              <div id="detailsAddress" class="customer-detail-address-value">
+                —
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 Status -->
+          <section class="customer-details-section">
+            <div class="customer-details-section-heading">
+              <span>04</span>
+
+              <div>
+                <h3>Status</h3>
+
+                <p>Current customer record status.</p>
+              </div>
+            </div>
+
+            <div class="customer-detail-status-row">
+              <span class="customer-detail-label"> Account Status </span>
+
+              <span id="detailsStatus" class="customer-status-badge">
+                <i class="customer-status-dot"></i>
+                —
+              </span>
+            </div>
+          </section>
+        </div>
+
+        <!-- Details Actions -->
+        <footer class="customer-details-actions">
+          <button
+            type="button"
+            class="customer-button customer-button-secondary"
+            id="closeCustomerDetailsButton"
+          >
+            Close
+          </button>
+
+          <button
+            type="button"
+            class="customer-button customer-button-primary"
+            id="editCustomerFromDetails"
+          >
+            Edit Customer
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Toast -->
+    <div
+      class="customer-toast"
+      id="customerToast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <!-- JavaScript -->
+    <script src="customers.js"></script>
+  </body>
+</html>

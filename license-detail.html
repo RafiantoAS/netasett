@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>License Detail · NETASSET</title>
+
+    <!-- Main Design System -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- License Detail Page -->
+    <link rel="stylesheet" href="license-detail.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+         APP SHELL
+         ===================================================== -->
+
+    <div class="shell">
+      <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub active">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+      <main class="main license-detail-page">
+        <!-- =================================================
+                 TOPBAR
+                 ================================================= -->
+
+        <header class="topbar">
+          <div class="breadcrumb">
+            <a href="license.html"> Licenses </a>
+
+            <span>/</span>
+
+            <strong id="breadcrumbLicenseCode"> License Detail </strong>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              type="button"
+              class="topbar-btn"
+              onclick="window.location.href = 'license.html'"
+            >
+              Back to Licenses
+            </button>
+          </div>
+        </header>
+
+        <!-- =================================================
+                 PAGE CONTENT
+                 ================================================= -->
+
+        <section class="page-content">
+          <!-- =================================================
+                     BACK LINK
+                     ================================================= -->
+
+          <a href="license.html" class="back-link"> ← Back to Licenses </a>
+
+          <!-- =================================================
+                     DETAIL HEADER
+                     ================================================= -->
+
+          <section class="detail-header-card">
+            <div class="detail-header-main">
+              <div class="detail-icon">◇</div>
+
+              <div class="detail-heading">
+                <div class="detail-code">
+                  <span id="licenseCode"> — </span>
+                </div>
+
+                <h1 id="licenseName">License Detail</h1>
+
+                <p id="licenseDescription">—</p>
+              </div>
+            </div>
+
+            <div class="detail-header-status">
+              <span id="licenseLifecycleStatus" class="status-badge"> — </span>
+
+              <span id="licenseOperationalStatus" class="status-badge">
+                —
+              </span>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     LIFECYCLE
+                     ================================================= -->
+
+          <section class="detail-card lifecycle-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> LIFECYCLE </span>
+
+                <h2>License Lifecycle</h2>
+              </div>
+            </div>
+
+            <div class="lifecycle-track">
+              <div class="lifecycle-step" data-lifecycle="Provisioned">
+                <span class="lifecycle-dot"></span>
+
+                <div>
+                  <strong> Provisioned </strong>
+
+                  <small> License prepared </small>
+                </div>
+              </div>
+
+              <div class="lifecycle-line"></div>
+
+              <div class="lifecycle-step" data-lifecycle="Active">
+                <span class="lifecycle-dot"></span>
+
+                <div>
+                  <strong> Active </strong>
+
+                  <small> License in use </small>
+                </div>
+              </div>
+
+              <div class="lifecycle-line"></div>
+
+              <div class="lifecycle-step" data-lifecycle="Retired">
+                <span class="lifecycle-dot"></span>
+
+                <div>
+                  <strong> Retired </strong>
+
+                  <small> License retired </small>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     OVERVIEW
+                     ================================================= -->
+
+          <section class="detail-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> OVERVIEW </span>
+
+                <h2>License Information</h2>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-field">
+                <span class="field-label"> License Code </span>
+
+                <span class="field-value mono" id="overviewLicenseCode">
+                  —
+                </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> License Name </span>
+
+                <span class="field-value" id="overviewLicenseName"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> License Type </span>
+
+                <span class="field-value" id="licenseType"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Vendor </span>
+
+                <span class="field-value" id="licenseVendor"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Product </span>
+
+                <span class="field-value" id="licenseProduct"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> License ID / Key </span>
+
+                <span class="field-value mono" id="licenseId"> — </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     ENTITLEMENT
+                     ================================================= -->
+
+          <section class="detail-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> ENTITLEMENT </span>
+
+                <h2>License Capacity</h2>
+              </div>
+            </div>
+
+            <div class="capacity-grid">
+              <div class="capacity-item">
+                <span class="field-label"> Total Seats </span>
+
+                <strong id="licenseSeats" class="capacity-value"> 0 </strong>
+              </div>
+
+              <div class="capacity-item">
+                <span class="field-label"> Used Seats </span>
+
+                <strong id="licenseUsedSeats" class="capacity-value">
+                  0
+                </strong>
+              </div>
+
+              <div class="capacity-item">
+                <span class="field-label"> Available Seats </span>
+
+                <strong id="licenseAvailableSeats" class="capacity-value">
+                  0
+                </strong>
+              </div>
+            </div>
+
+            <div class="capacity-bar-wrapper">
+              <div class="capacity-bar-header">
+                <span> Seat Utilization </span>
+
+                <strong id="licenseUsagePercent"> 0% </strong>
+              </div>
+
+              <div class="capacity-bar">
+                <div
+                  id="licenseUsageBar"
+                  class="capacity-bar-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     VALIDITY
+                     ================================================= -->
+
+          <section class="detail-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> VALIDITY </span>
+
+                <h2>License Validity</h2>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-field">
+                <span class="field-label"> Start Date </span>
+
+                <span class="field-value mono" id="licenseStartDate"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Expiry Date </span>
+
+                <span class="field-value mono" id="licenseExpiryDate"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Expiry Status </span>
+
+                <span id="licenseExpiryState" class="status-badge"> — </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     ASSIGNMENT
+                     ================================================= -->
+
+          <section class="detail-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> ASSIGNMENT </span>
+
+                <h2>Ownership & Assignment</h2>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-field">
+                <span class="field-label"> Customer </span>
+
+                <span class="field-value" id="licenseCustomer"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Provider </span>
+
+                <span class="field-value" id="licenseProvider"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Location </span>
+
+                <span class="field-value" id="licenseLocation"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Related Asset </span>
+
+                <span class="field-value mono" id="licenseRelatedAsset">
+                  —
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     AUDIT INFORMATION
+                     ================================================= -->
+
+          <section class="detail-card">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow"> AUDIT </span>
+
+                <h2>Record Information</h2>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-field">
+                <span class="field-label"> Created At </span>
+
+                <span class="field-value mono" id="licenseCreatedAt"> — </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="field-label"> Updated At </span>
+
+                <span class="field-value mono" id="licenseUpdatedAt"> — </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                     ACTIONS
+                     ================================================= -->
+
+          <div class="detail-actions">
+            <button
+              type="button"
+              class="secondary-btn"
+              onclick="window.location.href = 'license.html'"
+            >
+              ← Back
+            </button>
+
+            <button type="button" class="primary-btn" id="editLicenseBtn">
+              Edit License
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- =====================================================
+         LICENSE DETAIL SCRIPT
+         ===================================================== -->
+
+    <script>
+      "use strict";
+
+      /* =====================================================
+           STORAGE
+           ===================================================== */
+
+      const LICENSE_STORAGE_KEY = "netasset_licenses";
+
+      /* =====================================================
+           HELPERS
+           ===================================================== */
+
+      function escapeHTML(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function statusClass(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replaceAll(" ", "-");
+      }
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+
+        if (element) {
+          element.textContent = value ?? "—";
+        }
+      }
+
+      function getLicenses() {
+        try {
+          const saved = localStorage.getItem(LICENSE_STORAGE_KEY);
+
+          if (!saved) {
+            return [];
+          }
+
+          const data = JSON.parse(saved);
+
+          return Array.isArray(data) ? data : [];
+        } catch (error) {
+          console.error("Failed to load licenses:", error);
+
+          return [];
+        }
+      }
+
+      /* =====================================================
+           EXPIRY STATE
+           ===================================================== */
+
+      function getLicenseExpiryState(license) {
+        if (!license.expiryDate) {
+          return "No Expiry";
+        }
+
+        if (license.operationalStatus === "Expired") {
+          return "Expired";
+        }
+
+        const today = new Date();
+
+        const expiry = new Date(`${license.expiryDate}T23:59:59`);
+
+        const diffDays = Math.ceil(
+          (expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+        );
+
+        if (diffDays < 0) {
+          return "Expired";
+        }
+
+        if (diffDays <= 30) {
+          return "Expiring Soon";
+        }
+
+        return "Valid";
+      }
+
+      /* =====================================================
+           LIFECYCLE
+           ===================================================== */
+
+      function updateLifecycle(status) {
+        const steps = document.querySelectorAll(".lifecycle-step");
+
+        const order = ["Provisioned", "Active", "Retired"];
+
+        const currentIndex = order.indexOf(status);
+
+        steps.forEach((step, index) => {
+          const stepStatus = step.dataset.lifecycle;
+
+          const stepIndex = order.indexOf(stepStatus);
+
+          step.classList.remove("is-complete", "is-current", "is-inactive");
+
+          if (currentIndex === -1) {
+            step.classList.add("is-inactive");
+
+            return;
+          }
+
+          if (stepIndex < currentIndex) {
+            step.classList.add("is-complete");
+          } else if (stepIndex === currentIndex) {
+            step.classList.add("is-current");
+          } else {
+            step.classList.add("is-inactive");
+          }
+        });
+      }
+
+      /* =====================================================
+           LOAD DETAIL
+           ===================================================== */
+
+      function loadLicenseDetail() {
+        const params = new URLSearchParams(window.location.search);
+
+        const licenseCode = params.get("license");
+
+        if (!licenseCode) {
+          showMissingLicense();
+
+          return;
+        }
+
+        const licenses = getLicenses();
+
+        const license = licenses.find(
+          (item) => item.licenseCode === licenseCode,
+        );
+
+        if (!license) {
+          showMissingLicense();
+
+          return;
+        }
+
+        renderLicenseDetail(license);
+      }
+
+      /* =====================================================
+           RENDER DETAIL
+           ===================================================== */
+
+      function renderLicenseDetail(license) {
+        /* ---------------------------------------------
+               Header
+               --------------------------------------------- */
+
+        setText("breadcrumbLicenseCode", license.licenseCode);
+
+        setText("licenseCode", license.licenseCode);
+
+        setText("licenseName", license.licenseName);
+
+        setText(
+          "licenseDescription",
+          license.description || "No description available.",
+        );
+
+        /* ---------------------------------------------
+               Status
+               --------------------------------------------- */
+
+        const lifecycle = document.getElementById("licenseLifecycleStatus");
+
+        const operational = document.getElementById("licenseOperationalStatus");
+
+        if (lifecycle) {
+          lifecycle.textContent = license.lifecycleStatus || "—";
+
+          lifecycle.className = `status-badge ${statusClass(
+            license.lifecycleStatus,
+          )}`;
+        }
+
+        if (operational) {
+          operational.textContent = license.operationalStatus || "—";
+
+          operational.className = `status-badge ${statusClass(
+            license.operationalStatus,
+          )}`;
+        }
+
+        /* ---------------------------------------------
+               Lifecycle
+               --------------------------------------------- */
+
+        updateLifecycle(license.lifecycleStatus);
+
+        /* ---------------------------------------------
+               Overview
+               --------------------------------------------- */
+
+        setText("overviewLicenseCode", license.licenseCode);
+
+        setText("overviewLicenseName", license.licenseName);
+
+        setText("licenseType", license.type);
+
+        setText("licenseVendor", license.vendor);
+
+        setText("licenseProduct", license.product);
+
+        setText("licenseId", license.licenseId);
+
+        /* ---------------------------------------------
+               Capacity
+               --------------------------------------------- */
+
+        const seats = Number(license.seats || 0);
+
+        const usedSeats = Number(license.usedSeats || 0);
+
+        const availableSeats = Math.max(seats - usedSeats, 0);
+
+        const usagePercent =
+          seats > 0 ? Math.min(Math.round((usedSeats / seats) * 100), 100) : 0;
+
+        setText("licenseSeats", seats);
+
+        setText("licenseUsedSeats", usedSeats);
+
+        setText("licenseAvailableSeats", availableSeats);
+
+        setText("licenseUsagePercent", `${usagePercent}%`);
+
+        const usageBar = document.getElementById("licenseUsageBar");
+
+        if (usageBar) {
+          usageBar.style.width = `${usagePercent}%`;
+        }
+
+        /* ---------------------------------------------
+               Validity
+               --------------------------------------------- */
+
+        setText("licenseStartDate", license.startDate || "—");
+
+        setText("licenseExpiryDate", license.expiryDate || "—");
+
+        const expiryState = getLicenseExpiryState(license);
+
+        const expiryElement = document.getElementById("licenseExpiryState");
+
+        if (expiryElement) {
+          expiryElement.textContent = expiryState;
+
+          expiryElement.className = `status-badge ${statusClass(expiryState)}`;
+        }
+
+        /* ---------------------------------------------
+               Assignment
+               --------------------------------------------- */
+
+        setText("licenseCustomer", license.customer);
+
+        setText("licenseProvider", license.provider);
+
+        setText("licenseLocation", license.location);
+
+        setText("licenseRelatedAsset", license.relatedAsset);
+
+        /* ---------------------------------------------
+               Audit
+               --------------------------------------------- */
+
+        setText("licenseCreatedAt", license.createdAt);
+
+        setText("licenseUpdatedAt", license.updatedAt);
+
+        /* ---------------------------------------------
+               Edit
+               --------------------------------------------- */
+
+        const editButton = document.getElementById("editLicenseBtn");
+
+        if (editButton) {
+          editButton.addEventListener("click", () => {
+            window.location.href = `license.html?edit=${encodeURIComponent(
+              license.licenseCode,
+            )}`;
+          });
+        }
+      }
+
+      /* =====================================================
+           MISSING LICENSE
+           ===================================================== */
+
+      function showMissingLicense() {
+        setText("breadcrumbLicenseCode", "Not Found");
+
+        setText("licenseCode", "LICENSE NOT FOUND");
+
+        setText("licenseName", "License not found");
+
+        setText("licenseDescription", "The requested license does not exist.");
+      }
+
+      /* =====================================================
+           INITIALIZATION
+           ===================================================== */
+
+      document.addEventListener("DOMContentLoaded", loadLicenseDetail);
+    </script>
+  </body>
+</html>

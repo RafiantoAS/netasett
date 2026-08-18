@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment Detail · NETASSET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="equipment.css" />
+    <link rel="stylesheet" href="equipment-detail.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub active">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar equipment-detail-topbar">
+          <div class="breadcrumb">
+            <a href="index.html">Asset Management</a>
+            <span> / </span>
+            <a href="equipment.html">Equipment</a>
+            <span> / </span>
+            <strong id="equipmentBreadcrumbCode">EQP-0001</strong>
+          </div>
+        </header>
+
+        <div class="content equipment-detail-page">
+          <div class="panel equipment-hero">
+            <div class="equipment-hero-main">
+              <div class="equipment-hero-avatar" id="equipmentAvatar">EQ</div>
+              <div class="detail-title-block">
+                <div class="eyebrow">EQUIPMENT</div>
+                <h1 id="equipmentDetailTitle">UPS Jakarta-01</h1>
+                <div class="detail-id-row">
+                  <span id="equipmentDetailCode" class="mono">EQP-0001</span>
+                  <span> · </span>
+                  <span>Physical Asset</span>
+                </div>
+                <div class="detail-badge-row">
+                  <span id="equipmentLifecycleBadge" class="badge badge-active"
+                    >Active</span
+                  >
+                  <span
+                    id="equipmentOperationalBadge"
+                    class="equipment-operational equipment-operational-up"
+                    >UP</span
+                  >
+                </div>
+              </div>
+              <div class="equipment-hero-actions">
+                <a class="btn btn-ghost" href="equipment.html">← Back</a>
+                <a
+                  id="equipmentEditButton"
+                  class="btn btn-primary"
+                  href="equipment.html"
+                  >✎ Edit</a
+                >
+              </div>
+            </div>
+            <div class="equipment-tabs">
+              <button
+                class="tab-btn active"
+                type="button"
+                data-tab="overview"
+                aria-selected="true"
+              >
+                Overview
+              </button>
+              <button
+                class="tab-btn"
+                type="button"
+                data-tab="placement"
+                aria-selected="false"
+              >
+                Placement
+              </button>
+              <button
+                class="tab-btn"
+                type="button"
+                data-tab="history"
+                aria-selected="false"
+              >
+                History
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="panel equipment-tab-panel active"
+            data-tab-panel="overview"
+          >
+            <div class="section-title">
+              <h2>Equipment Overview</h2>
+              <p>Basic identity and equipment information.</p>
+            </div>
+
+            <div class="equipment-detail-grid">
+              <div class="equipment-detail-card">
+                <div class="section-title">
+                  <h2>Identity</h2>
+                  <p>Asset master information.</p>
+                </div>
+                <div class="equipment-kv">
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Asset Code</span>
+                    <span id="kvAssetCode" class="equipment-kv-value mono"
+                      >EQP-0001</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Equipment Type</span>
+                    <span id="kvType" class="equipment-kv-value">UPS</span>
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Vendor</span>
+                    <span id="kvVendor" class="equipment-kv-value">APC</span>
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Model</span>
+                    <span id="kvModel" class="equipment-kv-value"
+                      >Smart-UPS SRT 3000</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Serial Number</span>
+                    <span id="kvSerial" class="equipment-kv-value mono"
+                      >ASRT-3000-001</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Provider</span>
+                    <span id="kvProvider" class="equipment-kv-value"
+                      >Internal</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="equipment-detail-card">
+                <div class="section-title">
+                  <h2>Operational</h2>
+                  <p>Current placement and operational state.</p>
+                </div>
+                <div class="equipment-kv">
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Location</span>
+                    <span id="kvLocation" class="equipment-kv-value"
+                      >POP Jakarta</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Rack</span>
+                    <span id="kvRack" class="equipment-kv-value mono"
+                      >Rack-01 · U1</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Lifecycle</span>
+                    <span id="kvLifecycle" class="equipment-kv-value"
+                      >Active</span
+                    >
+                  </div>
+                  <div class="equipment-kv-item">
+                    <span class="equipment-kv-label">Operational</span>
+                    <span id="kvOperational" class="equipment-kv-value"
+                      >UP</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="equipmentDescription" class="equipment-callout">
+              Primary power backup for network rack.
+            </div>
+          </div>
+
+          <div
+            class="panel equipment-tab-panel"
+            data-tab-panel="placement"
+            hidden
+          >
+            <div class="section-title">
+              <h2>Placement</h2>
+              <p>Physical placement of this equipment.</p>
+            </div>
+            <div class="equipment-kv">
+              <div class="equipment-kv-item">
+                <span class="equipment-kv-label">Location</span>
+                <span id="placementLocation" class="equipment-kv-value"
+                  >POP Jakarta</span
+                >
+              </div>
+              <div class="equipment-kv-item">
+                <span class="equipment-kv-label">Rack</span>
+                <span id="placementRack" class="equipment-kv-value mono"
+                  >Rack-01</span
+                >
+              </div>
+              <div class="equipment-kv-item">
+                <span class="equipment-kv-label">Rack Unit</span>
+                <span id="placementRackU" class="equipment-kv-value mono"
+                  >U1</span
+                >
+              </div>
+              <div class="equipment-kv-item">
+                <span class="equipment-kv-label">Asset Type</span>
+                <span class="equipment-kv-value">Physical Asset</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="panel equipment-tab-panel"
+            data-tab-panel="history"
+            hidden
+          >
+            <div class="section-title">
+              <h2>History</h2>
+              <p>Example lifecycle events for the prototype.</p>
+            </div>
+            <div class="equipment-history">
+              <div class="equipment-history-item">
+                <div class="equipment-history-title">Equipment updated</div>
+                <div class="equipment-history-meta">
+                  2026-08-11 08:00 · Network Engineer
+                </div>
+              </div>
+              <div class="equipment-history-item">
+                <div class="equipment-history-title">
+                  Equipment assigned to location
+                </div>
+                <div class="equipment-history-meta">
+                  2026-07-20 10:15 · Asset Administrator
+                </div>
+              </div>
+              <div class="equipment-history-item">
+                <div class="equipment-history-title">Equipment created</div>
+                <div class="equipment-history-meta">
+                  2026-06-12 09:30 · Asset Administrator
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+      const DETAIL_EQUIPMENT_KEY = "netasset_equipments_v1";
+
+      function detailEquipments() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(DETAIL_EQUIPMENT_KEY));
+          if (Array.isArray(saved) && saved.length) return saved;
+        } catch {}
+        return [
+          {
+            assetCode: "EQP-0001",
+            assetName: "UPS Jakarta-01",
+            equipmentType: "ups",
+            vendor: "APC",
+            model: "Smart-UPS SRT 3000",
+            serialNumber: "ASRT-3000-001",
+            location: "POP Jakarta",
+            rack: "Rack-01",
+            rackU: 1,
+            provider: "Internal",
+            lifecycleStatus: "active",
+            operationalStatus: "up",
+            description: "Primary power backup for network rack.",
+          },
+        ];
+      }
+
+      function detailType(type) {
+        return (
+          {
+            rack: "Rack",
+            ups: "UPS",
+            pdu: "PDU",
+            power: "Power",
+            other: "Other",
+          }[type] ||
+          type ||
+          "—"
+        );
+      }
+
+      function detailLifecycle(status) {
+        return (
+          { active: "Active", maintenance: "Maintenance", retired: "Retired" }[
+            status
+          ] ||
+          status ||
+          "—"
+        );
+      }
+
+      function detailBadge(status) {
+        return (
+          {
+            active: "badge-active",
+            maintenance: "badge-warning",
+            retired: "badge-inactive",
+          }[status] || "badge-neutral"
+        );
+      }
+
+      function detailOperational(status) {
+        return (
+          { up: "UP", degraded: "Degraded", down: "DOWN" }[status] ||
+          status ||
+          "—"
+        );
+      }
+
+      function loadEquipmentDetail() {
+        const code =
+          new URLSearchParams(location.search).get("asset") || "EQP-0001";
+        const item =
+          detailEquipments().find((x) => x.assetCode === code) ||
+          detailEquipments()[0];
+        if (!item) return;
+
+        document.getElementById("equipmentBreadcrumbCode").textContent =
+          item.assetCode;
+        document.getElementById("equipmentDetailTitle").textContent =
+          item.assetName;
+        document.getElementById("equipmentDetailCode").textContent =
+          item.assetCode;
+        document.getElementById("equipmentEditButton").href =
+          `equipment.html?edit=${encodeURIComponent(item.assetCode)}`;
+
+        document.getElementById("equipmentLifecycleBadge").className =
+          `badge ${detailBadge(item.lifecycleStatus)}`;
+        document.getElementById("equipmentLifecycleBadge").textContent =
+          detailLifecycle(item.lifecycleStatus);
+
+        document.getElementById("equipmentOperationalBadge").className =
+          `equipment-operational equipment-operational-${item.operationalStatus}`;
+        document.getElementById("equipmentOperationalBadge").textContent =
+          detailOperational(item.operationalStatus);
+
+        document.getElementById("kvAssetCode").textContent = item.assetCode;
+        document.getElementById("kvType").textContent = detailType(
+          item.equipmentType,
+        );
+        document.getElementById("kvVendor").textContent = item.vendor || "—";
+        document.getElementById("kvModel").textContent = item.model || "—";
+        document.getElementById("kvSerial").textContent =
+          item.serialNumber || "—";
+        document.getElementById("kvProvider").textContent =
+          item.provider || "—";
+        document.getElementById("kvLocation").textContent =
+          item.location || "—";
+        document.getElementById("kvRack").textContent =
+          `${item.rack || "—"}${item.rackU ? " · U" + item.rackU : ""}`;
+        document.getElementById("kvLifecycle").textContent = detailLifecycle(
+          item.lifecycleStatus,
+        );
+        document.getElementById("kvOperational").textContent =
+          detailOperational(item.operationalStatus);
+        document.getElementById("equipmentDescription").textContent =
+          item.description || "Tidak ada catatan equipment.";
+
+        document.getElementById("placementLocation").textContent =
+          item.location || "—";
+        document.getElementById("placementRack").textContent = item.rack || "—";
+        document.getElementById("placementRackU").textContent = item.rackU
+          ? `U${item.rackU}`
+          : "—";
+      }
+
+      function initEquipmentDetailTabs() {
+        const tabBar = document.querySelector(".equipment-tabs");
+        if (!tabBar) return;
+
+        const buttons = [...tabBar.querySelectorAll(".tab-btn")];
+        const panels = [
+          ...document.querySelectorAll(
+            ".equipment-detail-page > .equipment-tab-panel",
+          ),
+        ];
+
+        function activateTab(target) {
+          buttons.forEach((button) => {
+            const active = button.dataset.tab === target;
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-selected", active ? "true" : "false");
+          });
+
+          panels.forEach((panel) => {
+            const active = panel.dataset.tabPanel === target;
+            panel.classList.toggle("active", active);
+            panel.hidden = !active;
+          });
+        }
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () =>
+            activateTab(button.dataset.tab),
+          );
+        });
+
+        activateTab("overview");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        initEquipmentDetailTabs();
+        loadEquipmentDetail();
+      });
+    </script>
+  </body>
+</html>

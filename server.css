@@ -1,0 +1,1091 @@
+/* ==========================================================================
+   NETASSET — SERVER PAGE
+   ========================================================================== */
+
+/* ==========================================================================
+   SERVER PAGE
+   ========================================================================== */
+
+.server-page {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   SERVER STATS
+   ========================================================================== */
+
+.server-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ==========================================================================
+   SERVER TABLE
+   ========================================================================== */
+
+.server-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.server-name-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.server-code-inline {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 11px;
+
+  color: var(--text-muted);
+
+  letter-spacing: 0.02em;
+}
+
+.server-hostname {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 12px;
+
+  color: var(--text);
+}
+
+.server-icon {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   OPERATIONAL STATUS
+   ========================================================================== */
+
+.server-operational {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 6px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+.server-operational::before {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+}
+
+.server-operational-up {
+  color: var(--success);
+}
+
+.server-operational-degraded {
+  color: var(--warning);
+}
+
+.server-operational-down {
+  color: var(--danger);
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.server-page .empty-state {
+  padding: 60px 24px;
+}
+
+.server-page .empty-icon {
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--bg);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 13px;
+
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SERVER MODAL
+   ========================================================================== */
+
+.server-modal {
+  width: min(920px, calc(100vw - 32px));
+
+  max-width: 920px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  box-shadow: 0 24px 70px rgba(15, 24, 38, 0.2);
+}
+
+.server-modal::backdrop {
+  background: rgba(11, 18, 32, 0.56);
+}
+
+.server-modal form {
+  display: flex;
+
+  flex-direction: column;
+
+  max-height: min(90vh, 900px);
+}
+
+.server-modal .modal-body {
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   FORM SECTIONS
+   ========================================================================== */
+
+.form-section {
+  padding: 22px 26px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.form-section-head {
+  margin-bottom: 18px;
+}
+
+.form-section-head h4 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 15px;
+
+  color: var(--text);
+}
+
+.form-section-head p {
+  margin: 4px 0 0;
+
+  font-size: 12px;
+
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FORM GRID
+   ========================================================================== */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-field.full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.form-field .hint {
+  font-weight: 400;
+
+  color: var(--text-muted);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--accent);
+
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-field input:disabled {
+  background: var(--bg);
+
+  color: var(--text-muted);
+
+  cursor: not-allowed;
+}
+
+.form-field .mono-input {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   MODAL HEADER / FOOTER
+   ========================================================================== */
+
+.server-modal .modal-head {
+  padding: 20px 26px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.server-modal .modal-eyebrow {
+  margin-bottom: 4px;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+
+  color: var(--accent-dark);
+}
+
+.server-modal .modal-head h3 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 20px;
+}
+
+.server-modal .modal-foot {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 16px 26px;
+
+  border-top: 1px solid var(--border);
+
+  background: var(--surface);
+}
+
+/* ==========================================================================
+   DETAIL PAGE
+   ========================================================================== */
+
+.server-detail-page {
+  max-width: 1200px;
+}
+
+.server-detail-avatar {
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background: var(--bg);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: var(--accent-dark);
+}
+
+/* ==========================================================================
+   DETAIL GRID
+   ========================================================================== */
+
+.detail-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+}
+
+.detail-group {
+  padding: 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--surface);
+}
+
+.detail-group h3 {
+  margin: 0 0 16px;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 14px;
+
+  color: var(--text);
+}
+
+.detail-kv {
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 0.7fr)
+    minmax(0, 1.3fr);
+
+  gap: 14px;
+
+  padding: 11px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-kv:last-child {
+  border-bottom: none;
+}
+
+.detail-kv span {
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+.detail-kv strong {
+  color: var(--text);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  text-align: right;
+
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   RELATIONSHIPS
+   ========================================================================== */
+
+.relationship-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.relationship-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--surface);
+}
+
+.relationship-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: var(--accent-soft);
+
+  color: var(--accent-dark);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.relationship-card > div:last-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.relationship-label {
+  font-size: 11px;
+
+  color: var(--text-muted);
+}
+
+.relationship-card strong {
+  font-size: 13px;
+
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   TIMELINE
+   ========================================================================== */
+
+.server-detail-page .timeline {
+  position: relative;
+
+  margin-left: 8px;
+}
+
+.server-detail-page .timeline-item {
+  position: relative;
+
+  display: flex;
+
+  gap: 14px;
+
+  padding-bottom: 24px;
+}
+
+.server-detail-page .timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.server-detail-page .timeline-marker {
+  position: relative;
+
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  background: var(--surface);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 11px;
+
+  color: var(--accent-dark);
+
+  z-index: 1;
+}
+
+.server-detail-page .timeline-item:not(:last-child) .timeline-marker::after {
+  content: "";
+
+  position: absolute;
+
+  top: 28px;
+
+  left: 50%;
+
+  width: 1px;
+
+  height: 38px;
+
+  background: var(--border);
+
+  transform: translateX(-50%);
+}
+
+.server-detail-page .timeline-content {
+  flex: 1;
+
+  padding-top: 3px;
+}
+
+.server-detail-page .timeline-head {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.server-detail-page .timeline-action {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.server-detail-page .timeline-time {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+
+  color: var(--text-muted);
+
+  white-space: nowrap;
+}
+
+.server-detail-page .timeline-meta {
+  margin-top: 5px;
+
+  font-size: 11px;
+
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .server-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .relationship-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field.full {
+    grid-column: auto;
+  }
+
+  .server-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .server-modal {
+    width: calc(100vw - 16px);
+  }
+
+  .server-modal .modal-head,
+  .server-modal .modal-foot,
+  .form-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .detail-kv {
+    grid-template-columns: 1fr;
+
+    gap: 5px;
+  }
+
+  .detail-kv strong {
+    text-align: left;
+  }
+
+  .server-detail-page .timeline-head {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================================
+   NETASSET — SERVER PAGE UI POLISH
+   Scoped to server.html only
+   ========================================================================== */
+
+.server-page {
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 30px 36px 56px;
+  box-sizing: border-box;
+}
+
+.server-page .page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.server-page .page-header > div:first-child {
+  min-width: 0;
+}
+
+.server-page .page-header h1 {
+  margin: 4px 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(30px, 3vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.server-page .page-description {
+  max-width: 760px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.server-page .page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.server-page .server-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.server-page .server-stats .stat-card {
+  min-width: 0;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.server-page .server-stats .stat-label {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.server-page .server-stats .stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.server-page .server-stats .stat-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.server-page > .panel {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.server-page > .panel .panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.server-page > .panel .panel-head h2 {
+  margin: 0 0 4px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.server-page > .panel .table-result-count {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.server-page .table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.server-page .search-box {
+  width: min(340px, 34vw);
+}
+
+.server-page .filter-select {
+  min-width: 142px;
+}
+
+.server-page .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.server-page .table-wrap table {
+  width: 100%;
+  min-width: 1080px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.server-page .table-wrap th {
+  height: 46px;
+  padding: 0 18px;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.server-page .table-wrap td {
+  padding: 15px 18px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.server-page .table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.server-page .table-wrap tbody tr {
+  transition: background 120ms ease;
+}
+
+.server-page .table-wrap tbody tr:hover {
+  background: var(--bg);
+}
+
+.server-page .table-wrap th:nth-child(1),
+.server-page .table-wrap td:nth-child(1) {
+  width: 25%;
+  min-width: 245px;
+}
+
+.server-page .table-wrap th:nth-child(2),
+.server-page .table-wrap td:nth-child(2) {
+  width: 19%;
+  min-width: 185px;
+}
+
+.server-page .table-wrap th:nth-child(3),
+.server-page .table-wrap td:nth-child(3) {
+  width: 12%;
+  min-width: 130px;
+}
+
+.server-page .table-wrap th:nth-child(4),
+.server-page .table-wrap td:nth-child(4) {
+  width: 16%;
+  min-width: 155px;
+}
+
+.server-page .table-wrap th:nth-child(5),
+.server-page .table-wrap td:nth-child(5) {
+  width: 15%;
+  min-width: 170px;
+}
+
+.server-page .table-wrap th:nth-child(6),
+.server-page .table-wrap td:nth-child(6) {
+  width: 8%;
+  min-width: 100px;
+}
+
+.server-page .table-wrap th:nth-child(7),
+.server-page .table-wrap td:nth-child(7) {
+  width: 9%;
+  min-width: 110px;
+}
+
+.server-page .table-wrap th:last-child,
+.server-page .table-wrap td:last-child {
+  width: 94px;
+  min-width: 94px;
+  padding-left: 10px;
+  padding-right: 18px;
+}
+
+.server-page .server-name-cell {
+  min-width: 0;
+  gap: 12px;
+}
+
+.server-page .server-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.server-page .server-name-text {
+  min-width: 0;
+  gap: 4px;
+}
+
+.server-page .server-name-text strong,
+.server-page .server-name-text a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.server-page .server-code-inline {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.server-page .server-hostname {
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+
+.server-page .table-wrap td:nth-child(2),
+.server-page .table-wrap td:nth-child(4),
+.server-page .table-wrap td:nth-child(5) {
+  line-height: 1.45;
+}
+
+.server-page .badge,
+.server-page .server-operational {
+  white-space: nowrap;
+}
+
+.server-page .table-wrap td:last-child {
+  text-align: right;
+}
+
+.server-page .table-wrap .icon-btn {
+  width: 34px;
+  height: 34px;
+  margin-left: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-muted);
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
+}
+
+.server-page .table-wrap .icon-btn:hover {
+  background: var(--bg);
+  border-color: var(--border-strong);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.server-page .empty-state {
+  padding: 64px 24px;
+}
+
+@media (max-width: 1200px) {
+  .server-page {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .server-page .server-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .server-page .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px) {
+  .server-page {
+    padding: 22px 18px 42px;
+  }
+
+  .server-page .page-header {
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .server-page .page-header-actions {
+    width: 100%;
+  }
+
+  .server-page .page-header-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .server-page .server-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .server-page > .panel .panel-head {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .server-page .table-toolbar {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .server-page .search-box {
+    width: 100%;
+  }
+
+  .server-page .filter-select {
+    width: 100%;
+  }
+
+  .server-page .table-wrap th,
+  .server-page .table-wrap td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* FIX POSISI TOMBOL CLOSE MODAL SERVER */
+.server-modal .modal-head {
+  position: relative !important;
+}
+
+.server-modal .modal-close {
+  position: absolute !important;
+  left: auto !important;
+  right: 24px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 999 !important;
+}

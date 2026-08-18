@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Switches · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./switch.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub active">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- =========================================================
+       MAIN
+       ========================================================= -->
+
+      <div class="main">
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+          <div>
+            <div class="breadcrumb">
+              Asset Management
+              <span class="sep">/</span>
+              Physical Assets
+              <span class="sep">/</span>
+              Switch
+            </div>
+
+            <h1 class="page-title">Switches</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="btn btn-ghost" onclick="toggleSidebar()">☰</button>
+
+            <button class="btn btn-primary" onclick="openSwitchAdd()">
+              + Add Switch
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="content">
+          <div class="panel">
+            <!-- TOOLBAR -->
+
+            <!-- TOOLBAR -->
+            <div class="table-toolbar switch-toolbar">
+              <!-- SEARCH -->
+              <div class="switch-search">
+                <svg
+                  class="switch-search-icon"
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
+                </svg>
+
+                <input
+                  id="switchSearch"
+                  type="text"
+                  placeholder="Cari asset code, hostname, IP, vendor..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- FILTERS -->
+              <div class="switch-filters">
+                <select id="switchRoleFilter" class="filter-select">
+                  <option value="all">Semua Role</option>
+                  <option value="Core">Core</option>
+                  <option value="Distribution">Distribution</option>
+                  <option value="Access">Access</option>
+                </select>
+
+                <select id="switchStatusFilter" class="filter-select">
+                  <option value="all">Semua Lifecycle</option>
+                  <option value="active">Active</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="planned">Planned</option>
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SUMMARY -->
+
+            <div class="switch-summary">
+              <div class="switch-summary-item">
+                <span class="switch-summary-label"> Total Switch </span>
+
+                <strong class="switch-summary-value" id="switchTotalCount">
+                  0
+                </strong>
+              </div>
+
+              <div class="switch-summary-item">
+                <span class="switch-summary-label"> Active </span>
+
+                <strong class="switch-summary-value" id="switchActiveCount">
+                  0
+                </strong>
+              </div>
+
+              <div class="switch-summary-item">
+                <span class="switch-summary-label"> Maintenance </span>
+
+                <strong
+                  class="switch-summary-value"
+                  id="switchMaintenanceCount"
+                >
+                  0
+                </strong>
+              </div>
+
+              <div class="switch-summary-item">
+                <span class="switch-summary-label"> Retired </span>
+
+                <strong class="switch-summary-value" id="switchRetiredCount">
+                  0
+                </strong>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="switch-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Switch</th>
+
+                    <th>Hostname / Role</th>
+
+                    <th>Management IP</th>
+
+                    <th>Location</th>
+
+                    <th>Provider</th>
+
+                    <th>Lifecycle</th>
+
+                    <th>Operational</th>
+
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody id="switchTableBody"></tbody>
+              </table>
+
+              <div
+                class="empty-state"
+                id="switchEmptyState"
+                style="display: none"
+              >
+                <h3>No Switch Found</h3>
+
+                <p>Tidak ada switch yang sesuai dengan search atau filter.</p>
+              </div>
+            </div>
+
+            <!-- FOOTER -->
+
+            <div class="table-footer">
+              <span id="switchResultCount"> 0 switches </span>
+
+              <button
+                class="btn btn-ghost btn-sm"
+                type="button"
+                onclick="resetSwitchDemoData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     SWITCH MODAL
+     ========================================================= -->
+
+    <dialog class="modal" id="switchModal">
+      <form
+        id="switchForm"
+        method="dialog"
+        onsubmit="saveSwitchFromForm(event)"
+      >
+        <div class="modal-head">
+          <h3 id="switchModalTitle">Add Switch</h3>
+
+          <button
+            type="button"
+            class="modal-close"
+            onclick="closeModal('switchModal')"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <!-- BASIC INFORMATION -->
+
+          <div class="form-section-label">Basic Information</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label>
+                Asset Code
+                <span class="hint"> (auto-generated) </span>
+              </label>
+
+              <input class="mono-input" type="text" name="assetCode" disabled />
+            </div>
+
+            <div class="form-field">
+              <label> Asset Name </label>
+
+              <input
+                type="text"
+                name="assetName"
+                placeholder="cth. Core Switch Jakarta-01"
+                required
+              />
+            </div>
+
+            <div class="form-field full">
+              <label> Hostname </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="hostname"
+                placeholder="core-sw-jkt-01"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label> Vendor </label>
+
+              <select name="vendor" required>
+                <option value="">Pilih vendor</option>
+
+                <option>Cisco</option>
+
+                <option>Aruba</option>
+
+                <option>Juniper</option>
+
+                <option>Huawei</option>
+
+                <option>MikroTik</option>
+
+                <option>HPE</option>
+
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Model </label>
+
+              <input
+                type="text"
+                name="model"
+                placeholder="Model switch"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label> Serial Number </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="serialNumber"
+                placeholder="Serial number"
+              />
+            </div>
+
+            <div class="form-field">
+              <label> Part Number </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="partNumber"
+                placeholder="Part number"
+              />
+            </div>
+          </div>
+
+          <!-- NETWORK -->
+
+          <div class="form-section-label">Network</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Management IP </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="managementIp"
+                placeholder="10.10.10.1"
+              />
+            </div>
+
+            <div class="form-field">
+              <label> MAC Address </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="macAddress"
+                placeholder="AA:BB:CC:DD:EE:FF"
+              />
+            </div>
+
+            <div class="form-field">
+              <label> OS </label>
+
+              <select name="os">
+                <option value="">Pilih OS</option>
+
+                <option>IOS</option>
+
+                <option>IOS XE</option>
+
+                <option>Junos</option>
+
+                <option>ArubaOS</option>
+
+                <option>VRP</option>
+
+                <option>RouterOS</option>
+
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> OS Version </label>
+
+              <input
+                class="mono-input"
+                type="text"
+                name="osVersion"
+                placeholder="17.9.4"
+              />
+            </div>
+
+            <div class="form-field full">
+              <label> Switch Role </label>
+
+              <select name="switchRole" required>
+                <option value="">Pilih role</option>
+
+                <option>Core</option>
+
+                <option>Distribution</option>
+
+                <option>Access</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- LOCATION -->
+
+          <div class="form-section-label">Location</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Location </label>
+
+              <select name="location">
+                <option value="">Pilih location</option>
+
+                <option>POP Jakarta</option>
+
+                <option>POP Jakarta Selatan</option>
+
+                <option>POP Bandung</option>
+
+                <option>DC Jakarta</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Rack </label>
+
+              <select name="rack">
+                <option value="">Pilih rack</option>
+
+                <option>Rack-01</option>
+
+                <option>Rack-02</option>
+
+                <option>Rack-03</option>
+
+                <option>Rack-04</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Rack U </label>
+
+              <input
+                class="mono-input"
+                type="number"
+                name="rackU"
+                min="1"
+                max="48"
+                placeholder="20"
+              />
+            </div>
+          </div>
+
+          <!-- PROVIDER -->
+
+          <div class="form-section-label">Provider</div>
+
+          <div class="form-grid">
+            <div class="form-field full">
+              <label> Provider </label>
+
+              <select name="provider">
+                <option value="">Pilih provider</option>
+
+                <option>NAP-A</option>
+
+                <option>NAP-B</option>
+
+                <option>NAP-C</option>
+
+                <option>PT Maju Jaya Telekomunikasi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- STATUS -->
+
+          <div class="form-section-label">Status</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Lifecycle Status </label>
+
+              <select name="lifecycleStatus" required>
+                <option value="active">Active</option>
+
+                <option value="planned">Planned</option>
+
+                <option value="maintenance">Maintenance</option>
+
+                <option value="retired">Retired</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Operational Status </label>
+
+              <select name="operationalStatus" required>
+                <option value="up">UP</option>
+
+                <option value="down">DOWN</option>
+
+                <option value="degraded">Degraded</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- RELATIONSHIPS -->
+
+          <div class="form-section-label">Relationships</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label> Upstream </label>
+
+              <select name="upstream">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label> Downstream </label>
+
+              <select name="downstream">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+
+            <div class="form-field full">
+              <label> Connected To </label>
+
+              <select name="connectedTo">
+                <option value="">+ Select Asset</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="switch-form-note">
+            Asset Code dan Management IP harus unique. Switch retired tidak
+            boleh memiliki relationship aktif.
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            onclick="closeModal('switchModal')"
+          >
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary" id="switchSubmitLabel">
+            Save Switch
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+      <span class="dot"></span>
+
+      <span class="toast-text"> Saved </span>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

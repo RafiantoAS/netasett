@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Server Detail · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="server.css" />
+
+    <link rel="stylesheet" href="server-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ==============================================================
+           SIDEBAR
+           ============================================================== -->
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub active">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ==============================================================
+           MAIN
+           ============================================================== -->
+
+      <main class="main">
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+          <div class="breadcrumb">
+            <a href="index.html"> Asset Management </a>
+
+            <span> / </span>
+
+            <a href="server.html"> Servers </a>
+
+            <span> / </span>
+
+            <strong id="serverDetailBreadcrumbCode" class="mono">
+              SRV-0001
+            </strong>
+          </div>
+        </header>
+
+        <!-- ============================================================
+             CONTENT
+             ============================================================ -->
+
+        <div class="page-content server-detail-page">
+          <!-- ==========================================================
+               HEADER CARD
+               ========================================================== -->
+
+          <div class="detail-header-card">
+            <div class="detail-header-main">
+              <div class="detail-avatar server-detail-avatar">SV</div>
+
+              <div class="detail-title-block">
+                <div class="eyebrow">SERVER</div>
+
+                <h1 id="serverDetailTitle">
+                  Core Application Server Jakarta-01
+                </h1>
+
+                <div class="detail-id-row">
+                  <span id="serverDetailCode" class="mono"> SRV-0001 </span>
+
+                  <span> · </span>
+
+                  <span> Physical Asset </span>
+                </div>
+
+                <div class="detail-badge-row">
+                  <span
+                    id="serverDetailLifecycleBadge"
+                    class="badge badge-active"
+                  >
+                    Active
+                  </span>
+
+                  <span
+                    id="serverDetailOperationalBadge"
+                    class="server-operational server-operational-up"
+                  >
+                    UP
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-header-actions">
+              <a
+                id="editServerDetailBtn"
+                href="server.html?edit=SRV-0001"
+                class="btn btn-ghost"
+              >
+                ✎ Edit
+              </a>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               TABS
+               ========================================================== -->
+
+          <div class="detail-tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+
+            <button class="tab-btn" data-tab="compute">Compute</button>
+
+            <button class="tab-btn" data-tab="network">Network</button>
+
+            <button class="tab-btn" data-tab="relationships">
+              Relationships
+            </button>
+
+            <button class="tab-btn" data-tab="history">History</button>
+          </div>
+
+          <!-- ==========================================================
+               OVERVIEW
+               ========================================================== -->
+
+          <div class="panel tab-panel active" data-tab-panel="overview">
+            <div class="section-title">
+              <h2>Server Overview</h2>
+
+              <p>Basic identity, hardware and placement information.</p>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-group">
+                <h3>Basic Information</h3>
+
+                <div class="detail-kv">
+                  <span> Asset Code </span>
+
+                  <strong id="serverDetailAssetCode" class="mono">
+                    SRV-0001
+                  </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Asset Name </span>
+
+                  <strong id="serverDetailAssetName">
+                    Core Application Server Jakarta-01
+                  </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Hostname </span>
+
+                  <strong id="serverDetailHostname" class="mono">
+                    app-jkt-01
+                  </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Vendor </span>
+
+                  <strong id="serverDetailVendor"> Dell </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Model </span>
+
+                  <strong id="serverDetailModel"> PowerEdge R750 </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Serial Number </span>
+
+                  <strong id="serverDetailSerial" class="mono">
+                    DL-R750-001
+                  </strong>
+                </div>
+              </div>
+
+              <div class="detail-group">
+                <h3>Placement</h3>
+
+                <div class="detail-kv">
+                  <span> Location </span>
+
+                  <strong id="serverDetailLocation"> POP Jakarta </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Rack </span>
+
+                  <strong id="serverDetailRack"> Rack-05 </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Rack U </span>
+
+                  <strong id="serverDetailRackU" class="mono"> U20 </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Provider </span>
+
+                  <strong id="serverDetailProvider"> NAP-A </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Lifecycle </span>
+
+                  <strong id="serverDetailLifecycle"> Active </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Operational </span>
+
+                  <strong id="serverDetailOperational"> UP </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               COMPUTE
+               ========================================================== -->
+
+          <div class="panel tab-panel" data-tab-panel="compute">
+            <div class="section-title">
+              <h2>Compute Resources</h2>
+
+              <p>Processor, memory and storage configuration.</p>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-group">
+                <h3>Processor</h3>
+
+                <div class="detail-kv">
+                  <span> CPU </span>
+
+                  <strong id="serverDetailCpu"> Intel Xeon Gold 6338 </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> CPU Core </span>
+
+                  <strong id="serverDetailCpuCores" class="mono">
+                    32 Core
+                  </strong>
+                </div>
+              </div>
+
+              <div class="detail-group">
+                <h3>Memory & Storage</h3>
+
+                <div class="detail-kv">
+                  <span> RAM </span>
+
+                  <strong id="serverDetailRam"> 128 GB </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> Storage </span>
+
+                  <strong id="serverDetailStorage"> 3.84 TB </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> RAID </span>
+
+                  <strong id="serverDetailRaid"> RAID 10 </strong>
+                </div>
+              </div>
+
+              <div class="detail-group">
+                <h3>Operating System</h3>
+
+                <div class="detail-kv">
+                  <span> Operating System </span>
+
+                  <strong id="serverDetailOs"> Ubuntu Server </strong>
+                </div>
+
+                <div class="detail-kv">
+                  <span> OS Version </span>
+
+                  <strong id="serverDetailOsVersion"> 24.04 LTS </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               NETWORK
+               ========================================================== -->
+
+          <div class="panel tab-panel" data-tab-panel="network">
+            <div class="section-title">
+              <h2>Network</h2>
+
+              <p>Server management network information.</p>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-group">
+                <h3>Management</h3>
+
+                <div class="detail-kv">
+                  <span> Management IP </span>
+
+                  <strong id="serverDetailManagementIp" class="mono">
+                    10.10.100.10
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               RELATIONSHIPS
+               ========================================================== -->
+
+          <div class="panel tab-panel" data-tab-panel="relationships">
+            <div class="section-title">
+              <h2>Relationships</h2>
+
+              <p>Resources and infrastructure connected to this server.</p>
+            </div>
+
+            <div class="relationship-grid">
+              <div class="relationship-card">
+                <div class="relationship-icon">VM</div>
+
+                <div>
+                  <span class="relationship-label"> Hosted VM </span>
+
+                  <strong id="serverDetailHostedVm" class="mono">
+                    VM-0001
+                  </strong>
+                </div>
+              </div>
+
+              <div class="relationship-card">
+                <div class="relationship-icon">↔</div>
+
+                <div>
+                  <span class="relationship-label"> Connected To </span>
+
+                  <strong id="serverDetailConnectedTo" class="mono">
+                    SW-0001
+                  </strong>
+                </div>
+              </div>
+
+              <div class="relationship-card">
+                <div class="relationship-icon">ST</div>
+
+                <div>
+                  <span class="relationship-label"> Storage </span>
+
+                  <strong id="serverDetailStorageRelation" class="mono">
+                    STG-0001
+                  </strong>
+                </div>
+              </div>
+
+              <div class="relationship-card">
+                <div class="relationship-icon">NW</div>
+
+                <div>
+                  <span class="relationship-label"> Network </span>
+
+                  <strong id="serverDetailNetwork" class="mono">
+                    VLAN-100
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               HISTORY
+               ========================================================== -->
+
+          <div class="panel tab-panel" data-tab-panel="history">
+            <div class="section-title">
+              <h2>History</h2>
+
+              <p>Audit trail for this server.</p>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item event-update">
+                <div class="timeline-marker">↻</div>
+
+                <div class="timeline-content">
+                  <div class="timeline-head">
+                    <span class="timeline-action">
+                      Server configuration updated
+                    </span>
+
+                    <span class="timeline-time"> 2026-08-10 14:20 </span>
+                  </div>
+
+                  <div class="timeline-meta">
+                    oleh
+                    <strong> Network Engineer </strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item event-create">
+                <div class="timeline-marker">+</div>
+
+                <div class="timeline-content">
+                  <div class="timeline-head">
+                    <span class="timeline-action"> Server dibuat </span>
+
+                    <span class="timeline-time"> 2026-07-18 09:32 </span>
+                  </div>
+
+                  <div class="timeline-meta">
+                    oleh
+                    <strong> Network Administrator </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+      <span class="dot"></span>
+
+      <span class="toast-text"> Saved </span>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASN Detail · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="asn-detail.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub active" aria-current="page">
+                ASN
+              </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group" open>
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar asn-detail-topbar">
+          <div>
+            <div class="breadcrumb">
+              <a href="asn.html">Network Resources</a>
+              <span> / </span>
+              <a href="asn.html">ASN</a>
+              <span> / </span>
+              <strong id="breadcrumbCode">ASN-0001</strong>
+            </div>
+            <h1 class="page-title">ASN Detail</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="btn btn-secondary" type="button" onclick="goBack()">
+              ← Back
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="editCurrent()"
+            >
+              ✎ Edit
+            </button>
+          </div>
+        </header>
+
+        <div class="content asn-detail-page">
+          <section class="resource-hero">
+            <div class="hero-main">
+              <div class="resource-icon-large">AS</div>
+
+              <div class="hero-copy">
+                <span class="resource-eyebrow">AUTONOMOUS SYSTEM</span>
+                <h2 id="heroName">Jakarta Network</h2>
+
+                <div class="hero-meta">
+                  <span id="heroAsn" class="mono-text">AS64501</span>
+                  <span>·</span>
+                  <span>Network Resource</span>
+                </div>
+
+                <div class="hero-status">
+                  <span id="heroStatus" class="status-badge status-active">
+                    <span class="status-dot"></span>Active
+                  </span>
+                  <span id="heroType" class="type-badge">Provider</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <nav class="detail-tabs" role="tablist" aria-label="ASN detail tabs">
+            <button class="detail-tab active" type="button" data-tab="overview">
+              Overview
+            </button>
+            <button class="detail-tab" type="button" data-tab="network">
+              Network
+            </button>
+            <button class="detail-tab" type="button" data-tab="relationships">
+              Relationships
+            </button>
+            <button class="detail-tab" type="button" data-tab="history">
+              History
+            </button>
+          </nav>
+
+          <section class="detail-panel active" id="tab-overview">
+            <div class="panel-heading">
+              <div>
+                <h2>Overview</h2>
+                <p>ASN identity, ownership and operational information.</p>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <article class="info-card">
+                <header>
+                  <h3>Identity</h3>
+                  <p>Autonomous System master information.</p>
+                </header>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span>ASN</span>
+                    <strong id="overviewAsn" class="mono-text">AS64501</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>ASN CODE</span>
+                    <strong id="overviewCode" class="mono-text"
+                      >ASN-0001</strong
+                    >
+                  </div>
+                  <div class="kv-item">
+                    <span>NAME</span>
+                    <strong id="overviewName">Jakarta Network</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>TYPE</span>
+                    <strong id="overviewType">Provider</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>ORGANIZATION</span>
+                    <strong id="overviewOrganization"
+                      >NETASSET Indonesia</strong
+                    >
+                  </div>
+                  <div class="kv-item">
+                    <span>PROVIDER</span>
+                    <strong id="overviewProvider">NAP-A</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="info-card">
+                <header>
+                  <h3>Operational</h3>
+                  <p>Current network placement and lifecycle state.</p>
+                </header>
+
+                <div class="kv-grid">
+                  <div class="kv-item">
+                    <span>LOCATION</span>
+                    <strong id="overviewLocation">POP Jakarta</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>STATUS</span>
+                    <strong id="overviewStatus">Active</strong>
+                  </div>
+                  <div class="kv-item">
+                    <span>IP PREFIX</span>
+                    <strong id="overviewPrefix" class="mono-text"
+                      >103.100.0.0/24</strong
+                    >
+                  </div>
+                  <div class="kv-item">
+                    <span>ROUTING ROLE</span>
+                    <strong id="overviewRoutingRole"
+                      >External / Provider</strong
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="description-card">
+              <span>DESCRIPTION</span>
+              <p id="overviewDescription">
+                Primary network ASN for Jakarta operations.
+              </p>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-network" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Network</h2>
+                <p>
+                  Routing and IP prefix information associated with this ASN.
+                </p>
+              </div>
+            </div>
+
+            <div class="network-summary">
+              <div class="network-stat">
+                <span>ASN</span>
+                <strong id="networkAsn" class="mono-text">AS64501</strong>
+              </div>
+              <div class="network-stat">
+                <span>PRIMARY PREFIX</span>
+                <strong id="networkPrefix" class="mono-text"
+                  >103.100.0.0/24</strong
+                >
+              </div>
+              <div class="network-stat">
+                <span>TYPE</span>
+                <strong id="networkType">Provider</strong>
+              </div>
+              <div class="network-stat">
+                <span>LOCATION</span>
+                <strong id="networkLocation">POP Jakarta</strong>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="table-card-header">
+                <h3>Associated Prefixes</h3>
+                <span>1 prefix</span>
+              </div>
+
+              <div class="associated-prefix">
+                <div>
+                  <span class="prefix-label">PRIMARY</span>
+                  <strong id="associatedPrefix" class="mono-text"
+                    >103.100.0.0/24</strong
+                  >
+                </div>
+                <span class="status-badge status-active">
+                  <span class="status-dot"></span>Active
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-relationships" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Relationships</h2>
+                <p>Resources and network objects associated with this ASN.</p>
+              </div>
+            </div>
+
+            <div class="relationship-grid">
+              <article class="relationship-card">
+                <span class="relationship-icon">IP</span>
+                <div>
+                  <strong>IP Prefix / Pool</strong>
+                  <p id="relationshipPrefix">103.100.0.0/24</p>
+                </div>
+                <a href="ip-prefix-pools.html">View</a>
+              </article>
+
+              <article class="relationship-card">
+                <span class="relationship-icon">VL</span>
+                <div>
+                  <strong>VLAN</strong>
+                  <p>Related Layer 2 resources</p>
+                </div>
+                <span class="relationship-muted">0 linked</span>
+              </article>
+
+              <article class="relationship-card">
+                <span class="relationship-icon">AS</span>
+                <div>
+                  <strong>Network Relationships</strong>
+                  <p>Peering / transit relationships</p>
+                </div>
+                <span class="relationship-muted">0 linked</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="detail-panel" id="tab-history" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>History</h2>
+                <p>Audit timeline for changes to this ASN.</p>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>ASN record created</strong>
+                  <p>Initial ASN master data was created in NETASSET.</p>
+                  <small>Demo data</small>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Prefix associated</strong>
+                  <p id="historyPrefix">
+                    103.100.0.0/24 was associated with this ASN.
+                  </p>
+                  <small>Demo data</small>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="network-resources.js"></script>
+
+    <script>
+      const STORAGE_KEY = "netasset_asns_v1";
+
+      const FALLBACK = {
+        code: "ASN-0001",
+        asn: 64501,
+        name: "Jakarta Network",
+        organization: "NETASSET Indonesia",
+        type: "provider",
+        prefix: "103.100.0.0/24",
+        location: "POP Jakarta",
+        provider: "NAP-A",
+        status: "active",
+        description: "Primary network ASN for Jakarta operations.",
+      };
+
+      let currentItem = null;
+
+      function loadItem() {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code") || "ASN-0001";
+
+        try {
+          const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          return data.find((item) => item.code === code) || FALLBACK;
+        } catch {
+          return FALLBACK;
+        }
+      }
+
+      function titleCase(value) {
+        if (!value) return "—";
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            active: "status-active",
+            reserved: "status-reserved",
+            deprecated: "status-deprecated",
+          }[status] || "status-active"
+        );
+      }
+
+      function statusLabel(status) {
+        return (
+          {
+            active: "Active",
+            reserved: "Reserved",
+            deprecated: "Deprecated",
+          }[status] || status
+        );
+      }
+
+      function routingRole(type) {
+        return (
+          {
+            provider: "External / Provider",
+            customer: "Customer",
+            private: "Private / Internal",
+          }[type] || titleCase(type)
+        );
+      }
+
+      function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value ?? "—";
+      }
+
+      function render() {
+        currentItem = loadItem();
+
+        const item = currentItem;
+        const asnText = `AS${item.asn}`;
+
+        document.title = `${item.name} · ASN · NETASSET`;
+
+        setText("breadcrumbCode", item.code);
+        setText("heroName", item.name);
+        setText("heroAsn", asnText);
+        setText("heroType", titleCase(item.type));
+
+        const heroStatus = document.getElementById("heroStatus");
+        heroStatus.className = `status-badge ${statusClass(item.status)}`;
+        heroStatus.innerHTML = `<span class="status-dot"></span>${statusLabel(item.status)}`;
+
+        setText("overviewAsn", asnText);
+        setText("overviewCode", item.code);
+        setText("overviewName", item.name);
+        setText("overviewType", titleCase(item.type));
+        setText("overviewOrganization", item.organization);
+        setText("overviewProvider", item.provider);
+        setText("overviewLocation", item.location);
+        setText("overviewStatus", statusLabel(item.status));
+        setText("overviewPrefix", item.prefix);
+        setText("overviewRoutingRole", routingRole(item.type));
+        setText("overviewDescription", item.description);
+
+        setText("networkAsn", asnText);
+        setText("networkPrefix", item.prefix);
+        setText("networkType", titleCase(item.type));
+        setText("networkLocation", item.location);
+        setText("associatedPrefix", item.prefix);
+        setText("relationshipPrefix", item.prefix);
+        setText(
+          "historyPrefix",
+          `${item.prefix} was associated with this ASN.`,
+        );
+      }
+
+      function activateTab(name) {
+        document.querySelectorAll(".detail-tab").forEach((tab) => {
+          const active = tab.dataset.tab === name;
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        document.querySelectorAll(".detail-panel").forEach((panel) => {
+          panel.hidden = panel.id !== `tab-${name}`;
+          panel.classList.toggle("active", panel.id === `tab-${name}`);
+        });
+      }
+
+      document.querySelectorAll(".detail-tab").forEach((tab) => {
+        tab.addEventListener("click", () => activateTab(tab.dataset.tab));
+      });
+
+      function goBack() {
+        window.location.href = "asn.html";
+      }
+
+      function editCurrent() {
+        if (!currentItem) return;
+
+        window.location.href = `asn.html?edit=${encodeURIComponent(currentItem.code)}`;
+      }
+
+      render();
+    </script>
+  </body>
+</html>

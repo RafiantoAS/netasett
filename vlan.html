@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VLAN · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="vlan.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group">
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group" open>
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub active">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="breadcrumb">
+              <span>Network Resources</span><span> / </span
+              ><strong>VLAN</strong>
+            </div>
+            <h1 class="page-title">VLANs</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              onclick="resetVlanData()"
+            >
+              ↻
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openAddModal()"
+            >
+              + Add VLAN
+            </button>
+          </div>
+        </header>
+
+        <div class="content vlan-page">
+          <section class="vlan-list-card">
+            <div class="list-toolbar">
+              <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="Cari VLAN ID, name, description, network..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group">
+                <select id="statusFilter" aria-label="Filter Status">
+                  <option value="all">Semua Status</option>
+                  <option value="active">Active</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+
+                <select id="scopeFilter" aria-label="Filter Scope">
+                  <option value="all">Semua Scope</option>
+                  <option value="management">Management</option>
+                  <option value="customer">Customer</option>
+                  <option value="infrastructure">Infrastructure</option>
+                  <option value="service">Service</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-label">TOTAL VLAN</span>
+                <strong id="totalStat">5</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">ACTIVE</span>
+                <strong id="activeStat">3</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">RESERVED</span>
+                <strong id="reservedStat">1</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">DEPRECATED</span>
+                <strong id="deprecatedStat">1</strong>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="vlan-table">
+                <thead>
+                  <tr>
+                    <th>VLAN</th>
+                    <th>NAME / PURPOSE</th>
+                    <th>NETWORK</th>
+                    <th>SCOPE</th>
+                    <th>LOCATION</th>
+                    <th>PROVIDER</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="vlanTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="list-footer">
+              <span id="resultCount">5 of 5 VLANs shown</span>
+              <button
+                type="button"
+                class="btn btn-reset"
+                onclick="resetVlanData()"
+              >
+                Reset Demo Data
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="vlanModal" class="vlan-modal">
+      <form method="dialog" id="vlanForm" class="vlan-form">
+        <header class="modal-header">
+          <div>
+            <span class="modal-eyebrow">NETWORK RESOURCE</span>
+            <h2 id="modalTitle">Add VLAN</h2>
+          </div>
+          <button
+            type="button"
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="modal-body">
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>VLAN Information</h3>
+              <p>Identity and Layer 2 network information.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>VLAN ID <b>*</b></span>
+                <input
+                  id="formVlanId"
+                  type="number"
+                  min="1"
+                  max="4094"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>VLAN Name <b>*</b></span>
+                <input
+                  id="formName"
+                  type="text"
+                  placeholder="Management VLAN"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span>Scope <b>*</b></span>
+                <select id="formScope" required>
+                  <option value="management">Management</option>
+                  <option value="customer">Customer</option>
+                  <option value="infrastructure">Infrastructure</option>
+                  <option value="service">Service</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Status <b>*</b></span>
+                <select id="formStatus" required>
+                  <option value="active">Active</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="deprecated">Deprecated</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-title">
+              <h3>Network</h3>
+              <p>Associated IP network and gateway.</p>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Network / Prefix</span>
+                <input
+                  id="formNetwork"
+                  type="text"
+                  placeholder="10.10.10.0/24"
+                />
+              </label>
+
+              <label class="field">
+                <span>Gateway</span>
+                <input id="formGateway" type="text" placeholder="10.10.10.1" />
+              </label>
+
+              <label class="field">
+                <span>Location</span>
+                <select id="formLocation">
+                  <option value="POP Jakarta">POP Jakarta</option>
+                  <option value="POP Jakarta Selatan">
+                    POP Jakarta Selatan
+                  </option>
+                  <option value="POP Bandung">POP Bandung</option>
+                  <option value="Data Center Jakarta">
+                    Data Center Jakarta
+                  </option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Provider</span>
+                <select id="formProvider">
+                  <option value="NAP-A">NAP-A</option>
+                  <option value="NAP-B">NAP-B</option>
+                  <option value="NAP-C">NAP-C</option>
+                  <option value="Internal">Internal</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span>Description</span>
+                <textarea
+                  id="formDescription"
+                  rows="3"
+                  placeholder="Describe the purpose of this VLAN..."
+                ></textarea>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">Save VLAN</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="./network-resources.js"></script>
+
+    <script>
+      const STORAGE_KEY = "netasset_vlans_v1";
+
+      const DEMO_DATA = [
+        {
+          code: "VLAN-0001",
+          vlanId: 10,
+          name: "Management",
+          network: "10.10.10.0/24",
+          gateway: "10.10.10.1",
+          scope: "management",
+          location: "POP Jakarta",
+          provider: "NAP-A",
+          status: "active",
+          description: "Network management for infrastructure devices.",
+        },
+        {
+          code: "VLAN-0002",
+          vlanId: 20,
+          name: "Customer Internet",
+          network: "10.20.20.0/24",
+          gateway: "10.20.20.1",
+          scope: "customer",
+          location: "POP Jakarta",
+          provider: "NAP-A",
+          status: "active",
+          description: "Customer internet access VLAN.",
+        },
+        {
+          code: "VLAN-0003",
+          vlanId: 30,
+          name: "Infrastructure",
+          network: "10.30.30.0/24",
+          gateway: "10.30.30.1",
+          scope: "infrastructure",
+          location: "POP Jakarta Selatan",
+          provider: "NAP-B",
+          status: "active",
+          description: "Internal infrastructure services.",
+        },
+        {
+          code: "VLAN-0004",
+          vlanId: 40,
+          name: "Transit Service",
+          network: "10.40.40.0/24",
+          gateway: "10.40.40.1",
+          scope: "service",
+          location: "POP Bandung",
+          provider: "NAP-C",
+          status: "reserved",
+          description: "Reserved VLAN for transit service.",
+        },
+        {
+          code: "VLAN-0005",
+          vlanId: 999,
+          name: "Legacy Network",
+          network: "10.99.99.0/24",
+          gateway: "10.99.99.1",
+          scope: "infrastructure",
+          location: "POP Jakarta",
+          provider: "NAP-B",
+          status: "deprecated",
+          description: "Legacy VLAN scheduled for retirement.",
+        },
+      ];
+
+      let vlanData = loadData();
+      let editingCode = null;
+
+      function loadData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+          return structuredClone(DEMO_DATA);
+        }
+        try {
+          return JSON.parse(raw);
+        } catch {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(DEMO_DATA));
+          return structuredClone(DEMO_DATA);
+        }
+      }
+
+      function saveData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(vlanData));
+      }
+
+      function statusLabel(status) {
+        return (
+          { active: "Active", reserved: "Reserved", deprecated: "Deprecated" }[
+            status
+          ] || status
+        );
+      }
+
+      function statusClass(status) {
+        return (
+          {
+            active: "status-active",
+            reserved: "status-reserved",
+            deprecated: "status-deprecated",
+          }[status] || ""
+        );
+      }
+
+      function scopeLabel(scope) {
+        return scope.charAt(0).toUpperCase() + scope.slice(1);
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById("vlanTableBody");
+        const search = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+        const status = document.getElementById("statusFilter").value;
+        const scope = document.getElementById("scopeFilter").value;
+
+        const filtered = vlanData.filter((item) => {
+          const haystack = [
+            item.code,
+            item.vlanId,
+            item.name,
+            item.network,
+            item.gateway,
+            item.scope,
+            item.location,
+            item.provider,
+            item.description,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return (
+            (!search || haystack.includes(search)) &&
+            (status === "all" || item.status === status) &&
+            (scope === "all" || item.scope === scope)
+          );
+        });
+
+        tbody.innerHTML = filtered
+          .map(
+            (item) => `
+    <tr>
+      <td>
+        <div class="vlan-cell">
+          <div class="resource-icon">VL</div>
+          <div>
+            <strong class="mono-text">VLAN ${item.vlanId}</strong>
+            <span>${escapeHtml(item.code)}</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="name-cell">
+          <strong>${escapeHtml(item.name)}</strong>
+          <span>${escapeHtml(item.description || "—")}</span>
+        </div>
+      </td>
+      <td>
+        <div class="network-cell">
+          <strong class="mono-text">${escapeHtml(item.network || "—")}</strong>
+          <span class="mono-text">${escapeHtml(item.gateway || "—")}</span>
+        </div>
+      </td>
+      <td>${escapeHtml(scopeLabel(item.scope))}</td>
+      <td>${escapeHtml(item.location || "—")}</td>
+      <td>${escapeHtml(item.provider || "—")}</td>
+      <td>
+        <span class="status-badge ${statusClass(item.status)}">
+          <span class="status-dot"></span>${statusLabel(item.status)}
+        </span>
+      </td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-btn" type="button" title="View VLAN"
+            onclick="viewVlan('${escapeAttribute(item.code)}')">◉</button>
+          <button class="icon-btn" type="button" title="Edit VLAN"
+            onclick="editVlan('${escapeAttribute(item.code)}')">✎</button>
+        </div>
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+
+        updateStats();
+        document.getElementById("resultCount").textContent =
+          `${filtered.length} of ${vlanData.length} VLANs shown`;
+      }
+
+      function updateStats() {
+        document.getElementById("totalStat").textContent = vlanData.length;
+        document.getElementById("activeStat").textContent = vlanData.filter(
+          (x) => x.status === "active",
+        ).length;
+        document.getElementById("reservedStat").textContent = vlanData.filter(
+          (x) => x.status === "reserved",
+        ).length;
+        document.getElementById("deprecatedStat").textContent = vlanData.filter(
+          (x) => x.status === "deprecated",
+        ).length;
+      }
+
+      function openAddModal() {
+        editingCode = null;
+        document.getElementById("modalTitle").textContent = "Add VLAN";
+        document.getElementById("vlanForm").reset();
+        document.getElementById("formStatus").value = "active";
+        document.getElementById("formScope").value = "management";
+        document.getElementById("vlanModal").showModal();
+      }
+
+      function editVlan(code) {
+        const item = vlanData.find((x) => x.code === code);
+        if (!item) return;
+
+        editingCode = code;
+        document.getElementById("modalTitle").textContent = "Edit VLAN";
+        document.getElementById("formVlanId").value = item.vlanId;
+        document.getElementById("formName").value = item.name;
+        document.getElementById("formScope").value = item.scope;
+        document.getElementById("formStatus").value = item.status;
+        document.getElementById("formNetwork").value = item.network || "";
+        document.getElementById("formGateway").value = item.gateway || "";
+        document.getElementById("formLocation").value =
+          item.location || "POP Jakarta";
+        document.getElementById("formProvider").value =
+          item.provider || "Internal";
+        document.getElementById("formDescription").value =
+          item.description || "";
+        document.getElementById("vlanModal").showModal();
+      }
+
+      function viewVlan(code) {
+        window.location.href = `vlan-detail.html?code=${encodeURIComponent(code)}`;
+      }
+
+      function closeModal() {
+        document.getElementById("vlanModal").close();
+      }
+
+      function resetVlanData() {
+        vlanData = structuredClone(DEMO_DATA);
+        saveData();
+        document.getElementById("searchInput").value = "";
+        document.getElementById("statusFilter").value = "all";
+        document.getElementById("scopeFilter").value = "all";
+        renderTable();
+      }
+
+      document
+        .getElementById("vlanForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const payload = {
+            vlanId: Number(document.getElementById("formVlanId").value),
+            name: document.getElementById("formName").value.trim(),
+            scope: document.getElementById("formScope").value,
+            status: document.getElementById("formStatus").value,
+            network: document.getElementById("formNetwork").value.trim(),
+            gateway: document.getElementById("formGateway").value.trim(),
+            location: document.getElementById("formLocation").value,
+            provider: document.getElementById("formProvider").value,
+            description: document
+              .getElementById("formDescription")
+              .value.trim(),
+          };
+
+          if (!payload.vlanId || !payload.name) return;
+
+          if (editingCode) {
+            const index = vlanData.findIndex((x) => x.code === editingCode);
+            if (index !== -1)
+              vlanData[index] = { ...vlanData[index], ...payload };
+          } else {
+            const next =
+              vlanData.reduce((max, item) => {
+                const n = Number(String(item.code).replace("VLAN-", "")) || 0;
+                return Math.max(max, n);
+              }, 0) + 1;
+
+            vlanData.push({
+              code: `VLAN-${String(next).padStart(4, "0")}`,
+              ...payload,
+            });
+          }
+
+          saveData();
+          renderTable();
+          closeModal();
+        });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", renderTable);
+      document
+        .getElementById("statusFilter")
+        .addEventListener("change", renderTable);
+      document
+        .getElementById("scopeFilter")
+        .addEventListener("change", renderTable);
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function escapeAttribute(value) {
+        return String(value ?? "")
+          .replaceAll("\\", "\\\\")
+          .replaceAll("'", "\\'");
+      }
+
+      renderTable();
+    </script>
+  </body>
+</html>

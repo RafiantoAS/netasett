@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OLTs · NETASSET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="olt.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span class="brand-name">NETASSET</span>
+            <span class="brand-sub">ISP Asset Management</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-top">Dashboard</a>
+
+          <details class="nav-group" open>
+            <summary>Physical Assets</summary>
+            <div class="nav-children">
+              <a href="router.html" class="nav-sub"> Router </a>
+              <a href="switch.html" class="nav-sub">Switch</a>
+              <a href="server.html" class="nav-sub">Server</a>
+              <a href="olt.html" class="nav-sub active">OLT</a>
+              <a href="equipment.html" class="nav-sub">Equipment </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Network Resources</summary>
+            <div class="nav-children">
+              <a href="ip-address.html" class="nav-sub">IP Address </a>
+              <a href="ip-prefix-pools.html" class="nav-sub"
+                >IP Prefix / Pool
+              </a>
+              <a href="vlan.html" class="nav-sub">VLAN </a>
+              <a href="asn.html" class="nav-sub" aria-current="page"> ASN </a>
+              <a href="interface.html" class="nav-sub">Interface </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Virtual Resources</summary>
+            <div class="nav-children">
+              <a href="vm.html" class="nav-sub">VM </a>
+              <a href="vpn.html" class="nav-sub">VPN </a>
+              <a href="license.html" class="nav-sub">License </a>
+              <a href="certificate.html" class="nav-sub">Certificate </a>
+            </div>
+          </details>
+
+          <a href="network-topology.html" class="nav-top">Network Topology </a>
+
+          <details class="nav-group">
+            <summary>Locations</summary>
+            <div class="nav-children">
+              <a href="locations.html" class="nav-sub">All Locations</a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Customers / Users</summary>
+            <div class="nav-children">
+              <a href="customers.html" class="nav-sub">Customers</a>
+              <a href="users.html" class="nav-sub">Users</a>
+              <a href="departments.html" class="nav-sub">Departments </a>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary>Providers</summary>
+            <div class="nav-children">
+              <a href="providers.html" class="nav-sub">All Providers</a>
+            </div>
+          </details>
+
+          <a href="lifecycle.html" class="nav-top">Lifecycle / Status</a>
+          <a href="reports.html" class="nav-top">Reports </a>
+          <a href="settings-master-data.html" class="nav-top"
+            >Settings / Master Data
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar olt-topbar">
+          <div class="olt-title-block">
+            <div class="breadcrumb">
+              <span>Asset Management</span>
+              <span class="breadcrumb-separator"> / </span>
+              <span>Physical Assets</span>
+              <span class="breadcrumb-separator"> / </span>
+              <strong>OLT</strong>
+            </div>
+            <h1>OLTs</h1>
+          </div>
+
+          <div class="olt-topbar-actions">
+            <button class="btn btn-menu" type="button" aria-label="Menu">
+              ≡
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="openOltModal()"
+            >
+              + Add OLT
+            </button>
+          </div>
+        </header>
+
+        <div class="page-content olt-page">
+          <div class="panel olt-inventory-panel">
+            <div class="panel-head olt-toolbar">
+              <div class="olt-search-wrap">
+                <input
+                  id="oltSearch"
+                  type="text"
+                  placeholder="Cari asset code, hostname, IP, vendor..."
+                />
+              </div>
+
+              <div class="olt-filter-wrap">
+                <select id="oltStatusFilter" class="filter-select">
+                  <option value="all">Semua Lifecycle</option>
+                  <option value="active">Active</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="olt-stats">
+              <div class="stat-card">
+                <div class="stat-label">Total OLT</div>
+                <div class="stat-value" id="oltTotal">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Active</div>
+                <div class="stat-value" id="oltActive">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Maintenance</div>
+                <div class="stat-value" id="oltMaintenance">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Retired</div>
+                <div class="stat-value" id="oltRetired">0</div>
+              </div>
+            </div>
+
+            <div class="olt-table-wrap">
+              <table class="olt-table">
+                <thead>
+                  <tr>
+                    <th>OLT</th>
+                    <th>Hostname / Type</th>
+                    <th>Management IP</th>
+                    <th>Location</th>
+                    <th>PON / Uplink</th>
+                    <th>Provider</th>
+                    <th>Lifecycle</th>
+                    <th>Operational</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="oltTableBody"></tbody>
+              </table>
+
+              <div class="olt-empty" id="oltEmpty" hidden>
+                <strong>Tidak ada OLT ditemukan</strong>
+                <span>Coba kata kunci lain atau reset filter.</span>
+              </div>
+            </div>
+
+            <div class="olt-footer">
+              <div class="olt-footer-right">
+                <span id="oltResultCount">0 of 0 OLTs</span>
+                <button
+                  type="button"
+                  class="btn-reset-demo"
+                  onclick="resetOltData()"
+                >
+                  Reset Demo Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="oltModal" class="modal olt-modal">
+      <form id="oltForm" onsubmit="saveOlt(event)">
+        <div class="modal-head">
+          <div>
+            <div class="modal-eyebrow">PHYSICAL ASSET</div>
+            <h3 id="oltModalTitle">Add OLT</h3>
+          </div>
+          <button
+            type="button"
+            class="modal-close"
+            aria-label="Close modal"
+            onclick="closeOltModal()"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <section class="form-section">
+            <div class="form-section-head">
+              <div>
+                <h4>Basic Information</h4>
+                <p>Identity and hardware information</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label
+                  >Asset Code <span class="hint">(auto-generated)</span></label
+                >
+                <input class="mono-input" name="assetCode" disabled />
+              </div>
+              <div class="form-field">
+                <label>Asset Name</label>
+                <input
+                  name="assetName"
+                  placeholder="cth. Core OLT Jakarta-01"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label>Hostname</label>
+                <input
+                  class="mono-input"
+                  name="hostname"
+                  placeholder="olt-jkt-01"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label>Vendor</label>
+                <input name="vendor" placeholder="cth. Huawei" required />
+              </div>
+              <div class="form-field">
+                <label>Model</label>
+                <input name="model" placeholder="cth. MA5800-X7" required />
+              </div>
+              <div class="form-field">
+                <label>Serial Number</label>
+                <input
+                  class="mono-input"
+                  name="serialNumber"
+                  placeholder="Serial number"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-head">
+              <div>
+                <h4>Network</h4>
+                <p>Management and access information</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Management IP</label>
+                <input
+                  class="mono-input"
+                  name="managementIp"
+                  placeholder="10.10.200.10"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label>MAC Address</label>
+                <input
+                  class="mono-input"
+                  name="macAddress"
+                  placeholder="00:11:22:33:44:55"
+                />
+              </div>
+              <div class="form-field">
+                <label>OLT Type</label>
+                <select name="oltType">
+                  <option value="GPON">GPON</option>
+                  <option value="EPON">EPON</option>
+                  <option value="XGS-PON">XGS-PON</option>
+                  <option value="Combo">Combo</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Software Version</label>
+                <input
+                  class="mono-input"
+                  name="softwareVersion"
+                  placeholder="V8R..."
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-head">
+              <div>
+                <h4>Capacity</h4>
+                <p>PON and uplink port specification</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>PON Ports</label>
+                <input
+                  type="number"
+                  min="1"
+                  name="ponPorts"
+                  placeholder="16"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label>Uplink Ports</label>
+                <input
+                  type="number"
+                  min="1"
+                  name="uplinkPorts"
+                  placeholder="4"
+                  required
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-head">
+              <div>
+                <h4>Location</h4>
+                <p>Physical placement</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Location</label>
+                <select name="location">
+                  <option value="">+ Select Location</option>
+                  <option>POP Jakarta</option>
+                  <option>POP Jakarta Selatan</option>
+                  <option>POP Bandung</option>
+                  <option>Data Center Jakarta</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Rack</label>
+                <select name="rack">
+                  <option value="">+ Select Rack</option>
+                  <option>Rack-01</option>
+                  <option>Rack-02</option>
+                  <option>Rack-03</option>
+                  <option>Rack-04</option>
+                  <option>Rack-05</option>
+                  <option>Rack-06</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Rack U</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="52"
+                  name="rackU"
+                  placeholder="20"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-section-head">
+              <div>
+                <h4>Provider & Status</h4>
+                <p>Ownership and operational condition</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Provider</label>
+                <select name="provider">
+                  <option value="">+ Select Provider</option>
+                  <option>NAP-A</option>
+                  <option>NAP-B</option>
+                  <option>NAP-C</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Lifecycle Status</label>
+                <select name="lifecycleStatus">
+                  <option value="active">Active</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="retired">Retired</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Operational Status</label>
+                <select name="operationalStatus">
+                  <option value="up">UP</option>
+                  <option value="degraded">Degraded</option>
+                  <option value="down">DOWN</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeOltModal()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="oltSubmitButton">
+            Save OLT
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script>
+      const OLT_KEY = "netasset_olts";
+      let editingOltCode = null;
+
+      const defaultOlts = [
+        {
+          assetCode: "OLT-0001",
+          assetName: "Core OLT Jakarta-01",
+          hostname: "olt-core-jkt-01",
+          vendor: "Huawei",
+          model: "MA5800-X7",
+          serialNumber: "HW-5800-24001",
+          managementIp: "10.10.200.1",
+          macAddress: "00:11:22:33:44:01",
+          oltType: "GPON",
+          softwareVersion: "V8R21",
+          ponPorts: 16,
+          uplinkPorts: 4,
+          location: "POP Jakarta",
+          rack: "Rack-05",
+          rackU: 20,
+          provider: "NAP-A",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0002",
+          assetName: "Distribution OLT Jakarta-01",
+          hostname: "olt-dist-jkt-01",
+          vendor: "ZTE",
+          model: "C320",
+          serialNumber: "ZT-C320-24002",
+          managementIp: "10.10.200.2",
+          macAddress: "00:11:22:33:44:02",
+          oltType: "GPON",
+          softwareVersion: "V3.2",
+          ponPorts: 16,
+          uplinkPorts: 4,
+          location: "POP Jakarta",
+          rack: "Rack-06",
+          rackU: 24,
+          provider: "NAP-A",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0003",
+          assetName: "Access OLT South Jakarta",
+          hostname: "olt-access-jksel-01",
+          vendor: "Huawei",
+          model: "MA5800-X2",
+          serialNumber: "HW-5800-24003",
+          managementIp: "10.20.200.1",
+          macAddress: "00:11:22:33:44:03",
+          oltType: "XGS-PON",
+          softwareVersion: "V8R21",
+          ponPorts: 8,
+          uplinkPorts: 4,
+          location: "POP Jakarta Selatan",
+          rack: "Rack-02",
+          rackU: 18,
+          provider: "NAP-B",
+          lifecycleStatus: "maintenance",
+          operationalStatus: "degraded",
+        },
+        {
+          assetCode: "OLT-0004",
+          assetName: "Access OLT Bandung-01",
+          hostname: "olt-access-bdg-01",
+          vendor: "ZTE",
+          model: "C650",
+          serialNumber: "ZT-C650-24004",
+          managementIp: "10.40.200.1",
+          macAddress: "00:11:22:33:44:04",
+          oltType: "GPON",
+          softwareVersion: "V2.8",
+          ponPorts: 16,
+          uplinkPorts: 8,
+          location: "POP Bandung",
+          rack: "Rack-01",
+          rackU: 10,
+          provider: "NAP-C",
+          lifecycleStatus: "active",
+          operationalStatus: "up",
+        },
+        {
+          assetCode: "OLT-0005",
+          assetName: "Legacy OLT Jakarta",
+          hostname: "olt-legacy-jkt-01",
+          vendor: "Huawei",
+          model: "MA5608T",
+          serialNumber: "HW-5608-24005",
+          managementIp: "10.50.200.1",
+          macAddress: "00:11:22:33:44:05",
+          oltType: "GPON",
+          softwareVersion: "V5.1",
+          ponPorts: 8,
+          uplinkPorts: 2,
+          location: "POP Jakarta",
+          rack: "Rack-04",
+          rackU: 8,
+          provider: "NAP-B",
+          lifecycleStatus: "retired",
+          operationalStatus: "down",
+        },
+      ];
+
+      function getOlts() {
+        const saved = localStorage.getItem(OLT_KEY);
+        if (!saved) {
+          localStorage.setItem(OLT_KEY, JSON.stringify(defaultOlts));
+          return structuredClone(defaultOlts);
+        }
+        try {
+          return JSON.parse(saved);
+        } catch {
+          return structuredClone(defaultOlts);
+        }
+      }
+
+      function saveOlts(data) {
+        localStorage.setItem(OLT_KEY, JSON.stringify(data));
+      }
+
+      function esc(value) {
+        return String(value ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      }
+
+      function lifecycleBadge(status) {
+        const labels = {
+          active: "Active",
+          maintenance: "Maintenance",
+          retired: "Retired",
+        };
+        return `<span class="olt-badge olt-badge-${esc(status)}"><i></i>${labels[status] || status}</span>`;
+      }
+
+      function operationalBadge(status) {
+        const labels = { up: "UP", degraded: "DEGRADED", down: "DOWN" };
+        return `<span class="olt-operational olt-operational-${esc(status)}"><i></i>${labels[status] || status}</span>`;
+      }
+
+      function renderOlts() {
+        const all = getOlts();
+        const q = document
+          .getElementById("oltSearch")
+          .value.trim()
+          .toLowerCase();
+        const filter = document.getElementById("oltStatusFilter").value;
+
+        const filtered = all.filter((o) => {
+          const hay = [
+            o.assetCode,
+            o.assetName,
+            o.hostname,
+            o.vendor,
+            o.managementIp,
+            o.location,
+            o.provider,
+            o.model,
+          ]
+            .join(" ")
+            .toLowerCase();
+          return (
+            (!q || hay.includes(q)) &&
+            (filter === "all" || o.lifecycleStatus === filter)
+          );
+        });
+
+        document.getElementById("oltTotal").textContent = all.length;
+        document.getElementById("oltActive").textContent = all.filter(
+          (o) => o.lifecycleStatus === "active",
+        ).length;
+        document.getElementById("oltMaintenance").textContent = all.filter(
+          (o) => o.lifecycleStatus === "maintenance",
+        ).length;
+        document.getElementById("oltRetired").textContent = all.filter(
+          (o) => o.lifecycleStatus === "retired",
+        ).length;
+        document.getElementById("oltResultCount").textContent =
+          `${filtered.length} of ${all.length} OLTs`;
+
+        const body = document.getElementById("oltTableBody");
+        body.innerHTML = filtered
+          .map(
+            (o) => `
+    <tr>
+      <td>
+        <div class="olt-name-cell">
+          <span class="olt-icon">OL</span>
+          <span class="olt-name-text">
+            <strong>${esc(o.assetName)}</strong>
+            <small>${esc(o.assetCode)}</small>
+          </span>
+        </div>
+      </td>
+      <td>
+        <span class="olt-hostname">${esc(o.hostname)}</span>
+        <span class="olt-type">${esc(o.oltType)}</span>
+      </td>
+      <td><span class="olt-mono">${esc(o.managementIp)}</span></td>
+      <td>${esc(o.location)}<br><span class="olt-muted">${esc(o.rack)} · U${esc(o.rackU)}</span></td>
+      <td><span class="olt-mono">${esc(o.ponPorts)} PON</span><br><span class="olt-muted">${esc(o.uplinkPorts)} uplink</span></td>
+      <td>${esc(o.provider)}</td>
+      <td>${lifecycleBadge(o.lifecycleStatus)}</td>
+      <td>${operationalBadge(o.operationalStatus)}</td>
+      <td>
+        <div class="olt-actions">
+          <button type="button" class="icon-btn" title="View" onclick="viewOlt('${esc(o.assetCode)}')">◉</button>
+          <button type="button" class="icon-btn" title="Edit" onclick="editOlt('${esc(o.assetCode)}')">✎</button>
+        </div>
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+
+        document.getElementById("oltEmpty").hidden = filtered.length !== 0;
+      }
+
+      function openOltModal(code = null) {
+        editingOltCode = code;
+        const modal = document.getElementById("oltModal");
+        const form = document.getElementById("oltForm");
+        const data = code ? getOlts().find((o) => o.assetCode === code) : null;
+
+        form.reset();
+        document.getElementById("oltModalTitle").textContent = data
+          ? "Edit OLT"
+          : "Add OLT";
+        document.getElementById("oltSubmitButton").textContent = data
+          ? "Save Changes"
+          : "Save OLT";
+
+        const fields = [
+          "assetCode",
+          "assetName",
+          "hostname",
+          "vendor",
+          "model",
+          "serialNumber",
+          "managementIp",
+          "macAddress",
+          "oltType",
+          "softwareVersion",
+          "ponPorts",
+          "uplinkPorts",
+          "location",
+          "rack",
+          "rackU",
+          "provider",
+          "lifecycleStatus",
+          "operationalStatus",
+        ];
+        if (data)
+          fields.forEach((k) => {
+            if (form.elements[k]) form.elements[k].value = data[k] ?? "";
+          });
+        else
+          form.elements.assetCode.value = `OLT-${String(getOlts().length + 1).padStart(4, "0")}`;
+
+        if (typeof modal.showModal === "function") modal.showModal();
+        else modal.setAttribute("open", "");
+      }
+
+      function closeOltModal() {
+        document.getElementById("oltModal").close();
+        editingOltCode = null;
+      }
+
+      function saveOlt(event) {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const item = Object.fromEntries(form.entries());
+        item.ponPorts = Number(item.ponPorts) || 0;
+        item.uplinkPorts = Number(item.uplinkPorts) || 0;
+        item.rackU = Number(item.rackU) || 0;
+
+        const all = getOlts();
+        if (editingOltCode) {
+          const index = all.findIndex((o) => o.assetCode === editingOltCode);
+          if (index >= 0)
+            all[index] = { ...all[index], ...item, assetCode: editingOltCode };
+        } else {
+          item.assetCode = `OLT-${String(all.length + 1).padStart(4, "0")}`;
+          all.push(item);
+        }
+        saveOlts(all);
+        closeOltModal();
+        renderOlts();
+      }
+
+      function editOlt(code) {
+        openOltModal(code);
+      }
+
+      function viewOlt(code) {
+        const o = getOlts().find((x) => x.assetCode === code);
+
+        if (!o) {
+          return;
+        }
+
+        // Open the dedicated OLT Detail page and pass the asset code.
+        window.location.href = `olt-detail.html?code=${encodeURIComponent(o.assetCode)}`;
+      }
+
+      function resetOltData() {
+        localStorage.removeItem(OLT_KEY);
+        renderOlts();
+      }
+
+      document
+        .getElementById("oltSearch")
+        .addEventListener("input", renderOlts);
+      document
+        .getElementById("oltStatusFilter")
+        .addEventListener("change", renderOlts);
+      document.getElementById("oltModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeOltModal();
+      });
+      renderOlts();
+    </script>
+  </body>
+</html>
